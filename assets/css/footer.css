@@ -1,0 +1,113 @@
+.footernew{
+    background: #FFFFFF;
+    width: 100%;
+    height: 666px;
+  }
+  .footernew2{
+    background: #111111;
+    width: 100%;
+    height: 477px;
+  }
+  .footerimg{
+    width:175.18px; 
+    height : 65px; 
+    position: absolute;
+    left: 200px;
+    bottom:320px;
+  }
+  .footericonphone{
+    font-size:24px; 
+    transform: rotate(100deg);
+    position: absolute;
+    left: 210px;
+    bottom:250px;
+    color: white;
+  }
+  .fa-phonetext{
+    color: white;
+    position: absolute;
+    left: 250px;
+    bottom:251px;
+  }
+
+  .footericonemail{
+    font-size:24px; 
+    position: absolute;
+    left: 210px;
+    bottom:205px;
+    color: white;
+  }
+  .fa-envelopetext{
+    color: white;
+    position: absolute;
+    left: 250px;
+    bottom:205px;
+  }
+  .footericonsocial{
+    font-size:24px; 
+    position: absolute;
+    left: 210px;
+    bottom:135px;
+    color: white;
+    letter-spacing: 3px;
+  }
+
+  .row {
+    display: flex;
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+    position: absolute;
+    left: 500px;
+    padding : 100px;
+    height: 477px; /* Should be removed. Only for demonstration */
+    color: white;
+  }
+  .column2 {
+    position: absolute;
+    left: 720px;
+    padding : 100px;
+    height: 477px; /* Should be removed. Only for demonstration */
+    color: white;
+  }
+  .column3 {
+    position: absolute;
+    left: 900px;
+    padding : 100px;
+    height: 477px; /* Should be removed. Only for demonstration */
+    color: white;
+  }
+  .column4 {
+    position: absolute;
+    left: 1100px;
+    padding : 100px;
+    height: 477px; /* Should be removed. Only for demonstration */
+    color: white;
+  }
+  .line {
+    border: 1px solid #4650E5;
+    width: 1768px;
+    position: absolute;
+    bottom : 75px;
+    left: 65px;
+  }
+  .footerinc{
+    font-size:24px; 
+    position: absolute;
+    left: 555px;
+    bottom:18px;
+    color: white;
+  }
+  @media (max-width: 768px) 
+  {
+    .footernew {
+        width: 100%;
+    }
+    .footernew2 {
+        width: 100%;
+    }
+    .line{
+      width: 70%;
+    }
+  }

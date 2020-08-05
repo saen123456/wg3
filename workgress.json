@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "workgress",
+  "private_key_id": "1d4d6cd5ce2593a3982ee8c8482d1b611bf479fa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCLCPoEa3RU8s9/\nPjeksAsvVnEMWVEqNEwUAy2IsdCNLuFVTptrE4qbWyVtb4z9QNYnBtAQ6zCZphFy\n+8nzkkM5WnHB5RvUBly2nWccEdlPXzIXurFycbJwp2uhDsJzsUO/eErT7Qd6pQi7\nQX8xWVoS03Sy410DlFOWl3LM2XE+P6aLWQWoHSoV3vBF3Rn13TW2NerMrLlt7Nnv\n7b7Q8L8Zfe86r8WpPI/lr7iaRb5+cIBkuc46TfWBzb4U3ujla8a5xanVXxGu2wCo\nJuJWt3cUdvdbva1FElzFYpJGuD7LbyEb18U9yukALn/Ef7pEfQ25I4Wl4TdcvsFW\nZx8wIhVFAgMBAAECggEABIeDVZeGj6nlVpjZSTUu+BjRz/ws57oSbGh6GETqrV7E\nmnnYGFHnpw3+FyWWKz3sfBL9vj9bMvY1BVDskFHIfNrUb+Od13dpl81i6YgvUyWf\nxSQg2cCYdpENsY6AiTJSKa+qiGLlZnpv4WHN2fa2N3zKBXXgttgjLPm8FK5UwRlX\nb+Dm/YBafivnvub18SZJfJgDaMfWK1GJoLmTKusVqguQ2R2A2UdfuOAgG9QeJ+cB\nb+GA1Y9VQM95LZrWb16jf1K5bYGgASHQlC+U9HjXHFUhR9sDkUaIcIAwn8LP62km\n2RyyGWNLcNgCD39gbCv7RvSonCxSj+azx+0PUBsy9QKBgQDDYTpAxQdxDnQM45me\nJcY0lbV6AHwqGRVX2TIbrytL0ybJ+HCm2DuqQZ4CONIIIOw018Vb0hSV+nWcepCV\nLHrDW2L7MBS1NHrkhrpfx8noK3/TxLb367GenDJWeGBSoKbjCJRY+AgpAWWuk4GS\ncG7OjtZHDvJyqfpeHc3R56dQlwKBgQC2LFuTzAWJPklxvFk0k0UXkFB6S4AvBy18\nyAzTooU7BexSYb1i1FWNAA48rmeai2vp1y8dgYEZfHcwONH6uiG2CKA5WYDbfOpG\n0S/wvupAOxKGJ5kQNBMylfzmFDJPbD4UUPMuJqhkIWIwVhyAX5QCI/RTeTQ50ek8\np+QYQ73ogwKBgCqNBUPP5VQBAtM/ylgAAA+5vyFH88KzXcuZGOmgl7xWyy7XdalQ\nlIX67m+rckqk6OyFRY0+zo7vUif3JX/nhQEA6SitiwT/3ffhQ7vSZi2zM46qW/LY\nmQFjIS9l3gyAwnfViYFq21Qa4stHgsOiyu8feplVLwY78LQIp6ecXPsXAoGBALWj\nBKwYgGyW7iO46DjDneAgxB0rqmM5hOEllaRuJujyvu5lBa/EhohPxeI7ApHU8YP2\nScPhnBcNQsmR3ctgSrx1XUvRMemmYvC5IlOoB2iDfbTFRpghVALcCYxeFsuZ4Uvg\napdZdAxiPMR1F3Xn1mtL7hBMiQYdhbA0tfh7kp6BAoGAM7xl0278+A4Y1xv2d2y6\nO3xPkmTofrqCvdjb9k9DQ7T3wW5tPbKe+ep+GBNblkJTFnZmCSMce7+HaW5jlsVK\nb80tNIZbgHf9NE0yMbbGUYIGewf34tqpEqCTEvH70vEv0LmAjsALoOpBfRdZiXF4\njUcXOVtt8gqtI71aLVSsvgk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "workgress-storage@workgress.iam.gserviceaccount.com",
+  "client_id": "110787753651273537632",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/workgress-storage%40workgress.iam.gserviceaccount.com"
+}

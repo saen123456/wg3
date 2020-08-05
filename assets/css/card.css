@@ -1,0 +1,89 @@
+
+.font-titlecourse{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+/* identical to box height */
+    color: #000000;
+    
+}
+.font-ownercourse{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    line-height: 2;
+}
+.font-coursecomment{
+    position: absolute;
+    left: 1px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+/* identical to box height */
+color: gray;
+}
+.font-courseprice{
+    position: absolute;
+    right: 1px;
+    top:10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+    color: #4650E5;
+}
+.checked {
+    color: orange;
+    line-height: 2;
+  }
+.profilecourse{
+    position: absolute;
+    left: 100px;
+    bottom: 135px;
+    display: block;
+    margin: auto;   
+}
+
+@media screen and (max-width: 480px) {
+    .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */ } 
+        .profilecourse{
+            bottom: 100px;
+            
+        }
+}
+@media screen and (max-width: 768px) {
+    .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */ } 
+        .profilecourse{
+            bottom: 100px;
+            
+        }
+}
+
+.hrline {
+    width:60%;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .hrline {
+        width:60%;
+    margin: 0 auto; 
+    } 
+      
+}
+    
+
