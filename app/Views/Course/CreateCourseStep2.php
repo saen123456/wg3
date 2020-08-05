@@ -263,7 +263,7 @@
                     console.log(Unit_Count);
 
                     $.ajax({
-                        url: "http://localhost:8080/projectwg/CourseController/Upload_Unit?unit=" + Unit_Count++,
+                        url: "https://workgress.online/CourseController/Upload_Unit?unit=" + Unit_Count++,
 
                         // url: "<?php
                                     //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
