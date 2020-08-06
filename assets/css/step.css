@@ -272,11 +272,13 @@ body {
 
 p {
   margin: 0px; }
-
-p.desc {
-  padding-bottom: 330px;
-  color: #999;
-  line-height: 1.92; }
+  .light-purple{
+    background: #7c7cdd;
+  }
+  p.desc {
+    padding-bottom: 510px;
+    color: #999;
+    line-height: 1.92; }
 
 p.title {
   font-weight: bold;

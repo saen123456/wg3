@@ -92,7 +92,7 @@
 						MIT licensed illustrations for every project you can imagine and create
 					</p>
 					<img src="assets/img/signup-img.jpg" alt="" class="signup-img">
-					<a class="btn btn-danger" href="<?php echo base_url('/course'); ?>" role="button">ออก</a>
+					<a class="btn btn-default btn-block light-purple" href="<?php echo base_url('/course'); ?>" role="button">ออก</a>
 				</div>
 			</div>
 			<div class="signup-form-conent">

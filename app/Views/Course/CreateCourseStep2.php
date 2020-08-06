@@ -150,54 +150,39 @@
 
                         <div class="form-group-image">
                             <label for="image" class="form-label2">ภาพหลักสูตร</label>
-                            <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
-                                <div class="row">
-                                    <div class="tab-pane" id="photo">
-                                        <div class="main-image">
-                                            <div class="media-container">
-                                                <span class="media-overlay">
-                                                    <input type="file" id="media-input" name="photo">
-                                                    <i class="fa fa-file-image-o"></i>
-                                                </span>
-                                                <figure class="media-object">
-                                                    <img class="img-object" src="<?php echo base_url('assets/img/pre-image.png'); ?>" width="491" height="276" data-purpose="image-preview">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                        <div class="media-control">
-                                            <button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
-                                            <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
-                                        </div>
-                                        <div class="main-text">
-                                            <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
-                                                โดยไม่มีข้อความบนรูปภาพ</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
 
-                        <div class="tab-pane" id="photo">
-                            <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
-                                <div class="offset-sm-2 col-sm-12">
-                                    <div class="media-container">
-                                        <span class="media-overlay">
-                                            <input type="file" id="media-input" name="photo2">
-                                            <i class="fa fa-file-image-o"></i>
+                            <div class="row">
+                                <div class="main-image">
+                                    <div class="input-group image-preview">
+                                        <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn">
+                                            <!-- image-preview-clear button -->
+                                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                <span class="glyphicon glyphicon-remove"></span> Clear
+                                            </button>
+                                            <!-- image-preview-input -->
+                                            <div class="btn btn-default image-preview-input">
+                                                <span class="glyphicon glyphicon-folder-open"></span>
+                                                <span class="image-preview-input-title">Browse</span>
+                                                <input type="file" accept="image/png, image/jpeg, image/gif" name="Image_Course" /> <!-- rename it -->
+
+                                            </div>
 
                                         </span>
-                                        <figure class="media-object">
-                                            <img class="img-object" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
-                                        </figure>
-                                    </div>
-                                    <div class="media-control">
-                                        <button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
-                                        <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
-                                    </div>
-                                </div>
 
-                            </form>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                    <br>
+                                    <a class="btn btn-primary" href="#" role="button">กดปุ่มนี้เพื่ออัพโหลดรูปภาพ</a>
+                                </div>
+                                <div class="main-text">
+                                    <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
+                                        โดยไม่มีข้อความบนรูปภาพ</p>
+                                </div>
+                            </div>
+
                         </div>
+
+
 
 
                         <div class="form-group-image">
@@ -206,6 +191,7 @@
                                 <div class="main-image">
                                     <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
                                 </div>
+
                                 <div class="main-text">
                                     <p>ผู้เรียนที่ได้ชมวิดีโอส่งเสริมการขายที่ผลิตอย่างดี มีแนวโน้มที่จะลงทะเบียนเพิ่มขึ้น 5 เท่า ในหลักสูตรของคุณ เราเห็นสถิติเพิ่มขึ้นถึง 10 เท่า สำหรับวิดีโอที่ทำได้อย่างดีเยี่ยม! </p>
                                 </div>
@@ -238,7 +224,7 @@
             $(document).ready(function() {
                 var i = $('#table_auto tr').length; // Get the no.of rows in the table
                 var j = 2;
-                var Unit_Index = 1;
+                var Unit_Count = 1;
                 $(".addmore").on('click', function() {
                     html = '<tr id="row_' + i + '">';
                     html += '<td><input class="case" type="checkbox"/></td>';
@@ -254,7 +240,7 @@
                     html += '</tr>';
                     $('#table_auto').append(html); //Append the new row to the table
                     i++;
-                    j++;
+                    j++
                 });
                 //to check all checkboxes
                 $(document).on('change', '#check_all', function() {
@@ -300,9 +286,10 @@
                         .removeClass('progress-bar-danger');
 
                     var xhr = new window.XMLHttpRequest();
-                    //console.log(Unit_Index);
+                    console.log(Unit_Count);
+
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Index++,
+                        url: "https://workgress.online/CourseController/Upload_Unit?unit=" + Unit_Count++,
 
                         // url: "<?php
                                     //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
@@ -353,6 +340,66 @@
                     });
 
                 }
+            });
+        </script>
+        <script>
+            $(document).on('click', '#close-preview', function() {
+                $('.image-preview').popover('hide');
+                // Hover befor close the preview
+                $('.image-preview').hover(
+                    function() {
+                        $('.image-preview').popover('show');
+                    },
+                    function() {
+                        $('.image-preview').popover('hide');
+                    }
+                );
+            });
+
+            $(function() {
+                // Create the close button
+                var closebtn = $('<button/>', {
+                    type: "button",
+                    text: 'x',
+                    id: 'close-preview',
+                    style: 'font-size: initial;',
+                });
+                closebtn.attr("class", "close pull-right");
+                // Set the popover default content
+                $('.image-preview').popover({
+                    trigger: 'manual',
+                    html: true,
+                    title: "<strong>Preview</strong>" + $(closebtn)[0].outerHTML,
+                    content: "There's no image",
+                    placement: 'bottom'
+                });
+                // Clear event
+                $('.image-preview-clear').click(function() {
+                    $('.image-preview').attr("data-content", "").popover('hide');
+                    $('.image-preview-filename').val("");
+                    $('.image-preview-clear').hide();
+                    $('.image-preview-input input:file').val("");
+                    $(".image-preview-input-title").text("Browse");
+                });
+                // Create the preview image
+                $(".image-preview-input input:file").change(function() {
+                    var img = $('<img/>', {
+                        id: 'dynamic',
+                        width: 250,
+                        height: 200
+                    });
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    // Set preview image into the popover data-content
+                    reader.onload = function(e) {
+                        $(".image-preview-input-title").text("Change");
+                        $(".image-preview-clear").show();
+                        $(".image-preview-filename").val(file.name);
+                        img.attr('src', e.target.result);
+                        $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+                    }
+                    reader.readAsDataURL(file);
+                });
             });
         </script>
 </body>
