@@ -182,7 +182,7 @@
                                 <div class="offset-sm-2 col-sm-12">
                                     <div class="media-container">
                                         <span class="media-overlay">
-                                            <input type="file" id="media-input" name="photo">
+                                            <input type="file" id="media-input" name="photo2">
                                             <i class="fa fa-file-image-o"></i>
 
                                         </span>
@@ -190,17 +190,10 @@
                                             <img class="img-object" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
                                         </figure>
                                     </div>
-                                    <?php
-                                    if ($this->session->get("Type") == 'normal') {
-                                        ?>
-
-                                        <div class="media-control">
-                                            <button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
-                                            <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
+                                    <div class="media-control">
+                                        <button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
+                                        <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
+                                    </div>
                                 </div>
 
                             </form>
