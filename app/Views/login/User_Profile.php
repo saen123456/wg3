@@ -151,41 +151,41 @@
 				<!-- SEARCH FORM -->
 				<!-- Right navbar links -->
 
-						<div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
-				<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-					<!-- Messages Dropdown Menu -->
-					<div class="input-group input-group-sm">
-					<!-- Notifications Dropdown Menu -->
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<?php
-						if ($this->session->get("Picture")) { ?>
-						<img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
-																																} else { ?>
-						<img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
-																																	}
-																																	?>
-					</a>
-					<div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
-						<?php
-						if ($this->session->get("Role_name") == 'student') {
-						?>
-						<a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
-						<?php
-						} else if ($this->session->get("Role_name") == 'admin') { ?>
-						<a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-						<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
-						<?php
-						} else if ($this->session->get("Role_name") == 'teacher') { ?>
-						<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
-						<?php
-						}
-						?>
-			
-						<a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
-					</div>
-					</div>
-				</ul>
+				<div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
+					<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+						<!-- Messages Dropdown Menu -->
+						<div class="input-group input-group-sm">
+							<!-- Notifications Dropdown Menu -->
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<?php
+								if ($this->session->get("Picture")) { ?>
+									<img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
+																																			} else { ?>
+									<img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
+																																				}
+																																				?>
+							</a>
+							<div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+								<?php
+								if ($this->session->get("Role_name") == 'student') {
+									?>
+									<a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
+								<?php
+								} else if ($this->session->get("Role_name") == 'admin') { ?>
+									<a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
+									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+								<?php
+								} else if ($this->session->get("Role_name") == 'teacher') { ?>
+									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+								<?php
+								}
+								?>
+
+								<a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+							</div>
+						</div>
+					</ul>
 				</div>
 
 			</div>
@@ -209,9 +209,9 @@
 												<?php
 												if ($this->session->get("Picture")) { ?>
 													<img class="profile-user-img img-fluid img-circle" src="<?php echo $this->session->get("Picture"); ?>" alt="User profile picture"><?php
-																																													} else { ?>
+																																														} else { ?>
 													<img class="profile-user-img img-fluid img-circle" src="<?php echo base_url('assets/img/profile.jpg'); ?>" alt="User profile picture"><?php
-																																														}
+																																															}
 																																															?>
 
 											</div>
@@ -282,7 +282,7 @@
 													<form class="form-horizontal" action="<?= site_url('/UserController/Update_Profile') ?>" method="post">
 														<?php
 														if ($this->session->get("Type") == 'normal') {
-														?>
+															?>
 															<div class="form-group row">
 																<label for="inputName" class="col-sm-2 col-form-label">ชื่อ-นามสกุล</label>
 																<div class="col-sm-10">
@@ -297,7 +297,7 @@
 																	<input type="text" class="form-control" name="Full_Name" id="Full_Name" value="<?php echo $this->session->get("Full_name"); ?>" placeholder="ชื่อ-นามสกุล" readonly>
 																</div>
 															</div><?php
-																}
+																	}
 																	?>
 														<div class="form-group row">
 															<div class="offset-sm-2 col-sm-10">
@@ -320,15 +320,15 @@
 																	<?php
 																	if ($this->session->get("Picture")) { ?>
 																		<img class="img-object" src="<?php echo $this->session->get("Picture"); ?>"><?php
-																																				} else { ?>
+																																					} else { ?>
 																		<img class="img-object" src="<?php echo base_url('assets/img/profile.jpg'); ?>"><?php
-																																					}
-																																						?>
+																																						}
+																																					?>
 																</figure>
 															</div>
 															<?php
 															if ($this->session->get("Type") == 'normal') {
-															?>
+																?>
 
 																<div class="media-control">
 																	<button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
@@ -365,8 +365,8 @@
 																	<div class="input-group mb-3">
 																		<input type="text" class="form-control" name="pass" id="pass" value="*******" placeholder="ชื่อ-นามสกุล" readonly>
 																		<span class="input-group-append">
-																		<button  type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-default" ><span class="fas fa-pen"></span></button>
-																	</span>
+																			<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-default"><span class="fas fa-pen"></span></button>
+																		</span>
 																	</div>
 																</div>
 															</div>

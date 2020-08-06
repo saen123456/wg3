@@ -133,10 +133,12 @@
                 <div class="overlay"></div>
                 <div class="row  justify-content-center">
                     <div class="col-9">
+                        <?php
+                            if( $this->session->get("Has_Course") == null ){
+                        ?>
                         <div class="cards">
                             <div class="container">
                                 <div class="row">
-
                                     <div class="col-10">
                                         <h2><span class="far fa-calendar-plus "></span><b> ข้ามไปยังการสร้างหลักสูตร</b></h2>
                                     </div>
@@ -149,17 +151,46 @@
                             </div>
                         </div>
                         <?php
+                        }
+                        ?>
+                        <div class="row">  
+                        <?php
+                            if( $this->session->get("Has_Course") != null ){
+                        ?>
+                        <div class="col-auto mr-auto">
+                            <form class="form-inline ml-1 ml-md-1">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
+                                <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                </div>
+                            </div>
+                            </form>
+                            </div>
+                            <div class="col-auto">
+                            <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
+                                            <button formaction="<?= base_url('/course/createcourse') ?>" type="summit" class="btn btn-block btn-danger">สร้างหลักสูตร</button>
+                            </form>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
                         foreach ($data as $row) :
                             ?>
                             <br>
-                            <div class="container">
+                        
                                 <div class="content_course">
-                                    <div class="container">
                                         <div class="row">
-                                            <div class="col-2"><img src="<?php echo base_url('assets/img/dash_course_illustration.png'); ?>" width="120px" height="120px">
+                                            <div class="col-1"><img src="<?php echo base_url('assets/img/dash_course_illustration.png'); ?>" width="120px" height="120px">
                                             </div>
-                                            <div class="col-10">
-                                                <b> : <?php echo $row['course_name'] ?></b>
+                                            <div class="col-11">
+                                                <br>
+                                                <b><p> คอร์ส : <?php echo $row['course_name'] ?></p></b>
+                                                
                                                 <a href="<?= base_url('/course/manage/config/' . $row['course_id']); ?>">
                                                     <div class="content_course-overlay"></div>
                                                     <div class="content_course-details fadeIn-bottom">
@@ -168,9 +199,9 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+ 
                                 </div>
-                            </div>
+                            
                         <?php
                         endforeach;
                         ?>

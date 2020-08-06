@@ -30,6 +30,11 @@ class CourseController extends BaseController
             $model = new Course_model();
             $id =  $this->session->get("User_id");
             $data['data'] = $model->Select_Course($id);
+            $Has_Course =  $model->Select_newcourse($id);
+            $this->Has_Course = [
+                'Has_Course' => $Has_Course,
+            ];
+            $this->session->set($this->Has_Course);
             echo view('Course/Course', $data);
         } else {
             echo view('home/HomePage');
@@ -173,10 +178,10 @@ class CourseController extends BaseController
         $Unit_Name = $this->request->getVar('Unit_Name');
         $User_id = $this->session->get("User_id");
         $Course_id = $this->session->get("Course_id");
-        $Unit = $_GET['unit'];
+        $Unit_Index = $_GET['Unit_Index'];
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
-            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit, $Video_Name);
+            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";

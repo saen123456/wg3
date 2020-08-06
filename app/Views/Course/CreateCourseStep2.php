@@ -91,7 +91,6 @@
                                                     <ul class="list-inline">
                                                         <li><button class="btn btn-success addmore" type="button"><i class="fa fa-plus"></i> เพิ่ม Unit</button></li>
                                                         <li> <button class="btn btn-danger delete" type="button"><i class="fa fa-trash"></i> ลบ Unit</button></li>
-                                                        <li><button class="btn btn-sm btn-primary upload-all"><i class="fa fa-upload"></i> Upload ทั้งหมด</button></li>
 
                                                     </ul>
                                                 </div>
@@ -148,26 +147,72 @@
                             <textarea placeholder="ใส่คำอธิบายของหลักสูตรคุณ">
                                     </textarea>
                         </div>
+
                         <div class="form-group-image">
                             <label for="image" class="form-label2">ภาพหลักสูตร</label>
-                            <div class="row">
-                                <div class="main-image">
-                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
+                            <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
+                                <div class="row">
+                                    <div class="tab-pane" id="photo">
+                                        <div class="main-image">
+                                            <div class="media-container">
+                                                <span class="media-overlay">
+                                                    <input type="file" id="media-input" name="photo">
+                                                    <i class="fa fa-file-image-o"></i>
+                                                </span>
+                                                <figure class="media-object">
+                                                    <img class="img-object" src="<?php echo base_url('assets/img/pre-image.png'); ?>" width="491" height="276" data-purpose="image-preview">
+                                                </figure>
+                                            </div>
+                                        </div>
+                                        <div class="media-control">
+                                            <button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
+                                            <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
+                                        </div>
+                                        <div class="main-text">
+                                            <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
+                                                โดยไม่มีข้อความบนรูปภาพ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="photo">
+                            <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
+                                <div class="offset-sm-2 col-sm-12">
+                                    <div class="media-container">
+                                        <span class="media-overlay">
+                                            <input type="file" id="media-input" name="photo">
+                                            <i class="fa fa-file-image-o"></i>
+
+                                        </span>
+                                        <figure class="media-object">
+                                            <img class="img-object" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
+                                        </figure>
+                                    </div>
+                                    <?php
+                                    if ($this->session->get("Type") == 'normal') {
+                                        ?>
+
+                                        <div class="media-control">
+                                            <button class="edit-profile">กดปุ่มนี้เพื่อแก้ไขรูปภาพ</button>
+                                            <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
 
-                                <div class="main-text">
-                                    <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
-                                        โดยไม่มีข้อความบนรูปภาพ</p>
-                                </div>
-                            </div>
+                            </form>
                         </div>
+
+
                         <div class="form-group-image">
                             <label for="image" class="form-label2">วิดีโอโปรโมชั่น</label>
                             <div class="row">
                                 <div class="main-image">
                                     <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
                                 </div>
-
                                 <div class="main-text">
                                     <p>ผู้เรียนที่ได้ชมวิดีโอส่งเสริมการขายที่ผลิตอย่างดี มีแนวโน้มที่จะลงทะเบียนเพิ่มขึ้น 5 เท่า ในหลักสูตรของคุณ เราเห็นสถิติเพิ่มขึ้นถึง 10 เท่า สำหรับวิดีโอที่ทำได้อย่างดีเยี่ยม! </p>
                                 </div>
@@ -199,22 +244,24 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 var i = $('#table_auto tr').length; // Get the no.of rows in the table
-                var Unit_Count = 1;
+                var j = 2;
+                var Unit_Index = 1;
                 $(".addmore").on('click', function() {
                     html = '<tr id="row_' + i + '">';
                     html += '<td><input class="case" type="checkbox"/></td>';
                     html += '<td>';
                     html += '<form action="#">';
-                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ 1 บทนำ" />';
+                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่' + j + '" />';
                     html += '<br>';
                     html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
-                    html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload</button></div>';
+                    html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button></div>';
                     html += '</form>';
                     html += '</td>';
                     html += '</tr>';
                     $('#table_auto').append(html); //Append the new row to the table
                     i++;
+                    j++;
                 });
                 //to check all checkboxes
                 $(document).on('change', '#check_all', function() {
@@ -260,10 +307,9 @@
                         .removeClass('progress-bar-danger');
 
                     var xhr = new window.XMLHttpRequest();
-                    console.log(Unit_Count);
-
+                    //console.log(Unit_Index);
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Unit?unit=" + Unit_Count++,
+                        url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Index++,
 
                         // url: "<?php
                                     //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
@@ -284,7 +330,6 @@
                         },
                         error: function() {},
                         xhr: function() {
-
                             //Upload progress
                             xhr.upload.addEventListener("progress", function(e) {
                                 if (e.lengthComputable) {

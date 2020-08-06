@@ -24,7 +24,7 @@ class Course_model extends Model
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
-        $this->connect_postgresdb->debug = true;
+        $this->connect_postgresdb->debug = false;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
     // public function Select_Video()
@@ -62,7 +62,7 @@ class Course_model extends Model
         $sql = "SELECT max(course.course_id) from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ";
         return $this->connect_postgresdb->getOne($sql);
     }
-    public function Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit, $Video_Name)
+    public function Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name)
     {
         //echo $user_first_name;
         $sql = "INSERT INTO video (video_name,video_link,create_date) VALUES ('$Video_Name','$Video_link',now())";
@@ -77,7 +77,7 @@ class Course_model extends Model
         $sql4 = "SELECT max(unit_id) FROM unit";
         $Unit_Id = $this->connect_postgresdb->getOne($sql4);
 
-        $sql5 = "INSERT INTO course_unit (course_id,unit_id,video_id,unit_index) VALUES ('$Course_id','$Unit_Id','$Video_Id','$Unit')";
+        $sql5 = "INSERT INTO course_unit (course_id,unit_id,video_id,unit_index) VALUES ('$Course_id','$Unit_Id','$Video_Id','$Unit_Index')";
         $this->connect_postgresdb->execute($sql5);
     }
 }
