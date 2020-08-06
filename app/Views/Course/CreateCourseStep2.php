@@ -173,6 +173,7 @@
                                         </div><!-- /input-group image-preview [TO HERE]-->
                                         <br>
                                         <a class="btn btn-primary" href="<?= site_url('/UserController/Upload_Picture') ?>" role="button">กดปุ่มนี้เพื่ออัพโหลดรูปภาพ</a>
+                                        <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
                                     </div>
                                     <div class="main-text">
                                         <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
