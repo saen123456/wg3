@@ -274,9 +274,15 @@ p {
   margin: 0px; }
   .light-purple{
     background: #7c7cdd;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-size: 13px;
+    font-weight: bold;
+    padding: 17px;
+    width: 50%;
   }
   p.desc {
-    padding-bottom: 510px;
+    padding-bottom: 555px;
     color: #999;
     line-height: 1.92; }
 
