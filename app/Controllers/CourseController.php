@@ -128,23 +128,6 @@ class CourseController extends BaseController
         //return redirect()->to(base_url('test55'));
     }
 
-    public function Upload_Test()
-    {
-        $Unit = $_GET['unit'];
-        $file = $this->request->getFile('Unit_Video_File');
-        if ($file->getSize() > 0) {
-            $file_random = $file->getClientName();
-            $file->move('./public/upload', $Unit);
-            //$model->Upload_Video($title, $file_random);
-            //echo "<img width='200px' src='upload/" . $image_name . "' class='preview'>";
-
-            echo $Unit;
-        } else {
-            echo "image uploading failed";
-        }
-    }
-
-
     public function Upload_Video()
     {
 
@@ -166,6 +149,25 @@ class CourseController extends BaseController
 
         //return redirect()->to(base_url('test55'));
     }
+    /*public function Upload_Test()
+    {
+        $model = new Course_model();
+        $Photo = $this->request->getFile('photo');
+
+        //echo $Photo->getClientName();
+        if ($Photo->getSize() > 0) {
+            $Photo_Random_Name = $Photo->getRandomName();
+            $upload_to = 'public/upload/';
+
+            $image = \Config\Services::image()
+                ->withFile($Photo)
+                ->fit(626, 626, 'center')
+                ->save('./public/upload/' . $Photo_Random_Name);
+            echo "success";
+        } else {
+            echo "fails";
+        }
+    }*/
     public function Upload_Unit()
     {
         $model = new Course_model();

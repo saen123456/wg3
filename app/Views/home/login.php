@@ -200,11 +200,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8">
-                                    </div>
-                                    <!-- /.col -->
-
-                                    <div class="col-3">
+                                
+                                    <div class="col-12">
                                         <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                                     </div>
 

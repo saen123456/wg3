@@ -166,29 +166,34 @@
                             <label for="image" class="form-label2">ภาพหลักสูตร</label>
                             <div class="row">
                                 <div class="main-image">
+                                    <!-- <div class="input-group image-preview">
+                                    </div> -->
+                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="output">
+                                    <br>
+                                </div>
+                                <div class=" main-text">
+                                    <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
+                                        โดยไม่มีข้อความบนรูปภาพ</p>
                                     <form action="<?= site_url('/CourseController/Upload_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage">
                                         <div class="progress">
-
                                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <div id="targetLayer" style="display:none;"></div>
-                                        <div class="input-group image-preview">
-                                            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn">
-                                                <!-- image-preview-clear button -->
-                                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                                    <span class="glyphicon glyphicon-remove"></span> Clear
-                                                </button>
-                                                <!-- image-preview-input -->
-                                                <div class="btn btn-default image-preview-input">
-                                                    <span class="glyphicon glyphicon-folder-open"></span>
-                                                    <span class="image-preview-input-title">Browse</span>
-                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" /> <!-- rename it -->
 
-                                                </div>
+                                        <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn">
+                                            <!-- image-preview-clear button -->
+                                            <!-- <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                <span class="glyphicon glyphicon-remove"></span> Clear
+                                            </button> -->
+                                            <!-- image-preview-input -->
+                                            <div class="btn btn-default image-preview-input">
+                                                <span class="glyphicon glyphicon-folder-open"></span>
+                                                <span class="image-preview-input-title">Browse</span>
+                                                <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                            </div>
+                                        </span>
 
-                                            </span>
-                                        </div><!-- /input-group image-preview [TO HERE]-->
                                         <br>
                                         <div class="col-xs-4">
                                             <input type="submit" id="uploadSubmit" value="อัพโหลดรูปภาพ" class="btn btn-info" />
@@ -197,11 +202,6 @@
 
                                     </form>
 
-                                    <br>
-                                </div>
-                                <div class="main-text">
-                                    <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
-                                        โดยไม่มีข้อความบนรูปภาพ</p>
                                 </div>
 
                             </div>
@@ -431,6 +431,15 @@
                     reader.readAsDataURL(file);
                 });
             });
+        </script>
+        <script>
+            var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                    URL.revokeObjectURL(output.src) // free memory
+                }
+            };
         </script>
         <script>
             $(document).ready(function() {
