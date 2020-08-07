@@ -185,7 +185,15 @@
 
                             <div class="content_course">
                                 <div class="row">
-                                    <div class="col-1"><img src="<?php echo base_url('assets/img/dash_course_illustration.png'); ?>" width="120px" height="120px">
+                                    <div class="col-1">
+                                        <?php
+                                            if ($row['image_course']) { ?>
+                                            <img src="<?php echo $row['image_course'] ?>" width="120px" height="120px">
+                                        <?php
+                                            } else { ?>
+                                            <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" width="120px" height="120px"><?php
+                                                                                                                                                   }
+                                                                                                                                                    ?>
                                     </div>
                                     <div class="col-11">
                                         <br>
