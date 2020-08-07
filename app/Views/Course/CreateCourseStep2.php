@@ -46,7 +46,16 @@
     <div class="main2">
 
         <div class="container2">
-
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a class="light-purple" id='link1' href="<?php echo base_url('/course'); ?>" role="button"> <i class="fas fa-arrow-left light-purple"></i> กลับไปยังหน้าหลักสูตร</a>
+                    </div>
+                    <div class="col-md-1 col-md-offset-8">
+                        <a class="light-purple" id='link1' href="<?php echo base_url('/#'); ?>" role="button"><i class="fas fa-cogs"></i></a>
+                    </div>
+                </div>
+            </div>
             <div id="signup-form">
 
                 <?php

@@ -54,7 +54,7 @@ class Course_model extends Model
     }
     public function Select_Course($id)
     {
-        $sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ";
+        $sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Select_newcourse($id)

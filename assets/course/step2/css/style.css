@@ -122,7 +122,18 @@ h2 {
   background: #fff;
   height:100%;
   overflow: auto; }
-
+  .header{
+    padding: 20px;
+    background:#5d25c5;
+  }
+  #link1:hover,#link1:active {
+   text-decoration: none;
+   color: white;
+ }
+  .light-purple{
+   font-size: 17px;
+   color: white;
+ }
 .fieldset2 {
   padding: 0px;
   margin: 0px;
