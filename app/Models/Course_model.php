@@ -80,4 +80,9 @@ class Course_model extends Model
         $sql5 = "INSERT INTO course_unit (course_id,unit_id,video_id,unit_index) VALUES ('$Course_id','$Unit_Id','$Video_Id','$Unit_Index')";
         $this->connect_postgresdb->execute($sql5);
     }
+    public function Upload_Photo_Course($Course_id, $Photo_link)
+    {
+        $sql = "UPDATE course SET image_course = '$Photo_link' WHERE course_id = '$Course_id'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
 }

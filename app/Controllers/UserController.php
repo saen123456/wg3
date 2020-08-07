@@ -650,4 +650,23 @@ class UserController extends BaseController
             return redirect()->to(base_url('profile'))->with('warning', $msg);
         }
     }
+    public function Upload_Test()
+    {
+        $model = new User_model();
+        $Photo = $this->request->getFile('photo');
+
+        //echo $Photo->getClientName();
+        if ($Photo->getSize() > 0) {
+            $Photo_Random_Name = $Photo->getRandomName();
+            $upload_to = 'public/upload/';
+
+            $image = \Config\Services::image()
+                ->withFile($Photo)
+                ->fit(626, 626, 'center')
+                ->save('./public/upload/' . $Photo_Random_Name);
+            echo "success";
+        } else {
+            echo "fails";
+        }
+    }
 }

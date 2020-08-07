@@ -189,4 +189,25 @@ class CourseController extends BaseController
 
         //return redirect()->to(base_url('test55'));
     }
+    public function Upload_Picture_Course()
+    {
+        $model = new Course_model();
+        $file = $_FILES;
+
+        $storage = new StorageClient();
+        $bucket = $storage->bucket('workgress');
+
+        $Course_id = $this->session->get("Course_id");
+
+        $content = file_get_contents($file['photo']['tmp_name']);
+        $Photo_Name = $file['photo']['name'];
+        //echo $Photo->getClientName();
+        if ($bucket->upload($content, ['name' => $Photo_Name])) {
+            $Photo_link = "https://storage.googleapis.com/workgress/" . $Photo_Name;
+            $model->Upload_Photo_Course($Course_id, $Photo_link);
+            echo "อัพโหลดรูปภาพเรียบร้อยแล้ว";
+        } else {
+            echo "อัพโหลดไม่สำเร็จ";
+        }
+    }
 }

@@ -323,7 +323,7 @@
 																																					} else { ?>
 																		<img class="img-object" src="<?php echo base_url('assets/img/profile.jpg'); ?>"><?php
 																																						}
-																																					?>
+																																						?>
 																</figure>
 															</div>
 															<?php

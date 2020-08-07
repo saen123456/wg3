@@ -46,6 +46,7 @@
     <div class="main2">
 
         <div class="container2">
+
             <div id="signup-form">
 
                 <?php
@@ -113,6 +114,7 @@
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
+                                                            </div>
                                                         </form>
                                                     </td>
 
@@ -131,6 +133,7 @@
 
 
                 <h3>หน้าเริ่มต้นของหลักสูตร</h3>
+
                 <fieldset class="fieldset2">
                     <h2>หน้าเริ่มต้นของหลักสูตร</h2>
                     <div class="form-find">
@@ -148,12 +151,18 @@
                                     </textarea>
                         </div>
 
+
+
                         <div class="form-group-image">
                             <label for="image" class="form-label2">ภาพหลักสูตร</label>
-
                             <div class="row">
-                                <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
-                                    <div class="main-image">
+                                <div class="main-image">
+                                    <form action="<?= site_url('/CourseController/Upload_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage">
+                                        <div class="progress">
+
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div id="targetLayer" style="display:none;"></div>
                                         <div class="input-group image-preview">
                                             <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn">
@@ -165,21 +174,27 @@
                                                 <div class="btn btn-default image-preview-input">
                                                     <span class="glyphicon glyphicon-folder-open"></span>
                                                     <span class="image-preview-input-title">Browse</span>
-                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" /> <!-- rename it -->
+                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" /> <!-- rename it -->
+
                                                 </div>
 
                                             </span>
-
                                         </div><!-- /input-group image-preview [TO HERE]-->
                                         <br>
-                                        <a class="btn btn-primary" href="<?= site_url('/UserController/Upload_Picture') ?>" role="button">กดปุ่มนี้เพื่ออัพโหลดรูปภาพ</a>
-                                        <button class="save-profile" formaction="<?= site_url('/UserController/Upload_Picture') ?>">กดปุ่มนี้เพื่อบันทึกรูปภาพ</button>
-                                    </div>
-                                    <div class="main-text">
-                                        <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
-                                            โดยไม่มีข้อความบนรูปภาพ</p>
-                                    </div>
-                                </form>
+                                        <div class="col-xs-4">
+                                            <input type="submit" id="uploadSubmit" value="อัพโหลดรูปภาพ" class="btn btn-info" />
+                                        </div>
+                                        <br><br><br>
+
+                                    </form>
+
+                                    <br>
+                                </div>
+                                <div class="main-text">
+                                    <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
+                                        โดยไม่มีข้อความบนรูปภาพ</p>
+                                </div>
+
                             </div>
                         </div>
 
@@ -198,9 +213,11 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </fieldset>
+
 
                 <h3>การกำหนดราคา</h3>
                 <fieldset class="fieldset2">
@@ -218,8 +235,11 @@
                             </div>
                         </div>
                     </div>
+
                 </fieldset>
+
             </div>
+
         </div>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -230,7 +250,7 @@
                     html = '<tr id="row_' + i + '">';
                     html += '<td><input class="case" type="checkbox"/></td>';
                     html += '<td>';
-                    html += '<form action="#">';
+                    html += '<form action="#" id="uploadform">';
                     html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ ' + j + '" />';
                     html += '<br>';
                     html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
@@ -267,14 +287,14 @@
 
                 $('.upload-all').click(function() {
                     //submit all form
-                    $('form').submit();
+                    $('form#uploadform').submit();
                 });
                 $('.cancel-all').click(function() {
                     //submit all form
-                    $('form .cancel').click();
+                    $('form#uploadform .cancel').click();
                 });
 
-                $(document).on('submit', 'form', function(e) {
+                $(document).on('submit', 'form#uploadform', function(e) {
                     e.preventDefault();
                     $form = $(this);
                     uploadImage($form);
@@ -400,6 +420,36 @@
                         $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
                     }
                     reader.readAsDataURL(file);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#uploadImage').submit(function(event) {
+                    if ($('#uploadFile').val()) {
+                        event.preventDefault();
+                        $('#loader-icon').show();
+                        $('#targetLayer').hide();
+                        $(this).ajaxSubmit({
+                            target: '#targetLayer',
+                            beforeSubmit: function() {
+                                $('.progress-bar').width('50%');
+                            },
+                            uploadProgress: function(event, position, total, percentageComplete) {
+                                $('.progress-bar').animate({
+                                    width: percentageComplete + '%'
+                                }, {
+                                    duration: 1000
+                                });
+                            },
+                            success: function() {
+                                $('#loader-icon').hide();
+                                $('#targetLayer').show();
+                            },
+                            resetForm: true
+                        });
+                    }
+                    return false;
                 });
             });
         </script>
