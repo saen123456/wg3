@@ -44,7 +44,18 @@
 	<script src="https://oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<style>
+		.video-js {
+			height: 281px;
+			width: 500px;
+			float: left;
+		}
 
+		.vjs-playlist {
+			width: 250px;
+			height: 281px;
+		}
+	</style>
 </head>
 
 <?php
@@ -93,65 +104,8 @@ endif
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item dropdown">
-						<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
-						<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-							<!-- <li><a href="#" class="dropdown-item">Some action </a></li>
-                <li><a href="#" class="dropdown-item">Some other action</a></li> -->
-
-							<li class="dropdown-divider"></li>
-
-							<!-- Level two dropdown-->
-							<li class="dropdown-submenu dropdown-hover">
-								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT</a>
-								<ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-									<li>
-										<a tabindex="-1" href="#" class="dropdown-item">PostgreSql</a>
-									</li>
-
-									<!-- Level three dropdown-->
-									<li class="dropdown-submenu">
-										<a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHP</a>
-										<ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-											<li><a href="#" class="dropdown-item">Codeigniter 4</a></li>
-											<li><a href="#" class="dropdown-item">Laravel</a></li>
-										</ul>
-									</li>
-									<!-- End Level three -->
-
-									<li><a href="#" class="dropdown-item">Selenium</a></li>
-									<li><a href="#" class="dropdown-item">AdoDB</a></li>
-								</ul>
-							</li>
-							<!-- End Level two -->
-						</ul>
-					</li>
-
-				</ul>
-
-				<!-- SEARCH FORM -->
-				<div class="container">
-					<ul class="nav navbar-nav mx-auto">
-
-						<form class="form-inline ml-1 ml-md-1">
-							<div class="input-group">
-								<div class="inputlong">
-									<input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
-								</div>
-								<div class="input-group-append">
-									<button class="btn btn-secondary" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</ul>
-				</div>
-				<!-- SEARCH FORM -->
 				<!-- Right navbar links -->
-
-				<div class="navbar-collapse collapse w-200 order-3 dual-collapse" id="navbarSupportedContent">
+				<div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
 					<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
 						<!-- Messages Dropdown Menu -->
 						<div class="input-group input-group-sm">
@@ -174,10 +128,10 @@ endif
 								<?php
 								} else if ($this->session->get("Role_name") == 'admin') { ?>
 									<a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-									<a class="dropdown-item" href="<?php echo base_url('/createcourse'); ?>">เพิ่ม Course</a>
+									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">เพิ่ม Course</a>
 								<?php
 								} else if ($this->session->get("Role_name") == 'teacher') { ?>
-									<a class="dropdown-item" href="<?php echo base_url('/createcourse'); ?>">เพิ่ม Course</a>
+									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">เพิ่ม Course</a>
 								<?php
 								}
 								?>
@@ -354,26 +308,71 @@ endif
 						});
 					</script>
 
-					<?php
-					$count = 0;
-					foreach ($data as $row) :
-						$count++;
-						echo $row['video_id'] . " " . $row['video_name'] . " " . $row['video_link'];
-						echo "<br>";
-						echo "<video id='player$count' playsinline controls data-poster=''>
+					<video-js id="myPlayerID" data-playlist-id="5541484620001" data-account="1752604059001" data-player="SJ5OoOgOb" data-embed="default" data-application-id class="video-js" controls width="400" height="225"></video-js>
+					<script src="https://players.brightcove.net/1752604059001/SJ5OoOgOb_default/index.min.js"></script>
+
+					<ol class="vjs-playlist"></ol>
+
+					<script>
+						// Need to wait for loadedmetadata event or playlist length MAY not be valid
+						videojs.getPlayer('myPlayerID').one('loadedmetadata', function() {
+							var myPlayer = this,
+								// Assign video to be played at end of playlist
+								afterPlaylistVideo = 4607357817001,
+								// Get length of playlist for check if playlist over
+								lengthOfPlaylist = myPlayer.playlist().length,
+								// Create variable for use in check if playlist over
+								currentVideoInPlaylist;
+
+							// Start playing first video in playlist
+							myPlayer.muted(true);
+							myPlayer.play();
+
+							// +++ Define on event handler +++
+							// On end of every video check to see if playlist over
+							myPlayer.on('ended', function() {
+								// Get current video in playlist, add 1 since array 0 indexed
+								currentVideoInPlaylist = myPlayer.playlist.currentItem() + 1;
+								// Check if playlist is over by comparing length to index of last video played
+								console.log('currentVideoInPlaylist', currentVideoInPlaylist);
+								console.log('lengthOfPlaylist', lengthOfPlaylist);
+
+								if (lengthOfPlaylist === currentVideoInPlaylist) {
+									// Use Video Cloud catalog to get video object
+									myPlayer.catalog.getVideo(afterPlaylistVideo, function(error, video) {
+										// Load the video object into the player
+										myPlayer.catalog.load(video);
+										// Play the video
+										myPlayer.play();
+										// Remove event listener or will be in infinite loop playing last video
+										myPlayer.off('ended');
+									})
+								}
+							});
+						});
+					</script>
+
+
+					<!-- plyr video -->
+					<!-- <?php
+							$count = 0;
+							foreach ($data as $row) :
+								$count++;
+								echo $row['video_id'] . " " . $row['video_name'] . " " . $row['video_link'];
+								echo "<br>";
+								echo "<video id='player$count' playsinline controls data-poster=''>
 						<source src='" . $row['video_link'] . "' type='video/webm'>
 						</video>"
-						?>
+								?>
 						<script>
 							const player<?php echo $count ?> = new Plyr('#player<?php echo $count ?>');
 						</script>
 					<?php
 					endforeach;
-					?>
+					?> -->
 				</div>
-				<?php
 
-				?>
+
 
 			</div>
 

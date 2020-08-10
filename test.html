@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--Code By Webdevtrick ( https://webdevtrick.com )-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Advance Video Player | Webdevtrick.com</title>
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/VideoPlayer/test.css">
+
+    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+</head>
+
+<body>
+
+    <video id="preview-player" class="video-js vjs-fluid" controls data-setup={}>
+
+        <section class="main-preview-player">
+            <video id="preview-player" class="video-js vjs-fluid" controls preload="auto" crossorigin="anonymous">
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web
+                    browser
+                    that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+            </video>
+
+            <div class="playlist-container  preview-player-dimensions vjs-fluid">
+                <ol class="vjs-playlist"></ol>
+            </div>
+        </section>
+        <script>
+            let player = videojs('preview-player', {
+                fluid: true
+            });
+        </script>
+
+
+
+
+        <script src="./function.js"></script>
+
+</body>
+
+</html>
