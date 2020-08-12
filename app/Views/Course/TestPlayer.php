@@ -33,19 +33,39 @@
 
     <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
-    <!-- Css player video -->
-    <!-- <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdn.plyr.io/2.0.13/plyr.css"> -->
-    <!-- <script src="<?php echo base_url('assets/VideoPlayer/plyr.js'); ?>"></script> -->
-    <!-- <link rel="preload" href="<?php echo base_url('assets/VideoPlayer/plyr.css'); ?>" as="style" onload="this.rel='stylesheet'"> -->
 
-    <!-- progress bar  -->
+
+    <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/kendo.css'); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/kendoplayer.css'); ?>" />
-
-    <script src="<?php echo base_url('assets/VideoPlayer/kendo.all.min.js'); ?>"></script>
+    <!-- Videojs -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video-js.css">
+    <!-- Playlist Ui -->
+    <link href="https://cdn.jsdelivr.net/npm/videojs-playlist-ui@3.5.2/dist/videojs-playlist-ui.vertical.css" rel="stylesheet">
+    <!-- Quality-selector -->
+    <link href="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/css/quality-selector.css" rel="stylesheet">
+    <!-- ChromeCast CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
+    <!-- HTML personal style -->
+    <!--<link href="css/codepen-exmp.css" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400,700,900" rel="stylesheet" />
+    <!-- ***SCRiPTS*** -->
+    <!-- videojs -->
+    <script src="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video.js"></script>
+    <!-- Videojs-playlist -->
+    <script src="https://cdn.jsdelivr.net/npm/videojs-playlist@4.3.0/dist/videojs-playlist.js"></script>
+    <!-- Playlist Ui -->
+    <!--Description mod row 199 for better playlist effect-->
+    <script src="https://cdn.jsdelivr.net/gh/DJ-PD/test/videojs-playlist-ui-pd-en.js"></script>
+    <!-- Quality-selector -->
+    <script src="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+    <!-- YouTube -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.0/Youtube.min.js"></script>
+    <!-- ChromeCast -->
+    <script src="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>>
+    <link rel="stylesheet" href="assets/VideoPlayer/test.css">
 
 </head>
 
@@ -150,10 +170,9 @@ endif
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="overlay"></div>
+
             <div class="container"><br><br><br><br>
                 <div style="text-align:center;">
-
-
                     <!-- plyr video -->
                     <!-- <?php
                             $count = 0;
@@ -172,466 +191,241 @@ endif
                     endforeach;
                     ?> -->
 
-                    <div id="player">
-                        <div class="js-player" data-type="youtube" data-video-id="" data-ytpls="PL533213361AEB44D3"></div>
-                        <div class="plyr-playlist-wrapper">
-                            <ul class="plyr-playlist"></ul>
+                    <div class="player-container">
+                        <div class="main-preview-player">
+                            <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls>
+                            </video>
+                            <div class="playlist-container preview-player-dimensions">
+                                <div class="vjs-playlist">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <script src="https://cdn.plyr.io/2.0.13/plyr.js"></script>
+                    <br> <br> <br> <br> <br>
+                    <?php
+                    foreach ($data as $row) :
+                        echo $row['course_id'] . " " . $row['video_id'] . " " . $row['video_link'] . " " . $row['unit_index'] . "<br>";
+                    endforeach;
+                    ?>
                     <script>
-                        // YOUTUBE API 
-                        //https://stackoverflow.com/questions/43839217/how-do-i-retrieve-my-youtube-channel-playlists
-                        // BY CHANNEL
-                        //https://content.googleapis.com/youtube/v3/channels?id=UC_x5XG1OV2P6uZZ5FSM9Ttw&part=snippet%2CcontentDetails%2Cstatistics&key=12345
-                        // FOR USERNAME
-                        //https://content.googleapis.com/youtube/v3/channels?forUsername=ginocote&part=snippet%2CcontentDetails%2Cstatistics&key=12345
-
-                        // THEN GET BY UPLOAD ID AND LOAD API playlistItems 
-
-                        // BY CHANNEL ID GET ALL
-                        //https://content.googleapis.com/youtube/v3/playlists?channelId=UC-VKI9vpl2tSyv0FK9E1-KA&maxResults=50&part=snippet&key=12345
-
-                        var addbuttons = true;
-
-                        var players = plyr.setup(".js-player");
-
-                        /* PLAYLIST  */
-                        var myPlaylist = [{
-                                type: "youtube",
-                                title: "Charlie Puth - Attention [Official Video]",
-                                author: "Charlie Puth",
-                                sources: [{
-                                    src: "nfs8NYg7yQM",
-                                    type: "youtube"
-                                }],
-                                src: "nfs8NYg7yQM",
-                                poster: "https://img.youtube.com/vi/nfs8NYg7yQM/hqdefault.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "Avicii - SOS ft. Aloe Blacc (Unofficial Video)",
-                                author: "Avicii",
-                                sources: [{
-                                    src: "RnVbU3NYrZw",
-                                    type: "youtube"
-                                }],
-                                poster: "https://i.ytimg.com/vi/RnVbU3NYrZw/default.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "Loud Luxury feat. brando - Body (Official Video HD)",
-                                author: "Loud Luxury",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=UyxKu20xmBs",
-                                    type: "youtube"
-                                }],
-                                poster: "https://i.ytimg.com/vi/UyxKu20xmBs/default.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "Loud Luxury x anders - Love No More (Official Music Video)",
-                                author: "Loud Luxury",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=PJF0SBwfDq8",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/PJF0SBwfDq8/hqdefault.jpg"
-                            },
-                            {
-                                type: "audio",
-                                title: "Clublife by Tiësto 542 podcast ",
-                                author: "Tiësto",
-                                sources: [{
-                                    src: "http://feed.pippa.io/public/streams/593eded1acfa040562f3480b/episodes/59c0c870ed6a93163c0a193d.m4a",
-                                    type: "m4v"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            },
-                            {
-                                type: "audio",
-                                title: "Vocal Trance Vol 261",
-                                author: "Sonnydeejay",
-                                sources: [{
-                                    src: "http://archive.org/download/SonnydeejayVocalTranceVol261/Sonnydeejay%20-Vocal%20Trance%20vol%20261.mp3",
-                                    type: "mp3"
-                                }],
-                                poster: "http://4.bp.blogspot.com/-d6IPBUIj6YE/ThpRaIGJXtI/AAAAAAAABQ8/54RNlCrKCv4/s1600/podcast.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "2 hours Trance Music - Armin Van Buuren",
-                                author: "Armin van Buuren",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=r6KXy0j85AM",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "2 hours Trance Music - Armin Van Buuren",
-                                author: "Armin van Buuren",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=r6KXy0j85AM",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "2 hours Trance Music - Armin Van Buuren",
-                                author: "Armin van Buuren",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=r6KXy0j85AM",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "2 hours Trance Music - Armin Van Buuren",
-                                author: "Armin van Buuren",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=r6KXy0j85AM",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "2 hours Trance Music - Armin Van Buuren",
-                                author: "Armin van Buuren",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=r6KXy0j85AM",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            },
-                            {
-                                type: "youtube",
-                                title: "2 hours Trance Music - Armin Van Buuren",
-                                author: "Armin van Buuren",
-                                sources: [{
-                                    src: "https://www.youtube.com/watch?v=r6KXy0j85AM",
-                                    type: "youtube"
-                                }],
-                                poster: "https://img.youtube.com/vi/r6KXy0j85AM/hqdefault.jpg"
-                            }
-                        ];
-
-                        /****************************************************************************************/
-                        // var myPlaylist = ""; 
-                        // Load json playlist OR Youtube api 3. Playlist WILL NOT WORK WITH THIS API KEY
-                        /****************************************************************************************/
-
-                        // setTimeout(function(){
-
-                        //   //$("li.pls-playing").removeClass("pls-playing");
-                        //   //$(".plyr-playlist-wrapper").remove();
-
-                        //   var target = ".js-player";
-                        //   //var limit = 50;
-                        //   var apikey = "AIzaSyDDBk8tAkod1VRRNyFZF09fgQyMpnSe5HI";
-
-                        //   loadPlaylist(target, apikey, 10, myPlaylist); 
-
-                        // }, 5000);
-                        //   // scrollTo BUG
-
-
-                        var apikey = "<YOUR_YOUTUBE_API_KEY>"; // GET YOUR YOUTUBE API KEY
-                        //var apikey = ""; // ONLY FOR MY CUSTOM PLAYLIST NO NEED FOR YOUTUBE API KEY
-                        var target = ".js-player";
-                        var limit = 30;
-
                         $(document).ready(function() {
-                            // loadPlaylist(target, apikey, limit = 20, myPlaylist); // LOAD JSON PLAYLIST
-                            loadPlaylist(target, apikey, limit, myPlaylist); // LOAD YOUTUBE OR USER VIDEO LIST
-
-                        }); // JQUERY READY END
-
-                        function loadPlaylist(target, apikey, limit = 20, myPlaylist) {
-
-                            $("li.pls-playing").removeClass("pls-playing");
-                            $(".plyr-playlist-wrapper").remove();
-
-                            limit = limit - 1;
-
-                            // GET YOUTUBE PLAYLIST
-                            //var getPlaylist = $("div[data-type='youtube']").eq(0).data("playlist");
-                            //var getPlaylist = $("[data-type='youtube']").data("playlist");
-                            //var getPlaylist = $(".js-player").eq(0).data("playlist");
-
-                            if (myPlaylist) {
-
-                                PlyrPlaylist(".plyr-playlist", myPlaylist, limit);
-                                //return 
-                            } else {
-
-                                var ytplaylist = $(target).attr("data-ytpls");
-                                var ytuser = $(target).attr("data-user");
-
-                                //if ($('.js-player[data-ytpls]').length > 0){
-                                if (ytplaylist) {
-                                    getTYPlaylist(ytplaylist, apikey, limit)
-                                    //alert(ytplaylist);
-                                } else if (ytuser) {
-                                    alert(ytuser);
-                                }
-
-                            }
-
-                            //typeof $getYTPls === "undefined") return;
-
-                            //var getPlaylist = $(".js-player").eq(0).data("playlist");
-                            //   var $getData = $(".js-player").eq(0);
-
-                            //   var $getYTPls = $getData.data("ytpls");
-
-                            //alert(getPlaylist);
-                            //console.log(myPlaylist[0]);
-
-                            //if (typeof $getYTPls === "undefined") return;
-
-                            //var apikey = "AIzaSyB64VbCIHW48wwarovz64tcsRaZrciFkWM";
-                            //
-                            //var playlistId = "RDQMyFModNyxXx8";
-                            //var playlistId = $getYTPls;
-
-                            //"https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&id=YOUR-PLAYLIST-ID&key={YOUR_API_KEY}"
-
-                            function getTYPlaylist(playlistId, apikey, limit) {
-
-                                $.ajax({
-                                    url: "https://content.googleapis.com/youtube/v3/playlistItems?&key=" +
-                                        apikey +
-                                        "&maxResults=" +
-                                        limit +
-                                        "&part=id,snippet&playlistId=" +
-                                        playlistId +
-                                        "&type=video",
-                                    dataType: "jsonp",
-                                    success: function(data) {
-                                        console.log(data.items);
-                                        //console.log(data.items[0].snippet.title);
-
-                                        resultData = youtubeParser(data);
-
-                                        console.log(resultData);
-
-                                        PlyrPlaylist(".plyr-playlist", resultData, limit);
-                                    },
-                                    error: function(jqXHR, textStatus, errorThrown) {
-                                        alert(textStatus, +" | " + errorThrown);
-                                    }
-                                });
-
-                            }
-
-                            //PlyrPlaylist(".plyr-playlist", myPlaylist);
-
-                            function PlyrPlaylist(target, myPlaylist, limit) {
-                                $('<div class="plyr-playlist-wrapper"><ul class="plyr-playlist"></ul></div>').insertAfter("#player");
-
-                                var startwith = 0; // Maybe a playlist option to start with choosen video
-
-                                var playingclass = "";
-                                var items = [];
-                                //var playing == 1 ;
-                                $.each(myPlaylist, function(id, val) {
-                                    //items.push('<li>' + option.title + '</li>');
-                                    //alert(id)
-
-                                    //console.log(val);
-
-                                    if (0 === id) playingclass = "pls-playing";
-                                    else playingclass = "";
-
-                                    items.push(
-                                        '<li class="' + playingclass + '"><a href="#" data-type="' + val.sources[0].type + '" data-video-id="' + val.sources[0].src + '"><img class="plyr-miniposter" src="' + val.poster + '"> ' +
-                                        val.title + " - " + val.author + "</a></li> ");
-
-                                    if (id == limit)
-                                        return false;
-
-                                });
-                                $(target).html(items.join(""));
-
-                                setTimeout(function() {
-                                    //$(target+" .pls-playing").find("a").trigger("click");
-
-                                }, 600);
-
-                                // players[0].on("isReady", function(event) {
-                                //   alert("isReady")
-                                //   $(target+" .pls-playing").find("a").trigger("click");
-                                // });
-
-                                // players[0].on("ready", function(event) {
-                                //   //$(".plyr-playlist .pls-playing").find("a").one().trigger("click");
-                                //   //players[0].play();
-                                //   $(target+" .pls-playing").find("a").trigger("click");
-                                // });
-
-                                // hack, play the first video in the playlist
-                                // setTimeout(function(){ 
-                                //       $(target).find("a").trigger("click");
-                                // }, 500);
-
-                                //   var getObj = myPlaylist[startwith];
-
-                                //   var video_id = getObj.youtube;
-                                //   var video_title = getObj.title;
-
-                                //   alert(video_id)
-
-                                //   console.log(video_id);
-
-                                //   //console.log(myPlaylist[0]);
-
-                                //   players[0].source({
-                                //     type: "video",
-                                //     title: "video_title",
-                                //     sources: [{ src: "cLcKew4cQq4", type: "youtube" }]
-                                //   });
-
-                                //console.log(items[0]);
-                            }
-
-                            players[0].on("ready", function(event) {
-                                //$(".plyr-playlist .pls-playing").find("a").one().trigger("click");
-                                console.log("Ready.....................................................");
-                                players[0].play();
-
-
-                                if (addbuttons) {
-
-                                    $(".plyr-playlist .pls-playing").find("a").trigger("click");
-
-                                    $('<button type="button" class="plyr-prev"><i class="fa fa-step-backward fa-lg"></i></button>').insertBefore('.plyr__controls [data-plyr="play"]');
-
-                                    $('<button type="button" class="plyr-next"><i class="fa fa-step-forward fa-lg"></i></button>').insertAfter('.plyr__controls [data-plyr="pause"]');
-
-                                    addbuttons = false;
-                                }
-
-                            }).on("ended", function(event) {
-                                var $next = $(".plyr-playlist .pls-playing")
-                                    .next()
-                                    .find("a")
-                                    .trigger("click");
-                                //$next.parent().addClass("pls-playing");
+                            $('#pd-video').bind('contextmenu', function() {
+                                return false;
                             });
-
-                            // hack, play the first video in the playlist
-                            //$(".plyr-playlist .pls-playing").find("a").trigger("click");
-                            //$(target).find("pls-playing a").trigger("click");
-                            // setTimeout(function(){ 
-                            //       $(".plyr-playlist .pls-playing").find("a").trigger("click");
-                            // }, 500);
-
-                            $(document).on("click", "ul.plyr-playlist li a", function(event) {
-                                    //$("ul.plyr-playlist li a").on("click", function(event) {
-                                    event.preventDefault();
-
-                                    $("li.pls-playing").removeClass("pls-playing");
-                                    $(this)
-                                        .parent()
-                                        .addClass("pls-playing");
-
-                                    var video_id = $(this).data("video-id");
-                                    var video_type = $(this).data("type");
-                                    var video_title = $(this).text();
-
-                                    //alert(video_id);
-
-                                    players[0].source({
-                                        type: "video",
-                                        title: "video_title",
-                                        sources: [{
-                                            src: video_id,
-                                            type: video_type
-                                        }]
-                                    });
-
-                                    //ScrollTo($(".pls-playing").attr("href"), 500,0,10);
-
-                                    $(".plyr-playlist").scrollTo(".pls-playing", 300);
-
-                                    // players[0].on("ended", function(event) {
-                                    //   console.log("test");
-                                    // });
-                                })
-                                .on("click", ".plyr-prev", function(event) {
-                                    var $next = $(".plyr-playlist .pls-playing")
-                                        .prev()
-                                        .find("a")
-                                        .trigger("click");
-                                })
-                                .on("click", ".plyr-next", function(event) {
-                                    var $next = $(".plyr-playlist .pls-playing")
-                                        .next()
-                                        .find("a")
-                                        .trigger("click");
-                                });
-
-                            ///////////////////////
-
-                            // GET YOUTUBE PLAYLIST
-                            /* YOUTUBE PLAYLIST PARSER */
-                            // http://jsfiddle.net/onigetoc/cb2u1y4k/
-                            function youtubeParser(data) {
-                                var new_Data = data.items.map(function(item) {
-                                    var thumb;
-
-                                    if (item.snippet.thumbnails) {
-                                        if (item.snippet.thumbnails.default)
-                                            //live?
-                                            thumb = item.snippet.thumbnails.default.url;
-
-                                        if (item.snippet.thumbnails.medium)
-                                            //live?
-                                            thumb = item.snippet.thumbnails.default.url;
-                                    }
-
-                                    return {
-                                        //type: "youtube",
-                                        title: item.snippet.title,
-                                        description: item.snippet.description,
-                                        author: item.snippet.channelTitle,
-                                        sources: [{
-                                            src: item.snippet.resourceId.videoId,
-                                            type: item.kind.split('#')[0]
-                                        }],
-                                        poster: thumb
-                                    };
-                                });
-
-                                console.log(new_Data);
-
-                                // var output = {
-                                //   item: new_Data
-                                // };
-
-                                return new_Data;
-                            }
-                        }
-
-                        /****** GC ScrollTo **********/
-                        // mine: https://jsfiddle.net/onigetoc/5kh0e5f4/
-                        // https://stackoverflow.com/questions/2346011/how-do-i-scroll-to-an-element-within-an-overflowed-div
-                        jQuery.fn.scrollTo = function(elem, speed, margin) {
-                            jQuery(this).animate({
-                                    scrollTop: jQuery(this).scrollTop() -
-                                        jQuery(this).offset().top +
-                                        jQuery(elem).offset().top
-                                },
-                                speed == undefined ? 1000 : speed
-                            );
-                            return this;
-                        };
+                        });
                     </script>
+                    <script>
+                        var options;
+
+                        options = {
+                            techOrder: ['chromecast', 'html5', 'youtube'],
+                            liveui: true,
+                            html5: {
+                                hls: {
+                                    overrideNative: true
+                                },
+                                nativeAudioTracks: false,
+                                nativeVideoTracks: false,
+                            }
+                        };
+                        var player = videojs('pd-video', options);
+                        player.playlist([
+                            <?php
+                            foreach ($data as $row) :
+                                ?> {
+                                    name: '<?php echo $row['unit_name'] ?>',
+                                    description: 'YouTube, Chromecast not working.',
+                                    duration: 2905,
+                                    poster: '<?php echo $row['image_course'] ?>',
+                                    sources: [{
+                                        src: '<?php echo $row['video_link'] ?>',
+                                        type: 'video/mp4'
+                                    }, ],
+                                    thumbnail: [{
+                                            srcset: '<?php echo $row['image_course'] ?>',
+                                            type: 'image/jpeg',
+                                            media: '(min-width: 400px;)'
+                                        },
+                                        {
+                                            src: '<?php echo $row['image_course'] ?>'
+                                        }
+                                    ]
+                                },
+                            <?php
+                            endforeach;
+                            ?>
+                            // {
+                            //     name: 'Test 2',
+                            //     description: 'Dropbox, Chromecast working.',
+                            //     duration: 11385,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            //         type: 'video/mp4'
+                            //     }, ],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                            // {
+                            //     name: 'Test 3',
+                            //     description: 'G-Drive, Chapters and captions test. Chromecast working but not textTracks captions.',
+                            //     duration: 10258,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            //         type: 'video/mp4'
+                            //     }, ],
+                            //     textTracks: [{
+                            //         kind: 'chapters',
+                            //         label: 'Chapters',
+                            //         srclang: 'en',
+                            //         src: 'https://cdn.jsdelivr.net/gh/DJ-PD/test/chapters.en.vtt'
+                            //     }, {
+                            //         kind: 'captions',
+                            //         label: 'Subtitles en',
+                            //         srclang: 'en',
+                            //         src: 'https://cdn.jsdelivr.net/gh/DJ-PD/test/captions.en.vtt',
+                            //         'default': false
+                            //     }],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                            // {
+                            //     name: 'Test 4',
+                            //     description: 'OneDrive, Chromecast working.',
+                            //     duration: 4002,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            //         type: 'video/mp4'
+                            //     }, ],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                            // {
+                            //     name: 'Test 5',
+                            //     description: 'OneDrive 4K 2160p, Works with Chromecast Ultra (4K support).',
+                            //     duration: 356,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            //         type: 'video/mp4'
+                            //     }, ],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                            // {
+                            //     name: 'Test 6',
+                            //     description: 'Local Source, Chromecast not working. No source activated via this CodePen test. Further tests need to be done locally.',
+                            //     duration: 227,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            //         type: 'video/mp4'
+                            //     }, ],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                            // {
+                            //     name: 'Test 7',
+                            //     description: 'Nuevolab with quality alt. Chromecast working but video restart after changing quality.',
+                            //     duration: 436,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //             src: 'http://cdn.nuevolab.com/video/alaska_720.mp4',
+                            //             type: 'video/mp4',
+                            //             label: '720P'
+                            //         },
+                            //         {
+                            //             src: 'http://cdn.nuevolab.com/video/alaska_480.mp4',
+                            //             type: 'video/mp4',
+                            //             label: '480P',
+                            //             selected: 'true'
+                            //         },
+                            //         {
+                            //             src: 'http://cdn.nuevolab.com/video/alaska_360.mp4',
+                            //             type: 'video/mp4',
+                            //             label: '360P'
+                            //         },
+                            //         {
+                            //             src: 'http://cdn.nuevolab.com/video/alaska_240.mp4',
+                            //             type: 'video/mp4',
+                            //             label: '240P'
+                            //         },
+                            //     ],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                            // {
+                            //     name: 'Test 8',
+                            //     description: 'Live stream test',
+                            //     duration: 436,
+                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //     sources: [{
+                            //         src: 'https://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8',
+                            //         type: 'application/x-mpegurl',
+                            //         label: 'Live'
+                            //     }, ],
+                            //     thumbnail: [{
+                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                            //             type: 'image/jpeg',
+                            //             media: '(min-width: 400px;)'
+                            //         },
+                            //         {
+                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            //         }
+                            //     ]
+                            // },
+                        ]);
+                        player.playlistUi();
+                        player.playlist.autoadvance(0);
+                        player.playlist.repeat(true);
+                        player.controlBar.addChild('QualitySelector');
+                        player.chromecast();
+                    </script>
+
 
                 </div>
 
@@ -639,6 +433,7 @@ endif
             </div>
 
             <!-- /.content -->
+
         </div>
         <!-- /.content-wrapper -->
 

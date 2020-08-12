@@ -1,0 +1,845 @@
+@import url(http://www.weloveiconfonts.com/api/?family=fontawesome);
+
+// Colors
+
+$light: #eeeeee;
+$dark: #080b13;
+
+$darkhighlight: #095186;
+$lighthighlight: #158acd;
+
+$accent:  #5a98d5;
+
+$font-size: 16px; // 16px
+$line-height: 1.5rem; // 24px
+
+$spacing: $line-height * 3;
+$padding: $font-size;
+
+$f1: $font-size * 1.125; // 18px
+
+$video-corner-radius: 6px; 
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+  font-weight: 400;
+}
+
+body {
+    background: $light;
+    font: 16px/1.5 "Futura Md BT","Myriad Set Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+
+img {
+    max-width: 100%;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: $line-height;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    box-shadow: inset 0px -1px 0px rgba(#fff,0.5);
+    transition: all 0.5s;
+
+    &:hover {
+        box-shadow: inset 0px -24px 0px $lighthighlight;
+    }
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 0 1em;
+    max-width: $line-height * 46;
+
+    @extend .clearfix;
+  text-align: left;
+}
+
+
+.truncate {
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* Site header */
+
+.site-header {
+    animation: slidein .5s;
+    background: $accent;
+    color: $light;
+    line-height: $spacing;
+}
+
+@keyframes slidein {
+    0% {
+        transform: translate3d(0,-$spacing,0);
+    }
+}
+
+.site-title {
+    font-size: $line-height;
+    font-weight: 300;
+    margin: $padding 0;
+    float: left;
+}
+
+.credit-line {
+    float: right;
+    margin: $padding 0;
+}
+
+.title-five {
+    background: $light;
+    border-radius: 100%;
+    color: $accent;
+    font-weight: 600;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+/* Video area */
+
+.video-area {
+    //animation: slidebottom 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+    color: $light;
+    padding: $spacing 0;
+    //opacity: 0;
+}
+
+@keyframes slidebottom {
+    0% {
+        transform: translate3d(0,100%,0);
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.video-column {
+    float: left;
+    max-width: 854px;
+  border-radius:  0 0 0 6px;
+}
+    
+.video-player {
+    background: #191d23;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 480px;
+    border-radius:  0 0 0 6px;
+}
+
+.video {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.video-playlist {
+    float: right;
+    font-size: $f1;
+    font-weight: 600;
+    max-width: 250px;
+}
+
+.last-video-corner {
+  border-radius: 0 0 6px 0;
+}
+
+.video-header {
+    background: $lighthighlight;
+    line-height: $line-height;
+    padding: $line-height;
+    letter-spacing: 1px;
+  
+    @extend .clearfix;
+    border-radius: 6px 6px 0 0;
+}
+
+.video-title {
+    float: left;
+    margin: 0;
+    text-transform: uppercase;
+
+    @extend .truncate;
+
+    width: auto;
+    max-width: 75%;
+}
+
+.video-author {
+    font-size: $f1;
+    float: left;
+    margin-left: $line-height * 2;
+
+    a:hover {
+        box-shadow: inset 0px -24px 0px $accent;
+    }
+}
+
+/* Video controls */
+
+.video-controls {
+    box-sizing: border-box;
+    background: rgba($darkhighlight,0.9);
+    line-height: $line-height * 2;
+    padding: 0 $line-height;
+    position: absolute;
+        bottom: 0;
+    transform: translate3d(0,$line-height * 2,0);
+    width: 100%;
+    height: $line-height * 2;
+    vertical-align: middle;
+    transition: transform 0.5s;
+
+    button {
+        background: 0;
+        border: 0;
+        color: #fff;
+        // font-size: $line-height;
+        font-size: 1.25em;
+        width: $line-height * 2;
+        height: $line-height * 2;
+        vertical-align: middle;
+    }
+}
+
+.video-player:hover .video-controls {
+    transform: translate3d(0,0,0);
+}
+
+
+/* Seeker bar */
+
+.video-bars {
+    background: rgba($light, 0.2);
+    display: inline-block;
+    margin: 0 1em;
+    position: relative;
+    width: 73%;
+    height: 8px;
+}
+
+.bar-seeker,
+.bar-progress,
+.bar-buffer {
+    position: absolute;
+    height: 8px;
+}
+
+.bar-seeker {
+    z-index: 1000;
+}
+
+.bar-progress {
+    z-index: 100;
+}
+
+.bar-buffer {
+    z-index: 10;
+}
+
+/*
+* Reset range input
+* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+*/
+
+input[type=range] {
+    background: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.bar-seeker::-ms-fill-lower {
+    background: transparent;
+}
+
+.bar-seeker::-ms-fill-upper {
+    background: transparent;
+}
+
+/* Style the seeker bar */
+
+@mixin rangeTrack($class) {
+
+    #{$class}::-webkit-slider-runnable-track {
+        @content;
+    }
+
+    #{$class}::-moz-range-track {
+        @content;
+    }
+
+    #{$class}::-ms-track {
+        @content;
+    }
+}
+
+@mixin rangeThumb($class) {
+
+    #{$class}::-webkit-slider-thumb {
+        @content;
+    }
+
+    #{$class}::-moz-range-thumb {
+        @content;
+    }
+
+    #{$class}::-ms-thumb {
+        @content;
+    }
+}
+
+@include rangeTrack(".bar-seeker") {
+    background: transparent;
+    height: 8px;
+    padding: 0;
+}
+
+@include rangeThumb(".bar-seeker") {
+    background: $accent;
+    border: 0;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+    margin-top: -4px;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE, still a little idiot */
+    .bar-seeker {
+        height: 24px;
+        margin-top: -5px;
+        padding: 0;
+        vertical-align: middle;
+    }
+}
+
+input.slider-volume {
+    //display: none;
+    position: absolute;
+        bottom: 36px;
+        right: -40px;
+    width: $line-height * 4;
+    opacity: 0;
+    transform: rotate(-90deg) scaleX(0);
+    transform-origin: left;
+    transition: all 1s;}
+
+@include rangeTrack(".slider-volume") {
+    background: rgba($darkhighlight,0.9);
+    height: 20px;
+}
+
+@include rangeThumb(".slider-volume") {
+    background: $accent;
+    border: 0;
+    width: 8px;
+    height: 24px;
+    margin-top: -2px;
+}
+
+.btn-sound:hover + .slider-volume,
+.slider-volume:hover {
+    opacity: 1;
+    transform: rotate(-90deg) scaleX(1);
+}
+
+/* Progress bars */
+
+/* Reset bar */
+progress {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+
+    background: transparent;
+    color: #fff;
+    border: none;
+    height: 8px;
+    width: 100%;
+}
+
+progress::-webkit-progress-bar {
+     background: transparent;
+}
+
+progress::-webkit-progress-value {
+    background: transparent;
+}
+
+progress::-webkit-progress-bar {
+}
+
+/* Buffer bar styling */
+
+.bar-buffer::-webkit-progress-value {
+    //background: rgba($light,0.2);
+}
+
+.bar-buffer::-moz-progress-bar {
+    background: rgba($light,0.2);
+}
+
+/* Progress bar styling */
+
+.bar-progress::-webkit-progress-value {
+    background: $accent;
+}
+
+.bar-progress::-moz-progress-bar {
+    background: $accent;
+}
+
+.bar-progress {
+    color: $accent;
+}
+
+/* Replay button */
+
+.btn-replay {
+    background: none;
+    border: none;
+    display: none;
+    color: $accent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -110px;
+    margin-top: -110px;
+    font-size: $line-height * 6;
+    width: 220px;
+    height: 220px;
+}
+
+
+/* Time bubble for seeker bar */
+
+.time-bubble {
+    background: $lighthighlight;
+    border-radius: $line-height $line-height 0px;
+    height: $line-height;
+    line-height: $line-height;
+    position: absolute;
+        bottom: ($line-height * 2) + 0.2;
+        left: $line-height * 3.2;
+    padding: 0.5em;
+    display: none;
+}
+
+/* PLaylist */
+
+.playlist-title {
+    background: $darkhighlight;
+    padding: 16.5px;
+    max-height: 60px;
+}
+
+.next-video {
+    display: block;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+    left: 0;
+
+    img {
+        display: block;
+    }
+
+    &::before {
+        background: linear-gradient(0deg, rgba($darkhighlight,.9) 0%, transparent 60%);
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transition: all 0.5s;
+        left:0;
+    }
+
+    &-title {
+        position: absolute;
+        transform: translateY(-($line-height * 3));
+        padding: $line-height/2 $line-height;
+        transition: all 0.5s;
+
+        @extend .truncate;
+    }
+
+    &-info {
+        box-sizing: border-box;
+        font-size: 14px;
+        font-weight: 400;
+        padding: $line-height/2 $line-height;
+        position: absolute;
+        transform: translateY(-($line-height * 4.5));
+        transition: all 0.5s;
+        opacity: 0;
+        width: 100%;
+
+        @extend .truncate;
+    }
+
+    &:hover {
+        .next-video-title {
+            transform: translateY(-($line-height * 6.5));
+        }
+
+        &::before {
+            background: rgba($darkhighlight,0.8);
+        }
+
+        .next-video-info {
+            opacity: 1;
+        }
+
+    }
+
+}
+
+.played-video {
+        transform: scale(0);
+        height: 0;
+        width: 0;
+}
+
+.video-popularity {
+    font-size: $f1;
+    font-weight: 600;
+    // text-align: right;
+    
+}
+
+.video-popularity,
+.description {
+    padding: 0 $line-height;
+  color:#333;
+}
+
+.likes {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+/* Like icon styling */
+.like-this {
+    box-shadow: none;
+    color: $accent;
+
+    &:hover {
+        animation: beat 1s infinite;
+        box-shadow: none;
+    }
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.meta-icon {
+    padding-left: 0.5em;
+}
+
+.like-prompt {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: $line-height + .2rem;
+    padding-left: .75em;
+    // position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s;
+}
+
+// Add class via JS
+
+.wiggle {
+    animation: wiggle 0.5s;
+    animation-iteration-count: 4;
+}
+
+.wiggle + .like-prompt {
+    transform: scaleX(1);
+}
+
+@keyframes wiggle {
+    0% {
+        transform: translateY(2px);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(2px);
+    }
+
+}
+
+.info-area {
+    background: $light;
+    color: $dark;
+}
+
+.info-heading {
+    color: $lighthighlight;
+    font-size: $line-height * 2;
+    font-weight: 300;
+    text-align: center;
+    margin: $spacing auto;
+}
+
+.clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// START OLD CSS 
+// The color of icons, text, and the big play button border.
+$primary-foreground-color: #158acd; // #fff default
+
+// The default color of control backgrounds 
+ $primary-background-color: #fff;  // #2B333F default
+
+// Try changing to true
+$center-big-play-button: true; // true default
+.vjs-poster {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border-radius: 0 0 0 10px;
+}
+.video-js .vjs-tech {
+    // border-radius: .5em;
+}
+.video-js {
+  /* The base font size controls the size of everything, not just text.
+     All dimensions use em-based sizes so that the scale along with the font size.
+     Try increasing it to 15px and see what happens. */
+  font-size: 11px;
+  // border-radius: .5em;
+  
+
+  /* The main font color changes the ICON COLORS as well as the text */
+  color: $primary-foreground-color;
+}
+
+/* The "Big Play Button" is the play button that shows before the video plays.
+   To center it set the align values to center and middle. The typical location
+   of the button is the center, but there is trend towards moving it to a corner
+   where it gets out of the way of valuable content in the poster image.*/
+.vjs-default-skin .vjs-big-play-button {
+  /* The font size is what makes the big play button...big. 
+     All width/height values use ems, which are a multiple of the font size.
+     If the .video-js font-size is 10px, then 3em equals 30px.*/
+  font-size: 3em;
+
+  /* We're using SCSS vars here because the values are used in multiple places.
+     Now that font size is set, the following em values will be a multiple of the
+     new font size. If the font-size is 3em (30px), then setting any of
+     the following values to 3em would equal 30px. 3 * font-size. */
+  $big-play-width: 3em; 
+  /* 1.5em = 45px default */
+  $big-play-height: 3em;
+
+  line-height: $big-play-height;
+  height: $big-play-height;
+  width: $big-play-width;
+
+  /* 0.06666em = 2px default */
+  border: 0.03333em solid $primary-foreground-color;
+  /* 0.3em = 9px default */
+  border-radius: 2em; /* Big Play Btn Radius */
+
+  @if $center-big-play-button {
+    /* Align center */
+    left: 50%;
+    top: 50%;
+    margin-left: -($big-play-width / 2);
+    margin-top: -($big-play-height / 2);   
+  } @else {
+    /* Align top left. 0.5em = 15px default */
+    left: 0.5em;
+    top: 0.5em;
+  }
+}
+
+/* The default color of control backgrounds is mostly black but with a little
+   bit of blue so it can still be seen on all-black video frames, which are common. */
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button,
+.video-js .vjs-menu-button .vjs-menu-content {
+  /* IE8 - has no alpha support */
+  background-color: $primary-background-color;
+  /* Opacity: 1.0 = 100%, 0.0 = 0% */
+  background-color: rgba($primary-background-color, 0.7);
+}
+
+// Make a slightly lighter version of the main background
+// for the slider background.
+$slider-bg-color: lighten($primary-background-color, 33%);
+
+/* Slider - used for Volume bar and Progress bar */
+.video-js .vjs-slider {
+  background-color: $slider-bg-color;
+  background-color: rgba($slider-bg-color, 0.5);
+}
+
+/* The slider bar color is used for the progress bar and the volume bar
+   (the first two can be removed after a fix that's coming) */
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress,
+.video-js .vjs-slider-bar {
+  background: $primary-foreground-color;
+}
+
+/* The main progress bar also has a bar that shows how much has been loaded. */
+.video-js .vjs-load-progress {
+  /* For IE8 we'll lighten the color */
+  background: ligthen($slider-bg-color, 25%);
+  /* Otherwise we'll rely on stacked opacities */
+  background: rgba($slider-bg-color, 0.5);
+}
+
+/* The load progress bar also has internal divs that represent
+   smaller disconnected loaded time ranges */
+.video-js .vjs-load-progress div {
+  /* For IE8 we'll lighten the color */
+  background: ligthen($slider-bg-color, 50%);
+  /* Otherwise we'll rely on stacked opacities */
+  background: rgba($slider-bg-color, 0.75);
+}
+
+
+ /* TWEAKS */
+
+.video-js { 
+  // box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, .4);
+}
+
+
+.vjs-icon-play::before, .video-js .vjs-big-play-button::before, .video-js .vjs-play-control::before {
+    font-size: 2em;
+}
+
+.video-js:hover .vjs-big-play-button, .video-js .vjs-big-play-button:focus {
+    background-color: rgba(115, 133, 159, 0.5);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.vjs-control-bar {
+  border-radius: 0 0 0 6px;
+  border-top: solid 1px rgba(255, 255, 255, 0.3);
+}
+
+
+.video-js .vjs-control::before {
+   top: -0.12em;
+}
+
+.vjs-icon-play::before, .video-js .vjs-play-control::before {
+    top: -0.16em;
+}
+
+.video-js .vjs-progress-holder .vjs-load-progress, .video-js .vjs-progress-holder .vjs-tooltip-progress-bar, .video-js .vjs-progress-holder .vjs-load-progress div {
+    background-color: #45a8e1;
+}
+
+.video-js .vjs-slider {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Specific to B-C-Player */
+.video-js .vjs-dock-text {
+    background: rgba(50, 58, 69, 0) linear-gradient(to bottom, rgba(50, 58, 69, 0.8) 0%, rgba(50, 58, 69, 0.7) 30%, rgba(50, 58, 69, 0.6) 70%, rgba(50, 58, 69, 0) 100%) repeat scroll 0 0;
+    color: #ffffff;
+    left: 0;
+    margin: 0;
+    padding: 1em 25% 2em 1em;
+    width: 100%;
+}
+
+.bc-player-r1mx0j0Jx_default *, .bc-player-r1mx0j0Jx_default *::before, .bc-player-r1mx0j0Jx_default *::after {
+    color: #ffffff;
+}
+
+.video-js .vjs-modal-dialog {
+    background: rgba(50, 58, 69, 0) linear-gradient(180deg, rgba(50, 58, 69, 0.8), rgba(50, 58, 69, 0)) repeat scroll 0 0;
+}
+
+.vjs-social-overlay .vjs-social-title {
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #fff;
+}
+
+.vjs-social-overlay {
+    // font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.vjs-social-overlay .vjs-social-share-link {
+    border: 1px solid rgba(255,255,255, 0.2);
+    // border-radius: 6px;
+}
+
+.bc-player-r1mx0j0Jx_default .vjs-control:focus::before, .bc-player-r1mx0j0Jx_default .vjs-control:hover::before {
+    text-shadow: 0 0 1em #323a45, 0 0 1em #323a45, 0 0 1em #323a45;
+}

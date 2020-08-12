@@ -50,6 +50,9 @@ $routes->get('/add', 'AdminController::insert');
 $routes->get('/search', 'AdminController::Search');
 $routes->get('/chart', 'AdminController::Chart');
 
+//Courseuser//notlogin
+$routes->add('/course/(:alphanum)', 'CourseUserController::CourseName/$1');
+
 //Course
 $routes->get('/test55', 'CourseController::Test');
 $routes->get('/testplayer', 'CourseController::TestPlayer');

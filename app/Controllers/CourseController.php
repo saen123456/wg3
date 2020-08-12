@@ -78,10 +78,10 @@ class CourseController extends BaseController
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
             $model = new Course_model();
             // $data['data'] = $model->Select_Video();
-            $data['data'] = $model->Select_Video_Google_Drive();
+            $data['data'] = $model->Select_Video_Of_Course();
             echo view('Course/TestPlayer', $data);
         } else {
-            echo view('login/HomePage');
+            //echo view('login/HomePage');
         }
     }
     public function Create_Course()

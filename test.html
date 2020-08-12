@@ -1,42 +1,249 @@
 <!DOCTYPE html>
-<!--Code By Webdevtrick ( https://webdevtrick.com )-->
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>HTML Advance Video Player | Webdevtrick.com</title>
-    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>CodePen - Videojs and Silvermine chromecast test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VideoJS Chromecast test</title>
+    <!-- ***STYLESHEETS*** -->
+    <!-- Videojs -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video-js.css">
+    <!-- Playlist Ui -->
+    <link href="https://cdn.jsdelivr.net/npm/videojs-playlist-ui@3.5.2/dist/videojs-playlist-ui.vertical.css"
+        rel="stylesheet">
+    <!-- Quality-selector -->
+    <link href="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/css/quality-selector.css"
+        rel="stylesheet">
+    <!-- ChromeCast CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.css"
+        rel="stylesheet">
+    <!-- HTML personal style -->
+    <!--<link href="css/codepen-exmp.css" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400,700,900" rel="stylesheet" />
+    <!-- ***SCRiPTS*** -->
+    <!-- videojs -->
+    <script src="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video.js"></script>
+    <!-- Videojs-playlist -->
+    <script src="https://cdn.jsdelivr.net/npm/videojs-playlist@4.3.0/dist/videojs-playlist.js"></script>
+    <!-- Playlist Ui -->
+    <!--Description mod row 199 for better playlist effect-->
+    <script src="https://cdn.jsdelivr.net/gh/DJ-PD/test/videojs-playlist-ui-pd-en.js"></script>
+    <!-- Quality-selector -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+    <!-- YouTube -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.0/Youtube.min.js"></script>
+    <!-- ChromeCast -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.min.js"></script>
+    <script type="text/javascript"
+        src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>>
     <link rel="stylesheet" href="assets/VideoPlayer/test.css">
 
-    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 </head>
 
 <body>
+    <!-- partial:index.partial.html -->
 
-    <video id="preview-player" class="video-js vjs-fluid" controls data-setup={}>
-
-        <section class="main-preview-player">
-            <video id="preview-player" class="video-js vjs-fluid" controls preload="auto" crossorigin="anonymous">
-                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web
-                    browser
-                    that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-            </video>
-
-            <div class="playlist-container  preview-player-dimensions vjs-fluid">
-                <ol class="vjs-playlist"></ol>
+    <body>
+        <div class="player-container">
+            <div class="main-preview-player">
+                <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls>
+                </video>
+                <div class="playlist-container preview-player-dimensions">
+                    <div class="vjs-playlist">
+                        <!--
+        The contents of this element will be filled based on the
+        currently loaded playlist
+      -->
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
         <script>
-            let player = videojs('preview-player', {
-                fluid: true
-            });
+            var options;
+
+            options = {
+                techOrder: ['chromecast', 'html5', 'youtube'],
+                liveui: true,
+                html5: {
+                    hls: {
+                        overrideNative: true
+                    },
+                    nativeAudioTracks: false,
+                    nativeVideoTracks: false,
+                }
+            };
+            var player = videojs('pd-video', options);
+            player.playlist([{
+                name: 'Test 1',
+                description: 'YouTube, Chromecast not working.',
+                duration: 2905,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4', type: 'video/mp4' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 2',
+                description: 'Dropbox, Chromecast working.',
+                duration: 11385,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4', type: 'video/mp4' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 3',
+                description: 'G-Drive, Chapters and captions test. Chromecast working but not textTracks captions.',
+                duration: 10258,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4', type: 'video/mp4' },
+                ],
+                textTracks: [{ kind: 'chapters', label: 'Chapters', srclang: 'en', src: 'https://cdn.jsdelivr.net/gh/DJ-PD/test/chapters.en.vtt' }, { kind: 'captions', label: 'Subtitles en', srclang: 'en', src: 'https://cdn.jsdelivr.net/gh/DJ-PD/test/captions.en.vtt', 'default': false }],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 4',
+                description: 'OneDrive, Chromecast working.',
+                duration: 4002,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4', type: 'video/mp4' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 5',
+                description: 'OneDrive 4K 2160p, Works with Chromecast Ultra (4K support).',
+                duration: 356,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4', type: 'video/mp4' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 6',
+                description: 'Local Source, Chromecast not working. No source activated via this CodePen test. Further tests need to be done locally.',
+                duration: 227,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4', type: 'video/mp4' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 7',
+                description: 'Nuevolab with quality alt. Chromecast working but video restart after changing quality.',
+                duration: 436,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'http://cdn.nuevolab.com/video/alaska_720.mp4', type: 'video/mp4', label: '720P' },
+                    { src: 'http://cdn.nuevolab.com/video/alaska_480.mp4', type: 'video/mp4', label: '480P', selected: 'true' },
+                    { src: 'http://cdn.nuevolab.com/video/alaska_360.mp4', type: 'video/mp4', label: '360P' },
+                    { src: 'http://cdn.nuevolab.com/video/alaska_240.mp4', type: 'video/mp4', label: '240P' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            {
+                name: 'Test 8',
+                description: 'Live stream test',
+                duration: 436,
+                poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                sources: [
+                    { src: 'https://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8', type: 'application/x-mpegurl', label: 'Live' },
+                ],
+                thumbnail: [
+                    {
+                        srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        type: 'image/jpeg',
+                        media: '(min-width: 400px;)'
+                    },
+                    {
+                        src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                    }
+                ]
+            },
+            ]);
+            player.playlistUi();
+            player.playlist.autoadvance(0);
+            player.playlist.repeat(true);
+            player.controlBar.addChild('QualitySelector');
+            player.chromecast();
         </script>
-
-
-
-
-        <script src="./function.js"></script>
+    </body>
+    <!-- partial -->
 
 </body>
 

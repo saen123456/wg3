@@ -1,0 +1,163 @@
+//vars
+@border-color: #ebebeb;
+@screen-xs-max: 720px;
+@screen-sm-max: 980px;
+
+//utilities
+.fluid-ratio-wrap{
+	position: relative;
+	height: 0;
+	padding-bottom: 56.25%;
+
+	>*:first-child{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.video-wrapper{
+	max-width:764px;
+	margin:0 auto;
+	#mod-videos-overlay > object,  > #video-player {
+		margin: 0 auto 0px;
+		width:100%;
+		position:relative;
+		height:0;
+		padding-bottom:56.25%;
+		display:block;
+    
+		img{max-width:100%;}
+    .video-splash{width: 100%;}
+		
+    .video-play{
+			transform: translate(-50%,-50%);
+			position:absolute;
+			top:50%;
+			left: 50%;
+			margin: 0;
+		}
+		object{
+			position:absolute!important;
+			top:0!important;
+			left:0!important;
+			width:100%!important;
+			height:100%!important;
+		}//object
+	}
+}//.video-wrapper
+
+.remove-bullets{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.ps-scroll-wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+//placeholder
+html,body{background: #EAEDF5;}
+body{padding: 20px;}
+.slick-arrow:before{color:black;}
+.slick-prev{left: -18px;}
+.slick-next{right: -18px;}
+.container{background: #FFF;padding: 15px;}
+
+
+//targeted
+
+.video-playlist-wrap{
+  @spacer: 15px;
+  
+  padding: 20px;
+  
+  .playlist-wrap{
+    position: relative;
+  }
+  
+  .playlist-item{
+
+    .thumb{
+      width: 100%;
+      .fluid-ratio-wrap .fluid-ratio-inner{
+        background-image: url(http://placehold.it/1600x900);
+      }
+    }
+  }
+  
+  &:not(.two-col){
+    .playlist-wrap{
+      margin-left: -@spacer/2;
+      margin-right: -@spacer/2;
+      
+  
+      .playlist-item{
+        padding-top: @spacer;
+        padding-left: @spacer/2;
+        padding-right: @spacer/2;
+      }
+    }
+    .details{padding: 10px 0;}
+    
+    .more{display: none;}
+  }
+  
+  &.two-col{
+    @sidebar-width: 350px;
+    
+    display: flex;
+    
+    .player-wrap{
+      width: calc(~'100% - @{sidebar-width}');
+      & + .playlist-wrap{width: @sidebar-width;}
+      
+      @media (max-width: @screen-sm-max){
+        @sidebar-width: 20%;
+        width: calc(~'100% - @{sidebar-width}');
+        & + .playlist-wrap{
+          width: @sidebar-width;
+          .playlist-item{
+            flex-wrap: wrap;
+            
+            .thumb{width: 100%;}
+            .details{padding: 10px 3px 0;}
+          }
+        }
+      }
+      @media (max-width: @screen-xs-max){
+        @sidebar-width: 30%; 
+        width: calc(~'100% - @{sidebar-width}');
+        & + .playlist-wrap{width: @sidebar-width;}
+      }
+    }
+    .playlist-wrap{
+      width: @sidebar-width;
+      .scroll-wrap{
+        .ps-scroll-wrap;
+        padding-left: @spacer;
+      }
+    }
+    
+    .playlist-item{
+      display: flex;
+  
+      &:not(:first-child){
+        padding-top: @spacer/1.5;
+        margin-top: @spacer/1.5;
+        border-top: @border-color solid 1px;
+      }
+
+      .thumb{width: 150px;}
+    }
+    
+    .details{padding: 0 10px;}
+    
+  }
+}

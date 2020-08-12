@@ -85,4 +85,11 @@ class Course_model extends Model
         $sql = "UPDATE course SET image_course = '$Photo_link' WHERE course_id = '$Course_id'  ";
         $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Video_Of_Course()
+    {
+        //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
+        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '77' ORDER BY course_unit.unit_index";
+        //$sql = "SELECT video_id,video_name,video_link from video";
+        return $this->connect_postgresdb->execute($sql);
+    }
 }
