@@ -17,6 +17,7 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -25,16 +26,16 @@ table {
 
 .player-container {
 	position: absolute;
-	top: 80px;
-	left: 0;
+	top: 120px;
+	left: 400px;
 	right: 0;
 	width: 70%; 
-	height: auto;
+	height: 0;
 	max-width: 2400px;
-	margin: 0 auto;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	
 }
 .main-preview-player {
   display: -moz-flex;
@@ -46,6 +47,7 @@ table {
   -webkit-justify-content: space-between;
   -ms-justify-content: space-between;
   justify-content: space-between;
+  
 }
 .main-preview-player video {
 	background-color: transparent;
@@ -61,10 +63,11 @@ table {
   width: 100%;
   height: 0;
   background-color: transparent;
+  
 }
 .video-js {
   flex: 3 1 55%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #080707;
 }
 .vjs-menu li {
   list-style: none;
@@ -74,37 +77,43 @@ table {
   font-size: 1.2em;
   text-align: center;
   text-transform: none;
+  
 }
 .playlist-container {
   flex: 1 1 45%;
   height: auto;
+  
 }
 .vjs-playlist {
   position: absolute;
   margin: 0;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50px;
+  right: 0px;
   min-height: 140px;
   min-width: 249px;
   background-color: transparent;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #FFFFFF;
   padding: 5px;
-  width: 100%;
+  width: 65%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+
 }
 .vjs-playlist img {
 	height: auto;
-	max-height: 260px;
-	width: 50%;
-	max-width: 463px;
+	max-height: 133px;
+	width: 100%;
+	max-width: 314px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	margin-top:45px; /*to have the space above the image*/
+	margin-bottom:30px; /*to have the space under the image*/
 }
+
 .vjs-playlist-description {
 	position: absolute;
 	top: 0;
@@ -118,6 +127,8 @@ table {
 	-webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin-top:30px; /*to have the space above the image*/
+	margin-bottom:30px; /*to have the space under the image*/
 }
 .video-js.vjs-fluid,
 .video-js.vjs-16-9,
@@ -157,17 +168,55 @@ table {
 .vjs-playlist img  {
 	margin-top: 10px;
 	margin-bottom: 10px;
+
 }
 .vjs-playlist-description {
 	padding: 5px;
+	
 }
 .vjs-playlist {
   padding: 0;
 }
 .vjs-playlist .vjs-playlist-name {
   padding: 0;
+
 }
 .player-container {
 	width: 75%;
 }
 }
+
+
+
+.content2{
+    background: #FFFFFF;
+    width: 100%;
+    height: 666px;
+  }
+  .img-coursename{
+
+    width: 650px;
+	height:100px;
+	position: absolute;
+	left: 23%;
+	
+  }
+  .centered {
+	position: absolute;
+	top: 42%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	font-size: 24px;
+  }
+  .course-profile {
+	position: absolute;
+	top: 42%;
+	right: 100%;
+	transform: translate(-50%, -50%);
+  }
+  .comment {
+	position: absolute;
+	bottom: 51%;
+	left: 22%;
+  }
+  

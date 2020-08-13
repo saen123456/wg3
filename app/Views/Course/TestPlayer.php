@@ -20,7 +20,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'); ?>">
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css'); ?>">
@@ -36,20 +36,17 @@
 
 
     <!-- jquery  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<?php echo base_url('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'); ?>"></script>
 
     <!-- Videojs -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video-js.css">
+    <link rel="stylesheet" href="<?php echo base_url('https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video-js.css'); ?>">
     <!-- Playlist Ui -->
-    <link href="https://cdn.jsdelivr.net/npm/videojs-playlist-ui@3.5.2/dist/videojs-playlist-ui.vertical.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/VideoPlayer/videojs-playlist-ui.vertical.css'); ?>" rel="stylesheet">
     <!-- Quality-selector -->
-    <link href="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/css/quality-selector.css" rel="stylesheet">
+    <link href="<?php echo base_url('https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/css/quality-selector.css'); ?>" rel="stylesheet">
     <!-- ChromeCast CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
-    <!-- HTML personal style -->
-    <!--<link href="css/codepen-exmp.css" rel="stylesheet">-->
-    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400,700,900" rel="stylesheet" />
+    <link href="<?php echo base_url('https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.css'); ?>" rel="stylesheet">
+
     <!-- ***SCRiPTS*** -->
     <!-- videojs -->
     <script src="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video.js"></script>
@@ -57,15 +54,16 @@
     <script src="https://cdn.jsdelivr.net/npm/videojs-playlist@4.3.0/dist/videojs-playlist.js"></script>
     <!-- Playlist Ui -->
     <!--Description mod row 199 for better playlist effect-->
-    <script src="https://cdn.jsdelivr.net/gh/DJ-PD/test/videojs-playlist-ui-pd-en.js"></script>
+    <script src="assets/VideoPlayer/playlist.js"></script>
     <!-- Quality-selector -->
     <script src="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/js/silvermine-videojs-quality-selector.min.js"></script>
     <!-- YouTube -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.0/Youtube.min.js"></script>
     <!-- ChromeCast -->
     <script src="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>>
-    <link rel="stylesheet" href="assets/VideoPlayer/test.css">
+    <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/player.css'); ?>">
+
 
 </head>
 
@@ -115,7 +113,67 @@ endif
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?php echo base_url('/home'); ?>">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
+                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                            <!-- <li><a href="#" class="dropdown-item">Some action </a></li>
+                <li><a href="#" class="dropdown-item">Some other action</a></li> -->
+
+                            <li class="dropdown-divider"></li>
+
+                            <!-- Level two dropdown-->
+                            <li class="dropdown-submenu dropdown-hover">
+                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
+                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                    <li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-submenu dropdown-hover">
+                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
+                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                </ul>
+                            </li>
+                            <!-- End Level two -->
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <!-- SEARCH FORM -->
+                <div class="container">
+                    <ul class="nav navbar-nav mx-auto">
+
+                        <form class="form-inline ml-1 ml-md-1">
+                            <div class="input-group">
+                                <div class="inputlong">
+                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </ul>
+                </div>
+                <!-- SEARCH FORM -->
                 <!-- Right navbar links -->
+
                 <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
                     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                         <!-- Messages Dropdown Menu -->
@@ -139,14 +197,14 @@ endif
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'admin') { ?>
                                     <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">เพิ่ม Course</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">เพิ่ม Course</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
                                 <?php
                                 }
                                 ?>
-                                <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">My Course</a>
+
                                 <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
                             </div>
                         </div>
@@ -157,301 +215,101 @@ endif
         </nav>
         <!-- /.navbar -->
 
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <header class="masthead">
-                <div class="overlay"></div>
-                <div class="container">
 
-                </div>
-            </header>
+        <!-- Main content -->
+        <div class="overlay"></div>
+        <div class="container">
 
-
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <div class="overlay"></div>
-
-            <div class="container"><br><br><br><br>
-                <div style="text-align:center;">
-                    <!-- plyr video -->
-                    <!-- <?php
-                            $count = 0;
-                            foreach ($data as $row) :
-                                $count++;
-                                echo $row['video_id'] . " " . $row['video_name'] . " " . $row['video_link'];
-                                echo "<br>";
-                                echo "<video id='player$count' playsinline controls data-poster=''>
-						<source src='" . $row['video_link'] . "' type='video/webm'>
-						</video>"
-                                ?>
-                        <script>
-                            const player<?php echo $count ?> = new Plyr('#player<?php echo $count ?>');
-                        </script>
-                    <?php
-                    endforeach;
-                    ?> -->
-
-                    <div class="player-container">
-                        <div class="main-preview-player">
-                            <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls>
-                            </video>
-                            <div class="playlist-container preview-player-dimensions">
-                                <div class="vjs-playlist">
-                                </div>
-                            </div>
+            <div class="player-container">
+                <div class="main-preview-player">
+                    <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls>
+                    </video>
+                    <div class="playlist-container preview-player-dimensions">
+                        <div class="vjs-playlist">
                         </div>
                     </div>
-                    <br> <br> <br> <br> <br>
+                    <!-- <?php
+                            foreach ($data as $row) :
+                                echo $row['unit_index'] . " " . $row['course_name'] . "<br>";
+                            endforeach;
+                            ?> -->
+                </div>
+            </div>
+
+
+            <script>
+                $(document).ready(function() {
+                    $('#pd-video').bind('   ', function() {
+                        return false;
+                    });
+                });
+            </script>
+            <script>
+                var player = videojs('pd-video');
+                player.playlist([
                     <?php
                     foreach ($data as $row) :
-                        echo $row['course_id'] . " " . $row['video_id'] . " " . $row['video_link'] . " " . $row['unit_index'] . "<br>";
+                        ?> {
+                            name: '<?php echo $row['unit_name'] ?>',
+                            // description: '<?php echo $row['unit_name'] ?>',
+                            duration: 2905,
+                            poster: '<?php echo $row['image_course'] ?>',
+                            sources: [{
+                                src: '<?php echo $row['video_link'] ?>',
+                                type: 'video/mp4'
+                            }, ],
+                            thumbnail: [{
+                                    srcset: '<?php echo $row['image_course'] ?>',
+                                    type: 'image/jpeg',
+                                    media: '(min-width: 400px;)'
+                                },
+                                {
+                                    src: '<?php echo $row['image_course'];
+                                                ?>'
+                                }
+                            ]
+
+                        },
+                    <?php
                     endforeach;
                     ?>
-                    <script>
-                        $(document).ready(function() {
-                            $('#pd-video').bind('contextmenu', function() {
-                                return false;
-                            });
-                        });
-                    </script>
-                    <script>
-                        var options;
 
-                        options = {
-                            techOrder: ['chromecast', 'html5', 'youtube'],
-                            liveui: true,
-                            html5: {
-                                hls: {
-                                    overrideNative: true
-                                },
-                                nativeAudioTracks: false,
-                                nativeVideoTracks: false,
-                            }
-                        };
-                        var player = videojs('pd-video', options);
-                        player.playlist([
-                            <?php
-                            foreach ($data as $row) :
-                                ?> {
-                                    name: '<?php echo $row['unit_name'] ?>',
-                                    description: 'YouTube, Chromecast not working.',
-                                    duration: 2905,
-                                    poster: '<?php echo $row['image_course'] ?>',
-                                    sources: [{
-                                        src: '<?php echo $row['video_link'] ?>',
-                                        type: 'video/mp4'
-                                    }, ],
-                                    thumbnail: [{
-                                            srcset: '<?php echo $row['image_course'] ?>',
-                                            type: 'image/jpeg',
-                                            media: '(min-width: 400px;)'
-                                        },
-                                        {
-                                            src: '<?php echo $row['image_course'] ?>'
-                                        }
-                                    ]
-                                },
-                            <?php
-                            endforeach;
-                            ?>
-                            // {
-                            //     name: 'Test 2',
-                            //     description: 'Dropbox, Chromecast working.',
-                            //     duration: 11385,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
-                            //         type: 'video/mp4'
-                            //     }, ],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                            // {
-                            //     name: 'Test 3',
-                            //     description: 'G-Drive, Chapters and captions test. Chromecast working but not textTracks captions.',
-                            //     duration: 10258,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
-                            //         type: 'video/mp4'
-                            //     }, ],
-                            //     textTracks: [{
-                            //         kind: 'chapters',
-                            //         label: 'Chapters',
-                            //         srclang: 'en',
-                            //         src: 'https://cdn.jsdelivr.net/gh/DJ-PD/test/chapters.en.vtt'
-                            //     }, {
-                            //         kind: 'captions',
-                            //         label: 'Subtitles en',
-                            //         srclang: 'en',
-                            //         src: 'https://cdn.jsdelivr.net/gh/DJ-PD/test/captions.en.vtt',
-                            //         'default': false
-                            //     }],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                            // {
-                            //     name: 'Test 4',
-                            //     description: 'OneDrive, Chromecast working.',
-                            //     duration: 4002,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
-                            //         type: 'video/mp4'
-                            //     }, ],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                            // {
-                            //     name: 'Test 5',
-                            //     description: 'OneDrive 4K 2160p, Works with Chromecast Ultra (4K support).',
-                            //     duration: 356,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
-                            //         type: 'video/mp4'
-                            //     }, ],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                            // {
-                            //     name: 'Test 6',
-                            //     description: 'Local Source, Chromecast not working. No source activated via this CodePen test. Further tests need to be done locally.',
-                            //     duration: 227,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //         src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
-                            //         type: 'video/mp4'
-                            //     }, ],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                            // {
-                            //     name: 'Test 7',
-                            //     description: 'Nuevolab with quality alt. Chromecast working but video restart after changing quality.',
-                            //     duration: 436,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //             src: 'http://cdn.nuevolab.com/video/alaska_720.mp4',
-                            //             type: 'video/mp4',
-                            //             label: '720P'
-                            //         },
-                            //         {
-                            //             src: 'http://cdn.nuevolab.com/video/alaska_480.mp4',
-                            //             type: 'video/mp4',
-                            //             label: '480P',
-                            //             selected: 'true'
-                            //         },
-                            //         {
-                            //             src: 'http://cdn.nuevolab.com/video/alaska_360.mp4',
-                            //             type: 'video/mp4',
-                            //             label: '360P'
-                            //         },
-                            //         {
-                            //             src: 'http://cdn.nuevolab.com/video/alaska_240.mp4',
-                            //             type: 'video/mp4',
-                            //             label: '240P'
-                            //         },
-                            //     ],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                            // {
-                            //     name: 'Test 8',
-                            //     description: 'Live stream test',
-                            //     duration: 436,
-                            //     poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //     sources: [{
-                            //         src: 'https://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8',
-                            //         type: 'application/x-mpegurl',
-                            //         label: 'Live'
-                            //     }, ],
-                            //     thumbnail: [{
-                            //             srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
-                            //             type: 'image/jpeg',
-                            //             media: '(min-width: 400px;)'
-                            //         },
-                            //         {
-                            //             src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
-                            //         }
-                            //     ]
-                            // },
-                        ]);
-                        player.playlistUi();
-                        player.playlist.autoadvance(0);
-                        player.playlist.repeat(true);
-                        player.controlBar.addChild('QualitySelector');
-                        player.chromecast();
-                    </script>
-
-
-                </div>
-
+                ]);
+                player.playlistUi();
+                player.playlist.autoadvance(0);
+                player.playlist.repeat(true);
+                player.controlBar.addChild('QualitySelector');
+                player.chromecast();
+            </script>
+            <div class="content2">
 
             </div>
-
-            <!-- /.content -->
-
         </div>
+
+
+        <!-- /.content -->
         <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Profile</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <div class="footernew">
+        <div class="content2">
+            <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-coursename">
+            <div class="centered">
+                <!-- <i class="fa fa-user course-profile" aria-hidden="true"></i> -->
+                <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">&nbsp&nbsp&nbsp
+                <?php
+                foreach ($data as $row) :
+                    $Course_Name = $row['course_name'];
+                endforeach;
+                ?>
+                <?php echo $Course_Name; ?>
             </div>
-        </footer>
+            <div class="comment">
+                ความคิดเห็น
+            </div>
+        </div>
+
+
+
         <div class="footernew2">
             <a href="<?php echo base_url('/home'); ?>">
                 <div class="footerimg">

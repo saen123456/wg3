@@ -81,7 +81,7 @@ class CourseController extends BaseController
             $data['data'] = $model->Select_Video_Of_Course();
             echo view('Course/TestPlayer', $data);
         } else {
-            //echo view('login/HomePage');
+            echo view('Home/HomePage');
         }
     }
     public function Create_Course()
