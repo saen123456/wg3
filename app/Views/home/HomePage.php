@@ -233,7 +233,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -265,7 +265,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -297,7 +297,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -329,7 +329,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -361,7 +361,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -393,7 +393,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -425,7 +425,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -457,7 +457,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -531,7 +531,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -563,7 +563,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -595,7 +595,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">
@@ -627,7 +627,7 @@ endif
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
                   <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
+                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                   </div>
                   <br>
                   <div class="card-body">

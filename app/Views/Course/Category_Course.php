@@ -161,16 +161,16 @@
                                 <?php
                                 if ($this->session->get("Picture")) { ?>
                                     <img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
-                                                                                                                                        } else { ?>
+                                                                                                                                            } else { ?>
                                     <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
-                                                                                                                                            }
+                                                                                                                                                }
                                                                                                                                                 ?>
                             </a>
                             <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
                                 <?php
                                 if ($this->session->get("Role_name") == 'student') {
-                                ?>
+                                    ?>
                                     <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'admin') { ?>
@@ -259,7 +259,7 @@
                             <tr>
                                 <td>
                                     <img src="<?php echo base_url('assets/img/course1.png'); ?>" class="img-fluid" alt="Sheep">
-                                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                    <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
                                 </td>
                                 <td>
                                     Internet of Things (IOT)<br>
@@ -277,7 +277,7 @@
                             <tr>
                                 <td>
                                     <img src="<?php echo base_url('assets/img/course1.png'); ?>" class="img-fluid" alt="Sheep">
-                                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                    <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
                                 </td>
                                 <td>
                                     Internet of Things (IOT)<br>
@@ -294,7 +294,7 @@
                             <tr>
                                 <td>
                                     <img src="<?php echo base_url('assets/img/course1.png'); ?>" class="img-fluid" alt="Sheep">
-                                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                    <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
                                 </td>
                                 <td>
                                     Internet of Things (IOT)<br>
@@ -311,7 +311,7 @@
                             <tr>
                                 <td>
                                     <img src="<?php echo base_url('assets/img/course1.png'); ?>" class="img-fluid" alt="Sheep">
-                                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                    <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
                                 </td>
                                 <td>
                                     Internet of Things (IOT)<br>
@@ -328,7 +328,7 @@
                             <tr>
                                 <td>
                                     <img src="<?php echo base_url('assets/img/course1.png'); ?>" class="img-fluid" alt="Sheep">
-                                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                    <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
                                 </td>
                                 <td>
                                     Internet of Things (IOT)<br>

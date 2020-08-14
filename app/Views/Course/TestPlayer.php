@@ -63,6 +63,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
     <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/player.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/inputtext-comment.css'); ?>">
 
 
 </head>
@@ -222,17 +223,29 @@ endif
 
             <div class="player-container">
                 <div class="main-preview-player">
-                    <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls>
+                    <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls oncontextmenu="return false;">
                     </video>
                     <div class="playlist-container preview-player-dimensions">
+
                         <div class="vjs-playlist">
                         </div>
                     </div>
                     <!-- <?php
                             foreach ($data as $row) :
                                 echo $row['unit_index'] . " " . $row['course_name'] . "<br>";
+
                             endforeach;
                             ?> -->
+
+                    <div style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 25px;">0.Basic Leadership
+                        <!-- <?php
+                                foreach ($data as $row) :
+                                    if ($row['unit_index'] == '1') {
+                                        echo $row['unit_index'] . " " . $row['course_name'] . "<br>";
+                                    }
+                                endforeach;
+                                ?> -->
+                    </div>
                 </div>
             </div>
 
@@ -272,9 +285,123 @@ endif
                         },
                     <?php
                     endforeach;
-                    ?>
+                    ?> {
+                        name: 'Test 2',
+                        description: 'Dropbox, Chromecast working.',
+                        duration: 11385,
+                        poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        sources: [{
+                            src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            type: 'video/mp4'
+                        }, ],
+                        thumbnail: [{
+                                srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                                type: 'image/jpeg',
+                                media: '(min-width: 400px;)'
+                            },
+                            {
+                                src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Test 2',
+                        description: 'Dropbox, Chromecast working.',
+                        duration: 11385,
+                        poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        sources: [{
+                            src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            type: 'video/mp4'
+                        }, ],
+                        thumbnail: [{
+                                srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                                type: 'image/jpeg',
+                                media: '(min-width: 400px;)'
+                            },
+                            {
+                                src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Test 2',
+                        description: 'Dropbox, Chromecast working.',
+                        duration: 11385,
+                        poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        sources: [{
+                            src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            type: 'video/mp4'
+                        }, ],
+                        thumbnail: [{
+                                srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                                type: 'image/jpeg',
+                                media: '(min-width: 400px;)'
+                            },
+                            {
+                                src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Test 2',
+                        description: 'Dropbox, Chromecast working.',
+                        duration: 11385,
+                        poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        sources: [{
+                            src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            type: 'video/mp4'
+                        }, ],
+                        thumbnail: [{
+                                srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                                type: 'image/jpeg',
+                                media: '(min-width: 400px;)'
+                            },
+                            {
+                                src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Test 2',
+                        description: 'Dropbox, Chromecast working.',
+                        duration: 11385,
+                        poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        sources: [{
+                            src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            type: 'video/mp4'
+                        }, ],
+                        thumbnail: [{
+                                srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                                type: 'image/jpeg',
+                                media: '(min-width: 400px;)'
+                            },
+                            {
+                                src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Test 2',
+                        description: 'Dropbox, Chromecast working.',
+                        duration: 11385,
+                        poster: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                        sources: [{
+                            src: 'https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4',
+                            type: 'video/mp4'
+                        }, ],
+                        thumbnail: [{
+                                srcset: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg',
+                                type: 'image/jpeg',
+                                media: '(min-width: 400px;)'
+                            },
+                            {
+                                src: 'https://marketingland.com/wp-content/ml-loads/2015/08/movie-film-video-production-ss-1920-800x450.jpg'
+                            }
+                        ]
+                    },
 
                 ]);
+
                 player.playlistUi();
                 player.playlist.autoadvance(0);
                 player.playlist.repeat(true);
@@ -303,9 +430,102 @@ endif
                 ?>
                 <?php echo $Course_Name; ?>
             </div>
+
             <div class="comment">
                 ความคิดเห็น
+                <div class="comment_profile">
+                    <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">
+                </div>
+                <div class="form__group field">
+
+                    <form action="#" method="post">
+                        <input type="input" class="form__field" placeholder="แสดงความคิดเห็นของคุณ" name="user_comment" id='user_comment' required />
+                        <label for="name" class="form__label">แสดงความคิดเห็นของคุณ</label>
+                    </form>
+                </div>
             </div>
+
+            <table id="table_comment" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                    <td>
+                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                    </td>
+                </tr>
+            </table>
+
         </div>
 
 

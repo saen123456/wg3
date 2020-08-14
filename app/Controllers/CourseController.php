@@ -75,7 +75,7 @@ class CourseController extends BaseController
     }
     public function TestPlayer()
     {
-        if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+        if ($this->session->get("Role_name")) {
             $model = new Course_model();
             // $data['data'] = $model->Select_Video();
             $data['data'] = $model->Select_Video_Of_Course();
