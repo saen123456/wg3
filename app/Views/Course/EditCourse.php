@@ -366,7 +366,7 @@
                     var xhr = new window.XMLHttpRequest();
 
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + Unit_Count++,
+                        url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + window.Unit_Index,
                         //url: "http://localhost:8080/projectwg/CourseController/Upload_Edit_Unit?Unit_Index=" + window.Unit_Index,
 
                         // url: "<?php
