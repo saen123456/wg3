@@ -107,7 +107,7 @@
                 ?>
                 <h3>หลักสูตร</h3>
                 <fieldset class="fieldset2">
-                    <h2>หลักสูตร</h2>
+                    <h2>แก้ไขหลักสูตร</h2>
                     <p class="desc">เริ่มต้นรวมหลักสูตรของคุณเข้าด้วยกันด้วยการสร้างส่วน การบรรยาย และแบบฝึกหัด (โจทย์ แบบฝึกหัดการเขียนโค้ด และงานที่ได้รับมอบหมาย)</p>
                     <div class="fieldset-content2">
                         <div class="form-row2">
@@ -120,7 +120,7 @@
                                             <h3>Multi form file uploader using Jquery, PHP, Ajax, and Bootstrap - HackandPhp programming blog </h3>
                                             <hr>
 
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>
                                                     <ul class="list-inline">
                                                         <li><button class="btn btn-success addmore" type="button"><i class="fa fa-plus"></i> เพิ่ม Unit</button></li>
@@ -128,7 +128,7 @@
 
                                                     </ul>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <?php
@@ -138,12 +138,12 @@
                                                     <tr id="row_0">
                                                         <td><input class="case" type="checkbox" /></td>
                                                         <td>
-
                                                             <form action="#" id="uploadform">
+
                                                                 <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>" />
                                                                 <br>
                                                                 <div class="col-sm-3">
-                                                                    <input id="avatar" class="file-loading" type="file" name="Unit_Video_File" value="test">
+                                                                    <input id="avatar" class="file-loading" type="file" name="Unit_Video_File" value="<?php echo $row['video_link'] ?>">
                                                                 </div>
                                                                 <div class="col-sm-5">
                                                                     <div class="progress progress-striped active">
@@ -151,7 +151,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                    <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
+                                                                    <button class="btn btn-sm btn-info upload" type="submit" var Unit_Index="<?= $row['unit_index'] ?>"><i class="fa fa-upload"></i> Upload Unit</button>
                                                                 </div>
                                                             </form>
                                                         </td>
@@ -207,7 +207,7 @@
                                 <div class=" main-text">
                                     <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
                                         โดยไม่มีข้อความบนรูปภาพ</p>
-                                    <form action="<?= site_url('/CourseController/Upload_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage">
+                                    <form action="<?= site_url('/CourseController/Edit_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
@@ -263,7 +263,7 @@
 
                 <h3>การกำหนดราคาคอร์สของคุณ</h3>
                 <fieldset class="fieldset2">
-                    <form action="<?= site_url('/CourseController/Update_Price') ?>">
+                    <form action="<?= site_url('/CourseController/Edit_Price') ?>">
                         <h2>การกำหนดราคาคอร์สของคุณ</h2>
                         <p class="desc">การกำหนดราคาคอร์สของคุณ</p>
                         <div class="box">
@@ -285,6 +285,7 @@
             </div>
 
         </div>
+
         <script type="text/javascript">
             $(document).ready(function() {
                 var i = $('#table_auto tr').length; // Get the no.of rows in the table
@@ -338,11 +339,23 @@
                     $('form#uploadform .cancel').click();
                 });
 
+
+
                 $(document).on('submit', 'form#uploadform', function(e) {
+
                     e.preventDefault();
                     $form = $(this);
                     uploadImage($form);
 
+                });
+
+                var Unit_Index;
+                console.log(Unit_Count);
+                $(".btn-info").click(function() {
+                    $("#Unit_Index").attr("value", $(this).attr('Unit_Index'));
+                    window.Unit_Index = $(this).attr('Unit_Index');
+                    console.log(window.Unit_Index);
+                    //document.cookie = "Unit_Index = " + Unit_Index;
                 });
 
                 function uploadImage($form) {
@@ -351,10 +364,10 @@
                         .removeClass('progress-bar-danger');
 
                     var xhr = new window.XMLHttpRequest();
-                    console.log(Unit_Count);
 
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Edit_Course?unit=" + Unit_Count++,
+                        //url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + Unit_Count++,
+                        url: "http://localhost:8080/projectwg/CourseController/Upload_Edit_Unit?Unit_Index=" + window.Unit_Index,
 
                         // url: "<?php
                                     //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
@@ -369,9 +382,7 @@
                         success: function(data) {
                             $form.closest('tr').find('td:nth-child(3)').text(data.image);
                             $form.closest('tr').find('td:nth-child(4)').html(data.destination);
-                            $form[0].reset();
-
-
+                            //$form[0].reset();
                         },
                         error: function() {},
                         xhr: function() {
@@ -387,9 +398,9 @@
                             }, false);
                             xhr.addEventListener('load', function(e) {
                                 $form.find('.progress-bar').addClass('progress-bar-success').html('upload completed....');
-                                setTimeout(function() {
+                                /*setTimeout(function() {
                                     $(".progress-bar").hide();
-                                }, 5000);
+                                }, 5000);*/
                                 $(".progress-bar").show();
                             });
                             return xhr;

@@ -420,11 +420,6 @@ class UserController extends BaseController
         $Full_Name  = $this->request->getVar('Full_Name');
         $Email  = $this->session->get("Email");
         if ($model->Update_Profile($Email, $Full_Name)) {
-            $User_Data = $model->Select_AllData($Email);
-            while ($User = $User_Data->fetchRow()) {
-                $Full_Name = $User['first_name'];
-                $Email = $User['email'];
-            }
             $this->Data = [
                 'Full_name' => $Full_Name,
                 'Email' => $Email,

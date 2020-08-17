@@ -114,6 +114,7 @@
                             <div class="form-flex">
                                 <div class="form-group">
 
+
                                     <div style="text-align:center;">
                                         <div class="container">
 
@@ -174,7 +175,7 @@
                             account</p>
                     </div>
                     <div class="fieldset-content2">
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="find_bank" class="form-label2">ชื่อหลักสูตร</label>
                             <input type="text" name="find_bank" id="find_bank" placeholder="ใส่ชื่อหลักสูตรของคุณ" maxlength="60" />
                         </div>
@@ -182,7 +183,7 @@
                             <label for="find_bank" class="form-label2">คำอธิบายหลักสูตร</label>
                             <textarea placeholder="ใส่คำอธิบายของหลักสูตรคุณ">
                                     </textarea>
-                        </div> -->
+                        </div>
 
 
 
@@ -258,12 +259,12 @@
                         <h2>การกำหนดราคาคอร์สของคุณ</h2>
                         <p class="desc">การกำหนดราคาคอร์สของคุณ</p>
                         <div class="box">
-                            <select name="Course_Price">
+                            <select name="Price">
                                 <option value="0">ฟรี </option>
                                 <option value="499">499 บาท (ระดับ 1)</option>
                                 <option value="699">699 บาท (ระดับ 2)</option>
                                 <option value="899">899 บาท (ระดับ 3)</option>
-                                <option value="1099">1099 บาท (ระดับ 4)</option>
+                                <option value="1099">1099 (ระดับ 4)</option>
                             </select>
                         </div>
                         <div style="position: absolute;right: 200px;bottom: 65px;">
@@ -345,7 +346,8 @@
                     console.log(Unit_Count);
 
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Edit_Unit?unit=" + Unit_Count++,
+                        url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
+
                         // url: "<?php
                                     //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
                                     //         // echo site_url('/CourseController/Upload_Test');

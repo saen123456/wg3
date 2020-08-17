@@ -236,6 +236,26 @@ class CourseController extends BaseController
             echo "อัพโหลดไม่สำเร็จ";
         }
     }
+    public function Edit_Picture_Course()
+    {
+        $model = new Course_model();
+        $file = $_FILES;
+
+        $storage = new StorageClient();
+        $bucket = $storage->bucket('workgress');
+
+        $Course_id = $this->session->get("Course_id");
+        $content = file_get_contents($file['photo']['tmp_name']);
+        $Photo_Name = $file['photo']['name'];
+        //echo $Photo->getClientName();
+        if ($bucket->upload($content, ['name' => $Photo_Name])) {
+            $Photo_link = "https://storage.googleapis.com/workgress/" . $Photo_Name;
+            $model->Edit_Photo_Course($Course_id, $Photo_link);
+            echo "อัพโหลดรูปภาพเรียบร้อยแล้ว";
+        } else {
+            echo "อัพโหลดไม่สำเร็จ";
+        }
+    }
     public function Update_Price()
     {
         $model = new Course_model();
@@ -256,27 +276,49 @@ class CourseController extends BaseController
 
         //echo $Course_Price." ".$Course_id;
     }
+    public function Edit_Price()
+    {
+        $model = new Course_model();
+        $Course_Price = $this->request->getVar('Course_Price');
+        $Course_id = $this->session->get("Course_id");
+
+        if ($Course_id) {
+            if ($Course_Price != null) {
+                $model->Edit_Course_Price($Course_id, $Course_Price);
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
+                return redirect()->to(base_url('course'))->with('correct', $msg);
+            } else {
+                echo view('Home/HomePage');
+            }
+        } else {
+            echo view('Home/HomePage');
+        }
+
+        //echo $Course_Price." ".$Course_id;
+    }
     public function Upload_Edit_Unit()
     {
         $model = new Course_model();
+
         $file = $_FILES;
         $storage = new StorageClient();
         $bucket = $storage->bucket('workgress');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
+
         $Video_Name = $file['Unit_Video_File']['name'];
         $Unit_Name = $this->request->getVar('Unit_Name');
-        $User_id = $this->session->get("User_id");
         $Course_id = $this->session->get("Course_id");
         $Unit_Index = $_GET['Unit_Index'];
-        echo $Unit_Index . " " . $Unit_Name;
-        /*if ($bucket->upload($content, ['name' => $Video_Name])) {
+
+        //$model->Upload_Edit_Unit($Course_id, $Unit_Index, $Unit_Name);
+        if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
-            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
+            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_Name, $Unit_Index, $Video_Name);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
-        }*/
+        }
 
         //return redirect()->to(base_url('test55'));
     }

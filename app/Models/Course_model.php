@@ -24,7 +24,7 @@ class Course_model extends Model
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
-        $this->connect_postgresdb->debug = false;
+        $this->connect_postgresdb->debug = true;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
     // public function Select_Video()
@@ -85,6 +85,11 @@ class Course_model extends Model
         $sql = "UPDATE course SET image_course = '$Photo_link' WHERE course_id = '$Course_id'  ";
         $this->connect_postgresdb->execute($sql);
     }
+    public function Edit_Photo_Course($Course_id, $Photo_link)
+    {
+        $sql = "UPDATE course SET image_course = '$Photo_link' WHERE course_id = '$Course_id'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
     public function Select_Video_Of_Course()
     {
         //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
@@ -97,10 +102,29 @@ class Course_model extends Model
         $sql = "UPDATE course SET course_price = '$Course_Price' WHERE course_id = '$Course_id'  ";
         $this->connect_postgresdb->execute($sql);
     }
+    public function Edit_Course_Price($Course_id, $Course_Price)
+    {
+        $sql = "UPDATE course SET course_price = '$Course_Price' WHERE course_id = '$Course_id'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
     public function Select_Course_Edit($Course_id)
     {
-        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '$Course_id' ";
+        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '$Course_id' ORDER BY course_unit.unit_index";
         //$sql = "SELECT video_id,video_name,video_link from video";
         return $this->connect_postgresdb->execute($sql);
+    }
+    public function Upload_Edit_Unit($Course_id, $Video_link, $Unit_Name, $Unit_Index, $Video_Name)
+    {
+        $sql = "SELECT unit_id FROM course_unit WHERE course_id = $Course_id AND unit_index = '$Unit_Index'";
+        $Unit_id = $this->connect_postgresdb->getOne($sql);
+        //echo $Unit_id;
+        $sql2 = "UPDATE unit SET unit_name = '$Unit_Name' WHERE unit_id = '$Unit_id'  ";
+        $this->connect_postgresdb->execute($sql2);
+
+        $sql3 = "SELECT video_id FROM course_unit WHERE course_id = $Course_id AND unit_index = '$Unit_Index'";
+        $Video_id = $this->connect_postgresdb->getOne($sql3);
+
+        $sql4 = "UPDATE video SET video_name = '$Video_Name' , video_link = '$Video_link' WHERE video_id = '$Video_id'  ";
+        $this->connect_postgresdb->execute($sql4);
     }
 }
