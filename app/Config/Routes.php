@@ -51,18 +51,21 @@ $routes->get('/search', 'AdminController::Search');
 $routes->get('/chart', 'AdminController::Chart');
 
 //Courseuser//notlogin
-$routes->add('/course/(:alphanum)', 'CourseUserController::CourseName/$1');
+$routes->add('/viewcourse/(:alphanum)', 'CourseUserController::CourseName/$1');
 
 //Course
-$routes->get('/test55', 'CourseController::Test');
-$routes->get('/testplayer', 'CourseController::TestPlayer');
-$routes->get('/courses', 'CourseController::Show_Course');
-$routes->get('/course', 'CourseController::Add_Course');
+$routes->get('/course', 'CourseController::Manage_Course');
 $routes->add('/course/createcourse', 'CourseController::CreateCourse');
 $routes->get('/alldevelopment', 'CourseController::Category_Course');
 
 //Config-Course
 $routes->add('/course/manage/config/(:any)', 'CourseController::CreateCourseStep2/$1');
+$routes->add('/course/edit/(:any)', 'CourseController::EditCourse/$1');
+
+//Route For Test
+$routes->get('/test55', 'CourseController::Test');
+$routes->get('/testplayer', 'CourseController::TestPlayer');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

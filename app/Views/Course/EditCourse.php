@@ -131,27 +131,36 @@
                                             </div>
 
                                             <table class="table table-bordered table-hover" id="table_auto">
-                                                <tr id="row_0">
-                                                    <td><input class="case" type="checkbox" /></td>
-                                                    <td>
-                                                        <form action="#" id="uploadform">
-                                                            <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ 1 บทนำ " />
-                                                            <br>
-                                                            <div class="col-sm-3">
-                                                                <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
-                                                            </div>
-                                                            <div class="col-sm-5">
-                                                                <div class="progress progress-striped active">
-                                                                    <div class="progress-bar" style="width:0%"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
-                                                            </div>
-                                                        </form>
-                                                    </td>
+                                                <?php
+                                                foreach ($data as $row) :
+                                                    $Image_Course = $row['image_course'];
+                                                    ?>
+                                                    <tr id="row_0">
+                                                        <td><input class="case" type="checkbox" /></td>
+                                                        <td>
 
-                                                </tr>
+                                                            <form action="#" id="uploadform">
+                                                                <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>" />
+                                                                <br>
+                                                                <div class="col-sm-3">
+                                                                    <input id="avatar" class="file-loading" type="file" name="Unit_Video_File" value="test">
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <div class="progress progress-striped active">
+                                                                        <div class="progress-bar" style="width:0%"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
+                                                                </div>
+                                                            </form>
+                                                        </td>
+
+                                                    </tr>
+
+                                                <?php
+                                                endforeach;
+                                                ?>
                                             </table>
 
                                             <hr>
@@ -192,7 +201,7 @@
                                 <div class="main-image">
                                     <!-- <div class="input-group image-preview">
                                     </div> -->
-                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="output">
+                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo $Image_Course ?>" id="output">
                                     <br>
                                 </div>
                                 <div class=" main-text">
@@ -345,7 +354,8 @@
                     console.log(Unit_Count);
 
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Edit_Unit?unit=" + Unit_Count++,
+                        url: "https://workgress.online/CourseController/Edit_Course?unit=" + Unit_Count++,
+
                         // url: "<?php
                                     //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
                                     //         // echo site_url('/CourseController/Upload_Test');

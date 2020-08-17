@@ -201,7 +201,7 @@
                                             <p> คอร์ส : <?php echo $row['course_name'] ?></p>
                                         </b>
 
-                                        <a href="<?= base_url('/course/manage/config/' . $row['course_id']); ?>">
+                                        <a href="<?= base_url('/course/edit/' . $row['course_id']); ?>">
                                             <div class="content_course-overlay"></div>
                                             <div class="content_course-details fadeIn-bottom">
                                                 <h3 class="content_course-text">แก้ไข / จัดการหลักสูตร </h3>

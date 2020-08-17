@@ -16,15 +16,11 @@ class CourseController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
-    public function Show_Course()
-    {
-        echo view('Course/Show_Course');
-    }
     public function Category_Course()
     {
         echo view('Course/Category_Course');
     }
-    public function Add_Course()
+    public function Manage_Course()
     {
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
             $model = new Course_model();
@@ -57,6 +53,23 @@ class CourseController extends BaseController
             ];
             $this->session->set($this->Data);
             echo view('Course/CreateCourseStep2');
+        } else {
+            echo view('login/HomePage');
+        }
+    }
+    public function EditCourse($id = null)
+    {
+
+        if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+            $model = new Course_model();
+            $Course_id =  $id;
+            $this->Data = [
+                'Course_id' => $Course_id,
+            ];
+            $this->session->set($this->Data);
+            $data['data'] = $model->Select_Course_Edit($Course_id);
+            echo view('Course/EditCourse', $data);
+            //echo $Course_Id;
         } else {
             echo view('login/HomePage');
         }
@@ -222,5 +235,49 @@ class CourseController extends BaseController
         } else {
             echo "อัพโหลดไม่สำเร็จ";
         }
+    }
+    public function Update_Price()
+    {
+        $model = new Course_model();
+        $Course_Price = $this->request->getVar('Course_Price');
+        $Course_id = $this->session->get("Course_id");
+
+        if ($Course_id) {
+            if ($Course_Price != null) {
+                $model->Update_Course_Price($Course_id, $Course_Price);
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
+                return redirect()->to(base_url('course'))->with('correct', $msg);
+            } else {
+                echo view('Home/HomePage');
+            }
+        } else {
+            echo view('Home/HomePage');
+        }
+
+        //echo $Course_Price." ".$Course_id;
+    }
+    public function Upload_Edit_Unit()
+    {
+        $model = new Course_model();
+        $file = $_FILES;
+        $storage = new StorageClient();
+        $bucket = $storage->bucket('workgress');
+
+        $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
+        $Video_Name = $file['Unit_Video_File']['name'];
+        $Unit_Name = $this->request->getVar('Unit_Name');
+        $User_id = $this->session->get("User_id");
+        $Course_id = $this->session->get("Course_id");
+        $Unit_Index = $_GET['Unit_Index'];
+        echo $Unit_Index . " " . $Unit_Name;
+        /*if ($bucket->upload($content, ['name' => $Video_Name])) {
+            $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
+            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
+            echo "<div class='preview'>upload success</div>";
+        } else {
+            echo "<div class='preview'>something wrong</div>";
+        }*/
+
+        //return redirect()->to(base_url('test55'));
     }
 }

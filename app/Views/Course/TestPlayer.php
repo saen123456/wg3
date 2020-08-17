@@ -409,7 +409,6 @@ endif
                 player.chromecast();
             </script>
             <div class="content2">
-
             </div>
         </div>
 
@@ -525,10 +524,7 @@ endif
                     </td>
                 </tr>
             </table>
-
         </div>
-
-
 
         <div class="footernew2">
             <a href="<?php echo base_url('/home'); ?>">
@@ -536,7 +532,6 @@ endif
                     <img src="<?php echo base_url('assets/img/logo2.png'); ?>">
                 </div>
             </a>
-
             <div class="footericonphone">
                 <i class="fa fa-phone">
                 </i>

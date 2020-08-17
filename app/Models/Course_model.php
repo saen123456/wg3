@@ -45,7 +45,7 @@ class Course_model extends Model
     }
     public function Insert_Course($course_name, $category_course_id, $course_description, $User_id)
     {
-        $sql = "INSERT INTO course (category_course_id,course_name, course_description, create_date)VALUES ($category_course_id,'$course_name','$course_description',now())";
+        $sql = "INSERT INTO course (category_course_id,course_name, course_description, create_date,status)VALUES ($category_course_id,'$course_name','$course_description',now(),'active')";
         $this->connect_postgresdb->execute($sql);
         $sql3 = "SELECT max(course_id) FROM course";
         $count_course = $this->connect_postgresdb->getOne($sql3);
@@ -89,6 +89,17 @@ class Course_model extends Model
     {
         //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
         $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '77' ORDER BY course_unit.unit_index";
+        //$sql = "SELECT video_id,video_name,video_link from video";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_Course_Price($Course_id, $Course_Price)
+    {
+        $sql = "UPDATE course SET course_price = '$Course_Price' WHERE course_id = '$Course_id'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Course_Edit($Course_id)
+    {
+        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '$Course_id' ";
         //$sql = "SELECT video_id,video_name,video_link from video";
         return $this->connect_postgresdb->execute($sql);
     }

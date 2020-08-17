@@ -76,22 +76,22 @@
     if (marginSlider != undefined) {
         noUiSlider.create(marginSlider, {
             start: [1100],
-            step: 100,
+            step: 10,
             connect: [true, false],
             tooltips: [true],
             range: {
-                'min': 100,
-                'max': 2000
+                'min': 0,
+                'max': 10000
             },
             pips: {
                 mode: 'values',
-                values: [100, 2000],
+                values: [0, 10000],
                 density: 4
             },
             format: wNumb({
                 decimals: 0,
                 thousand: '',
-                prefix: '$ ',
+                prefix: 'บาท ',
             })
         });
         var marginMin = document.getElementById('value-lower'),
