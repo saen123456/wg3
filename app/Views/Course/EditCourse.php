@@ -201,7 +201,15 @@
                                 <div class="main-image">
                                     <!-- <div class="input-group image-preview">
                                     </div> -->
-                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo $Image_Course ?>" id="output">
+                                    <?php
+                                    if ($Image_Course) { ?>
+                                        <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo $Image_Course ?>" id="output">
+                                    <?php
+                                    } else { ?>
+                                        <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="output">
+                                    <?php
+                                    }
+                                    ?>
                                     <br>
                                 </div>
                                 <div class=" main-text">
