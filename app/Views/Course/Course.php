@@ -192,7 +192,7 @@
                                         <?php
                                             } else { ?>
                                             <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" width="120px" height="120px"><?php
-                                                                                                                                                   }
+                                                                                                                                                    }
                                                                                                                                                     ?>
                                     </div>
                                     <div class="col-11">

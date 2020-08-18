@@ -361,7 +361,7 @@
                         success: function(data) {
                             $form.closest('tr').find('td:nth-child(3)').text(data.image);
                             $form.closest('tr').find('td:nth-child(4)').html(data.destination);
-                            $form[0].reset();
+                            //$form[0].reset();
 
 
                         },
@@ -379,9 +379,9 @@
                             }, false);
                             xhr.addEventListener('load', function(e) {
                                 $form.find('.progress-bar').addClass('progress-bar-success').html('upload completed....');
-                                setTimeout(function() {
+                                /*setTimeout(function() {
                                     $(".progress-bar").hide();
-                                }, 5000);
+                                }, 5000);*/
                                 $(".progress-bar").show();
                             });
                             return xhr;

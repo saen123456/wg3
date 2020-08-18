@@ -31,6 +31,7 @@ class CourseController extends BaseController
                 'Has_Course' => $Has_Course,
             ];
             $this->session->set($this->Has_Course);
+            //print_r($data['data']);
             echo view('Course/Course', $data);
         } else {
             echo view('home/HomePage');
@@ -263,13 +264,9 @@ class CourseController extends BaseController
         $Course_id = $this->session->get("Course_id");
 
         if ($Course_id) {
-            if ($Course_Price != null) {
-                $model->Update_Course_Price($Course_id, $Course_Price);
-                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
-                return redirect()->to(base_url('course'))->with('correct', $msg);
-            } else {
-                echo view('Home/HomePage');
-            }
+            $model->Update_Course_Price($Course_id, $Course_Price);
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course'))->with('correct', $msg);
         } else {
             echo view('Home/HomePage');
         }
@@ -283,13 +280,9 @@ class CourseController extends BaseController
         $Course_id = $this->session->get("Course_id");
 
         if ($Course_id) {
-            if ($Course_Price != null) {
-                $model->Edit_Course_Price($Course_id, $Course_Price);
-                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
-                return redirect()->to(base_url('course'))->with('correct', $msg);
-            } else {
-                echo view('Home/HomePage');
-            }
+            $model->Edit_Course_Price($Course_id, $Course_Price);
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course'))->with('correct', $msg);
         } else {
             echo view('Home/HomePage');
         }

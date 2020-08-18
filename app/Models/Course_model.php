@@ -24,7 +24,7 @@ class Course_model extends Model
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
-        $this->connect_postgresdb->debug = false;
+        $this->connect_postgresdb->debug = true;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
     // public function Select_Video()

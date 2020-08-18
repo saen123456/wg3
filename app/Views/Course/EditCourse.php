@@ -202,7 +202,7 @@
                                     <!-- <div class="input-group image-preview">
                                     </div> -->
                                     <?php
-                                    if ($Image_Course) { ?>
+                                    if ($Image_Course != null) { ?>
                                         <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo $Image_Course ?>" id="output">
                                     <?php
                                     } else { ?>
