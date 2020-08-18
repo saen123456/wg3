@@ -147,4 +147,10 @@ class Course_model extends Model
         $sql = "UPDATE course SET course_description = '$Course_Description'  WHERE course_id = '$Course_id'  ";
         $this->connect_postgresdb->execute($sql);
     }
+    public function Update_Unit_Name($Unit_ID, $Unit_Name)
+    {
+
+        $sql = "UPDATE unit SET unit_name = '$Unit_Name' WHERE unit_id = '$Unit_ID'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
 }

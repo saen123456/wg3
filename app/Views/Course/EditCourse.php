@@ -140,10 +140,18 @@
                                                     <tr id="row_0">
                                                         <td><input class="case" type="checkbox" /></td>
                                                         <td>
-                                                            <form action="#" id="uploadform">
+                                                            <form action="#" method="post">
+                                                                <div class="col-sm-5">
+                                                                    <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>">
+                                                                </div>
+                                                                <div class="col-sm-1">
+                                                                    <!-- <input type="submit" value="แก้ไขชื่อ unit" class="btn btn-primary" style="width:120px;height:35px" /> -->
+                                                                    <button type="submit" class="btn btn-primary" style="width:120px;height:35px" formaction="<?= base_url('/CourseController/Edit_Unit_Name?Unit_ID=' . $row['unit_id'] . '/') ?>">แก้ไขชื่อ unit</button>
+                                                                </div>
+                                                            </form>
 
-                                                                <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>" />
-                                                                <br>
+                                                            <br><br><br><br>
+                                                            <form action="#" id="uploadform">
                                                                 <div class="col-sm-3">
                                                                     <input id="avatar" class="file-loading" type="file" name="Unit_Video_File" value="<?php echo $row['video_link'] ?>">
                                                                 </div>
@@ -152,7 +160,7 @@
                                                                         <div class="progress-bar" style="width:0%"></div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-4">
+                                                                <div class="col-sm-2">
                                                                     <button class="btn btn-sm btn-info upload" type="submit" var Unit_Index="<?= $row['unit_index'] ?>"><i class="fa fa-upload"></i> Upload Unit</button>
                                                                 </div>
                                                             </form>

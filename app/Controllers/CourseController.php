@@ -317,6 +317,17 @@ class CourseController extends BaseController
 
         //return redirect()->to(base_url('test55'));
     }
+    public function Edit_Unit_Name()
+    {
+        $model = new Course_model();
+        $Unit_Name = $this->request->getVar('Unit_Name');
+        $Unit_ID = $_GET['Unit_ID'];
+        $Course_id = $this->session->get("Course_id");
+        //echo $Unit_ID . " " . $Unit_Name;
+        $model->Update_Unit_Name($Unit_ID, $Unit_Name);
+        $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขชื่อ unit ของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
+        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+    }
     public function Edit_Course_Name()
     {
         $model = new Course_model();
