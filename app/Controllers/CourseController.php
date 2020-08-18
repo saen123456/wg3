@@ -33,8 +33,8 @@ class CourseController extends BaseController
                 'Has_Course' => $Has_Course,
             ];
             $this->session->set($this->Has_Course);
-            print_r($data['data']);
-            //echo view('Course/Course', $data);
+            //print_r($data['data']);
+            echo view('Course/Course', $data);
         } else {
             echo view('home/HomePage');
         }
