@@ -259,7 +259,7 @@
                         <h2>การกำหนดราคาคอร์สของคุณ</h2>
                         <p class="desc">การกำหนดราคาคอร์สของคุณ</p>
                         <div class="box">
-                            <select name="Price">
+                            <select name="Course_Price">
                                 <option value="0">ฟรี </option>
                                 <option value="499">499 บาท (ระดับ 1)</option>
                                 <option value="699">699 บาท (ระดับ 2)</option>
