@@ -234,7 +234,7 @@ endif
               <div class="col-md-3 animate-box">
                 <div class="card" style="width:268px;">
                   <ul class="list-group list-group-flush">
-                    <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image">
+                    <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;"  >
                     <div class="profilecourse">
                       <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                     </div>
@@ -520,6 +520,7 @@ endif
         <!-- /.content -->
 
       </div>
+
       <!-- /.content-wrapper -->
 
       <div class="colorlib-classes">

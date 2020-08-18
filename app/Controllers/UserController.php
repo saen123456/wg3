@@ -19,12 +19,10 @@ class UserController extends BaseController
     /**** ส่วนของ View ****/
     public function index()
     {
-        if ($this->session->get("Role_name") == 'student') {
-            echo view('login/HomePage');
-        } else if ($this->session->get("Role_name") == 'teacher') {
-            echo view('login/HomePage');
-        } else if ($this->session->get("Role_name") == 'admin') {
-            echo view('login/HomePage');
+        if ($this->session->get("Role_name") == 'student' || $this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+            $Course_model = new Course_model();
+            $data['data'] = $Course_model->Select_Course_HomePage();
+            echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
             $data['data'] = $Course_model->Select_Course_HomePage();
@@ -43,15 +41,14 @@ class UserController extends BaseController
     //HomePage_Login
     public function homepage()
     {
-        if ($this->session->get("Role_name") == 'student') {
-            //echo view('navbar');
-            echo view('login/HomePage');
-        } else if ($this->session->get("Role_name") == 'teacher') {
-            echo view('login/HomePage');
-        } else if ($this->session->get("Role_name") == 'admin') {
-            echo view('login/HomePage');
+        if ($this->session->get("Role_name") == 'student' || $this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+            $Course_model = new Course_model();
+            $data['data'] = $Course_model->Select_Course_HomePage();
+            echo view('login/HomePage', $data);
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['data'] = $Course_model->Select_Course_HomePage();
+            echo view('home/HomePage', $data);
         }
     }
 

@@ -18,7 +18,9 @@ class CourseController extends BaseController
     }
     public function Category_Course()
     {
-        echo view('Course/Category_Course');
+        $Course_model = new Course_model();
+        $data['data'] = $Course_model->Select_CategoryCourse();
+        echo view('Course/Category_Course', $data);
     }
     public function Manage_Course()
     {
