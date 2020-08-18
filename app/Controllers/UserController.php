@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User_model;
+use App\Models\Course_model;
 
 class UserController extends BaseController
 {
@@ -25,7 +26,9 @@ class UserController extends BaseController
         } else if ($this->session->get("Role_name") == 'admin') {
             echo view('login/HomePage');
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['data'] = $Course_model->Select_Course_HomePage();
+            echo view('home/HomePage', $data);
         }
 
         /*echo "test database<br>";

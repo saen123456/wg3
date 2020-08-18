@@ -175,7 +175,7 @@
                             account</p>
                     </div>
                     <div class="fieldset-content2">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="find_bank" class="form-label2">ชื่อหลักสูตร</label>
                             <input type="text" name="find_bank" id="find_bank" placeholder="ใส่ชื่อหลักสูตรของคุณ" maxlength="60" />
                         </div>
@@ -183,7 +183,7 @@
                             <label for="find_bank" class="form-label2">คำอธิบายหลักสูตร</label>
                             <textarea placeholder="ใส่คำอธิบายของหลักสูตรคุณ">
                                     </textarea>
-                        </div>
+                        </div> -->
 
 
 

@@ -127,4 +127,9 @@ class Course_model extends Model
         $sql4 = "UPDATE video SET video_name = '$Video_Name' , video_link = '$Video_link' WHERE video_id = '$Video_id'  ";
         $this->connect_postgresdb->execute($sql4);
     }
+    public function Select_Course_HomePage()
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id LIMIT 8";
+        return $this->connect_postgresdb->execute($sql);
+    }
 }

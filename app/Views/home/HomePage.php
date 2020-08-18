@@ -228,7 +228,53 @@ endif
           </div>
 
           <div class="row">
-            <div class="col-md-3 animate-box">
+            <?php
+            foreach ($data as $row) :
+              ?>
+              <div class="col-md-3 animate-box">
+                <div class="card" style="width:268px;">
+                  <ul class="list-group list-group-flush">
+                    <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image">
+                    <div class="profilecourse">
+                      <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                    </div>
+                    <br>
+                    <div class="card-body">
+                      <div class="font-titlecourse">
+                        <?php echo $row['course_name'] ?>
+                      </div>
+                      <div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <li class="list-group-item">
+
+                        <div class="font-coursecomment">
+                          <i class="fa fa-users" aria-hidden="true"> 1273</i>
+                          <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                        </div>
+
+                        <div class="font-courseprice">
+                          <?php
+                            if ($row['course_price'] == '0') {
+                              echo "Free";
+                            } else {
+                              echo $row['course_price'];
+                            }
+
+                            ?>
+                        </div>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            <?php
+            endforeach;
+            ?>
+            <!-- <div class="col-md-3 animate-box">
               <div class="card" style="width:268px;">
                 <ul class="list-group list-group-flush">
                   <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
@@ -450,39 +496,7 @@ endif
                   </div>
                 </ul>
               </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
+            </div> -->
 
           </div>
         </div>
