@@ -137,4 +137,14 @@ class Course_model extends Model
         $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id LIMIT 5";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Update_Course_Name($Course_id, $Course_Name)
+    {
+        $sql = "UPDATE course SET course_name = '$Course_Name'  WHERE course_id = '$Course_id'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_Course_Description($Course_id, $Course_Description)
+    {
+        $sql = "UPDATE course SET course_description = '$Course_Description'  WHERE course_id = '$Course_id'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
 }

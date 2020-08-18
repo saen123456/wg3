@@ -317,4 +317,28 @@ class CourseController extends BaseController
 
         //return redirect()->to(base_url('test55'));
     }
+    public function Edit_Course_Name()
+    {
+        $model = new Course_model();
+
+        $Course_Name = $this->request->getVar('course_name');
+        $Course_id = $this->session->get("Course_id");
+        //echo $Course_Name . " " . $Course_id;
+        $model->Update_Course_Name($Course_id, $Course_Name);
+        $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขชื่อหลักสูตรของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
+        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+    }
+    public function Edit_Course_Description()
+    {
+        $model = new Course_model();
+        $Course_Description = $this->request->getVar('course_description');
+        $Course_id = $this->session->get("Course_id");
+        $Course_Description = str_replace("</p><p>", "\n", $Course_Description);
+        $Course_Description = str_replace("<p>", "", $Course_Description);
+        $Course_Description = str_replace("</p>", "", $Course_Description);
+        //echo $Course_Description . " " . $Course_id;
+        $model->Update_Course_Description($Course_id, $Course_Description);
+        $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขคำอธิบายหลักสูตรของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
+        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+    }
 }

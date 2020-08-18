@@ -134,6 +134,8 @@
                                                 <?php
                                                 foreach ($data as $row) :
                                                     $Image_Course = $row['image_course'];
+                                                    $Course_Name = $row['course_name'];
+                                                    $Course_Description = $row['course_description'];
                                                     ?>
                                                     <tr id="row_0">
                                                         <td><input class="case" type="checkbox" /></td>
@@ -177,26 +179,33 @@
                 <h3>หน้าเริ่มต้นของหลักสูตร</h3>
 
                 <fieldset class="fieldset2">
-                    <h2>หน้าเริ่มต้นของหลักสูตร</h2>
+                    <h2>แก้ไขชื่อหลักสูตร</h2>
                     <div class="form-find">
-                        <p class="desc">Please enter your infomation and proceed to next step so we can build your
-                            account</p>
+
                     </div>
                     <div class="fieldset-content2">
-                        <!-- <div class="form-group">
-                            <label for="find_bank" class="form-label2">ชื่อหลักสูตร</label>
-                            <input type="text" name="find_bank" id="find_bank" placeholder="ใส่ชื่อหลักสูตรของคุณ" maxlength="60" />
-                        </div>
-                        <div class="form-group">
-                            <label for="find_bank" class="form-label2">คำอธิบายหลักสูตร</label>
-                            <textarea placeholder="ใส่คำอธิบายของหลักสูตรคุณ">
-                                    </textarea>
-                        </div> -->
+                        <form action="<?= site_url('/CourseController/Edit_Course_Name') ?>" method="post">
+                            <div class="form-group">
+                                <label for="find_bank" class="form-label2">ชื่อหลักสูตร</label>
+                                <input type="text" name="course_name" id="find_bank" placeholder="ใส่ชื่อหลักสูตรของคุณ" maxlength="60" value="<?php echo $Course_Name ?>" /><br>
+                                <input type="submit" value="ยืนยันการแก้ไขชื่อหลักสูตร" class="btn btn-primary" style="width:200px;height:35px" />
+                            </div>
+                        </form>
+                        <form action="<?= site_url('/CourseController/Edit_Course_Description') ?>" method="post">
+                            <div class="form-group">
+                                <label for="find_bank" class="form-label2">คำอธิบายหลักสูตร</label>
+                                <textarea type="text" placeholder="ใส่คำอธิบายของหลักสูตรคุณ" name="course_description" class="form-control">
+                                <?php echo $Course_Description ?>
+                                </textarea>
+                                <br>
+                                <input type="submit" value="ยืนยันการแก้ไขคำอธิบายหลักสูตร" class="btn btn-primary" style="width:230px;height:35px" />
+                            </div>
+                        </form>
 
 
 
                         <div class="form-group-image">
-                            <label for="image" class="form-label2">ภาพหลักสูตร</label>
+                            <label for="image" class="form-label2">แก้ไขภาพหลักสูตร</label>
                             <div class="row">
                                 <div class="main-image">
                                     <!-- <div class="input-group image-preview">
