@@ -261,7 +261,7 @@ endif
                             if ($row['course_price'] == '0') {
                               echo "Free";
                             } else {
-                              echo $row['course_price'];
+                              echo $row['course_price']." THB";
                             }
 
                             ?>
