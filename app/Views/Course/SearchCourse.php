@@ -16,13 +16,17 @@
         <link rel="stylesheet" href="<?php echo base_url('dist2/css/adminlte.min.css'); ?>">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-        <link href="<?php echo base_url('dist2/css/landing-page1.css'); ?>" rel="stylesheet" media="screen">
-
+        <link href="<?php echo base_url('dist2/css/landing-page1.css'); ?>" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/dropdown.css'); ?>" type="text/css" media="screen">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
-        <!-- multistep.css -->
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/multistep.css'); ?>" type="text/css" media="screen">
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css'); ?>">
+        <script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+        <script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>"></script>
 
         <!-- Animate.css -->
         <link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css'); ?>">
@@ -32,55 +36,42 @@
 
         <!-- Modernizr JS -->
         <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-        <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-        <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-        <script src="plugins/toastr/toastr.min.js"></script>
-        <link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
+        <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
+
+        <!-- CSS Card Course -->
+        <link rel="preload" href="<?php echo base_url('assets/css/categorycourse.css'); ?>" as="style" onload="this.rel='stylesheet'">
+
     </head>
 
     <?php
+    $this->session = \Config\Services::session();
+    if ($this->session->get("Role_name") == 'student') {
+        $role = 'นักเรียน';
+    } else if ($this->session->get("Role_name") == 'teacher') {
+        $role = 'คุณครู';
+    } else if ($this->session->get("Role_name") == 'admin') {
+        $role = 'ผู้ดูแล';
+    }
+    ?>
+    <?php
     if (session('correct')) : ?>
-        <script type="text/javascript">
-            $(function() {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
-                Toast.fire({
-                    icon: 'success',
-                    title: '<?php echo session('correct') ?>'
-                })
-            });
-        </script>
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Workgress!</strong> <?php echo session('correct') ?>
+        </div>
     <?php
     elseif (session('incorrect')) : ?>
-        <script type="text/javascript">
-            $(function() {
-                $(document).Toasts('create', {
-                    class: 'bg-danger',
-                    title: 'Workgress',
-                    subtitle: '&nbsp&nbsp&nbsp&nbsp&nbspกรุณาลองใหม่&nbsp&nbsp&nbsp&nbsp',
-                    body: '<?php echo session('incorrect') ?>'
-                })
-            });
-        </script>
+        <div class="alert alert-warning" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Workgress!</strong> <?php echo session('incorrect') ?>
+        </div>
     <?php
     elseif (session('warning')) : ?>
-        <script type="text/javascript">
-            $(function() {
-                $(document).Toasts('create', {
-                    class: 'bg-warning',
-                    title: 'Workgress',
-                    subtitle: '&nbsp&nbsp&nbsp&nbspกรุณาลองใหม่&nbsp&nbsp&nbsp&nbsp',
-                    body: '<?php echo session('warning') ?>'
-                })
-            });
-        </script>
+        <div class="alert alert-warning" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Workgress!</strong> <?php echo session('warning') ?>
+        </div>
     <?php
     endif
     ?>
@@ -114,24 +105,24 @@
 
                             <!-- Level two dropdown-->
                             <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT</a>
+                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
                                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li>
-                                        <a tabindex="-1" href="#" class="dropdown-item">PostgreSql</a>
-                                    </li>
+                                    <li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                </ul>
+                            </li>
 
-                                    <!-- Level three dropdown-->
-                                    <li class="dropdown-submenu">
-                                        <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHP</a>
-                                        <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                            <li><a href="#" class="dropdown-item">Codeigniter 4</a></li>
-                                            <li><a href="#" class="dropdown-item">Laravel</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Level three -->
-
-                                    <li><a href="#" class="dropdown-item">Selenium</a></li>
-                                    <li><a href="#" class="dropdown-item">AdoDB</a></li>
+                            <li class="dropdown-submenu dropdown-hover">
+                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
+                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
                                 </ul>
                             </li>
                             <!-- End Level two -->
@@ -159,195 +150,162 @@
                     </ul>
                 </div>
                 <!-- SEARCH FORM -->
-
                 <!-- Right navbar links -->
 
-                <div class="navbar-collapse collapse w-200 order-3 dual-collapse">
-                    <ul class="order-1 order-md-5 navbar-nav navbar-no-expand ml-auto">
+                <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
+                    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                         <!-- Messages Dropdown Menu -->
                         <div class="input-group input-group-sm">
                             <!-- Notifications Dropdown Menu -->
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php
+                                if ($this->session->get("Picture")) { ?>
+                                    <img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
+                                                                                                                                            } else { ?>
+                                    <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
+                                                                                                                                                }
+                                                                                                                                                ?>
+                            </a>
+                            <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                                <?php
+                                if ($this->session->get("Role_name") == 'student') {
+                                    ?>
+                                    <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
+                                <?php
+                                } else if ($this->session->get("Role_name") == 'admin') { ?>
+                                    <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                                <?php
+                                } else if ($this->session->get("Role_name") == 'teacher') { ?>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                                <?php
+                                }
+                                ?>
 
+                                <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+                            </div>
                         </div>
                     </ul>
                 </div>
+
             </div>
         </nav>
         <!-- /.navbar -->
-        <header class="masthead">
-            <div class="overlay"></div>
-            <div class="colorlib-loader"></div>
-            <div class="container-fluid">
-                <div class="row justify-content-center mt-0">
-                    <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
-                        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                            <h2><strong>กรอก OTP ที่ได้รับจากอีเมลของคุณ</strong></h2>
-                            <div class="row">
-                                <div class="col-md-12 mx-0">
-                                    <form action="<?= site_url('/UserController/Get_OTP') ?>" method="post" id="msform">
-                                        <!-- fieldsets -->
-                                        <fieldset>
-                                            <div class="form-card">
-                                                <label for="exampleInputEmail1">OTP :</label>
-                                                <input type="number" name="User_Input_OTP" class="form-control" placeholder="กรอก OTP ที่ได้รับจากอีเมลของคุณ">
-                                            </div>
-                                            <button class="next action-button" value="ยืนยัน">ยืนยัน</button>
-                                        </fieldset>
-                                    </form>
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <header class="masthead text-white text-center">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 mx-auto">
+                            <h1 class="mb-5">ยินดีต้อนรับเข้าสู่ Workgress</h1>
+                            <h3>คุณพร้อมที่จะเรียนรู้สิ่งใหม่หรือยัง
+                            </h3>
+                        </div>
+                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                            <form>
+                                <div class="form-row">
+
+
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-
                 </div>
-        </header>
+            </header>
+            <!-- /.content-header -->
 
-
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-
-
-        <div class="colorlib-loader"></div>
-        <div class="colorlib-classes">
+            <!-- Main content -->
+            <br>
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-3 col-md-offset-2 text-center colorlib-heading animate-box"><br>
-                        <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรยอดนิยม</h2>
-                        <h3>
-                            <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="38" height="2" fill="black" />
-                            </svg>
-                        </h3>
-                    </div>
+                <div class="float-sm-right">
+                    <label class="dropdown">
+                        <div class="dd-button">
+                            ตัวกรอง
+                        </div>
+                        <input type="checkbox" class="dd-input" id="test">
+                        <ul class="dd-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+
+                        </ul>
+
+                    </label>
+                </div>
+                <div class="float-sm-left">
+                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตร ไอทีและซอฟแวร์</h2>
+                </div>
+                <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
+                    <h3>
+                        <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="38" height="2" fill="black" />
+                        </svg>
+                    </h3>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-1.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Developing Mobile Apps</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" width="40%"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (isset($data)) {
+                                foreach ($data as $row) :
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                                                <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width: 284px;height: 190px;">
+                                                <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                                                <?php echo $row['course_name'] ?><br>
+                                                <?php echo $row['course_description'] ?><br>
+                                                สร้างโดย <?php echo $row['first_name'] ?><br><br>
+                                            </a>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
 
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-2.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Convert PSD to HTML</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
+                                        </td>
+                                        <td style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 24px;line-height: 28px;color: #0DC08B;"><br><br><br>
+                                            <?php
+                                                    if ($row['course_price'] == '0') {
+                                                        echo "Free";
+                                                    } else {
+                                                        echo $row['course_price'] . " THB";
+                                                    }
 
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-3.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-4.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Developing Mobile Apps</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-5.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Learned Smoke Effects</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-6.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-6.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="classes">
-                            <div class="classes-img" style="background-image: url(assets/course/images/classes-6.jpg);">
-                                <span class="price text-center"><small>$450</small></span>
-                            </div>
-                            <div class="desc">
-                                <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
+                                                    ?>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    endforeach;
+                                } else { ?>
+                                <div class="alert alert-warning" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Workgress!</strong> <?php echo $msg ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
-
-        </div>
-
-        <footer class="main-footer">
-            <div class="footernew">
-            </div>
-        </footer>
-
-        <div style="background-image: url(assets/img/bg3.png); background-size: 100%; height:501px;">
-            <div class="overlay"></div>
-            <div class="container"><br><br><br>
-                <h1 style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 64px;color: white;text-align: center;">เป้าหมาย Workgress</h1>
-                <h3 style="font-family: Roboto;font-style: normal;font-weight: 300;font-size: 26px;color: white;text-align: center;">เพิ่มประสบการณ์การเรียนรู้ที่ทันสมัย รวดเร็ว สะดวก</h3>
-                <br>
-                <div style="text-align:center;">
-
-                </div>
-            </div>
-
 
             <!-- /.content -->
         </div>
@@ -364,10 +322,7 @@
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <div class="footernew">
-            </div>
-        </footer>
+
         <div class="footernew2">
             <a href="<?php echo base_url('/home'); ?>">
                 <div class="footerimg">
@@ -515,26 +470,33 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-
+    <script type="text/javascript">
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 60000);
+    </script>
     <!-- Content Wrapper. Contains page content -->
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
+
     <!-- jQuery -->
-    <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
+    <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
+    <script src="dist2/js/adminlte.min.js"></script>
 
     <!-- Waypoints -->
-    <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
+    <script src="assets/course/js/jquery.waypoints.min.js"></script>
 
     <!-- Flexslider -->
-    <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
+    <script src="assets/course/js/jquery.flexslider-min.js"></script>
 
     <!-- Main -->
-    <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
+    <script src="assets/course/js/main.js"></script>
 </body>
 
 </html>

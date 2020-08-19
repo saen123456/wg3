@@ -51,116 +51,116 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-			<ul class="navbar-nav ml-5">
-				<a href="<?php echo base_url('/home'); ?>" class="navbar-brand">
-					<img src="<?php echo base_url('assets/img/logo1.png'); ?>" width="108px" height="44px">
-				</a>
-			</ul>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+      <ul class="navbar-nav ml-5">
+        <a href="<?php echo base_url('/home'); ?>" class="navbar-brand">
+          <img src="<?php echo base_url('assets/img/logo1.png'); ?>" width="108px" height="44px">
+        </a>
+      </ul>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="<?php echo base_url('/home'); ?>">Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item dropdown">
-						<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
-						<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-							<!-- <li><a href="#" class="dropdown-item">Some action </a></li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('/home'); ?>">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <!-- <li><a href="#" class="dropdown-item">Some action </a></li>
                 <li><a href="#" class="dropdown-item">Some other action</a></li> -->
 
-							<li class="dropdown-divider"></li>
+              <li class="dropdown-divider"></li>
 
-							<!-- Level two dropdown-->
-							<li class="dropdown-submenu dropdown-hover">
-								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT</a>
-								<ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-									<li>
-										<a tabindex="-1" href="#" class="dropdown-item">PostgreSql</a>
-									</li>
+              <!-- Level two dropdown-->
+              <li class="dropdown-submenu dropdown-hover">
+                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT</a>
+                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                  <li>
+                    <a tabindex="-1" href="#" class="dropdown-item">PostgreSql</a>
+                  </li>
 
-									<!-- Level three dropdown-->
-									<li class="dropdown-submenu">
-										<a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHP</a>
-										<ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-											<li><a href="#" class="dropdown-item">Codeigniter 4</a></li>
-											<li><a href="#" class="dropdown-item">Laravel</a></li>
-										</ul>
-									</li>
-									<!-- End Level three -->
+                  <!-- Level three dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHP</a>
+                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
+                      <li><a href="#" class="dropdown-item">Codeigniter 4</a></li>
+                      <li><a href="#" class="dropdown-item">Laravel</a></li>
+                    </ul>
+                  </li>
+                  <!-- End Level three -->
 
-									<li><a href="#" class="dropdown-item">Selenium</a></li>
-									<li><a href="#" class="dropdown-item">AdoDB</a></li>
-								</ul>
-							</li>
-							<!-- End Level two -->
-						</ul>
-					</li>
+                  <li><a href="#" class="dropdown-item">Selenium</a></li>
+                  <li><a href="#" class="dropdown-item">AdoDB</a></li>
+                </ul>
+              </li>
+              <!-- End Level two -->
+            </ul>
+          </li>
 
-				</ul>
+        </ul>
 
-				<!-- SEARCH FORM -->
-				<div class="container">
-					<ul class="nav navbar-nav mx-auto">
+        <!-- SEARCH FORM -->
+        <div class="container">
+          <ul class="nav navbar-nav mx-auto">
 
-						<form class="form-inline ml-1 ml-md-1">
-							<div class="input-group">
-								<div class="inputlong">
-									<input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
-								</div>
-								<div class="input-group-append">
-									<button class="btn btn-secondary" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</ul>
-				</div>
-				<!-- SEARCH FORM -->
-				<!-- Right navbar links -->
+            <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
+              <div class="input-group">
+                <div class="inputlong">
+                  <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่" name="Search_Course_Query">
+                </div>
+                <div class="input-group-append">
+                  <button class="btn btn-secondary" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </ul>
+        </div>
+        <!-- SEARCH FORM -->
+        <!-- Right navbar links -->
 
-						<div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
-				<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-					<!-- Messages Dropdown Menu -->
-					<div class="input-group input-group-sm">
-					<!-- Notifications Dropdown Menu -->
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<?php
-						if ($this->session->get("Picture")) { ?>
-						<img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
-																																} else { ?>
-						<img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
-																																	}
-																																	?>
-					</a>
-					<div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
-						<?php
-						if ($this->session->get("Role_name") == 'student') {
-						?>
-						<a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
-						<?php
-						} else if ($this->session->get("Role_name") == 'admin') { ?>
-						<a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-						<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
-						<?php
-						} else if ($this->session->get("Role_name") == 'teacher') { ?>
-						<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
-						<?php
-						}
-						?>
-			
-						<a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
-					</div>
-					</div>
-				</ul>
-				</div>
+        <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
+          <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <div class="input-group input-group-sm">
+              <!-- Notifications Dropdown Menu -->
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php
+                if ($this->session->get("Picture")) { ?>
+                  <img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
+                                                                                                                          } else { ?>
+                  <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
+                                                                                                                              }
+                                                                                                                              ?>
+              </a>
+              <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                <?php
+                if ($this->session->get("Role_name") == 'student') {
+                  ?>
+                  <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
+                <?php
+                } else if ($this->session->get("Role_name") == 'admin') { ?>
+                  <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
+                  <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                <?php
+                } else if ($this->session->get("Role_name") == 'teacher') { ?>
+                  <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                <?php
+                }
+                ?>
 
-			</div>
-		</nav>
+                <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
     <!-- /.navbar -->
     <header class="masthead">
       <div class="overlay"></div>

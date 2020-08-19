@@ -57,6 +57,7 @@ $routes->add('/viewcourse/(:alphanum)', 'CourseUserController::CourseView/$1');
 $routes->get('/course', 'CourseController::Manage_Course');
 $routes->add('/course/createcourse', 'CourseController::CreateCourse');
 $routes->get('/alldevelopment', 'CourseController::Category_Course');
+$routes->get('/search/course', 'CourseController::Search_Course');
 
 //Config-Course
 $routes->add('/course/manage/config/(:any)', 'CourseController::CreateCourseStep2/$1');

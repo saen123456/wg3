@@ -75,29 +75,29 @@ class User_model extends Model
     /* function เพิ่ม คนที่มาสมัคร เข้าไปในระบบ */
     public function Insert_Register($First_Name, $Email, $Password_md5, $hash)
     {
-        $sql = "INSERT INTO user_register (first_name, email,password,role_id,activated,email_md5_activated,user_login_type,update_date,create_date) VALUES('$First_Name','$Email','$Password_md5','1','0','$hash','normal',now(),now())";
+        $sql = "INSERT INTO user_register (first_name, email,password,role_id,activated,email_md5_activated,user_login_type,update_date,create_date) VALUES('$First_Name','$Email','$Password_md5','1','0','$hash','normal',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
     }
     public function Insert_Google_Register($user_first_name, $user_last_name, $user_email_address, $user_image)
     {
         //echo $user_first_name;
-        $sql = "INSERT INTO user_register (first_name,last_name,email,picture,role_id,activated,user_login_type,update_date,create_date) VALUES('$user_first_name','$user_last_name','$user_email_address','$user_image','1','1','google',now(),now())";
+        $sql = "INSERT INTO user_register (first_name,last_name,email,picture,role_id,activated,user_login_type,update_date,create_date) VALUES('$user_first_name','$user_last_name','$user_email_address','$user_image','1','1','google',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
     }
     public function Insert_Facebook_Register($user_name, $user_email_address, $user_image)
     {
         //echo $user_first_name;
-        $sql = "INSERT INTO user_register (first_name,email,picture,role_id,activated,user_login_type,update_date,create_date) VALUES('$user_name','$user_email_address','$user_image','1','1','facebook',now(),now())";
+        $sql = "INSERT INTO user_register (first_name,email,picture,role_id,activated,user_login_type,update_date,create_date) VALUES('$user_name','$user_email_address','$user_image','1','1','facebook',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
     }
     public function Update_User_Google_Login($user_first_name, $user_last_name, $user_email_address, $user_image)
     {
-        $sql = "UPDATE user_register SET first_name = '$user_first_name',last_name = '$user_last_name',email = '$user_email_address',picture = '$user_image' , update_date = now() WHERE email = '$user_email_address' AND user_login_type = 'google' ";
+        $sql = "UPDATE user_register SET first_name = '$user_first_name',last_name = '$user_last_name',email = '$user_email_address',picture = '$user_image' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE email = '$user_email_address' AND user_login_type = 'google' ";
         $this->connect_postgresdb->execute($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
     }
     public function Update_User_Facebook_Login($user_name, $user_email_address, $user_image)
     {
-        $sql = "UPDATE user_register SET first_name = '$user_name',email = '$user_email_address',picture = '$user_image' update_date = now() WHERE email = '$user_email_address'  AND user_login_type = 'facebook' ";
+        $sql = "UPDATE user_register SET first_name = '$user_name',email = '$user_email_address',picture = '$user_image' update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE email = '$user_email_address'  AND user_login_type = 'facebook' ";
         $this->connect_postgresdb->execute($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
     }
     /* function อัพเดทสถานะคนสมัครจาก อีเมล แก้จาก สถานะ 0 เป็น 1 */
@@ -135,7 +135,7 @@ class User_model extends Model
      */
     public function Update_To_Teacher($Email, $Type)
     {
-        $sql = "UPDATE user_register SET role_id = '2' , update_date = now() WHERE email = '$Email' AND user_login_type = '$Type' ";
+        $sql = "UPDATE user_register SET role_id = '2' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE email = '$Email' AND user_login_type = '$Type' ";
         $this->connect_postgresdb->execute($sql);
         return true;
     }
@@ -162,7 +162,7 @@ class User_model extends Model
      */
     public function Update_Profile($Email, $Full_name)
     {
-        $sql = "UPDATE user_register SET first_name = '$Full_name' , update_date = now() WHERE email = '$Email' AND user_login_type = 'normal' ";
+        $sql = "UPDATE user_register SET first_name = '$Full_name' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE email = '$Email' AND user_login_type = 'normal' ";
         $this->connect_postgresdb->execute($sql);
         return true;
     }
@@ -176,7 +176,7 @@ class User_model extends Model
      */
     public function Update_Picture_User($Email, $Type, $Photo_Type)
     {
-        $sql = "UPDATE user_register SET picture = '$Photo_Type' , update_date = now() WHERE email = '$Email' AND user_login_type = '$Type' ";
+        $sql = "UPDATE user_register SET picture = '$Photo_Type' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE email = '$Email' AND user_login_type = '$Type' ";
         $this->connect_postgresdb->execute($sql);
         return true;
     }
@@ -203,7 +203,7 @@ class User_model extends Model
      */
     public function Updata_Password($Email, $Password_New)
     {
-        $sql = "UPDATE user_register SET password = '$Password_New' , update_date = now() WHERE email = '$Email' AND user_login_type = 'normal' ";
+        $sql = "UPDATE user_register SET password = '$Password_New' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE email = '$Email' AND user_login_type = 'normal' ";
         $this->connect_postgresdb->execute($sql);
     }
     /**

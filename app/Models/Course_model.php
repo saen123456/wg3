@@ -24,7 +24,7 @@ class Course_model extends Model
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
-        $this->connect_postgresdb->debug = true;
+        $this->connect_postgresdb->debug = false;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
     // public function Select_Video()
@@ -40,12 +40,12 @@ class Course_model extends Model
     public function Upload_Video($filename, $filelink)
     {
         //echo $user_first_name;
-        $sql = "INSERT INTO video (video_name,video_link,create_date) VALUES ('$filename','$filelink',now())";
+        $sql = "INSERT INTO video (video_name,video_link,create_date) VALUES ('$filename','$filelink',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
     }
     public function Insert_Course($course_name, $category_course_id, $course_description, $User_id)
     {
-        $sql = "INSERT INTO course (category_course_id,course_name, course_description, create_date,status)VALUES ($category_course_id,'$course_name','$course_description',now(),'active')";
+        $sql = "INSERT INTO course (category_course_id,course_name, course_description, create_date,status)VALUES ($category_course_id,'$course_name','$course_description',now() AT TIME ZONE 'Asia/Bangkok','active')";
         $this->connect_postgresdb->execute($sql);
         $sql3 = "SELECT max(course_id) FROM course";
         $count_course = $this->connect_postgresdb->getOne($sql3);
@@ -64,11 +64,11 @@ class Course_model extends Model
     }
     public function Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name)
     {
-        //echo $user_first_name;
-        $sql = "INSERT INTO video (video_name,video_link,create_date) VALUES ('$Video_Name','$Video_link',now())";
+
+        $sql = "INSERT INTO video (video_name,video_link,create_date) VALUES ('$Video_Name','$Video_link',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
 
-        $sql2 = "INSERT INTO unit (unit_name,create_date) VALUES ('$Unit_Name',now())";
+        $sql2 = "INSERT INTO unit (unit_name,create_date) VALUES ('$Unit_Name',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql2);
 
         $sql3 = "SELECT max(video_id) FROM video";
@@ -137,10 +137,16 @@ class Course_model extends Model
         $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT 4";
         return $this->connect_postgresdb->execute($sql);
     }
-    public function Select_CategoryCourse($start, $perpage)
+    public function Select_CategoryCourse($Start, $Perpage)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT 64 , 65  ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id LIMIT '$Perpage' OFFSET '$Start' ";
         return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Num_CategoryCourse()
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ";
+        $Row_Num = $this->connect_postgresdb->execute($sql);
+        return $Row_Num->RecordCount();
     }
     public function Update_Course_Name($Course_id, $Course_Name)
     {
@@ -160,7 +166,20 @@ class Course_model extends Model
     }
     public function change_status($id)
     {
-        $sql = " UPDATE course SET status = 'non_active',update_date = now() WHERE course_id = $id ";
+        $sql = " UPDATE course SET status = 'non_active',update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE course_id = $id ";
         $this->connect_postgresdb->execute($sql);
+    }
+    public function Check_Row_Search_Course($Search_Course_Query)
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id  
+        where course.course_name LIKE '%$Search_Course_Query%' OR user_register.first_name LIKE '%$Search_Course_Query%' order by user_create_course.course_id DESC";
+        $Row_Num =  $this->connect_postgresdb->execute($sql);
+        return $Row_Num->RecordCount();
+    }
+    public function Search_Course($Search_Course_Query)
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id  
+        where course.course_name LIKE '%$Search_Course_Query%' OR user_register.first_name LIKE '%$Search_Course_Query%' order by user_create_course.course_id DESC";
+        return $this->connect_postgresdb->execute($sql);
     }
 }

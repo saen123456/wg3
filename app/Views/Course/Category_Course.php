@@ -135,10 +135,10 @@
                 <div class="container">
                     <ul class="nav navbar-nav mx-auto">
 
-                        <form class="form-inline ml-1 ml-md-1">
+                        <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
                             <div class="input-group">
                                 <div class="inputlong">
-                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
+                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่" name="Search_Course_Query">
                                 </div>
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
@@ -256,51 +256,69 @@
                             </tr>
                         </thead>
                         <tbody>
+                    
                             <?php
-                            foreach ($data as $row) :
-                                ?>
+                            if ($data) {
+                                foreach ($data as $row) :
+                                    ?>
 
-                                <tr>
-                                    <td>
-                                        <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                                            <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width: 284px;height: 190px;">
-                                            <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                                            <?php echo $row['course_name'] ?><br>
-                                            <?php echo $row['course_description'] ?><br>
-                                            สร้างโดย <?php echo $row['first_name'] ?><br><br>
-                                        </a>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <tr>
+                                        <td>
+                                            <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                                                <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width:284px;height: 190px;">
+                                                <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                                                <?php echo $row['course_name'] ?><br>
+                                                <?php echo $row['course_description'] ?><br>
+                                                สร้างโดย <?php echo $row['first_name'] ?><br><br>
+                                            </a>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
 
-                                    </td>
-                                    <td style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 24px;line-height: 28px;color: #0DC08B;"><br><br><br>
-                                        <?php
-                                            if ($row['course_price'] == '0') {
-                                                echo "Free";
-                                            } else {
-                                                echo $row['course_price'] . " THB";
-                                            }
+                                        </td>
+                                        <td style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 24px;line-height: 28px;color: #0DC08B;"><br><br><br>
+                                            <?php
+                                                    if ($row['course_price'] == '0') {
+                                                        echo "Free";
+                                                    } else {
+                                                        echo $row['course_price'] . " THB";
+                                                    }
 
-                                            ?>
-                                    </td>
-                                </tr>
+                                                    ?>
+                                        </td>
+                                    </tr>
                             <?php
-                            endforeach;
+                                endforeach;
+                            }
                             ?>
                         </tbody>
                     </table>
-                   
+
                 </div>
             </div>
-
-
+            <div class="container">
+                <ul class="pagination">
+                    <li>
+                        <a href="<?php echo base_url('/alldevelopment?page=1'); ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php for ($i = 1; $i <= $Total_Page; $i++) { ?>
+                        <!-- <li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li> -->
+                        <li><a href="<?php echo base_url('/alldevelopment?page=' . $i . ''); ?>"><?php echo $i; ?></a> </li>
+                    <?php } ?> <li>
+                        <a href="<?php echo base_url('/alldevelopment?page=' . $Total_Page . ''); ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

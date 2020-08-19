@@ -18,16 +18,23 @@ class CourseController extends BaseController
     }
     public function Category_Course()
     {
-       
+
         $Course_model = new Course_model();
-        $perpage = 5;
+        $Perpage = 4;
         if (isset($_GET['page'])) {
-            $page = $_GET['page'];
+            $Page = $_GET['page'];
         } else {
-            $page = 1;
+            $Page = 1;
         }
-        $start = ($page - 1) * $perpage;
-        $data['data'] = $Course_model->Select_CategoryCourse($start, $perpage);
+        $Start = ($Page - 1) * $Perpage;
+        //echo 'page ' . $Page . ' start ' . $Start . ' perpage ' . $Perpage;
+
+        $Total_Num_Row = $Course_model->Select_Num_CategoryCourse();
+        $Total_Page = ceil($Total_Num_Row / $Perpage);
+        //echo "Total_Num_Row " . $Total_Num_Row . " Total_Page " . $Total_Page;
+        $data['data'] = $Course_model->Select_CategoryCourse($Start, $Perpage);
+        $data['Total_Page'] = $Total_Page;
+        //print_r($data['data']);*/
         echo view('Course/Category_Course', $data);
     }
     public function Manage_Course()
@@ -375,5 +382,25 @@ class CourseController extends BaseController
         $model->Update_Course_Description($Course_id, $Course_Description);
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขคำอธิบายหลักสูตรของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
         return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+    }
+    public function Search_Course()
+    {
+        /*$h = "5"; // Hour for time zone goes here e.g. +7 or -4, just remove the + or -
+        $hm = $h * 60;
+        $ms = $hm * 60;
+        $gmdate = gmdate("m/d/Y g:i:s A", time() - ($ms)); // the "-" can be switched to a plus if that's what your time zone is.
+        echo "Your cu rrent time now is :  $gmdate . ";*/
+        $model = new Course_model();
+        $Search_Course_Query = $this->request->getVar('Search_Course_Query');
+        //echo $Search_Course_Query;
+        $Row_Num_Course = $model->Check_Row_Search_Course($Search_Course_Query);
+        //echo $Row_Num_Course;
+        if ($Row_Num_Course != 0) {
+            $data['data'] = $model->Search_Course($Search_Course_Query);
+            echo view('Course/SearchCourse', $data);
+        } else {
+            $data['msg'] = "ไม่เจอผลลัพธ์ที่ค้นหา";
+            echo view('Course/SearchCourse', $data);
+        }
     }
 }

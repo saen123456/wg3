@@ -9,7 +9,6 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
         <title>Workgress</title>
-
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
         <!-- Theme style -->
@@ -134,10 +133,10 @@
                 <div class="container">
                     <ul class="nav navbar-nav mx-auto">
 
-                        <form class="form-inline ml-1 ml-md-1">
+                        <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
                             <div class="input-group">
                                 <div class="inputlong">
-                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
+                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่" name="Search_Course_Query">
                                 </div>
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
