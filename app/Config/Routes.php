@@ -51,7 +51,7 @@ $routes->get('/search', 'AdminController::Search');
 $routes->get('/chart', 'AdminController::Chart');
 
 //Courseuser//notlogin
-$routes->add('/viewcourse/(:alphanum)', 'CourseUserController::CourseName/$1');
+$routes->add('/viewcourse/(:alphanum)', 'CourseUserController::CourseView/$1');
 
 //Course
 $routes->get('/course', 'CourseController::Manage_Course');

@@ -32,5 +32,14 @@ class CourseUser_model extends Model
     //     $sql = "SELECT video_id,video_name,video_link from video";
     //     return $this->connect_postgresdb->execute($sql);
     // }
-
+    public function Select_Courseinfo($name)
+    {
+        $sql = "select course.course_id,course.course_name,course.course_description,course.course_price,course_unit.video_id ,unit.unit_name from
+        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course_name ='$name';";
+    }
+    public function Select_unit($name)
+    { 
+        $sql = "select course_unit.video_id ,unit.unit_name from
+        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course_name ='$name';";
+    }
 }

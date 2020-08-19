@@ -13,12 +13,13 @@ class CourseUserController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
-    public function CourseName($name = null)
+    public function CourseView($name = null)
     {
-        $name
         $model = new CourseUser_model();
         if ($model->Check_Course($name)) {
-            $data['data'] = $model->Select_Coursename($name);
+
+            $data['Course_Info'] = $model->Select_Courseinfo($name);
+            $data['Course_New'] = $model->Select_unit($name);
 
             echo view('Course/CourseViewInfo', $data);
         } else {

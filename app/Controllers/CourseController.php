@@ -18,8 +18,16 @@ class CourseController extends BaseController
     }
     public function Category_Course()
     {
+       
         $Course_model = new Course_model();
-        $data['data'] = $Course_model->Select_CategoryCourse();
+        $perpage = 5;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+        $start = ($page - 1) * $perpage;
+        $data['data'] = $Course_model->Select_CategoryCourse($start, $perpage);
         echo view('Course/Category_Course', $data);
     }
     public function Manage_Course()
@@ -114,15 +122,16 @@ class CourseController extends BaseController
         $this->session->set($this->Data);
         return redirect()->to(base_url('course/manage/config/' . $course_id));
     }
-    public function change_status(){
+    public function change_status()
+    {
         $course_id = $this->session->get("Course_id");
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
-           
+
             //echo $course_id;
-           $model = new Course_model();
-           $model->change_status($course_id);
-           $msg = '&nbsp&nbsp&nbsp&nbsp&nbspเปลี่ยนสถานะเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
-           return redirect()->to(base_url('course/manage/config/' . $course_id))->with('correct', $msg);
+            $model = new Course_model();
+            $model->change_status($course_id);
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspเปลี่ยนสถานะเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course/manage/config/' . $course_id))->with('correct', $msg);
         } else {
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspมีบางอย่างผิดพลาด&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/manage/config/' . $course_id))->with('incorrect', $msg);

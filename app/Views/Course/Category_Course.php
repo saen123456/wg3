@@ -259,40 +259,44 @@
                             <?php
                             foreach ($data as $row) :
                                 ?>
-                                <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                                    <tr>
-                                        <td>
+
+                                <tr>
+                                    <td>
+                                        <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
                                             <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width: 284px;height: 190px;">
                                             <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
-                                        </td>
-                                        <td>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
                                             <?php echo $row['course_name'] ?><br>
                                             <?php echo $row['course_description'] ?><br>
                                             สร้างโดย <?php echo $row['first_name'] ?><br><br>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                        </td>
-                                        <td style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 24px;line-height: 28px;color: #0DC08B;"><br><br><br>
-                                            <?php
-                                                if ($row['course_price'] == '0') {
-                                                    echo "Free";
-                                                } else {
-                                                    echo $row['course_price'] . " THB";
-                                                }
+                                        </a>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
 
-                                                ?>
-                                        </td>
+                                    </td>
+                                    <td style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 24px;line-height: 28px;color: #0DC08B;"><br><br><br>
+                                        <?php
+                                            if ($row['course_price'] == '0') {
+                                                echo "Free";
+                                            } else {
+                                                echo $row['course_price'] . " THB";
+                                            }
 
-                                    </tr>
-                                </a>
+                                            ?>
+                                    </td>
+                                </tr>
                             <?php
                             endforeach;
                             ?>
                         </tbody>
                     </table>
+                   
                 </div>
             </div>
 
