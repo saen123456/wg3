@@ -401,47 +401,49 @@
 
           <div class="row">
             <?php
-            foreach ($data as $row) :
+            foreach ($Course_Info as $row) :
               ?>
               <div class="col-md-3 animate-box">
-                <div class="card" style="width:268px;">
-                  <ul class="list-group list-group-flush">
-                    <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
-                    <div class="profilecourse">
-                      <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
-                    </div>
-                    <br>
-                    <div class="card-body">
-                      <div class="font-titlecourse">
-                        <?php echo $row['course_name'] ?>
+                <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                  <div class="card" style="width:268px;">
+                    <ul class="list-group list-group-flush">
+                      <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+                      <div class="profilecourse">
+                        <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                       </div>
-                      <div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <li class="list-group-item">
-
-                        <div class="font-coursecomment">
-                          <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                          <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                      <br>
+                      <div class="card-body">
+                        <div class="font-titlecourse">
+                          <?php echo $row['course_name'] ?>
                         </div>
+                        <div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <li class="list-group-item">
 
-                        <div class="font-courseprice">
-                          <?php
-                            if ($row['course_price'] == '0') {
-                              echo "Free";
-                            } else {
-                              echo $row['course_price']." THB";
-                            }
+                          <div class="font-coursecomment">
+                            <i class="fa fa-users" aria-hidden="true"> 1273</i>
+                            <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                          </div>
 
-                            ?>
-                        </div>
-                      </li>
-                    </div>
-                  </ul>
-                </div>
+                          <div class="font-courseprice">
+                            <?php
+                              if ($row['course_price'] == '0') {
+                                echo "Free";
+                              } else {
+                                echo $row['course_price'] . " THB";
+                              }
+
+                              ?>
+                          </div>
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
+                </a>
               </div>
             <?php
             endforeach;

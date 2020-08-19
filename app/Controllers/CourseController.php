@@ -62,7 +62,6 @@ class CourseController extends BaseController
     }
     public function EditCourse($id = null)
     {
-
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
             $model = new Course_model();
             $Course_id =  $id;
@@ -115,6 +114,22 @@ class CourseController extends BaseController
         $this->session->set($this->Data);
         return redirect()->to(base_url('course/manage/config/' . $course_id));
     }
+    public function change_status(){
+        $course_id = $this->session->get("Course_id");
+        if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+           
+            //echo $course_id;
+           $model = new Course_model();
+           $model->change_status($course_id);
+           $msg = '&nbsp&nbsp&nbsp&nbsp&nbspเปลี่ยนสถานะเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
+           return redirect()->to(base_url('course/manage/config/' . $course_id))->with('correct', $msg);
+        } else {
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspมีบางอย่างผิดพลาด&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course/manage/config/' . $course_id))->with('incorrect', $msg);
+        }
+    }
+
+
 
     // public function Create_Bucket()
     // {

@@ -52,7 +52,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-danger btn-block" role="button" type="button"><i class="fa fa-trash"></i> ลบ </a>
+                        <a class="btn btn-danger btn-block sent" role="button" type="button" data-toggle="modal" data-target="#modal-danger" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-trash"></i> ลบ </a>
                     </div>
                     <div class="col-md-8 col-md-offset-1">
                         <p>เราให้สัญญากับผู้เรียนถึงการเข้าถึงได้ตลอดชีพ ดังนั้นจึงไม่สามารถลบหลักสูตรได้หลังจากที่ผู้เรียนได้ลงทะเบียนแล้ว</p>
@@ -64,6 +64,29 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ลบผู้ใช้</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ยืนยันที่จะลบใช่หรือไม่ ?&hellip;</p>
+                <p id="output"></p>
+                <!-- <input id="user_id" name="user_id" value="" /> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href = '<?= site_url('/CourseController/change_status') ?>';">ยืนยัน</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
 
 <body class="body2">
@@ -497,7 +520,17 @@
                     return false;
                 });
             });
+
+            $(".sent").click(function() {
+                $("#course_id").attr("value", $(this).attr('course_id'));
+                var course_id = $(this).attr('course_id');
+                //$($(this).attr('href')).modal('show');
+                //console.log(course_id);
+                document.getElementById('output').innerHTML = "รหัสคอร์ส " + course_id;
+                //document.cookie = "course_id = " + course_id;
+            });
         </script>
+
 </body>
 <!-- JS -->
 
@@ -508,5 +541,8 @@
 <script src="<?php echo base_url('assets/course/step2/vendor2/nouislider/nouislider.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/course/step2/vendor2/wnumb/wNumb.js'); ?>"></script>
 <script src="<?php echo base_url('assets/course/step2/js/main.js'); ?>"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 </html>

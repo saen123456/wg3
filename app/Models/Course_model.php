@@ -132,6 +132,11 @@ class Course_model extends Model
         $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id LIMIT 8";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Course_New_HomePage()
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT 4";
+        return $this->connect_postgresdb->execute($sql);
+    }
     public function Select_CategoryCourse()
     {
         $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id LIMIT 5";
@@ -151,6 +156,11 @@ class Course_model extends Model
     {
 
         $sql = "UPDATE unit SET unit_name = '$Unit_Name' WHERE unit_id = '$Unit_ID'  ";
+        $this->connect_postgresdb->execute($sql);
+    }
+    public function change_status($id)
+    {
+        $sql = " UPDATE course SET status = 'non_active',update_date = now() WHERE course_id = $id ";
         $this->connect_postgresdb->execute($sql);
     }
 }

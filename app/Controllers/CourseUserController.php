@@ -15,10 +15,12 @@ class CourseUserController extends BaseController
     }
     public function CourseName($name = null)
     {
+        $name
         $model = new CourseUser_model();
         if ($model->Check_Course($name)) {
             $data['data'] = $model->Select_Coursename($name);
-            echo view('Course/CourseName', $data);
+
+            echo view('Course/CourseViewInfo', $data);
         } else {
             return redirect()->to(base_url('/home'));
         }
