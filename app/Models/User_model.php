@@ -259,4 +259,10 @@ class User_model extends Model
         $sql = "SELECT * FROM provinces";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Province()
+    {
+        $sql = "SELECT * FROM amphures WHERE province_id = '2'";
+        $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
 }

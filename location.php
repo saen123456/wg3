@@ -7,11 +7,12 @@
         // on change province
         provinceObject.on('change', function() {
             var provinceId = $(this).val();
+
             console.log(provinceId);
             amphureObject.html('<option value="">เลือกอำเภอ</option>');
             districtObject.html('<option value="">เลือกตำบล</option>');
 
-            $.get('get_amphure.php?province_id=' + provinceId, function(data) {
+            $.get('<?= site_url('/UserController/test') ?>', function(data) {
                 console.log("test");
                 var result = JSON.parse(data);
                 //console.log(result);

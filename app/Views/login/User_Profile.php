@@ -26,6 +26,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+
 		<link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 		<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
 		<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
@@ -46,6 +47,7 @@
 	</head>
 
 	<?php
+
 	$this->session = \Config\Services::session();
 	if ($this->session->get("Role_name") == 'student') {
 		$role = 'นักเรียน';
@@ -923,9 +925,7 @@
 			});
 		});
 	</script>
-	<?php include 'location.php'; ?>
-
-
+	<?php include('location.php'); ?>
 </body>
 
 </html>

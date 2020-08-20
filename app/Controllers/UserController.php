@@ -679,4 +679,14 @@ class UserController extends BaseController
             echo "wrong";
         }
     }
+    public function test()
+    {
+        $model = new User_model();
+        $Data = $model->Select_Province();
+        while ($result = $Data->fetchRow()) {
+            //print_r($r);
+            array_push($json, $result);
+        }
+        echo json_encode($json);
+    }
 }
