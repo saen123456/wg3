@@ -12,7 +12,7 @@
             amphureObject.html('<option value="">เลือกอำเภอ</option>');
             districtObject.html('<option value="">เลือกตำบล</option>');
 
-            $.get('https://workgress.online/get_amphure.php?province_id=' + provinceId, function(data) {
+            $.get('get_amphure.php?province_id=' + provinceId, function(data) {
                 console.log("test");
                 var result = JSON.parse(data);
                 //console.log(result);
