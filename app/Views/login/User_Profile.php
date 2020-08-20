@@ -25,7 +25,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
 		<script src="assets/jquery.min.js"></script>
-		<?php include('location.php'); ?>
+
 
 		<link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 		<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
@@ -927,7 +927,7 @@
 			});
 		});
 	</script>
-
+	<script src="location.js"></script>
 </body>
 
 </html>
