@@ -100,12 +100,11 @@ class UserController extends BaseController
      */
     public function profile()
     {
-        if ($this->session->get("Role_name") == 'student') {
-            echo view('login/User_Profile');
-        } else if ($this->session->get("Role_name") == 'teacher') {
-            echo view('login/User_Profile');
-        } else if ($this->session->get("Role_name") == 'admin') {
-            echo view('login/User_Profile');
+        if ($this->session->get("Role_name")) {
+            $model = new User_model();
+            $data['data'] = $model->Select_Provinces();
+            //print_r($data['data']);
+            echo view('login/User_Profile', $data);
         } else {
             echo view('home/HomePage');
         }

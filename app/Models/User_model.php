@@ -24,7 +24,7 @@ class User_model extends Model
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
-        $this->connect_postgresdb->debug = false;
+        $this->connect_postgresdb->debug = true;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
 
@@ -253,5 +253,10 @@ class User_model extends Model
     {
         $sql = "UPDATE user_register SET password = '$Password_Forget' WHERE email = '$Email_Forget' AND user_login_type = 'normal' ";
         $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Provinces()
+    {
+        $sql = "SELECT * FROM provinces";
+        return $this->connect_postgresdb->execute($sql);
     }
 }

@@ -42,6 +42,7 @@
 
 		<link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
 
+
 	</head>
 
 	<?php
@@ -300,14 +301,56 @@
 															</div><?php
 																	}
 																	?>
+
+														<div class="form-group row">
+															<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
+															<div class="col-sm-10">
+																<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<label for="province" class="col-sm-2 col-form-label">จังหวัด</label>
+															<div class="col-sm-10">
+																<select name="province_id" id="province" class="form-control">
+																	<option value="">เลือกจังหวัด</option>
+																	<?php foreach ($data as $row) : ?>
+																		<option value="<?= $row['id'] ?>"><?= $row['name_th'] ?></option>
+																	<?php endforeach; ?>
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<label for="amphure" class="col-sm-2 col-form-label">อำเภอ</label>
+															<div class="col-sm-10">
+																<select name="amphure_id" id="amphure" class="form-control">
+																	<option value="">เลือกอำเภอ</option>
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<label for="district" class="col-sm-2 col-form-label">ตำบล</label>
+															<div class="col-sm-10">
+																<select name="district_id" id="district" class="form-control">
+																	<option value="">เลือกตำบล</option>
+																</select>
+															</div>
+														</div>
+
+
+
 														<div class="form-group row">
 															<div class="offset-sm-2 col-sm-10">
 																<button type="submit" class="btn btn-primary">ยืนยัน</button>
-
 															</div>
 														</div>
 													</form>
 												</div>
+
+
+
 												<div class="tab-pane" id="photo">
 													<form action="javascript:void(0);" enctype="multipart/form-data" method="post">
 														<div class="offset-sm-2 col-sm-12">
@@ -878,6 +921,7 @@
 			});
 		});
 	</script>
+	<script src="location.js"></script>
 </body>
 
 </html>
