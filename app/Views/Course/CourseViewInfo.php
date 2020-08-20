@@ -9,6 +9,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
         <title>Workgress</title>
+
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
         <!-- Theme style -->
@@ -32,7 +33,7 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/course/css/style.css'); ?>">
 
         <!-- Modernizr JS -->
-        <script src="assets/course/js/modernizr-2.6.2.min.js"></script>
+        <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>"></script>
 
         <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?> " as="style" onload="this.rel='stylesheet'">
 
@@ -133,10 +134,10 @@
                 <div class="container">
                     <ul class="nav navbar-nav mx-auto">
 
-                        <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
+                        <form class="form-inline ml-1 ml-md-1">
                             <div class="input-group">
                                 <div class="inputlong">
-                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่" name="Search_Course_Query">
+                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
                                 </div>
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
@@ -190,33 +191,37 @@
             </div>
         </nav>
         <!-- /.navbar -->
+        <br><br>
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="row">
-                <div class="col-6">
-                    <img class="img-course" src="<?php echo base_url('assets/img/10.png'); ?>">
-                </div>
-                <div class="col-6">
-                    <div class="title-card">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="title">
-                                    <p id="header">Leadership: Practical Leadership Skills</p>
-                                    <p id="header-s">หลักสูตรที่คุณจะได้เรียนรู้เกี่ยวกับทักษะความเป็นผู้นำ</p>
-                                    <p><span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span> &nbsp; 5 &nbsp; (100) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จำนวนผู้เรียน 20 คน</p>
-                                    <p>สร้างโดย Lalisara Kityaphok &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; อัพเดทล่าสุด 16/5/2020 </p>
-                                    <p>ระยะเวลาหลักสูตร 5.3 ชั่วโมง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-language bold"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; TH </p>
-                                </div>
+                <?php
+                foreach ($Courseinfo as $row) :
+                    ?>
+                    <div class="col-6">
+                        <img style="width:920px;height: 404px;" src="<?php echo $row['image_course'] ?>">
+                    </div>
+                    <div class="col-6">
+                        <div class="title-card">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="title">
+                                        <p id="header"><?php echo $row['course_name'] ?></p>
+                                        <p id="header-s"><?php echo $row['course_description'] ?></p>
+                                        <p><span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span> &nbsp; 5 &nbsp; (100) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จำนวนผู้เรียน 20 คน</p>
+                                        <p>สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; อัพเดทล่าสุด 16/5/2020 </p>
+                                        <p>ระยะเวลาหลักสูตร 5.3 ชั่วโมง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-language bold"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; TH </p>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="container body">
                 <div class="row">
@@ -257,8 +262,16 @@
                             <div class="body-block">
                                 <div class="row">
                                     <div class="col-6">
-                                        <p class="decoration">THB &nbsp;&nbsp; 7,200 </p>
-                                        <p class="w-b">THB 600 </p>
+                                        <p class="decoration">THB &nbsp;&nbsp; <?php
+                                                                                    echo $row['course_price'] . " THB";
+                                                                                    ?> </p>
+                                        <p class="w-b"> <?php
+                                                            if ($row['course_price'] == '0') {
+                                                                echo "Free";
+                                                            } else {
+                                                                echo $row['course_price'] . " THB";
+                                                            }
+                                                            ?> </p>
                                     </div>
                                     <div class="col-6">
                                         <button class="btn btn-default btn-buy">ซื้อ</button>
@@ -282,24 +295,30 @@
                     </div>
                 </div>
             </div>
-            <div class="block"></div>
-            <div class="row justify-content-center">
+        <?php
+        endforeach;
+        ?>
+        <div class="block"></div>
+        <div class="row justify-content-center">
 
-                <div class="col-10">
-                    <div class="row">
-                        <div class="col-6">
-                            <p class="p-header">เนื้อหาหลักสูตร</p>
-                        </div>
-                        <div class="col-3 ">
-                            <p class="p-detail">จำนวนคลิป 20 </p>
-                        </div>
-                        <div class="col-3">
-                            <p class="p-detail">เวลาทั้งหมด 5:20:00</p>
-
-                        </div>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="p-header">เนื้อหาหลักสูตร</p>
                     </div>
+                    <div class="col-3 ">
+                        <p class="p-detail">จำนวนคลิป 20 </p>
+                    </div>
+                    <div class="col-3">
+                        <p class="p-detail">เวลาทั้งหมด 5:20:00</p>
 
-                    <p class="line-body"></p>
+                    </div>
+                </div>
+
+                <p class="line-body"></p>
+                <?php
+                foreach ($unit as $row) :
+                    ?>
                     <div class="block-mini"></div>
                     <!-- /.for วน -->
                     <a href="#">
@@ -308,7 +327,7 @@
 
                                 <div class="col-auto mr-auto">
                                     <div class="margin-detail">
-                                        <p><span class="fa fa-play"></span>&nbsp;&nbsp; Introduction</p>
+                                        <p><span class="fa fa-play"></span>&nbsp;&nbsp; <?php echo $row['unit_name'] ?></p>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -318,25 +337,27 @@
                                 </div>
                             </div>
 
-
                         </div>
                     </a>
-                    <!--video-->
-                </div>
-
-            </div>
-            <div class="block"></div>
-
-            </header>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
-            <br>
-            <div class="container">
+                <?php
+                endforeach;
+                ?>
+                <!--video-->
             </div>
 
+        </div>
+        <div class="block"></div>
 
-            <!-- /.content -->
+        </header>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <br>
+        <div class="container">
+        </div>
+
+
+        <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
@@ -512,20 +533,20 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <!-- AdminLTE App -->
-    <script src="dist2/js/adminlte.min.js"></script>
+    <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
 
     <!-- Waypoints -->
-    <script src="assets/course/js/jquery.waypoints.min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
 
     <!-- Flexslider -->
-    <script src="assets/course/js/jquery.flexslider-min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
 
     <!-- Main -->
-    <script src="assets/course/js/main.js"></script>
+    <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
 </body>
 
 </html>

@@ -667,4 +667,17 @@ class UserController extends BaseController
             echo "fails";
         }
     }
+    public function Update_Profile_Info()
+    {
+        $model = new User_model();
+        $User_id = $this->session->get("User_id");
+        $User_Birthday = $this->request->getVar('User_Birthday');
+        //echo isset($User_Birthday);
+        //echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday;
+        if ($User_Birthday != null) {
+            echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday;
+        } else {
+            echo "wrong";
+        }
+    }
 }

@@ -218,7 +218,6 @@ endif
             <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรยอดนิยม</h2>
           </div>
 
-
           <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
             <h3>
               <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">

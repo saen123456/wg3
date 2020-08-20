@@ -32,14 +32,26 @@ class CourseUser_model extends Model
     //     $sql = "SELECT video_id,video_name,video_link from video";
     //     return $this->connect_postgresdb->execute($sql);
     // }
-    public function Select_Courseinfo($name)
+    public function Select_Courseinfo($id)
     {
-        $sql = "select course.course_id,course.course_name,course.course_description,course.course_price,course_unit.video_id ,unit.unit_name from
-        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course_name ='$name';";
+        $sql = "SELECT course.course_name,course.course_description,course.course_price, CONCAT(user_register.first_name,CONCAT(' ',user_register.last_name)) as full_name , course.update_date , course.image_course from
+        course join user_create_course on  course.course_id = user_create_course.course_id  join user_register on user_create_course.user_id = user_register.user_id where  course.course_id ='$id'";
+        return $this->connect_postgresdb->execute($sql);
     }
-    public function Select_unit($name)
-    { 
-        $sql = "select course_unit.video_id ,unit.unit_name from
-        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course_name ='$name';";
+    public function Select_unit($id)
+    {
+        $sql = "SELECT course_unit.video_id ,unit.unit_name from
+        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course.course_id ='$id'";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Check_Course($id)
+    {
+        $sql = "SELECT course_name FROM course WHERE course_id = '$id' ";
+        $course_name = $this->connect_postgresdb->execute($sql);
+        if ($course_name->RecordCount() > 0) { //check ว่ามี email ที่รับค่ามาในระบบกี่ email แล้ว ถ้ามากกว่า 0 คือมีเมลนี้ในระบบแล้ว return true
+            return true;
+        } else { //ถ้ามี 0 คือยังไม่มีอีเมลนี้ในระบบ return false
+            return false;
+        }
     }
 }
