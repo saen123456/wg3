@@ -281,7 +281,7 @@
 
 												<!-- /.tab-pane -->
 												<div class="active tab-pane" id="settings">
-													<form class="form-horizontal" action="<?= site_url('/UserController/Update_Profile') ?>" method="post">
+													<form class="form-horizontal" action="<?= site_url('/UserController/Update_Profile') ?>" method="get">
 														<?php
 														if ($this->session->get("Type") == 'normal') {
 															?>
@@ -301,7 +301,14 @@
 															</div><?php
 																	}
 																	?>
+														<div class="form-group row">
+															<div class="offset-sm-2 col-sm-10">
+																<button type="submit" class="btn btn-primary">ยืนยัน</button>
+															</div>
+														</div>
+													</form>
 
+													<form>
 														<div class="form-group row">
 															<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
 															<div class="col-sm-10">
@@ -338,15 +345,10 @@
 																</select>
 															</div>
 														</div>
-
-
-
-														<div class="form-group row">
-															<div class="offset-sm-2 col-sm-10">
-																<button type="submit" class="btn btn-primary">ยืนยัน</button>
-															</div>
-														</div>
 													</form>
+
+
+
 												</div>
 
 
@@ -921,7 +923,9 @@
 			});
 		});
 	</script>
-	<script src="location.js"></script>
+	<?php include 'location.php'; ?>
+
+
 </body>
 
 </html>
