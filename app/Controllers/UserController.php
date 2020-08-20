@@ -47,10 +47,12 @@ class UserController extends BaseController
         if ($this->session->get("Role_name") == 'student' || $this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
             $Course_model = new Course_model();
             $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
             echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
             $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
             echo view('home/HomePage', $data);
         }
     }
@@ -106,26 +108,13 @@ class UserController extends BaseController
             //print_r($data['data']);
             echo view('login/User_Profile', $data);
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            echo view('home/HomePage', $data);
         }
     }
-    /**
-     * profile
-     * หน้า profile เช็คสถานะ ของ User ก่อนเข้าใช่งาน
-     * 
-     */
-    public function Profile_Account()
-    {
-        if ($this->session->get("Role_name") == 'student') {
-            echo view('login/User_Account');
-        } else if ($this->session->get("Role_name") == 'teacher') {
-            echo view('login/User_Account');
-        } else if ($this->session->get("Role_name") == 'admin') {
-            echo view('login/User_Account');
-        } else {
-            echo view('home/HomePage');
-        }
-    }
+
     /**
      * Register
      *

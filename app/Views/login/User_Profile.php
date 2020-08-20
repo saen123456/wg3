@@ -24,8 +24,8 @@
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
+		<script src="assets/jquery.min.js"></script>
+		<?php include('location.php'); ?>
 
 		<link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 		<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
@@ -310,14 +310,16 @@
 														</div>
 													</form>
 
-													<form>
-														<div class="form-group row">
-															<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
-															<div class="col-sm-10">
-																<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
-															</div>
-														</div>
 
+													<div class="form-group row">
+														<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
+														<div class="col-sm-10">
+															<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
+														</div>
+													</div>
+
+
+													<form>
 														<div class="form-group row">
 															<label for="province" class="col-sm-2 col-form-label">จังหวัด</label>
 															<div class="col-sm-10">
@@ -925,7 +927,7 @@
 			});
 		});
 	</script>
-	<?php include('location.php'); ?>
+
 </body>
 
 </html>
