@@ -665,10 +665,13 @@ class UserController extends BaseController
         $model = new User_model();
         $User_id = $this->session->get("User_id");
         $User_Birthday = $this->request->getVar('User_Birthday');
+        $model->Update_User_Birthday($User_id, $User_Birthday);
         //echo isset($User_Birthday);
-        //echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday;
+        //echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday . " Now Time = " . date("Y-m-d");
         if ($User_Birthday != null) {
-            $model->Update_User_Birthday($User_id, $User_Birthday);
+            $Age = $model->Update_User_Birthday($User_id, $User_Birthday);
+            //echo $Age;
+            $model->Update_User_Age($User_id, $Age);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพเดทวันเกิดเรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('profile'))->with('correct', $msg);
         } else {

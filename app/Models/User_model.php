@@ -24,7 +24,7 @@ class User_model extends Model
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
-        $this->connect_postgresdb->debug = false;
+        $this->connect_postgresdb->debug = true;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
 
@@ -294,15 +294,24 @@ class User_model extends Model
     {
         $sql = "UPDATE user_register SET birthday = '$User_Birthday' WHERE user_id = '$User_id' ";
         $this->connect_postgresdb->execute($sql);
+
+        $sql2 = "SELECT age(birthday) as age FROM user_register WHERE user_id = '$User_id'";
+        return $this->connect_postgresdb->getOne($sql2);
+    }
+    public function Update_User_Age($User_id, $Age)
+    {
+        $sql = "UPDATE user_register SET age = '$Age' WHERE user_id = '$User_id' ";
+        $this->connect_postgresdb->execute($sql);
     }
     public function Select_Birthday($User_id)
     {
         $sql = "SELECT * FROM user_register WHERE user_id = '$User_id'";
         return $this->connect_postgresdb->execute($sql);
     }
+
     public function Update_User_Gender($User_id, $Gender)
     {
-        $sql = "UPDATE user_register SET gender = '$Gender' WHERE user_id = '$User_id' ";
+        $sql = "UPDATE user_register SET gender = '$Gender' , age = ''WHERE user_id = '$User_id' ";
         $this->connect_postgresdb->execute($sql);
     }
 }

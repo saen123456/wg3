@@ -447,37 +447,7 @@
 												</div>
 												<!-- จบส่วนของ TAB บัญชี -->
 
-												<!-- ส่วนของ TAB info -->
-												<div class="tab-pane" id="info">
-													<form class="form-horizontal" action="<?= site_url('/UserController/Update_Profile_Info') ?>" method="post">
-														<!-- <?php echo $this->session->get("User_id"); ?> -->
-														<div class="form-group row">
-															<label for="birthday" class="col-sm-2 col-form-label">วันเกิด:</label>
-															<div class="col-sm-10">
-																<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
-															</div>
-														</div>
 
-														<div class="form-group row">
-															<!-- <label for="inputName" class="col-sm-2 col-form-label">ชื่อ-นามสกุล</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control" name="Full_Name" id="Full_Name" value="<?php echo $this->session->get("Full_name"); ?>" placeholder="ชื่อ-นามสกุล" readonly>
-															</div> -->
-															<label FOR="gender" class="col-sm-2 col-form-label">เพศ</label>
-															<div class="col-sm-10">
-																<input type="Radio" name="Gender" id="Gender" Value="Male" class="form-control">
-																<input type="Radio" name="Gender" id="Gender" Value="Female" class="form-control">
-															</div>
-
-
-															<div class="form-group row">
-																<div class="offset-sm-2 col-sm-10">
-																	<button type="submit" class="btn btn-primary">ยืนยัน</button>
-																</div>
-															</div>
-													</form>
-												</div>
-												<!-- จบส่วนของ TAB info -->
 
 												<!-- /.tab-pane -->
 											</div>
