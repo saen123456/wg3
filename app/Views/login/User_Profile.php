@@ -1087,7 +1087,7 @@
 				amphureObject.html('<option value="">เลือกอำเภอ</option>');
 				districtObject.html('<option value="">เลือกตำบล</option>');
 
-				$.get('https://workgress.online/get_amphure.php?province_id=' + provinceId, function(data) {
+				$.get('get_amphure.php?province_id=' + provinceId, function(data) {
 					console.log("test");
 					var result = JSON.parse(data);
 					//console.log(result);
@@ -1104,7 +1104,7 @@
 				var amphureId = $(this).val();
 				districtObject.html('<option value="">เลือกตำบล</option>');
 				console.log(amphureId);
-				$.get('https://workgress.online/get_district.php?amphure_id=' + amphureId, function(data) {
+				$.get('get_district.php?amphure_id=' + amphureId, function(data) {
 					var result = JSON.parse(data);
 					$.each(result, function(index, item) {
 						districtObject.append(
