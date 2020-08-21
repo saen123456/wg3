@@ -84,6 +84,7 @@ class UserFacebookController extends BaseController
             $model->Insert_Facebook_Register($user_name, $user_email_address, $user_image); //Insert_Facebook_Register() คือการ Insert ข้อมูลลงใน Databse
             $User_Data = $model->Check_User_Facebook_Login($user_email_address);
             while ($User = $User_Data->fetchRow()) {
+                $User_id = $User['user_id'];
                 $Full_name = $User['first_name'];
                 $Email = $User['email'];
                 $Picture = $User['picture'];
@@ -92,6 +93,7 @@ class UserFacebookController extends BaseController
             }
             if ($Activated == 1) {
                 $this->Data = [
+                    'User_id' => $User_id,
                     'Full_name' => $Full_name,
                     'Email' => $Email,
                     'Picture' => $Picture,

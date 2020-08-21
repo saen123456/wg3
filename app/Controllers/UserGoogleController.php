@@ -101,6 +101,7 @@ class UserGoogleController extends BaseController
             $model->Insert_Google_Register($user_first_name, $user_last_name, $user_email_address, $user_image); //Insert_Google_Register() คือการ Insert ข้อมูลลงใน Databse
             $User_Data = $model->Check_User_Google_Login($user_email_address);
             while ($User = $User_Data->fetchRow()) {
+                $User_id = $User['user_id'];
                 $First_name = $User['first_name'];
                 $Last_name = $User['last_name'];
                 $Email = $User['email'];
@@ -111,6 +112,7 @@ class UserGoogleController extends BaseController
             $Full_name = $First_name . " " . $Last_name;
             if ($Activated == 1) {
                 $this->Data = [
+                    'User_id' => $User_id,
                     'Full_name' => $Full_name,
                     'Email' => $Email,
                     'Picture' => $Picture,
