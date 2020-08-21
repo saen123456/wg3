@@ -300,59 +300,49 @@
 																<div class="col-sm-10">
 																	<input type="text" class="form-control" name="Full_Name" id="Full_Name" value="<?php echo $this->session->get("Full_name"); ?>" placeholder="ชื่อ-นามสกุล" readonly>
 																</div>
-															</div><?php
-																	}
-																	?>
+
+															</div>
+														<?php
+														}
+														?>
 														<div class="form-group row">
 															<div class="offset-sm-2 col-sm-10">
-																<button type="submit" class="btn btn-primary">ยืนยัน</button>
+																<button type="submit" class="btn btn-primary">อัพเดท</button>
 															</div>
 														</div>
 													</form>
 
-
-													<div class="form-group row">
-														<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
-														<div class="col-sm-10">
-															<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
-														</div>
-													</div>
-
-
-													<form>
+													<form class="form-horizontal" action="#" method="post">
 														<div class="form-group row">
-															<label for="province" class="col-sm-2 col-form-label">จังหวัด</label>
+															<label for="inputName" class="col-sm-2 col-form-label">วันเกิด</label>
 															<div class="col-sm-10">
-																<select name="province_id" id="province" class="form-control">
-																	<option value="">เลือกจังหวัด</option>
-																	<?php foreach ($data as $row) : ?>
-																		<option value="<?= $row['id'] ?>"><?= $row['name_th'] ?></option>
-																	<?php endforeach; ?>
-																</select>
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label for="amphure" class="col-sm-2 col-form-label">อำเภอ</label>
-															<div class="col-sm-10">
-																<select name="amphure_id" id="amphure" class="form-control">
-																	<option value="">เลือกอำเภอ</option>
-																</select>
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label for="district" class="col-sm-2 col-form-label">ตำบล</label>
-															<div class="col-sm-10">
-																<select name="district_id" id="district" class="form-control">
-																	<option value="">เลือกตำบล</option>
-																</select>
+																<div class="changepass">
+																	<div class="input-group mb-3">
+																		<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $this->session->get("Birthday"); ?>" placeholder="วันเกิด" readonly>
+																		<span class="input-group-append">
+																			<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-birthday"><span class="fas fa-pen"></span></button>
+																		</span>
+																	</div>
+																</div>
 															</div>
 														</div>
 													</form>
 
-
-
+													<form class="form-horizontal" action="#" method="get">
+														<div class="form-group row">
+															<label for="inputName" class="col-sm-2 col-form-label">ที่อยู่ของคุณ</label>
+															<div class="col-sm-10">
+																<div class="changepass">
+																	<div class="input-group mb-3">
+																		<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $this->session->get("Birthday"); ?>" placeholder="ที่อยู่ของคุณ" readonly>
+																		<span class="input-group-append">
+																			<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-address"><span class="fas fa-pen"></span></button>
+																		</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
 												</div>
 
 
@@ -758,6 +748,105 @@
 												<span class="fas fa-eye-slash" id="eye1"></span>
 											</div>
 										</div>
+									</div>
+								</div>
+								<div class="row">
+									<!-- /.col -->
+									<div class="col-4">
+										<button type="submit" class="btn btn-primary btn-block">ยืนยัน</button>
+									</div>
+									<!-- /.col -->
+								</div>
+							</form>
+						</div>
+						<!-- /.login-card-body -->
+					</div>
+
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- /.modal-dialog-birthday -->
+	<div class="modal fade" id="modal-birthday">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">เปลี่ยนวันเกิดของคุณ</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card">
+						<div class="card-body login-card-body">
+							<form action="<?= site_url('/UserController/Update_Profile_Birthday') ?>" method="post">
+								<div class="form-group">
+									<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
+									<div class="input-group mb-3">
+										<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
+									</div>
+								</div>
+								<div class="row">
+									<!-- /.col -->
+									<div class="col-4">
+										<button type="submit" class="btn btn-primary btn-block">ยืนยัน</button>
+									</div>
+									<!-- /.col -->
+								</div>
+							</form>
+						</div>
+						<!-- /.login-card-body -->
+					</div>
+
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- /.modal-dialog-birthday -->
+	<div class="modal fade" id="modal-address">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">เปลี่ยนที่อยู่ของคุณ</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card">
+						<div class="card-body login-card-body">
+							<form action="<?= site_url('/UserController/Update_Profile_Address') ?>" method="get">
+								<div class="form-group">
+									<label for="province" class="col-sm-2 col-form-label">จังหวัด</label>
+									<div class="input-group mb-3">
+										<select name="province_id" id="province" class="form-control">
+											<option value="">เลือกจังหวัด</option>
+											<?php foreach ($data as $row) : ?>
+												<option value="<?= $row['name_th'] ?>"><?= $row['name_th'] ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="amphure" class="col-sm-2 col-form-label">อำเภอ</label>
+									<div class="input-group mb-3">
+										<select name="amphure_id" id="amphure" class="form-control">
+											<option value="">เลือกอำเภอ</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="district" class="col-sm-2 col-form-label">ตำบล</label>
+									<div class="input-group mb-3">
+										<select name="district_id" id="district" class="form-control">
+											<option value="">เลือกตำบล</option>
+										</select>
 									</div>
 								</div>
 								<div class="row">

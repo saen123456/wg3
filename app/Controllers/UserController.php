@@ -655,7 +655,7 @@ class UserController extends BaseController
             echo "fails";
         }
     }
-    public function Update_Profile_Info()
+    public function Update_Profile_Birthday()
     {
         $model = new User_model();
         $User_id = $this->session->get("User_id");
@@ -677,5 +677,24 @@ class UserController extends BaseController
             array_push($json, $result);
         }
         echo json_encode($json);
+    }
+    public function Get_Amphure()
+    {
+        $model = new User_model();
+        $Province_id = $_GET['province_id'];
+        $query = $model->Select_Amphure($Province_id);
+        $json = array();
+        while ($result = $query->fetchRow()) {
+            //print_r($r);
+            array_push($json, $result);
+        }
+        echo json_encode($json);
+    }
+    public function Update_Profile_Address()
+    {
+        $model = new User_model();
+        $Province = $this->request->getVar('province_id');
+        $District = $this->request->getVar('amphure_id');
+        echo $Province . " " . $District;
     }
 }

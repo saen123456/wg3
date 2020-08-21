@@ -256,12 +256,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                    
+
                             <?php
-                            if ($data) {
+                            if (isset($data)) {
                                 foreach ($data as $row) :
                                     ?>
-
                                     <tr>
                                         <td>
                                             <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">

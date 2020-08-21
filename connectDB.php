@@ -13,6 +13,8 @@ $connect_postgresdb->connect($server, $user, $password, $database);
 
 function Select_Amphure($connect_postgresdb, $Province_id)
 {
-    $sql = "SELECT * FROM amphures WHERE province_id = '$Province_id'";
+
+    $sql = "SELECT * FROM amphures WHERE province_id = '2'";
+    $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
     return $connect_postgresdb->execute($sql);
 }

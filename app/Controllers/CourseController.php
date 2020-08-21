@@ -30,11 +30,12 @@ class CourseController extends BaseController
         //echo 'page ' . $Page . ' start ' . $Start . ' perpage ' . $Perpage;
 
         $Total_Num_Row = $Course_model->Select_Num_CategoryCourse();
+        //echo $Total_Num_Row;
         $Total_Page = ceil($Total_Num_Row / $Perpage);
         //echo "Total_Num_Row " . $Total_Num_Row . " Total_Page " . $Total_Page;
         $data['data'] = $Course_model->Select_CategoryCourse($Start, $Perpage);
         $data['Total_Page'] = $Total_Page;
-        //print_r($data['data']);*/
+        //print_r($data['data']);
         echo view('Course/Category_Course', $data);
     }
     public function Manage_Course()

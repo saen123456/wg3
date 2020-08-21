@@ -139,8 +139,14 @@ class Course_model extends Model
     }
     public function Select_CategoryCourse($start, $perpage)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT 64 , 65  ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT '$perpage' OFFSET '$start'  ";
         return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Num_CategoryCourse()
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ";
+        $Course_Row =  $this->connect_postgresdb->execute($sql);
+        return $Course_Row->RecordCount();
     }
     public function Update_Course_Name($Course_id, $Course_Name)
     {
