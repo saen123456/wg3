@@ -259,10 +259,50 @@ class User_model extends Model
         $sql = "SELECT * FROM provinces";
         return $this->connect_postgresdb->execute($sql);
     }
-    public function Select_Amphure($Province_id)
+    public function Select_Provinces_Name($Province_id)
+    {
+        $sql = "SELECT name_th FROM provinces where id = '$Province_id'";
+        return $this->connect_postgresdb->getOne($sql);
+    }
+    public function Select_Distric_Name($Amphure_id)
+    {
+        $sql = "SELECT name_th FROM amphures where id = '$Amphure_id'";
+        return $this->connect_postgresdb->getOne($sql);
+    }
+    public function Select_Sub_Distric_Name($Sub_District_id)
+    {
+        $sql = "SELECT name_th FROM districts where id = '$Sub_District_id'";
+        return $this->connect_postgresdb->getOne($sql);
+    }
+    public function Select_ZipCode($Sub_District_id)
+    {
+        $sql = "SELECT zip_code FROM districts where id = '$Sub_District_id'";
+        return $this->connect_postgresdb->getOne($sql);
+    }
+    public function Select_Amphure_Name($Province_id)
     {
         $sql = "SELECT * FROM amphures WHERE province_id = '$Province_id'";
         $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_User_Address($Province_Name, $District_Name, $Sub_District_Name, $Zipcode, $Address, $User_id)
+    {
+        $sql = "UPDATE user_register SET address = '$Address', sub_district = '$Sub_District_Name' , district = '$District_Name' , province = '$Province_Name' , zipcode = '$Zipcode' WHERE user_id = '$User_id' ";
+        $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_User_Birthday($User_id, $User_Birthday)
+    {
+        $sql = "UPDATE user_register SET birthday = '$User_Birthday' WHERE user_id = '$User_id' ";
+        $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Birthday($User_id)
+    {
+        $sql = "SELECT * FROM user_register WHERE user_id = '$User_id'";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_User_Gender($User_id, $Gender)
+    {
+        $sql = "UPDATE user_register SET gender = '$Gender' WHERE user_id = '$User_id' ";
+        $this->connect_postgresdb->execute($sql);
     }
 }

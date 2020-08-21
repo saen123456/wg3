@@ -10,7 +10,7 @@ $database = 'postgres'; //ชื่อ database
 $connect_postgresdb->debug = false;
 $connect_postgresdb->connect($server, $user, $password, $database);
 
-$sql = "SELECT * FROM amphures WHERE province_id = '2'";
+$sql = "SELECT * FROM amphures WHERE province_id = {$_GET['province_id']}";
 $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 $query = $connect_postgresdb->execute($sql);
 

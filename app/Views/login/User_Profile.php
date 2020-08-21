@@ -9,7 +9,7 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 
 		<title>Workgress</title>
-
+		<script src="assets/jquery.min.js" rel="preload"></script>
 		<!-- Font Awesome Icons -->
 		<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 		<!-- Theme style -->
@@ -24,7 +24,7 @@
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-		<script src="assets/jquery.min.js"></script>
+
 
 
 		<link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
@@ -43,7 +43,7 @@
 
 		<link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
 
-
+		<link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	</head>
 
 	<?php
@@ -311,14 +311,40 @@
 															</div>
 														</div>
 													</form>
-
+													<form class="form-horizontal" action="#" method="post">
+														<div class="form-group row">
+															<label for="inputName" class="col-sm-2 col-form-label">เพศ</label>
+															<div class="col-sm-10">
+																<div class="changepass">
+																	<div class="input-group mb-3">
+																		<?php
+																		foreach ($user_infomation as $row) :
+																			?>
+																			<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $row['gender'] ?>" placeholder="เพศ" readonly>
+																		<?php
+																		endforeach;
+																		?>
+																		<span class="input-group-append">
+																			<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-gender"><span class="fas fa-pen"></span></button>
+																		</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
 													<form class="form-horizontal" action="#" method="post">
 														<div class="form-group row">
 															<label for="inputName" class="col-sm-2 col-form-label">วันเกิด</label>
 															<div class="col-sm-10">
 																<div class="changepass">
 																	<div class="input-group mb-3">
-																		<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $this->session->get("Birthday"); ?>" placeholder="วันเกิด" readonly>
+																		<?php
+																		foreach ($user_infomation as $row) :
+																			?>
+																			<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $row['birthday'] ?>" placeholder="วันเกิด" readonly>
+																		<?php
+																		endforeach;
+																		?>
 																		<span class="input-group-append">
 																			<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-birthday"><span class="fas fa-pen"></span></button>
 																		</span>
@@ -334,7 +360,13 @@
 															<div class="col-sm-10">
 																<div class="changepass">
 																	<div class="input-group mb-3">
-																		<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $this->session->get("Birthday"); ?>" placeholder="ที่อยู่ของคุณ" readonly>
+																		<?php
+																		foreach ($user_infomation as $row) :
+																			?>
+																			<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo "ที่อยู่ " . $row['address'] . " ต. " . $row['sub_district'] . " อ. " . $row['district'] . " จ. " . $row['province'] . " รหัสไปรษณีษ์ " . $row['zipcode'] ?>" placeholder="ที่อยู่ของคุณ" readonly>
+																		<?php
+																		endforeach;
+																		?>
 																		<span class="input-group-append">
 																			<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-address"><span class="fas fa-pen"></span></button>
 																		</span>
@@ -768,6 +800,50 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
+	<!-- /.modal-dialog-gender-age -->
+	<div class="modal fade" id="modal-gender">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">เปลี่ยนเพศ</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row justify-content-center">
+							<form action="<?= site_url('/UserController/Update_Profile_Gender') ?>" method="post">
+								<div class="form-group clearfix">
+									<div class="icheck-primary d-inline">
+										<input type="radio" id="radioPrimary1" name="gender" checked="" value="ผู้ชาย">
+										<label for="radioPrimary1">ชาย
+										</label>
+									</div>
+									<div class="icheck-primary d-inline">
+										<input type="radio" id="radioPrimary2" name="gender" value="ผู้หญิง">
+										<label for="radioPrimary2">หญิง
+										</label>
+									</div>
+								</div>
+								<div class="row justify-content-center">
+									<!-- /.col -->
+									<div class="col-8">
+										<button type="submit" class="btn btn-primary btn-block">ยืนยัน</button>
+									</div>
+									<!-- /.col -->
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal-dialog-gender-age -->
+
 
 	<!-- /.modal-dialog-birthday -->
 	<div class="modal fade" id="modal-birthday">
@@ -786,7 +862,13 @@
 								<div class="form-group">
 									<label for="birthday" class="col-sm-2 col-form-label">วันเกิด</label>
 									<div class="input-group mb-3">
-										<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $this->session->get("Birthday"); ?>" class="form-control">
+										<?php
+										foreach ($user_infomation as $row) :
+											?>
+											<input type="date" id="User_Birthday" name="User_Birthday" value="<?php echo $row['birthday'] ?>" class="form-control">
+										<?php
+										endforeach;
+										?>
 									</div>
 								</div>
 								<div class="row">
@@ -828,7 +910,7 @@
 										<select name="province_id" id="province" class="form-control">
 											<option value="">เลือกจังหวัด</option>
 											<?php foreach ($data as $row) : ?>
-												<option value="<?= $row['name_th'] ?>"><?= $row['name_th'] ?></option>
+												<option value="<?= $row['id'] ?>"><?= $row['name_th'] ?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -847,6 +929,12 @@
 										<select name="district_id" id="district" class="form-control">
 											<option value="">เลือกตำบล</option>
 										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="district" class="col-sm-2 col-form-label">ที่อยู่</label>
+									<div class="input-group mb-3">
+										<input type="text" name="address" class="form-control" id="address" placeholder="กรุณากรอกที่อยู่ของคุณ">
 									</div>
 								</div>
 								<div class="row">
@@ -873,8 +961,6 @@
 
 	<!-- REQUIRED SCRIPTS -->
 
-	<!-- jQuery -->
-	<script src="plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
@@ -1017,7 +1103,48 @@
 		});
 	</script>
 
-	<script src="location.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var provinceObject = $('#province');
+			var amphureObject = $('#amphure');
+			var districtObject = $('#district');
+
+			// on change province
+			provinceObject.on('change', function() {
+				var provinceId = $(this).val();
+
+				console.log(provinceId);
+				amphureObject.html('<option value="">เลือกอำเภอ</option>');
+				districtObject.html('<option value="">เลือกตำบล</option>');
+
+				$.get('get_amphure.php?province_id=' + provinceId, function(data) {
+					console.log("test");
+					var result = JSON.parse(data);
+					//console.log(result);
+					$.each(result, function(index, item) {
+						amphureObject.append(
+							$('<option></option>').val(item.id).html(item.name_th)
+						);
+					});
+				});
+			});
+
+			// on change amphure
+			amphureObject.on('change', function() {
+				var amphureId = $(this).val();
+				districtObject.html('<option value="">เลือกตำบล</option>');
+				console.log(amphureId);
+				$.get('get_district.php?amphure_id=' + amphureId, function(data) {
+					var result = JSON.parse(data);
+					$.each(result, function(index, item) {
+						districtObject.append(
+							$('<option></option>').val(item.id).html(item.name_th)
+						);
+					});
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

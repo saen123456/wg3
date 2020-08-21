@@ -103,9 +103,14 @@ class UserController extends BaseController
     public function profile()
     {
         if ($this->session->get("Role_name")) {
+            $User_id = $this->session->get("User_id");
+
             $model = new User_model();
+
             $data['data'] = $model->Select_Provinces();
-            //print_r($data['data']);
+
+            $data['user_infomation'] = $model->Select_Birthday($User_id);
+
             echo view('login/User_Profile', $data);
         } else {
             $Course_model = new Course_model();
@@ -663,9 +668,12 @@ class UserController extends BaseController
         //echo isset($User_Birthday);
         //echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday;
         if ($User_Birthday != null) {
-            echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday;
+            $model->Update_User_Birthday($User_id, $User_Birthday);
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพเดทวันเกิดเรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('profile'))->with('correct', $msg);
         } else {
-            echo "wrong";
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspคุณยังไม่เลือกวันเกิด&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('profile'))->with('warning', $msg);
         }
     }
     public function test()
@@ -693,8 +701,30 @@ class UserController extends BaseController
     public function Update_Profile_Address()
     {
         $model = new User_model();
-        $Province = $this->request->getVar('province_id');
-        $District = $this->request->getVar('amphure_id');
-        echo $Province . " " . $District;
+        $Province_id = $this->request->getVar('province_id');
+        $Amphure_id = $this->request->getVar('amphure_id');
+        $Sub_District_id = $this->request->getVar('district_id');
+        $Address = $this->request->getVar('address');
+
+        $User_id = $this->session->get("User_id");
+        $Province_Name = $model->Select_Provinces_Name($Province_id);
+        $District_Name = $model->Select_Distric_Name($Amphure_id);
+        $Sub_District_Name = $model->Select_Sub_Distric_Name($Sub_District_id);
+        $Zipcode = $model->Select_ZipCode($Sub_District_id);
+        //echo $Province_Name . " " . $District_Name . " " . $Sub_District_Name . " " . $Zipcode . " " . $Address . " " . $User_id;
+
+        $model->Update_User_Address($Province_Name, $District_Name, $Sub_District_Name, $Zipcode, $Address, $User_id);
+        $msg = '&nbsp&nbsp&nbsp&nbsp&nbspคุณอัพเดทที่อยู่เรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
+        return redirect()->to(base_url('profile'))->with('correct', $msg);
+    }
+    public function Update_Profile_Gender()
+    {
+        $model = new User_model();
+        $Gender = $this->request->getVar('gender');
+        $User_id = $this->session->get("User_id");
+        $model->Update_User_Gender($User_id, $Gender);
+        $msg = '&nbsp&nbsp&nbsp&nbsp&nbspคุณอัพเดทเพศเรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
+        return redirect()->to(base_url('profile'))->with('correct', $msg);
+        //echo $Gender;
     }
 }
