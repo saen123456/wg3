@@ -397,11 +397,11 @@
                 });
 
                 var Unit_Index;
-               
+
                 $(".btn-info").click(function() {
                     $("#Unit_Index").attr("value", $(this).attr('Unit_Index'));
                     window.Unit_Index = $(this).attr('Unit_Index');
-                  
+
                 });
 
                 function uploadImage($form) {
@@ -469,7 +469,7 @@
                     html += '<td><input class="case" type="checkbox"/></td>';
                     html += '<td>';
                     html += '<form action="#" id="uploadform2">';
-                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="test ' + j + '" />';
+                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ" />';
                     html += '<br>';
                     html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
@@ -534,13 +534,6 @@
                     //document.cookie = "Unit_Index = " + Unit_Index;
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + Unit_Index,
-                        //url: "http://localhost:8080/projectwg/CourseController/Upload_Edit_Unit?Unit_Index=" + window.Unit_Index,
-
-                        // url: "<?php
-                                    //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
-                                    //         // echo site_url('/CourseController/Upload_Test');
-                                    //         
-                                    ?>",
                         type: "POST",
                         data: new FormData($form[0]),
                         contentType: false,

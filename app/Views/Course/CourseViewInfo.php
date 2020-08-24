@@ -274,9 +274,9 @@
                                                             ?> </p>
                                     </div>
                                     <div class="col-6">
-                                        <button class="btn btn-default btn-buy">ลงทะเบียนตอนนี้</button>
                                         <div class="block"></div>
-                                        <button class="btn btn-default btn-buy green">เพิ่มเข้ารถเข็น</button>
+                                        <div class="block"></div>
+                                        <a href="<?= base_url('/subscribe/course/' . $row['course_id']); ?>"> <button class="btn btn-default btn-buy">ลงทะเบียนตอนนี้</button> </a>
                                     </div>
                                 </div>
                             </div>

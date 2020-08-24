@@ -205,9 +205,8 @@ class CourseController extends BaseController
         } else {
             echo "<div class='preview'>something wrong</div>";
         }
-
     }
-    
+
     public function Upload_Unit()
     {
         $model = new Course_model();
@@ -315,14 +314,13 @@ class CourseController extends BaseController
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
 
         $Video_Name = $file['Unit_Video_File']['name'];
-        $Unit_Name = $this->request->getVar('Unit_Name');
         $Course_id = $this->session->get("Course_id");
         $Unit_Index = $_GET['Unit_Index'];
 
         //$model->Upload_Edit_Unit($Course_id, $Unit_Index, $Unit_Name);
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
-            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_Name, $Unit_Index, $Video_Name);
+            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_Index, $Video_Name);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
