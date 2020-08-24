@@ -512,14 +512,11 @@
                     $('form#uploadform2 .cancel').click();
                 });
                 $(document).on('submit', 'form#uploadform2', function(e) {
-
                     e.preventDefault();
                     $form = $(this);
                     uploadImage($form);
 
                 });
-
-
 
                 function uploadImage($form) {
 
@@ -533,7 +530,7 @@
                     //console.log(Unit_Index);
                     //document.cookie = "Unit_Index = " + Unit_Index;
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + Unit_Index,
+                        url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Index,
                         type: "POST",
                         data: new FormData($form[0]),
                         contentType: false,

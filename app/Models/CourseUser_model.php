@@ -63,6 +63,7 @@ class CourseUser_model extends Model
     }
     public function Select_UserCourse($User_id, $Course_id)
     {
-        # code...
+        $sql = "SELECT * FROM course WHERE course_id = '$Course_id' and user_id = '$User_id'";
+        return $this->connect_postgresdb->getOne($sql);
     }
 }
