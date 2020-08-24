@@ -206,27 +206,8 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
 
-        //return redirect()->to(base_url('test55'));
     }
-    /*public function Upload_Test()
-    {
-        $model = new Course_model();
-        $Photo = $this->request->getFile('photo');
-
-        //echo $Photo->getClientName();
-        if ($Photo->getSize() > 0) {
-            $Photo_Random_Name = $Photo->getRandomName();
-            $upload_to = 'public/upload/';
-
-            $image = \Config\Services::image()
-                ->withFile($Photo)
-                ->fit(626, 626, 'center')
-                ->save('./public/upload/' . $Photo_Random_Name);
-            echo "success";
-        } else {
-            echo "fails";
-        }
-    }*/
+    
     public function Upload_Unit()
     {
         $model = new Course_model();
@@ -386,11 +367,6 @@ class CourseController extends BaseController
     }
     public function Search_Course()
     {
-        /*$h = "5"; // Hour for time zone goes here e.g. +7 or -4, just remove the + or -
-        $hm = $h * 60;
-        $ms = $hm * 60;
-        $gmdate = gmdate("m/d/Y g:i:s A", time() - ($ms)); // the "-" can be switched to a plus if that's what your time zone is.
-        echo "Your cu rrent time now is :  $gmdate . ";*/
         $model = new Course_model();
         $Search_Course_Query = $this->request->getVar('Search_Course_Query');
         //echo $Search_Course_Query;

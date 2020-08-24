@@ -274,7 +274,7 @@
                                                             ?> </p>
                                     </div>
                                     <div class="col-6">
-                                        <button class="btn btn-default btn-buy">ซื้อ</button>
+                                        <button class="btn btn-default btn-buy">ลงทะเบียนตอนนี้</button>
                                         <div class="block"></div>
                                         <button class="btn btn-default btn-buy green">เพิ่มเข้ารถเข็น</button>
                                     </div>

@@ -34,7 +34,7 @@ class CourseUser_model extends Model
     // }
     public function Select_Courseinfo($id)
     {
-        $sql = "SELECT course.course_name,course.course_description,course.course_price, CONCAT(user_register.first_name,CONCAT(' ',user_register.last_name)) as full_name , course.update_date , course.image_course from
+        $sql = "SELECT course.course_id,course.course_name,course.course_description,course.course_price, CONCAT(user_register.first_name,CONCAT(' ',user_register.last_name)) as full_name , course.update_date , course.image_course from
         course join user_create_course on  course.course_id = user_create_course.course_id  join user_register on user_create_course.user_id = user_register.user_id where  course.course_id ='$id'";
         return $this->connect_postgresdb->execute($sql);
     }
@@ -53,5 +53,16 @@ class CourseUser_model extends Model
         } else { //ถ้ามี 0 คือยังไม่มีอีเมลนี้ในระบบ return false
             return false;
         }
+    }
+    public function Insent_User_Register_Course($User_id, $Course_id)
+    {
+        $sql = "INSERT INTO user_register_course(
+            user_id, course_id, update_date, create_date)
+            VALUES ($User_id,$Course_id,now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok') ";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_UserCourse($User_id, $Course_id)
+    {
+        # code...
     }
 }
