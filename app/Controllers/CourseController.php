@@ -6,6 +6,7 @@ use App\Models\Course_model;
 
 use Google\Cloud\Storage\StorageClient;
 
+require_once("james-heinrich/getid3/getid3/getid3.php");
 
 
 class CourseController extends BaseController
@@ -209,6 +210,7 @@ class CourseController extends BaseController
     }
     public function Upload_Unit()
     {
+        $getId3 = new \getID3();
 
         $model = new Course_model();
         $file = $_FILES;
@@ -216,14 +218,19 @@ class CourseController extends BaseController
         $bucket = $storage->bucket('workgress');
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $Video_Name = $file['Unit_Video_File']['name'];
+
         $Unit_Name = $this->request->getVar('Unit_Name');
         $User_id = $this->session->get("User_id");
         $Course_id = $this->session->get("Course_id");
         $Unit_Index = $_GET['Unit_Index'];
 
+        $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
+        $Get_Duration = $getId3->analyze($Video_TmpName);
+        $Video_Duration = $Get_Duration['playtime_string'];
+
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
-            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
+            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name, $Video_Duration);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
@@ -379,16 +386,16 @@ class CourseController extends BaseController
     }
     public function Test_Upload()
     {
-        require_once('getid3/getid3.php');
+
         $file = $_FILES;
-        $getId3 = new getID3();
+        $getId3 = new \getID3();
 
         $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
         $Video_Name = $file['Unit_Video_File_Test']['name'];
         $content = file_get_contents($Video_TmpName);
-        $test = $Photo->getSize();
+
         //$this->calculateFileSize($Video_TmpName);
-        $Get_Duration = $getId3->analyze($Video_Name);
+        $Get_Duration = $getId3->analyze($Video_TmpName);
         $Video_Duration = $Get_Duration['playtime_string'];
         echo $Video_Name . " Duration = " . $Video_Duration;
     }
