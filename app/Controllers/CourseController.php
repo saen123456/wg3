@@ -206,15 +206,15 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
-    function console_log($output, $with_script_tags = true)
-    {
-        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
-            ');';
-        if ($with_script_tags) {
-            $js_code = '<script>' . $js_code . '</script>';
-        }
-        echo $js_code;
-    }
+    // function console_log($output, $with_script_tags = true)
+    // {
+    //     $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+    //         ');';
+    //     if ($with_script_tags) {
+    //         $js_code = '<script>' . $js_code . '</script>';
+    //     }
+    //     echo $js_code;
+    // }
     public function Upload_Unit()
     {
         $model = new Course_model();
@@ -228,7 +228,7 @@ class CourseController extends BaseController
         $User_id = $this->session->get("User_id");
         $Course_id = $this->session->get("Course_id");
         $Unit_Index = $_GET['Unit_Index'];
-        console_log($Course_id);
+        //console_log($Course_id);
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
             $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
