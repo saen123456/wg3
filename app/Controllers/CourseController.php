@@ -6,7 +6,7 @@ use App\Models\Course_model;
 
 use Google\Cloud\Storage\StorageClient;
 
-use \getID3\GetId3Core as GetId3;
+
 
 class CourseController extends BaseController
 {
@@ -212,7 +212,6 @@ class CourseController extends BaseController
 
         $model = new Course_model();
         $file = $_FILES;
-        $getid3 = new GetId3;
         $storage = new StorageClient();
         $bucket = $storage->bucket('workgress');
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
@@ -223,10 +222,8 @@ class CourseController extends BaseController
         $Unit_Index = $_GET['Unit_Index'];
 
         if ($bucket->upload($content, ['name' => $Video_Name])) {
-            $Get_Duration = $getid3->analyze($Video_Name);
-            $Video_Duration = $Get_Duration['playtime_string'];
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
-            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name, $Video_Duration);
+            $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
@@ -382,15 +379,64 @@ class CourseController extends BaseController
     }
     public function Test_Upload()
     {
-
+        require_once('getid3/getid3.php');
         $file = $_FILES;
         $getId3 = new getID3();
 
-        $content = file_get_contents($file['Unit_Video_File_Test']['tmp_name']);
+        $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
         $Video_Name = $file['Unit_Video_File_Test']['name'];
-
+        $content = file_get_contents($Video_TmpName);
+        $test = $Photo->getSize();
+        //$this->calculateFileSize($Video_TmpName);
         $Get_Duration = $getId3->analyze($Video_Name);
         $Video_Duration = $Get_Duration['playtime_string'];
         echo $Video_Name . " Duration = " . $Video_Duration;
+    }
+    public function getDuration($file)
+    {
+        if (file_exists($file)) {
+            ## open and read video file
+            $handle = fopen($file, "r");
+
+            ## read video file size
+            $contents = fread($handle, filesize($file));
+            fclose($handle);
+            $make_hexa = hexdec(bin2hex(substr($contents, strlen($contents) - 3)));
+            if (strlen($contents) > $make_hexa) {
+                $pre_duration = hexdec(bin2hex(substr($contents, strlen($contents) - $make_hexa, 3)));
+                $post_duration = $pre_duration / 1000;
+                $timehours = $post_duration / 3600;
+                $timeminutes = ($post_duration % 3600) / 60;
+                $timeseconds = ($post_duration % 3600) % 60;
+                $timehours = explode(".", $timehours);
+                $timeminutes = explode(".", $timeminutes);
+                $timeseconds = explode(".", $timeseconds);
+                $duration = $timehours[0] . ":" . $timeminutes[0] . ":" . $timeseconds[0];
+            }
+            return $duration;
+        } else {
+            return false;
+        }
+    }
+    public function calculateFileSize($file)
+    {
+
+        $ratio = 16000; //bytespersec
+
+        if (!$file) {
+
+            exit("Verify file name and it's path");
+        }
+
+        $file_size = filesize($file);
+
+        if (!$file_size)
+            exit("Verify file, something wrong with your file");
+
+        $duration = ($file_size / $ratio);
+        $minutes = floor($duration / 60);
+        $seconds = $duration - ($minutes * 60);
+        $seconds = round($seconds);
+        echo "$minutes:$seconds minutes";
     }
 }
