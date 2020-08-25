@@ -370,7 +370,6 @@
 
                     var xhr = new window.XMLHttpRequest();
                     console.log(Unit_Count);
-
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
 

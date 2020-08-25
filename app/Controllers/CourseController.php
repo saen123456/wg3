@@ -217,13 +217,7 @@ class CourseController extends BaseController
     }
     public function Upload_Unit()
     {
-        error_reporting(E_ALL);
-        ini_set('display_errors', 'on');
-        $Unit_Index = $_GET['Unit_Index'];
-        echo $Unit_Index;
-        console_log($Unit_Index);
-
-        /*$model = new Course_model();
+        $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
         $bucket = $storage->bucket('workgress');
@@ -234,15 +228,14 @@ class CourseController extends BaseController
         $User_id = $this->session->get("User_id");
         $Course_id = $this->session->get("Course_id");
         $Unit_Index = $_GET['Unit_Index'];
+        console_log($Course_id);
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/workgress/" . $Video_Name;
             $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
-        }*/
-
-        //return redirect()->to(base_url('test55'));
+        }
     }
     public function Upload_Picture_Course()
     {
