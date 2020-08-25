@@ -10,7 +10,8 @@
 		"google/apiclient": "2.7",
 		"facebook/graph-sdk": "^5.7",
 		"ext-gd": "*",
-		"google/cloud-storage": "^1.22"
+		"google/cloud-storage": "^1.22",
+		"james-heinrich/getid3": "^1.9"
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "1.6.*",

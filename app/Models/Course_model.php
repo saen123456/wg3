@@ -60,10 +60,9 @@ class Course_model extends Model
         $sql = "SELECT max(course.course_id) from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ";
         return $this->connect_postgresdb->getOne($sql);
     }
-    public function Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name)
+    public function Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name, $Video_Duration)
     {
-        //echo $user_first_name;
-        $sql = "INSERT INTO video (video_name,video_link,create_date,update_date) VALUES ('$Video_Name','$Video_link',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
+        $sql = "INSERT INTO video (video_name,video_time,video_link,create_date,update_date) VALUES ('$Video_Name','$Video_Duration','$Video_link',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
 
         $sql2 = "INSERT INTO unit (unit_name,create_date,update_date) VALUES ('$Unit_Name',now() AT TIME ZONE 'Asia/Bangkok', now() AT TIME ZONE 'Asia/Bangkok')";
