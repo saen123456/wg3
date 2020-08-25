@@ -208,10 +208,22 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
+    public function Test_Upload()
+    {
+
+        $file = $_FILES;
+        $getId3 = new \getID3();
+
+        $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
+        $Video_Name = $file['Unit_Video_File_Test']['name'];
+        //$this->calculateFileSize($Video_TmpName);
+        $Get_Duration = $getId3->analyze($Video_TmpName);
+        $Video_Duration = $Get_Duration['playtime_string'];
+        echo $Video_Name . " Duration = " . $Video_Duration;
+    }
     public function Upload_Unit()
     {
         $getId3 = new \getID3();
-
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
@@ -224,7 +236,7 @@ class CourseController extends BaseController
         $Course_id = $this->session->get("Course_id");
         $Unit_Index = $_GET['Unit_Index'];
 
-        $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
+        $Video_TmpName = $file['Unit_Video_File']['tmp_name'];
         $Get_Duration = $getId3->analyze($Video_TmpName);
         $Video_Duration = $Get_Duration['playtime_string'];
 
@@ -384,21 +396,7 @@ class CourseController extends BaseController
             echo view('Course/SearchCourse', $data);
         }
     }
-    public function Test_Upload()
-    {
 
-        $file = $_FILES;
-        $getId3 = new \getID3();
-
-        $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
-        $Video_Name = $file['Unit_Video_File_Test']['name'];
-        $content = file_get_contents($Video_TmpName);
-
-        //$this->calculateFileSize($Video_TmpName);
-        $Get_Duration = $getId3->analyze($Video_TmpName);
-        $Video_Duration = $Get_Duration['playtime_string'];
-        echo $Video_Name . " Duration = " . $Video_Duration;
-    }
     public function getDuration($file)
     {
         if (file_exists($file)) {
