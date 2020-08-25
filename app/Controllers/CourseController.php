@@ -6,7 +6,7 @@ use App\Models\Course_model;
 
 use Google\Cloud\Storage\StorageClient;
 
-use \GetId3\GetId3Core as GetId3;
+use \getID3\GetId3Core as GetId3;
 
 class CourseController extends BaseController
 {
@@ -379,5 +379,18 @@ class CourseController extends BaseController
             $data['msg'] = "ไม่เจอผลลัพธ์ที่ค้นหา";
             echo view('Course/SearchCourse', $data);
         }
+    }
+    public function Test_Upload()
+    {
+
+        $file = $_FILES;
+        $getId3 = new getID3();
+
+        $content = file_get_contents($file['Unit_Video_File_Test']['tmp_name']);
+        $Video_Name = $file['Unit_Video_File_Test']['name'];
+
+        $Get_Duration = $getId3->analyze($Video_Name);
+        $Video_Duration = $Get_Duration['playtime_string'];
+        echo $Video_Name . " Duration = " . $Video_Duration;
     }
 }

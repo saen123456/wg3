@@ -177,7 +177,23 @@
                                                             </div>
                                                         </form>
                                                     </td>
-
+                                                    <td>
+                                                        <form action="<?= site_url('/CourseController/Test_Upload') ?>" method="post" enctype="multipart/form-data">
+                                                            <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ 1 บทนำ " />
+                                                            <br>
+                                                            <div class="col-sm-3">
+                                                                <input id="avatar" class="file-loading" type="file" name="Unit_Video_File_Test">
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <div class="progress progress-striped active">
+                                                                    <div class="progress-bar" style="width:0%"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
+                                                            </div>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             </table>
 
