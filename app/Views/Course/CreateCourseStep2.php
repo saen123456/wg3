@@ -16,7 +16,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="<?php echo base_url('assets/course/css/price-dropdown.css'); ?>" type="text/css" media="screen">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" rel="preconnect"></script>
+    <script src="<?php echo base_url('assets/jquery.min.js'); ?>" rel="preload"></script>
     <script src="https://cdn.tiny.cloud/1/js76qyi19edy15b7redb48ihbx9clxwbtiq6igcwwzog8lwf/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!-- Css for form upload -->
