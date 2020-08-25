@@ -40,10 +40,9 @@
         <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
         <!-- CSS Card Course -->
-        <link rel="preload" href="<?php echo base_url('assets/css/categorycourse.css'); ?>" as="style" onload="this.rel='stylesheet'">
+        <link rel="preload" href="<?php echo base_url('assets/css/card.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
     </head>
-
     <?php
     $this->session = \Config\Services::session();
     if ($this->session->get("Role_name") == 'student') {
@@ -175,9 +174,8 @@
                                     <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'admin') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'teacher') { ?>
                                     <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
@@ -197,118 +195,80 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <header class="masthead text-white text-center">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-9 mx-auto">
-                            <h1 class="mb-5">ยินดีต้อนรับเข้าสู่ Workgress</h1>
-                            <h3>คุณพร้อมที่จะเรียนรู้สิ่งใหม่หรือยัง
-                            </h3>
-                        </div>
-                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                            <form>
-                                <div class="form-row">
 
 
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </header>
+
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <br>
-            <div class="container">
-                <div class="float-sm-right">
-                    <label class="dropdown">
-                        <div class="dd-button">
-                            ตัวกรอง
-                        </div>
-                        <input type="checkbox" class="dd-input" id="test">
-                        <ul class="dd-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+            <!-- คอร์สของฉัน          -->
+            <div class="colorlib-classes">
+                <div class="container">
+                    <br>
 
-                        </ul>
-
-                    </label>
-                </div>
-                <div class="float-sm-left">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตร ไอทีและซอฟแวร์</h2>
-                </div>
-                <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
-                    <h3>
-                        <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="38" height="2" fill="black" />
-                        </svg>
-                    </h3>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" width="40%"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if (isset($data)) {
-                                foreach ($data as $row) :
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                                                <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width: 284px;height: 190px;">
-                                                <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                                                <?php echo $row['course_name'] ?><br>
-                                                <?php echo $row['course_description'] ?><br>
-                                                สร้างโดย <?php echo $row['first_name'] ?><br><br>
-                                            </a>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-
-                                        </td>
-                                        <td style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 24px;line-height: 28px;color: #0DC08B;"><br><br><br>
-                                            <?php
-                                                    if ($row['course_price'] == '0') {
-                                                        echo "Free";
-                                                    } else {
-                                                        echo $row['course_price'] . " THB";
-                                                    }
-
-                                                    ?>
-                                        </td>
-                                    </tr>
-                                <?php
-                                    endforeach;
-                                } else { ?>
-                                <div class="alert alert-warning" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Workgress!</strong> <?php echo $msg ?>
-                                </div>
-                            <?php
-                            }
+                    <div class="float-sm-left">
+                        <div style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 28px;display: flex;align-items: center;color: #4650E5;">ยินดีต้อนรับ <?php echo $this->session->get("Full_name") ?></div>
+                        <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรของฉัน</h2>
+                    </div>
+                    <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
+                        <h3>
+                            <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="38" height="2" fill="black" />
+                            </svg>
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <?php
+                        foreach ($My_Course as $row) :
                             ?>
-                        </tbody>
-                    </table>
+                            <div class="col-md-3 animate-box">
+                                <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                                    <div class="card" style="width:268px;">
+                                        <ul class="list-group list-group-flush">
+                                            <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+                                            <div class="profilecourse">
+                                                <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                            </div>
+                                            <br>
+                                            <div class="card-body">
+                                                <div class="font-titlecourse">
+                                                    <?php echo $row['course_name'] ?>
+                                                </div>
+                                                <div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <li class="list-group-item">
 
+                                                    <div class="font-coursecomment">
+                                                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
+                                                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                                                    </div>
+
+                                                    <div class="font-courseprice">
+                                                        <?php
+                                                            if ($row['course_price'] == '0') {
+                                                                echo "Free";
+                                                            } else {
+                                                                echo $row['course_price'] . " THB";
+                                                            }
+
+                                                            ?>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php
+                        endforeach;
+                        ?>
+                    </div>
                 </div>
             </div>
-
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -407,6 +367,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -485,20 +446,20 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <!-- AdminLTE App -->
-    <script src="dist2/js/adminlte.min.js"></script>
+    <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
 
     <!-- Waypoints -->
-    <script src="assets/course/js/jquery.waypoints.min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
 
     <!-- Flexslider -->
-    <script src="assets/course/js/jquery.flexslider-min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
 
     <!-- Main -->
-    <script src="assets/course/js/main.js"></script>
+    <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
 </body>
 
 </html>

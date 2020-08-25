@@ -20,9 +20,11 @@ class UserController extends BaseController
     public function index()
     {
         if ($this->session->get("Role_name") == 'student' || $this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+            $User_id = $this->session->get("User_id");
             $Course_model = new Course_model();
             $data['Course_Info'] = $Course_model->Select_Course_HomePage();
             $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            $data['Course_Register'] = $Course_model->Select_Course_Register($User_id);
             echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
@@ -44,10 +46,13 @@ class UserController extends BaseController
     //HomePage_Login
     public function homepage()
     {
+
         if ($this->session->get("Role_name") == 'student' || $this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+            $User_id = $this->session->get("User_id");
             $Course_model = new Course_model();
             $data['Course_Info'] = $Course_model->Select_Course_HomePage();
             $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            $data['Course_Register'] = $Course_model->Select_Course_Register($User_id);
             echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
@@ -65,7 +70,9 @@ class UserController extends BaseController
      */
     public function reset_password_page()
     {
-        echo view('home/Reset_Password');
+        $Course_model = new Course_model();
+        $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+        echo view('home/Reset_Password', $data);
     }
     /**
      * get_otp_page
@@ -75,9 +82,14 @@ class UserController extends BaseController
     public function get_otp_page()
     {
         if ($this->session->get("Email")) {
-            echo view('home/Get_Otp');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            echo view('home/Get_Otp', $data);
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            echo view('home/HomePage', $data);
         }
     }
     /**
@@ -89,9 +101,14 @@ class UserController extends BaseController
     public function confirm_password()
     {
         if ($this->session->get("Email")) {
-            echo view('home/Confirm_Password');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            echo view('home/Confirm_Password', $data);
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            echo view('home/HomePage', $data);
         }
     }
 
@@ -127,11 +144,15 @@ class UserController extends BaseController
      */
     public function Register()
     {
-        echo view('home/Register');
+        $Course_model = new Course_model();
+        $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+        echo view('home/Register', $data);
     }
     public function login()
     {
-        echo view('home/login');
+        $Course_model = new Course_model();
+        $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+        echo view('home/login',$data);
     }
     /**
      * updatetoteacherpage
@@ -144,7 +165,10 @@ class UserController extends BaseController
         if ($this->session->get("Role_name") == 'student') {
             echo view('login/UpdatetoTeacher');
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            echo view('home/HomePage', $data);
         }
     }
     public function add_course()
@@ -153,7 +177,10 @@ class UserController extends BaseController
         if ($this->session->get("Role_name") == 'teacher') {
             echo view('Course/course');
         } else {
-            echo view('home/HomePage');
+            $Course_model = new Course_model();
+            $data['Course_Info'] = $Course_model->Select_Course_HomePage();
+            $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
+            echo view('home/HomePage', $data);
         }
     }
 
@@ -468,6 +495,7 @@ class UserController extends BaseController
     public function User_Logout()
     {
         $this->session->remove($this->Data);
+        $this->session->remove($this->User_JoinCourse);
         $this->session->destroy();
         return redirect()->to(base_url('home'));
     }

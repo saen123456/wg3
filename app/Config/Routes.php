@@ -53,12 +53,13 @@ $routes->get('/chart', 'AdminController::Chart');
 //Courseuser//notlogin
 $routes->add('/viewcourse/(:alphanum)', 'CourseUserController::CourseView/$1');
 $routes->add('/subscribe/course/(:alphanum)', 'CourseUserController::User_Register_Course/$1');
-
+$routes->add('/courseuser/learn/(:alphanum)', 'CourseUserController::User_LearnCourse/$1');
 //Course
 $routes->get('/course', 'CourseController::Manage_Course');
 $routes->add('/course/createcourse', 'CourseController::CreateCourse');
 $routes->get('/alldevelopment', 'CourseController::Category_Course');
 $routes->get('/search/course', 'CourseController::Search_Course');
+$routes->get('/my-courses/learning', 'CourseUserController::My_Course');
 
 //Config-Course
 $routes->add('/course/manage/config/(:any)', 'CourseController::CreateCourseStep2/$1');

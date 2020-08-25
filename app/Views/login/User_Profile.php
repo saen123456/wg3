@@ -107,24 +107,24 @@
 
 							<!-- Level two dropdown-->
 							<li class="dropdown-submenu dropdown-hover">
-								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT</a>
+								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
 								<ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-									<li>
-										<a tabindex="-1" href="#" class="dropdown-item">PostgreSql</a>
-									</li>
+									<li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+								</ul>
+							</li>
 
-									<!-- Level three dropdown-->
-									<li class="dropdown-submenu">
-										<a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHP</a>
-										<ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-											<li><a href="#" class="dropdown-item">Codeigniter 4</a></li>
-											<li><a href="#" class="dropdown-item">Laravel</a></li>
-										</ul>
-									</li>
-									<!-- End Level three -->
-
-									<li><a href="#" class="dropdown-item">Selenium</a></li>
-									<li><a href="#" class="dropdown-item">AdoDB</a></li>
+							<li class="dropdown-submenu dropdown-hover">
+								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
+								<ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+									<li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
+									<li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
 								</ul>
 							</li>
 							<!-- End Level two -->
@@ -170,6 +170,7 @@
 							</a>
 							<div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+								<a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
 								<?php
 								if ($this->session->get("Role_name") == 'student') {
 									?>
@@ -177,10 +178,10 @@
 								<?php
 								} else if ($this->session->get("Role_name") == 'admin') { ?>
 									<a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
 								<?php
 								} else if ($this->session->get("Role_name") == 'teacher') { ?>
-									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+									<a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
 								<?php
 								}
 								?>
@@ -275,7 +276,7 @@
 												<li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">แก้ไข</a></li>
 												<li class="nav-item"><a class="nav-link" href="#photo" data-toggle="tab">ภาพถ่าย</a></li>
 												<li class="nav-item"><a class="nav-link" href="#accout" data-toggle="tab">บัญชี</a></li>
-												<li class="nav-item"><a class="nav-link" href="#info" data-toggle="tab">ประวัติส่วนตัว</a></li>
+
 											</ul>
 										</div><!-- /.card-header -->
 										<div class="card-body">

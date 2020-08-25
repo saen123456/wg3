@@ -39,6 +39,9 @@
             ],
         });
     </script>
+    <?php
+    $this->session = \Config\Services::session();
+    ?>
 </head>
 
 
@@ -371,11 +374,7 @@
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
 
-                        // url: "<?php
-                                    //         echo site_url('/CourseController/Upload_Unit?unit=' . $count . '');
-                                    //         // echo site_url('/CourseController/Upload_Test');
-                                    //         
-                                    ?>",
+                        //url: "http://localhost:8080/projectwg/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
                         type: "POST",
                         data: new FormData($form[0]),
                         contentType: false,
@@ -543,6 +542,6 @@
 <script src="<?php echo base_url('assets/course/step2/js/main.js'); ?>"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 
 </html>

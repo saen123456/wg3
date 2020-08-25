@@ -11,33 +11,33 @@
     <title>Workgress</title>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist2/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('dist2/css/adminlte.min.css'); ?>">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link href="dist2/css/landing-page1.css" rel="stylesheet">
+    <link href="<?php echo base_url('dist2/css/landing-page1.css'); ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/dropdown.css'); ?>" type="text/css" media="screen">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="plugins/toastr/toastr.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css'); ?>">
+    <script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+    <script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>"></script>
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="assets/course/css/animate.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css'); ?>">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="assets/course/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/course/css/style.css'); ?>">
 
     <!-- Modernizr JS -->
-    <script src="assets/course/js/modernizr-2.6.2.min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>"></script>
 
-    <link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
     <!-- CSS Card Course -->
     <link rel="preload" href="<?php echo base_url('assets/css/card.css'); ?>" as="style" onload="this.rel='stylesheet'">
@@ -168,17 +168,19 @@
               </a>
               <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
                 <?php
                 if ($this->session->get("Role_name") == 'student') {
                   ?>
                   <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
                 <?php
                 } else if ($this->session->get("Role_name") == 'admin') { ?>
+                  <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                   <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-                  <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+
                 <?php
                 } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                  <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                  <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                 <?php
                 }
                 ?>
@@ -224,12 +226,12 @@
       <div class="colorlib-classes">
         <div class="container">
           <br>
-          <a href="#">
+          <a href="<?= base_url('/my-courses/learning'); ?>">
             <div class="float-sm-right" style="font-family: 'Roboto';font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">
             <div style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 28px;display: flex;align-items: center;color: #4650E5;">ยินดีต้อนรับ <?php echo $this->session->get("Full_name") ?></div>
-            <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">คอร์สของฉัน</h2>
+            <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรของฉัน</h2>
           </div>
 
 
@@ -242,134 +244,55 @@
           </div>
 
           <div class="row">
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
+            <?php
+            if (isset($Course_Register)) {
+              foreach ($Course_Register as $row3) :
+                ?>
+                <div class="col-md-3 animate-box">
+                  <a href="<?= base_url('/viewcourse/' . $row3['course_id']); ?>">
+                    <div class="card" style="width:268px;">
+                      <ul class="list-group list-group-flush">
+                        <img class="card-img-top" src="<?php echo $row3['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+                        <div class="profilecourse">
+                          <img src="<?php echo $row3['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                        </div>
+                        <br>
+                        <div class="card-body">
+                          <div class="font-titlecourse">
+                            <?php echo $row3['course_name'] ?>
+                          </div>
+                          <div class="font-ownercourse"><?php echo $row3['first_name'] ?></div>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <li class="list-group-item">
+
+                            <div class="font-coursecomment">
+                              <i class="fa fa-users" aria-hidden="true"> 1273</i>
+                              <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                            </div>
+
+                            <div class="font-courseprice">
+                              <?php
+                                  if ($row3['course_price'] == '0') {
+                                    echo "Free";
+                                  } else {
+                                    echo $row3['course_price'] . " THB";
+                                  }
+                                  ?>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
                     </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
+                  </a>
+                </div>
+            <?php
+              endforeach;
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -383,7 +306,7 @@
       <div class="colorlib-loader"></div>
       <div class="colorlib-classes">
         <div class="container">
-          <a href="#">
+          <a href="<?php echo base_url('/alldevelopment'); ?>">
             <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">
@@ -448,230 +371,6 @@
             <?php
             endforeach;
             ?>
-
-            <!-- <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-md-3 animate-box">
-              <div class="card" style="width:268px;">
-                <ul class="list-group list-group-flush">
-                  <img class="card-img-top" src="<?php echo base_url('assets/img/course1.png'); ?>" alt="Card image">
-                  <div class="profilecourse">
-                    <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle">
-                  </div>
-                  <br>
-                  <div class="card-body">
-                    <div class="font-titlecourse">
-                      Database : Practical PostgreSQL
-                    </div>
-                    <div class="font-ownercourse">Pipat Angkaew</div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <li class="list-group-item">
-
-                      <div class="font-coursecomment">
-                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                      </div>
-
-                      <div class="font-courseprice">THB 600</div>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div> -->
 
           </div>
         </div>
@@ -853,20 +552,20 @@
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
   <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
   <!-- AdminLTE App -->
-  <script src="dist2/js/adminlte.min.js"></script>
+  <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
 
   <!-- Waypoints -->
-  <script src="assets/course/js/jquery.waypoints.min.js"></script>
+  <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
 
   <!-- Flexslider -->
-  <script src="assets/course/js/jquery.flexslider-min.js"></script>
+  <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
 
   <!-- Main -->
-  <script src="assets/course/js/main.js"></script>
+  <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
 </body>
 
 </html>

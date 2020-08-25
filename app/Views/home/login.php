@@ -29,32 +29,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Workgress</title>
 
     <!-- Font Awesome Icons -->
-    <link rel="preload" href="plugins/fontawesome-free/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>" as="style" onload="this.rel='stylesheet'">
     <!-- Theme style -->
-    <link rel="preload" href="dist2/css/adminlte.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('dist2/css/adminlte.min.css'); ?>" as="style" onload="this.rel='stylesheet'">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="preconnect" onload="this.rel='stylesheet'">
     <link rel="preload" href="<?php echo base_url('dist2/css/landing-page1.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" rel="preconnect"></script>
 
-    <link rel="preload" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="plugins/toastr/toastr.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('plugins/toastr/toastr.min.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
-    <script src="plugins/sweetalert2/sweetalert2.min.js" rel="preload"></script>
-    <script src="plugins/toastr/toastr.min.js" rel="preload"></script>
+    <script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>" rel="preload"></script>
+    <script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>" rel="preload"></script>
 
     <!-- Animate.css -->
-    <link rel="preload" href="assets/course/css/animate.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('assets/course/css/animate.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
     <!-- Theme style  -->
-    <link rel="preload" href="assets/course/css/style.css " as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('assets/course/css/style.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
     <!-- Modernizr JS -->
-    <script src="assets/course/js/modernizr-2.6.2.min.js" rel="preload"></script>
+    <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>" rel="preload"></script>
 
-    <link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
+    <!-- CSS Card Course -->
+    <link rel="preload" href="<?php echo base_url('assets/css/card.css'); ?>" as="style" onload="this.rel='stylesheet'">
 </head>
 
 
@@ -74,9 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="<?php echo base_url('/home'); ?>">Home <span class="sr-only">(current)</span></a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large" style="background: #7C5CE9;"></i></a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -87,24 +87,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <!-- Level two dropdown-->
                             <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT</a>
+                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
                                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li>
-                                        <a tabindex="-1" href="#" class="dropdown-item">PostgreSql</a>
-                                    </li>
+                                    <li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                </ul>
+                            </li>
 
-                                    <!-- Level three dropdown-->
-                                    <li class="dropdown-submenu">
-                                        <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHP</a>
-                                        <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                            <li><a href="#" class="dropdown-item">Codeigniter 4</a></li>
-                                            <li><a href="#" class="dropdown-item">Laravel</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Level three -->
-
-                                    <li><a href="#" class="dropdown-item">Selenium</a></li>
-                                    <li><a href="#" class="dropdown-item">AdoDB</a></li>
+                            <li class="dropdown-submenu dropdown-hover">
+                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
+                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
+                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
                                 </ul>
                             </li>
                             <!-- End Level two -->
@@ -116,7 +116,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- SEARCH FORM -->
                 <div class="container">
                     <ul class="nav navbar-nav mx-auto">
-
                         <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
                             <div class="input-group">
                                 <div class="inputlong">
@@ -141,7 +140,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- Messages Dropdown Menu -->
                         <div class="input-group input-group-sm">
                             <!-- Notifications Dropdown Menu -->
-
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                                <b>เข้าสู่ระบบ</b>
+                            </button>
+                            <div class="magin-ll">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-register">
+                                    <b>ลงทะเบียน</b>
+                                </button>
+                            </div>
                         </div>
                     </ul>
                 </div>
@@ -249,125 +255,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="colorlib-loader"></div>
             <div class="colorlib-classes">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-3 col-md-offset-2 text-center colorlib-heading animate-box"><br>
-                            <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรยอดนิยม</h2>
-                            <h3>
-                                <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="38" height="2" fill="black" />
-                                </svg>
-                            </h3>
-                        </div>
+                    <a href="#">
+                        <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
+                    </a>
+                    <div class="float-sm-left">
+                        <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรยอดนิยม</h2>
+                    </div>
+
+                    <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
+                        <h3>
+                            <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="38" height="2" fill="black" />
+                            </svg>
+                        </h3>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-1.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Developing Mobile Apps</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        foreach ($Course_Info as $row) :
+                            ?>
 
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-2.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Convert PSD to HTML</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
+                            <div class="col-md-3 animate-box">
+                                <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                                    <div class="card" style="width:268px;">
+                                        <ul class="list-group list-group-flush">
+                                            <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+                                            <div class="profilecourse">
+                                                <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                            </div>
+                                            <br>
+                                            <div class="card-body">
+                                                <div class="font-titlecourse">
+                                                    <?php echo $row['course_name'] ?>
+                                                </div>
+                                                <div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <li class="list-group-item">
 
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-3.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
+                                                    <div class="font-coursecomment">
+                                                        <i class="fa fa-users" aria-hidden="true"> 1273</i>
+                                                        <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                                                    </div>
 
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-4.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Developing Mobile Apps</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
+                                                    <div class="font-courseprice">
+                                                        <?php
+                                                            if ($row['course_price'] == '0') {
+                                                                echo "Free";
+                                                            } else {
+                                                                echo $row['course_price'] . " THB";
+                                                            }
 
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-5.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Learned Smoke Effects</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
+                                                            ?>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
 
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-6.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-6.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 animate-box">
-                            <div class="classes">
-                                <div class="classes-img" style="background-image: url(assets/course/images/classes-6.jpg);">
-                                    <span class="price text-center"><small>$450</small></span>
-                                </div>
-                                <div class="desc">
-                                    <h3><a href="#">Convert HTML to WordPress</a></h3>
-                                    <p>Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                                    <p><a href="#" class="btn-learn">Learn More <i class="icon-arrow-right3"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        endforeach;
+                        ?>
 
                     </div>
                 </div>
-
             </div>
 
             <div style="background-image: url(assets/img/bg3.png); background-size: 100%; height:501px;">

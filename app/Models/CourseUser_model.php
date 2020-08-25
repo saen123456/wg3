@@ -27,11 +27,6 @@ class CourseUser_model extends Model
         $this->connect_postgresdb->debug = false;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
-    // public function Select_Video()
-    // {
-    //     $sql = "SELECT video_id,video_name,video_link from video";
-    //     return $this->connect_postgresdb->execute($sql);
-    // }
     public function Select_Courseinfo($id)
     {
         $sql = "SELECT course.course_id,course.course_name,course.course_description,course.course_price, CONCAT(user_register.first_name,CONCAT(' ',user_register.last_name)) as full_name , course.update_date , course.image_course from
@@ -63,7 +58,24 @@ class CourseUser_model extends Model
     }
     public function Select_UserCourse($User_id, $Course_id)
     {
-        $sql = "SELECT * FROM course WHERE course_id = '$Course_id' and user_id = '$User_id'";
-        return $this->connect_postgresdb->getOne($sql);
+        $sql = "SELECT * FROM user_register_course WHERE course_id = '$Course_id' and user_id = '$User_id'";
+        $Count_Row = $this->connect_postgresdb->execute($sql);
+        if ($Count_Row->RecordCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function Select_Video_Of_Course($id)
+    {
+        //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
+        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '$id' ORDER BY course_unit.unit_index";
+        //$sql = "SELECT video_id,video_name,video_link from video";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_My_Courses($User_id)
+    {
+        $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC";
+        return $this->connect_postgresdb->execute($sql);
     }
 }

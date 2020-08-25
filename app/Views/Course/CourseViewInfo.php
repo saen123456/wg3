@@ -134,10 +134,10 @@
                 <div class="container">
                     <ul class="nav navbar-nav mx-auto">
 
-                        <form class="form-inline ml-1 ml-md-1">
+                        <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
                             <div class="input-group">
                                 <div class="inputlong">
-                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
+                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่" name="Search_Course_Query">
                                 </div>
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
@@ -167,17 +167,19 @@
                             </a>
                             <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                                <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
                                 <?php
                                 if ($this->session->get("Role_name") == 'student') {
                                     ?>
                                     <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'admin') { ?>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                 <?php
                                 }
                                 ?>
@@ -269,14 +271,27 @@
                                                             if ($row['course_price'] == '0') {
                                                                 echo "Free";
                                                             } else {
-                                                                echo $row['course_price'] . " THB";
+                                                                //echo $row['course_price'] . " THB";
+                                                                echo "0 THB";
                                                             }
                                                             ?> </p>
                                     </div>
                                     <div class="col-6">
                                         <div class="block"></div>
                                         <div class="block"></div>
-                                        <a href="<?= base_url('/subscribe/course/' . $row['course_id']); ?>"> <button class="btn btn-default btn-buy">ลงทะเบียนตอนนี้</button> </a>
+                                        <?php
+                                            if ($this->session->get("User_JoinCourse") == false) {
+                                                ?>
+                                            <a href="<?= base_url('/subscribe/course/' . $row['course_id']); ?>"> <button class="btn btn-default btn-buy">ลงทะเบียนตอนนี้</button> </a>
+
+                                        <?php
+                                            } else {
+
+                                                ?>
+                                            <a href="<?= base_url('/courseuser/learn/' . $row['course_id']); ?>"> <button class="btn btn-default btn-buy">ไปยังหลักสูตร</button> </a>
+                                        <?php
+                                            }
+                                            ?>
                                     </div>
                                 </div>
                             </div>

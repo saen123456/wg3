@@ -206,10 +206,24 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
-
+    function console_log($output, $with_script_tags = true)
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+            ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
+    }
     public function Upload_Unit()
     {
-        $model = new Course_model();
+        error_reporting(E_ALL);
+        ini_set('display_errors', 'on');
+        $Unit_Index = $_GET['Unit_Index'];
+        echo $Unit_Index;
+        console_log($Unit_Index);
+
+        /*$model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
         $bucket = $storage->bucket('workgress');
@@ -226,7 +240,7 @@ class CourseController extends BaseController
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
-        }
+        }*/
 
         //return redirect()->to(base_url('test55'));
     }

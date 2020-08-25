@@ -168,17 +168,19 @@
                             </a>
                             <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                                <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
                                 <?php
                                 if ($this->session->get("Role_name") == 'student') {
                                     ?>
                                     <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'admin') { ?>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                 <?php
                                 }
                                 ?>
