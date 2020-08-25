@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d759ad2e863e1394d6bb43e2dd29a47",
+    "content-hash": "afd89460f2c635cd505b94f1e2e48553",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -998,6 +998,51 @@
                 }
             ],
             "time": "2020-07-23T08:41:23+00:00"
+        },
+        {
+            "name": "phansys/getid3",
+            "version": "v1.9.4-p2",
+            "target-dir": "GetId3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phansys/GetId3.git",
+                "reference": "cfd6e1c5bdbb6f042bc33b53559b1ff9775426dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phansys/GetId3/zipball/cfd6e1c5bdbb6f042bc33b53559b1ff9775426dd",
+                "reference": "cfd6e1c5bdbb6f042bc33b53559b1ff9775426dd",
+                "shasum": ""
+            },
+            "suggest": {
+                "ext-exif": "EXIF extension is required for graphic modules."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GetId3_": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "James Heinrich",
+                    "email": "info@getid3.org",
+                    "homepage": "http://www.getid3.org"
+                }
+            ],
+            "description": "This package integrates the GetId3 library with the Symfony2 project, emulating the PSR-0 CS",
+            "homepage": "http://www.getid3.org",
+            "keywords": [
+                "getid3",
+                "metadata",
+                "tags"
+            ],
+            "abandoned": "james-heinrich/getid3",
+            "time": "2012-08-30T21:21:23+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -2114,6 +2159,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

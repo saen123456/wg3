@@ -6,7 +6,8 @@ use App\Models\Course_model;
 
 use Google\Cloud\Storage\StorageClient;
 
-require_once('./james-heinrich/getid3/getid3/getid3.php');
+use \GetId3\GetId3Core as GetId3;
+
 class CourseController extends BaseController
 {
     protected $session;
@@ -208,9 +209,10 @@ class CourseController extends BaseController
     }
     public function Upload_Unit()
     {
+        require_once('./');
         $model = new Course_model();
         $file = $_FILES;
-        $getid3 = new getID3;
+        $getid3 = new GetId3;
         $storage = new StorageClient();
         $bucket = $storage->bucket('workgress');
 

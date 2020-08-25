@@ -218,6 +218,10 @@ class ComposerStaticInit6f294648d4af0d2701a988ab36922671
             array (
                 0 => __DIR__ . '/..' . '/google/apiclient/src',
             ),
+            'GetId3_' => 
+            array (
+                0 => __DIR__ . '/..' . '/phansys/getid3',
+            ),
         ),
     );
 

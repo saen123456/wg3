@@ -10,4 +10,5 @@ return array(
     'Rize\\UriTemplate' => array($vendorDir . '/rize/uri-template/src'),
     'Google_Service_' => array($vendorDir . '/google/apiclient-services/src'),
     'Google_' => array($vendorDir . '/google/apiclient/src'),
+    'GetId3_' => array($vendorDir . '/phansys/getid3'),
 );
