@@ -108,7 +108,6 @@
                 </div>
             </div>
             <div id="signup-form">
-
                 <?php
                 $this->session = \Config\Services::session();
                 if (session('correct')) : ?>
@@ -162,7 +161,7 @@
                                                     <td><input class="case" type="checkbox" /></td>
                                                     <td>
                                                         <form action="#" id="uploadform">
-                                                            <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ 1 บทนำ " />
+                                                            <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
                                                             <br>
                                                             <div class="col-sm-3">
                                                                 <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
@@ -190,9 +189,64 @@
                         </div>
                 </fieldset>
 
+                <h3>คำถามสำหรับหลักสูตร</h3>
+                <fieldset class="fieldset2">
+                    <h2>คำถามสำหรับหลักสูตร</h2>
+                    <div class="form-row2">
+                        <div class="form-flex">
+                            <div class="form-group">
+                                <div style="text-align:center;">
+                                    <div class="container">
+
+                                        <h3>Multi form file uploader using Jquery, PHP, Ajax, and Bootstrap - HackandPhp programming blog </h3>
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>
+                                                <ul class="list-inline">
+                                                    <li><button class="btn btn-success addmore" type="button"><i class="fa fa-plus"></i> เพิ่ม Unit</button></li>
+                                                    <li> <button class="btn btn-danger delete" type="button"><i class="fa fa-trash"></i> ลบ Unit</button></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <table class="table table-bordered table-hover" id="table_auto">
+                                            <tr id="row_0">
+                                                <td><input class="case" type="checkbox" /></td>
+                                                <td>
+                                                    <form action="#" id="uploadform">
+                                                        <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
+                                                        <br>
+                                                        <div class="col-sm-3">
+                                                            <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="progress progress-striped active">
+                                                                <div class="progress-bar" style="width:0%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <hr>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+
 
                 <h3>หน้าเริ่มต้นของหลักสูตร</h3>
-
                 <fieldset class="fieldset2">
                     <h2>หน้าเริ่มต้นของหลักสูตร</h2>
                     <div class="form-find">
@@ -200,17 +254,6 @@
                             account</p>
                     </div>
                     <div class="fieldset-content2">
-                        <!-- <div class="form-group">
-                            <label for="find_bank" class="form-label2">ชื่อหลักสูตร</label>
-                            <input type="text" name="find_bank" id="find_bank" placeholder="ใส่ชื่อหลักสูตรของคุณ" maxlength="60" />
-                        </div>
-                        <div class="form-group">
-                            <label for="find_bank" class="form-label2">คำอธิบายหลักสูตร</label>
-                            <textarea placeholder="ใส่คำอธิบายของหลักสูตรคุณ">
-                                    </textarea>
-                        </div> -->
-
-
 
                         <div class="form-group-image">
                             <label for="image" class="form-label2">ภาพหลักสูตร</label>
@@ -256,23 +299,6 @@
 
                             </div>
                         </div>
-
-
-
-
-                        <!-- <div class="form-group-image">
-                            <label for="image" class="form-label2">วิดีโอโปรโมชั่น</label>
-                            <div class="row">
-                                <div class="main-image">
-                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
-                                </div>
-
-                                <div class="main-text">
-                                    <p>ผู้เรียนที่ได้ชมวิดีโอส่งเสริมการขายที่ผลิตอย่างดี มีแนวโน้มที่จะลงทะเบียนเพิ่มขึ้น 5 เท่า ในหลักสูตรของคุณ เราเห็นสถิติเพิ่มขึ้นถึง 10 เท่า สำหรับวิดีโอที่ทำได้อย่างดีเยี่ยม! </p>
-                                </div>
-                            </div>
-                        </div> -->
-
                     </div>
 
                 </fieldset>
@@ -312,7 +338,7 @@
                     html += '<td><input class="case" type="checkbox"/></td>';
                     html += '<td>';
                     html += '<form action="#" id="uploadform">';
-                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ ' + j + '" />';
+                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ" />';
                     html += '<br>';
                     html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';

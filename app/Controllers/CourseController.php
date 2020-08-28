@@ -302,8 +302,6 @@ class CourseController extends BaseController
         } else {
             echo view('Home/HomePage');
         }
-
-        //echo $Course_Price." ".$Course_id;
     }
     public function Edit_Price()
     {
@@ -323,7 +321,7 @@ class CourseController extends BaseController
     }
     public function Upload_Edit_Unit()
     {
-        $getId3 = new \getID3();
+        $getId3 = new \getID3(); //libary for check video time
         $model = new Course_model();
 
         $file = $_FILES;

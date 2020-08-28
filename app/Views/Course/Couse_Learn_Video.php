@@ -218,7 +218,6 @@ endif
         </nav>
         <!-- /.navbar -->
 
-
         <!-- Main content -->
         <div class="overlay"></div>
         <div class="container">
@@ -242,6 +241,7 @@ endif
                     <div style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 25px;">0.Basic Leadership
                         <!-- <?php
                                 foreach ($data as $row) :
+                                    $test = $row['unit_index'];
                                     if ($row['unit_index'] == '1') {
                                         echo $row['unit_index'] . " " . $row['course_name'] . "<br>";
                                     }
@@ -261,13 +261,18 @@ endif
             </script>
             <script>
                 var player = videojs('pd-video');
+                player.on('timeupdate', function() {
+                    var test = player.duration();
+                    if (player.currentTime() == player.duration()) {
+                        console.log(player.duration());
+                    }
+                });
                 player.playlist([
                     <?php
                     foreach ($data as $row) :
                         ?> {
                             name: '<?php echo $row['unit_name'] ?>',
-                            // description: '<?php echo $row['unit_name'] ?>',
-                            duration: 2905,
+                            duration: 1211,
                             poster: '<?php echo $row['image_course'] ?>',
                             sources: [{
                                 src: '<?php echo $row['video_link'] ?>',
@@ -283,14 +288,11 @@ endif
                                                 ?>'
                                 }
                             ]
-
                         },
                     <?php
                     endforeach;
                     ?>
-
                 ]);
-
                 player.playlistUi();
                 player.playlist.autoadvance(0);
                 player.playlist.repeat(true);
@@ -500,6 +502,7 @@ endif
     <!-- Content Wrapper. Contains page content -->
     <!-- ./wrapper -->
 
-</body>
+    <!-- Bootstrap 4 -->
+    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
 </html>

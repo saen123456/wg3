@@ -45,7 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>" rel="preload"></script>
 
   <!-- Animate.css -->
-  <link rel="preload" href="<?php echo base_url('/course/css/animate.css'); ?>" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="<?php echo base_url('assets/course/css/animate.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
   <!-- Theme style  -->
   <link rel="preload" href="<?php echo base_url('assets/course/css/style.css'); ?>" as="style" onload="this.rel='stylesheet'">
@@ -211,7 +211,7 @@ endif
       <div class="colorlib-loader"></div>
       <div class="colorlib-classes">
         <div class="container">
-          <a href="#">
+          <a href="<?= base_url('alldevelopment'); ?>">
             <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">
@@ -306,7 +306,7 @@ endif
       <div class="colorlib-classes">
         <br>
         <div class="container">
-          <a href="#">
+          <a href="<?= base_url('alldevelopment'); ?>">
             <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">

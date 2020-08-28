@@ -152,7 +152,7 @@ class UserController extends BaseController
     {
         $Course_model = new Course_model();
         $data['Course_Info'] = $Course_model->Select_Course_HomePage();
-        echo view('home/login',$data);
+        echo view('home/login', $data);
     }
     /**
      * updatetoteacherpage

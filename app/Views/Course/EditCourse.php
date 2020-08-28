@@ -343,7 +343,7 @@
                     html += '<td><input class="case" type="checkbox"/></td>';
                     html += '<td>';
                     html += '<form action="#" id="uploadform">';
-                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ ' + j + '" />';
+                    html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ" />';
                     html += '<br>';
                     html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
@@ -527,7 +527,7 @@
                     var Unit_Index;
 
                     var Unit_Index = ++window.Unit_Index2;
-                    //console.log(Unit_Index);
+                    console.log(Unit_Index);
                     //document.cookie = "Unit_Index = " + Unit_Index;
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Index,
