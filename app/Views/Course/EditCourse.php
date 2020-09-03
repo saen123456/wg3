@@ -40,8 +40,9 @@
         });
     </script>
 </head>
-
-
+<?php
+$this->session = \Config\Services::session();
+?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -52,7 +53,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-danger btn-block" role="button" type="button"><i class="fa fa-trash"></i> ลบ </a>
+                        <a class="btn btn-danger btn-block sent_course_id" role="button" type="button" data-toggle="modal" data-target="#modal-danger" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-trash"></i> ลบ </a>
                     </div>
                     <div class="col-md-8 col-md-offset-1">
                         <p>เราให้สัญญากับผู้เรียนถึงการเข้าถึงได้ตลอดชีพ ดังนั้นจึงไม่สามารถลบหลักสูตรได้หลังจากที่ผู้เรียนได้ลงทะเบียนแล้ว</p>
@@ -60,6 +61,105 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ลบผู้ใช้</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ยืนยันที่จะลบใช่หรือไม่ ?&hellip;</p>
+                <p id="output"></p>
+                <!-- <input id="user_id" name="user_id" value="" /> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href = '<?= site_url('/CourseController/change_status') ?>';">ยืนยัน</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <p id="show_unit_name"></p>
+                </h4>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
+                            <form id="form_quiz">
+                                <input type="text" class="form-control" id="Quiz" aria-describedby="basic-addon3" required>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary" role="button" type="button" id="show-hide" disabled="disabled"> ตกลง </button>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="col-md-8">
+                        <div id="content">
+                            <div id="Radio_Answer">
+                                <h2>ใส่คำตอบของคุณที่นี่</h2>
+                                ข้อที่ 1
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1">
+                                    </span>
+                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1">
+                                </div>
+                                <br>
+                                ข้อที่ 2
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="2">
+                                    </span>
+                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_2" id="Choice_Answer_2">
+                                </div>
+                                <br>
+                                ข้อที่ 3
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="3">
+                                    </span>
+                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_3" id="Choice_Answer_3">
+                                </div>
+                                <br>
+                                ข้อที่ 4
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="4">
+                                    </span>
+                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_4" id="Choice_Answer_4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="Quiz_Btn">ยืนยัน</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -84,7 +184,7 @@
             <div id="signup-form">
 
                 <?php
-                $this->session = \Config\Services::session();
+
                 if (session('correct')) : ?>
                     <div class="alert alert-success" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -139,35 +239,59 @@
                                                     $Unit_Index = $row['unit_index'];
                                                     ?>
                                                     <tr id="row_0">
-                                                        <td><input class="case" type="checkbox" /></td>
+                                                        <td class="td_minimal"><input class="case" type="checkbox" /></td>
                                                         <td>
                                                             <form action="#" method="post">
                                                                 <div class="col-sm-5">
                                                                     <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>">
+
                                                                 </div>
                                                                 <div class="col-sm-1">
                                                                     <!-- <input type="submit" value="แก้ไขชื่อ unit" class="btn btn-primary" style="width:120px;height:35px" /> -->
-                                                                    <button type="submit" class="btn btn-primary" style="width:120px;height:35px" formaction="<?= base_url('/CourseController/Edit_Unit_Name?Unit_ID=' . $row['unit_id'] . '/') ?>">แก้ไขชื่อ unit</button>
+                                                                    <button type="submit" class="btn btn-info" style="width:110px;height:30px" formaction="<?= base_url('/CourseController/Edit_Unit_Name?Unit_ID=' . $row['unit_id'] . '/') ?>">แก้ไขชื่อ unit</button>
                                                                 </div>
                                                             </form>
 
-                                                            <br><br><br><br>
+                                                            <br><br><br>
+
                                                             <form action="#" id="uploadform">
                                                                 <div class="col-sm-3">
-                                                                    <input id="avatar" class="file-loading" type="file" name="Unit_Video_File" value="<?php echo $row['video_link'] ?>">
+                                                                    <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo "วิดีโอของคุณ : " . $row['video_name'] ?>" style="width:500px" readonly>
                                                                 </div>
-                                                                <div class="col-sm-5">
+                                                                <br><br><br>
+                                                                <div class="col-sm-3">
+                                                                    <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
+                                                                </div>
+                                                                <div class="col-sm-4">
                                                                     <div class="progress progress-striped active">
                                                                         <div class="progress-bar" style="width:0%"></div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-2">
-                                                                    <button class="btn btn-sm btn-info upload" type="submit" var Unit_Index="<?= $row['unit_index'] ?>"><i class="fa fa-upload"></i> Upload Unit</button>
+                                                                <div class="col-sm-3">
+                                                                    <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> แก้ไข video</button>
+                                                                    <!-- <button class="btn btn-success sent_unit_name" type="button" data-toggle="modal" data-target="#quizModal" var unit_name="<?= $row['unit_name'] ?>"><i class="fa fa-plus"></i> เพื่ม คำถาม</button> -->
+                                                                    <a class="btn btn-success sent_unit_name" role="button" type="button" data-toggle="modal" data-target="#quizModal" var unit_name="<?php echo $row['unit_name'] ?>" var unit_index="<?php echo $row['unit_index'] ?>" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-plus"></i> เพื่ม คำถาม </a>
                                                                 </div>
                                                             </form>
                                                         </td>
-
                                                     </tr>
+                                                    <?php
+                                                        foreach ($Quiz as $row) :
+                                                            ?>
+                                                        <tr>
+                                                            <td class="td_left" colspan="2">
+                                                                <div class="col-md-6">
+                                                                    <p class="text-size">คำถาม : <?php echo $row['quiz_question_name'] ?></p>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <button class="btn btn-block " type="button"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button>
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                        endforeach;
+                                                        ?>
 
                                                 <?php
                                                 endforeach;
@@ -218,7 +342,7 @@
                             <div class="form-group">
                                 <label for="find_bank" class="form-label2">ชื่อหลักสูตร</label>
                                 <input type="text" name="course_name" id="find_bank" placeholder="ใส่ชื่อหลักสูตรของคุณ" maxlength="60" value="<?php echo $Course_Name ?>" /><br>
-                                <input type="submit" value="ยืนยันการแก้ไขชื่อหลักสูตร" class="btn btn-primary" style="width:200px;height:35px" />
+                                <input type="submit" value="ยืนยันการแก้ไขชื่อหลักสูตร" class="btn btn-info" style="width:200px;height:35px" />
                             </div>
                         </form>
                         <form action="<?= site_url('/CourseController/Edit_Course_Description') ?>" method="post">
@@ -228,7 +352,7 @@
                                 <?php echo $Course_Description ?>
                                 </textarea>
                                 <br>
-                                <input type="submit" value="ยืนยันการแก้ไขคำอธิบายหลักสูตร" class="btn btn-primary" style="width:230px;height:35px" />
+                                <input type="submit" value="ยืนยันการแก้ไขคำอธิบายหลักสูตร" class="btn btn-info" style="width:230px;height:35px" />
                             </div>
                         </form>
 
@@ -443,7 +567,6 @@
                             });
                             return xhr;
                         }
-
                     });
                     $form.on('click', '.cancel', function() {
                         xhr.abort();
@@ -528,7 +651,6 @@
 
                     var Unit_Index = ++window.Unit_Index2;
                     console.log(Unit_Index);
-                    //document.cookie = "Unit_Index = " + Unit_Index;
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Index,
                         type: "POST",
@@ -675,6 +797,13 @@
                     return false;
                 });
             });
+
+            $(".sent_course_id").click(function() {
+                $("#course_id").attr("value", $(this).attr('course_id'));
+                var course_id = $(this).attr('course_id');
+                //console.log(course_id);
+                document.getElementById('output').innerHTML = "รหัสคอร์ส " + course_id;
+            });
         </script>
 </body>
 <!-- JS -->
@@ -686,5 +815,106 @@
 <script src="<?php echo base_url('assets/course/step2/vendor2/nouislider/nouislider.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/course/step2/vendor2/wnumb/wNumb.js'); ?>"></script>
 <script src="<?php echo base_url('assets/course/step2/js/main.js'); ?>"></script>
+<script>
+    $(document).ready(function() {
+        $("#show-hide").click(function() {
+            var btn = $(this);
+            $("#content").toggle(function() {
+                btn.text($(this).css("display") === 'block' ? "ตกลง" : "ตกลง");
+            });
+        });
+    });
+    var unit_index;
+    var course_id;
+    $(document).ready(function() {
+        $(".sent_unit_name").click(function() {
+            //console.log("test");
+            $("#unit_name").attr("value", $(this).attr('unit_name'));
+            var unit_name = $(this).attr('unit_name');
+            $("#unit_index").attr("value", $(this).attr('unit_index'));
+            unit_index = $(this).attr('unit_index');
+            $("#course_id").attr("value", $(this).attr('course_id'));
+            course_id = $(this).attr('course_id');
+            //console.log(course_id);
+            document.getElementById('show_unit_name').innerHTML = "ตั้งคำถาม ในส่วนของ " + unit_name;
+        });
+    });
+
+    $('#Quiz').on('input', function() {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    });
+
+    var Radio_Answer;
+    $(document).ready(function() {
+        $('#Radio_Answer').on("click", "input", function() {
+            Radio_Answer = $(this).val();
+            //console.log(Radio_Answer);
+            //console.log(typeof Radio_Answer);
+        });
+        $("#Quiz_Btn").click(function() {
+            //console.log(i++);
+            var Quiz = $("#Quiz").val();
+            var Choice_Answer_1 = $("#Choice_Answer_1").val();
+            var Choice_Answer_2 = $("#Choice_Answer_2").val();
+            var Choice_Answer_3 = $("#Choice_Answer_3").val();
+            var Choice_Answer_4 = $("#Choice_Answer_4").val();
+
+            /*alert("คอร์ส id " + window.course_id + "\n" + "คำถาม " + Quiz + "\n" + Choice_Answer_1 + " " + Choice_Answer_2 + " " + Choice_Answer_3 + " " + Choice_Answer_4 + "\n" +
+                " คำตอบคือข้อที่ " + window.Radio_Answer + "\n" + " unit_index " + window.unit_index);*/
+            var base_url = '<?= base_url('course/edit/') ?>';
+            $.ajax({
+                url: "<?= site_url('/CourseController/Create_Quiz') ?>",
+                method: "POST",
+                data: {
+                    Course_id: window.course_id,
+                    Quiz: Quiz,
+                    Choice_Answer_1: Choice_Answer_1,
+                    Choice_Answer_2: Choice_Answer_2,
+                    Choice_Answer_3: Choice_Answer_3,
+                    Choice_Answer_4: Choice_Answer_4,
+                    Radio_Answer: Radio_Answer,
+                    Unit_Index: window.unit_index
+                },
+                success: function(data) {
+                    window.location.href = base_url + "/" + window.course_id;
+                }
+            });
+        });
+    });
+    $(document).ready(function() {
+
+        $("#form_quiz").validate({
+            rules: {
+                Quiz: "required"
+            },
+            messages: {
+                Quiz: "Please specify your name"
+
+            }
+        });
+        $('#form_quiz input').on('keyup blur', function() {
+            if ($('#form_quiz').valid()) {
+
+                $('button.btn').prop('disabled', false);
+                $("#show-hide").click(function() {
+                    $('#content').css('display', 'block');
+                    $("#content").fadeIn("slow");
+                });
+
+            } else {
+                $('button.btn').prop('disabled', 'disabled');
+                $('#content').css('display', 'none');
+                $("#content").fadeOut("slow");
+
+            }
+        });
+    });
+</script>
 
 </html>

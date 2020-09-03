@@ -98,7 +98,9 @@ input[type=radio] {
 h2 {
   font-size: 30px;
   margin: 0px; }
-
+  #content{
+    display: none;
+  }
 .body2 {
   font-size: 14px;
   line-height: 1.6;
@@ -294,7 +296,7 @@ input {
     position: absolute;
     content: '';
     width: 2px;
-    height: 250px;
+    height: 180px;
     background: #ebebeb;
     left: 64px;
     top: 50%;
@@ -542,7 +544,9 @@ input.error {
       -webkit-transform: none;
       -o-transform: none;
       -ms-transform: none; }
-
+      .td_minimal{
+        width: 40px;
+      }
 .your-money {
   font-size: 16px;
   color: #222;

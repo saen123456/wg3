@@ -158,7 +158,7 @@
 
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <tr id="row_0">
-                                                    <td><input class="case" type="checkbox" /></td>
+                                                    <td><input  class="td_minimal" type="checkbox" /></td>
                                                     <td>
                                                         <form action="#" id="uploadform">
                                                             <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
@@ -177,74 +177,16 @@
                                                         </form>
                                                     </td>
                                                 </tr>
+
+
                                             </table>
-
                                             <hr>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                 </fieldset>
-
-                <h3>คำถามสำหรับหลักสูตร</h3>
-                <fieldset class="fieldset2">
-                    <h2>คำถามสำหรับหลักสูตร</h2>
-                    <div class="form-row2">
-                        <div class="form-flex">
-                            <div class="form-group">
-                                <div style="text-align:center;">
-                                    <div class="container">
-
-                                        <h3>Multi form file uploader using Jquery, PHP, Ajax, and Bootstrap - HackandPhp programming blog </h3>
-                                        <hr>
-
-                                        <div class="row">
-                                            <div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>
-                                                <ul class="list-inline">
-                                                    <li><button class="btn btn-success addmore" type="button"><i class="fa fa-plus"></i> เพิ่ม Unit</button></li>
-                                                    <li> <button class="btn btn-danger delete" type="button"><i class="fa fa-trash"></i> ลบ Unit</button></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <table class="table table-bordered table-hover" id="table_auto">
-                                            <tr id="row_0">
-                                                <td><input class="case" type="checkbox" /></td>
-                                                <td>
-                                                    <form action="#" id="uploadform">
-                                                        <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
-                                                        <br>
-                                                        <div class="col-sm-3">
-                                                            <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
-                                                        </div>
-                                                        <div class="col-sm-5">
-                                                            <div class="progress progress-striped active">
-                                                                <div class="progress-bar" style="width:0%"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-                                        <hr>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </fieldset>
-
-
 
                 <h3>หน้าเริ่มต้นของหลักสูตร</h3>
                 <fieldset class="fieldset2">
@@ -267,7 +209,7 @@
                                 <div class=" main-text">
                                     <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
                                         โดยไม่มีข้อความบนรูปภาพ</p>
-                                    <form action="<?= site_url('/CourseController/Upload_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage">
+                                    <form action="<?= site_url('/CourseController/Upload_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadUnit">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
@@ -384,11 +326,11 @@
                 $(document).on('submit', 'form#uploadform', function(e) {
                     e.preventDefault();
                     $form = $(this);
-                    uploadImage($form);
+                    uploadUnit($form);
 
                 });
 
-                function uploadImage($form) {
+                function uploadUnit($form) {
 
                     $form.find('.progress-bar').removeClass('progress-bar-success')
                         .removeClass('progress-bar-danger');
@@ -417,7 +359,6 @@
                                     var percentComplete = (e.loaded || e.position) * 100 / e.total;
                                     //Do something with upload progress
                                     console.log(percentComplete);
-
                                     $form.find('.progress-bar').width(percentComplete + '%').html(percentComplete + '%');
                                 }
                             }, false);
@@ -514,7 +455,7 @@
         </script>
         <script>
             $(document).ready(function() {
-                $('#uploadImage').submit(function(event) {
+                $('#uploadUnit').submit(function(event) {
                     if ($('#uploadFile').val()) {
                         event.preventDefault();
                         $('#loader-icon').show();

@@ -88,6 +88,7 @@ class CourseController extends BaseController
             ];
             $this->session->set($this->Data);
             $data['data'] = $model->Select_Course_Edit($Course_id);
+            $data['Quiz'] = $model->Select_Quiz($Course_id);
             echo view('Course/EditCourse', $data);
             //echo $Course_Id;
         } else {
@@ -131,6 +132,21 @@ class CourseController extends BaseController
         ];
         $this->session->set($this->Data);
         return redirect()->to(base_url('course/manage/config/' . $course_id));
+    }
+    public function Create_Quiz()
+    {
+        $Course_id = $this->request->getVar('Course_id');
+        $Quiz = $this->request->getVar('Quiz');
+        $Choice_Answer_1 = $this->request->getVar('Choice_Answer_1');
+        $Choice_Answer_2 = $this->request->getVar('Choice_Answer_2');
+        $Choice_Answer_3 = $this->request->getVar('Choice_Answer_3');
+        $Choice_Answer_4 = $this->request->getVar('Choice_Answer_4');
+        $Radio_Answer = $this->request->getVar('Radio_Answer');
+        $Unit_Index = $this->request->getVar('Unit_Index');
+
+        $model_course = new Course_model();
+        $model_course->Insert_Quiz($Course_id, $Quiz, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer, $Unit_Index);
+        //return redirect()->to(base_url('course/edit/' . $Course_id));
     }
     public function change_status()
     {
@@ -354,10 +370,10 @@ class CourseController extends BaseController
         $Unit_Name = $this->request->getVar('Unit_Name');
         $Unit_ID = $_GET['Unit_ID'];
         $Course_id = $this->session->get("Course_id");
-        //echo $Unit_ID . " " . $Unit_Name;
-        $model->Update_Unit_Name($Unit_ID, $Unit_Name);
+        echo $Unit_ID . " " . $Unit_Name;
+        /*$model->Update_Unit_Name($Unit_ID, $Unit_Name);
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขชื่อ unit ของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
-        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);*/
     }
     public function Edit_Course_Name()
     {
