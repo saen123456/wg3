@@ -57,6 +57,22 @@ class CourseController extends BaseController
             echo view('home/HomePage');
         }
     }
+    public function Edit_Quiz()
+    {
+
+        if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
+            $Course_Id = $_GET['course_id'];
+            if (isset($_GET['quiz_id'])) {
+                $Quiz_Id = $_GET['quiz_id'];
+                echo $Quiz_Id . " " . $Course_Id;
+            } else {
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspมีบางอย่างผิดพลาด&nbsp&nbsp&nbsp&nbsp&nbsp';
+                //return redirect()->to(base_url('course/edit/' . $Course_id))->with('incorrect', $msg);
+            }
+        } else {
+            echo view('login/HomePage');
+        }
+    }
     public function CreateCourse()
     {
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
@@ -89,6 +105,8 @@ class CourseController extends BaseController
             $this->session->set($this->Data);
             $data['data'] = $model->Select_Course_Edit($Course_id);
             $data['Quiz'] = $model->Select_Quiz($Course_id);
+            $data['Quiz_anw'] = $model->Select_Quiz_Anw($Course_id);
+            $data['Quiz_anw2'] = $model->Select_Quiz_Anw2($Course_id);
             echo view('Course/EditCourse', $data);
             //echo $Course_Id;
         } else {
@@ -133,8 +151,13 @@ class CourseController extends BaseController
         $this->session->set($this->Data);
         return redirect()->to(base_url('course/manage/config/' . $course_id));
     }
+
     public function Create_Quiz()
     {
+
+        // $test = "<script>document.write(p1)</script>";
+        // $model_course = new Course_model();
+        // $model_course->Insert_Test($test);
         $Course_id = $this->request->getVar('Course_id');
         $Quiz = $this->request->getVar('Quiz');
         $Choice_Answer_1 = $this->request->getVar('Choice_Answer_1');
@@ -144,10 +167,21 @@ class CourseController extends BaseController
         $Radio_Answer = $this->request->getVar('Radio_Answer');
         $Unit_Index = $this->request->getVar('Unit_Index');
 
+
         $model_course = new Course_model();
         $model_course->Insert_Quiz($Course_id, $Quiz, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer, $Unit_Index);
         //return redirect()->to(base_url('course/edit/' . $Course_id));
     }
+    public function console_log($output, $with_script_tags = true)
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+            ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
+    }
+
     public function change_status()
     {
         $course_id = $this->session->get("Course_id");

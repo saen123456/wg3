@@ -97,6 +97,7 @@ $this->session = \Config\Services::session();
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">
                     <p id="show_unit_name"></p>
+
                 </h4>
 
             </div>
@@ -154,6 +155,79 @@ $this->session = \Config\Services::session();
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="Quiz_Btn">ยืนยัน</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+
+                </h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
+                            <form id="form_quiz">
+                                <?php
+                                $quiz_id = $_COOKIE['quiz_id'];
+                                ?>
+                                <?php foreach ($Quiz as $row) : ?>
+
+                                    <?php if ($quiz_id == $row['quiz_question_id']) { ?>
+                                        <input type="text" class="form-control" id="Quiz" aria-describedby="basic-addon3" value="<?php echo $row['quiz_question_name'] ?>">
+                                    <?php } ?>
+                                <?php endforeach ?>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="col-md-8">
+
+                        <div id="Radio_Answer">
+                            <h2>ใส่คำตอบของคุณที่นี่</h2>
+                            <?php
+                            $i = 1;
+                            foreach ($Quiz_anw as $row2) :
+
+                                ?>
+
+                                <?php if ($row2['quiz_question_id'] == $quiz_id) { ?>
+                                    ข้อที่ <?php echo $i ?>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1">
+                                        </span>
+                                        <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1" value="<?php echo $row2['quiz_answer_name'] ?>">
+                                    </div>
+                                    <br>
+                                <?php } ?>
+                            <?php $i++;
+                                if ($i == 5) $i = 1;
+
+                            endforeach;
+                            ?>
+                        </div>
+
                     </div>
                 </div>
 
@@ -232,6 +306,8 @@ $this->session = \Config\Services::session();
 
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <?php
+
+                                                $i = 1;
                                                 foreach ($data as $row) :
                                                     $Image_Course = $row['image_course'];
                                                     $Course_Name = $row['course_name'];
@@ -276,59 +352,37 @@ $this->session = \Config\Services::session();
                                                         </td>
                                                     </tr>
                                                     <?php
-                                                        foreach ($Quiz as $row) :
-                                                            ?>
-                                                        <tr>
-                                                            <td class="td_left" colspan="2">
-                                                                <div class="col-md-6">
-                                                                    <p class="text-size">คำถาม : <?php echo $row['quiz_question_name'] ?></p>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <button class="btn btn-block " type="button"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button>
-                                                                </div>
+                                                        foreach ($Quiz as $row2) :
+                                                            if ($row2['unit_index'] == $i) {
+                                                                ?>
+                                                            <tr>
+                                                                <td class="td_left" colspan="2">
+                                                                    <div class="col-md-6">
+                                                                        <p class="text-size">คำถาม : <?php echo $row2['quiz_question_name'] ?></p>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <!-- <button class="btn btn-block sent_edit_quiz" data-toggle="modal" data-target="#editModal" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button> -->
+                                                                        <button class="btn btn-block sent_edit_quiz" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button>
+                                                                    </div>
 
-                                                            </td>
-                                                        </tr>
+                                                                </td>
+                                                            </tr>
                                                     <?php
+                                                            }
                                                         endforeach;
                                                         ?>
-
                                                 <?php
+                                                    $i++;
                                                 endforeach;
                                                 ?>
-                                                <!-- <tr id="row_0">
-                                                    <td><input class="case" type="checkbox" /></td>
-                                                    <td>
-                                                        <form action="#" id="uploadform">
-                                                            <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น ส่วนที่ 1 บทนำ " />
-                                                            <br>
-                                                            <div class="col-sm-3">
-                                                                <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
-                                                            </div>
-                                                            <div class="col-sm-5">
-                                                                <div class="progress progress-striped active">
-                                                                    <div class="progress-bar" style="width:0%"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button>
-                                                            </div>
-                                                        </form>
-                                                    </td>
-                                                </tr> -->
-
                                             </table>
-
                                             <hr>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                 </fieldset>
-
 
                 <h3>หน้าเริ่มต้นของหลักสูตร</h3>
 
@@ -386,11 +440,7 @@ $this->session = \Config\Services::session();
 
                                         <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
                                         <span class="input-group-btn">
-                                            <!-- image-preview-clear button -->
-                                            <!-- <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                                <span class="glyphicon glyphicon-remove"></span> Clear
-                                            </button> -->
-                                            <!-- image-preview-input -->
+
                                             <div class="btn btn-default image-preview-input">
                                                 <span class="glyphicon glyphicon-folder-open"></span>
                                                 <span class="image-preview-input-title">Browse</span>
@@ -410,22 +460,6 @@ $this->session = \Config\Services::session();
 
                             </div>
                         </div>
-
-
-
-
-                        <!-- <div class="form-group-image">
-                            <label for="image" class="form-label2">วิดีโอโปรโมชั่น</label>
-                            <div class="row">
-                                <div class="main-image">
-                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>">
-                                </div>
-
-                                <div class="main-text">
-                                    <p>ผู้เรียนที่ได้ชมวิดีโอส่งเสริมการขายที่ผลิตอย่างดี มีแนวโน้มที่จะลงทะเบียนเพิ่มขึ้น 5 เท่า ในหลักสูตรของคุณ เราเห็นสถิติเพิ่มขึ้นถึง 10 เท่า สำหรับวิดีโอที่ทำได้อย่างดีเยี่ยม! </p>
-                                </div>
-                            </div>
-                        </div> -->
 
                     </div>
 
@@ -831,12 +865,46 @@ $this->session = \Config\Services::session();
             //console.log("test");
             $("#unit_name").attr("value", $(this).attr('unit_name'));
             var unit_name = $(this).attr('unit_name');
+
             $("#unit_index").attr("value", $(this).attr('unit_index'));
             unit_index = $(this).attr('unit_index');
+
             $("#course_id").attr("value", $(this).attr('course_id'));
             course_id = $(this).attr('course_id');
-            //console.log(course_id);
+
             document.getElementById('show_unit_name').innerHTML = "ตั้งคำถาม ในส่วนของ " + unit_name;
+        });
+    });
+    var base_url = '<?= base_url('course/edit/') ?>';
+    var quiz_id;
+    $(document).ready(function() {
+        $(".sent_edit_quiz").click(function() {
+            $("#quiz_id").attr("value", $(this).attr('quiz_id'));
+            quiz_id = $(this).attr('quiz_id');
+            $("#course_id").attr("value", $(this).attr('course_id'));
+            var course_id = $(this).attr('course_id');
+            console.log(window.quiz_id);
+            //document.getElementById('show_quiz_id').innerHTML = quiz_id;
+            //document.cookie = "quiz_id = " + window.quiz_id;
+
+            var site_url = '<?= site_url('CourseController/Edit_Quiz') ?>';
+            //window.location.href = site_url + "?quiz_id = " + window.quiz_id;
+            var url = "http://localhost:2020/projectwg/CourseController/Edit_Quiz?quiz_id=" + window.quiz_id + "&course_id=" + course_id + "";
+            var encoded_url = encodeURIComponent(url);
+
+            var decoded_url = decodeURIComponent(encoded_url);
+            window.location.href = decoded_url;
+            // $.ajax({
+            //     url: base_url + "/" + window.course_id,
+            //     method: "POST",
+            //     data: {
+            //         quiz_id: quiz_id,
+            //     },
+            //     success: function(data) {
+            //         console.log('test');
+            //     }
+            // });
+
         });
     });
 
@@ -865,8 +933,9 @@ $this->session = \Config\Services::session();
             var Choice_Answer_3 = $("#Choice_Answer_3").val();
             var Choice_Answer_4 = $("#Choice_Answer_4").val();
 
-            /*alert("คอร์ส id " + window.course_id + "\n" + "คำถาม " + Quiz + "\n" + Choice_Answer_1 + " " + Choice_Answer_2 + " " + Choice_Answer_3 + " " + Choice_Answer_4 + "\n" +
-                " คำตอบคือข้อที่ " + window.Radio_Answer + "\n" + " unit_index " + window.unit_index);*/
+            // alert("คอร์ส id " + window.course_id + "\n" + "คำถาม " + Quiz + "\n" + Choice_Answer_1 + " " + Choice_Answer_2 + " " + Choice_Answer_3 + " " + Choice_Answer_4 + "\n" +
+            //     " คำตอบคือข้อที่ " + window.Radio_Answer + "\n" + " unit_index " + window.unit_index);
+            //alert(typeof(window.Radio_Answer));
             var base_url = '<?= base_url('course/edit/') ?>';
             $.ajax({
                 url: "<?= site_url('/CourseController/Create_Quiz') ?>",
@@ -878,7 +947,7 @@ $this->session = \Config\Services::session();
                     Choice_Answer_2: Choice_Answer_2,
                     Choice_Answer_3: Choice_Answer_3,
                     Choice_Answer_4: Choice_Answer_4,
-                    Radio_Answer: Radio_Answer,
+                    Radio_Answer: window.Radio_Answer,
                     Unit_Index: window.unit_index
                 },
                 success: function(data) {
@@ -900,13 +969,11 @@ $this->session = \Config\Services::session();
         });
         $('#form_quiz input').on('keyup blur', function() {
             if ($('#form_quiz').valid()) {
-
                 $('button.btn').prop('disabled', false);
                 $("#show-hide").click(function() {
                     $('#content').css('display', 'block');
                     $("#content").fadeIn("slow");
                 });
-
             } else {
                 $('button.btn').prop('disabled', 'disabled');
                 $('#content').css('display', 'none');

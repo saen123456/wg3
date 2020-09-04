@@ -24,7 +24,7 @@ class App extends BaseConfig
 	|
 	*/
 	//public $baseURL = 'https://workgress.online';
-	public $baseURL = 'http://localhost:8080/projectwg';
+	public $baseURL = 'http://localhost:2020/projectwg';
 	/*
 	|--------------------------------------------------------------------------
 	| Index File

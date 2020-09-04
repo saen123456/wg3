@@ -68,7 +68,7 @@ class Course_model extends Model
         $sql2 = "SELECT max(quiz_question_id) FROM quiz_question";
         $Quiz_Question__Id = $this->connect_postgresdb->getOne($sql2);
 
-        if ($Radio_Answer == '1') {
+        if ($Radio_Answer == "1") {
             $sql3 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_1','1',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql3);
             $sql4 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_2','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
@@ -77,7 +77,7 @@ class Course_model extends Model
             $this->connect_postgresdb->execute($sql5);
             $sql6 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_4','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql6);
-        } else if ($Radio_Answer == '2') {
+        } else if ($Radio_Answer == "2") {
             $sql3 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_1','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql3);
             $sql4 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_2','1',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
@@ -86,7 +86,7 @@ class Course_model extends Model
             $this->connect_postgresdb->execute($sql5);
             $sql6 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_4','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql6);
-        } else if ($Radio_Answer == '3') {
+        } else if ($Radio_Answer == "3") {
             $sql3 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_1','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql3);
             $sql4 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_2','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
@@ -95,7 +95,7 @@ class Course_model extends Model
             $this->connect_postgresdb->execute($sql5);
             $sql6 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_4','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql6);
-        } else if ($Radio_Answer == '4') {
+        } else if ($Radio_Answer == "4") {
             $sql3 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_1','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
             $this->connect_postgresdb->execute($sql3);
             $sql4 = "INSERT INTO quiz_answer (quiz_answer_name,quiz_answer_correct,create_date,update_date,quiz_question_id) VALUES ('$Choice_Answer_2','0',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Quiz_Question__Id')";
@@ -229,7 +229,24 @@ class Course_model extends Model
     }
     public function Select_Quiz($Course_id)
     {
-        $sql = "SELECT * FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY course_quiz_unit.quiz_question_id DESC";
+        $sql = "SELECT * FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY course_quiz_unit.quiz_question_id ASC";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Quiz_Anw($Course_id)
+    {
+        $sql = "SELECT quiz_answer.quiz_question_id,quiz_answer.quiz_answer_name  FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id join quiz_answer on quiz_answer.quiz_question_id =  course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY quiz_answer.quiz_question_id";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Quiz_Anw2($Course_id)
+    {
+        $sql = "SELECT *  FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id join quiz_answer on quiz_answer.quiz_question_id =  course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY quiz_answer.quiz_question_id";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    /*public function Insert_Test($test)
+    {
+        $sql = "INSERT INTO test (test_name) VALUES ('$test')";
+        $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
+
+
+    }*/
 }
