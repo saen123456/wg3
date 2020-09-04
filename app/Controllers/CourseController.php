@@ -64,10 +64,10 @@ class CourseController extends BaseController
             $Course_Id = $_GET['course_id'];
             if (isset($_GET['quiz_id'])) {
                 $Quiz_Id = $_GET['quiz_id'];
-                echo $Quiz_Id . " " . $Course_Id;
+                echo $Quiz_Id . " and " . $Course_Id;
             } else {
                 $msg = '&nbsp&nbsp&nbsp&nbsp&nbspมีบางอย่างผิดพลาด&nbsp&nbsp&nbsp&nbsp&nbsp';
-                //return redirect()->to(base_url('course/edit/' . $Course_id))->with('incorrect', $msg);
+                return redirect()->to(base_url('course/edit/' . $Course_Id))->with('incorrect', $msg);
             }
         } else {
             echo view('login/HomePage');
@@ -105,8 +105,7 @@ class CourseController extends BaseController
             $this->session->set($this->Data);
             $data['data'] = $model->Select_Course_Edit($Course_id);
             $data['Quiz'] = $model->Select_Quiz($Course_id);
-            $data['Quiz_anw'] = $model->Select_Quiz_Anw($Course_id);
-            $data['Quiz_anw2'] = $model->Select_Quiz_Anw2($Course_id);
+
             echo view('Course/EditCourse', $data);
             //echo $Course_Id;
         } else {
@@ -170,6 +169,33 @@ class CourseController extends BaseController
 
         $model_course = new Course_model();
         $model_course->Insert_Quiz($Course_id, $Quiz, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer, $Unit_Index);
+        //return redirect()->to(base_url('course/edit/' . $Course_id));
+    }
+    public function Update_Quiz()
+    {
+
+        // $test = "<script>document.write(p1)</script>";
+        // $model_course = new Course_model();
+        // $model_course->Insert_Test($test);
+        $Quiz_Question_id = $this->request->getVar('Quiz_Question_id');
+        $Quiz = $this->request->getVar('Quiz');
+
+        $Quiz_Answer_id1 = $this->request->getVar('Quiz_Answer_id1');
+        $Quiz_Answer_id2 = $this->request->getVar('Quiz_Answer_id2');
+        $Quiz_Answer_id3 = $this->request->getVar('Quiz_Answer_id3');
+        $Quiz_Answer_id4 = $this->request->getVar('Quiz_Answer_id4');
+
+        $Choice_Answer_1 = $this->request->getVar('Choice_Answer_1');
+        $Choice_Answer_2 = $this->request->getVar('Choice_Answer_2');
+        $Choice_Answer_3 = $this->request->getVar('Choice_Answer_3');
+        $Choice_Answer_4 = $this->request->getVar('Choice_Answer_4');
+
+        $Radio_Answer2 = $this->request->getVar('Radio_Answer2');
+
+        //echo $Radio_Answer;
+
+        $model_course = new Course_model();
+        $model_course->Update_Quiz($Quiz_Question_id, $Quiz, $Quiz_Answer_id1, $Quiz_Answer_id2, $Quiz_Answer_id3, $Quiz_Answer_id4, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer2);
         //return redirect()->to(base_url('course/edit/' . $Course_id));
     }
     public function console_log($output, $with_script_tags = true)
@@ -447,6 +473,18 @@ class CourseController extends BaseController
             $data['msg'] = "ไม่เจอผลลัพธ์ที่ค้นหา";
             echo view('Course/SearchCourse', $data);
         }
+    }
+    public function test_query()
+    {
+        $model = new Course_model();
+        $quiz_id = $this->request->getVar('quiz_id');
+        $Course_id = $this->request->getVar('course_id');
+        $data = $model->Select_Quiz_Anw($Course_id, $quiz_id);
+        $datax = array();
+        while ($User = $data->fetchRow()) {
+            $datax[] = $User;
+        }
+        return json_encode($datax);
     }
 
     public function getDuration($file)

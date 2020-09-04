@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 require('adodb5/adodb.inc.php');
-
+$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 class Course_model extends Model
 {
 
@@ -109,6 +109,54 @@ class Course_model extends Model
         $sql7 = "INSERT INTO course_quiz_unit (course_id,quiz_question_id,unit_index) VALUES ('$Course_id','$Quiz_Question__Id','$Unit_Index')";
         $this->connect_postgresdb->execute($sql7);
     }
+
+    public function Update_Quiz($Quiz_Question_id, $Quiz, $Quiz_Answer_id1, $Quiz_Answer_id2, $Quiz_Answer_id3, $Quiz_Answer_id4, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer2)
+    {
+
+        $sql = "UPDATE quiz_question SET quiz_question_name ='$Quiz', update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id'";
+        $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
+
+
+        if ($Radio_Answer2 == "1") {
+            $sql3 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_1', quiz_answer_correct = '1' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id1'";
+            $this->connect_postgresdb->execute($sql3);
+            $sql4 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_2', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id2'";
+            $this->connect_postgresdb->execute($sql4);
+            $sql5 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_3', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id3'";
+            $this->connect_postgresdb->execute($sql5);
+            $sql6 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_4', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id4'";
+            $this->connect_postgresdb->execute($sql6);
+        } else if ($Radio_Answer2 == "2") {
+            $sql3 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_1', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id1'";
+            $this->connect_postgresdb->execute($sql3);
+            $sql4 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_2', quiz_answer_correct = '1' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id2'";
+            $this->connect_postgresdb->execute($sql4);
+            $sql5 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_3', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id3'";
+            $this->connect_postgresdb->execute($sql5);
+            $sql6 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_4', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id4'";
+            $this->connect_postgresdb->execute($sql6);
+        } else if ($Radio_Answer2 == "3") {
+            $sql3 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_1', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id1'";
+            $this->connect_postgresdb->execute($sql3);
+            $sql4 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_2', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id2'";
+            $this->connect_postgresdb->execute($sql4);
+            $sql5 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_3', quiz_answer_correct = '1' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id3'";
+            $this->connect_postgresdb->execute($sql5);
+            $sql6 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_4', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id4'";
+            $this->connect_postgresdb->execute($sql6);
+        } else if ($Radio_Answer2 == "4") {
+            $sql3 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_1', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id1'";
+            $this->connect_postgresdb->execute($sql3);
+            $sql4 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_2', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id2'";
+            $this->connect_postgresdb->execute($sql4);
+            $sql5 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_3', quiz_answer_correct = '0' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id3'";
+            $this->connect_postgresdb->execute($sql5);
+            $sql6 = "UPDATE quiz_answer SET quiz_answer_name ='$Choice_Answer_4', quiz_answer_correct = '1' ,update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE quiz_question_id = '$Quiz_Question_id' AND quiz_answer_id = '$Quiz_Answer_id4'";
+            $this->connect_postgresdb->execute($sql6);
+        }
+    }
+
+
     public function Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name, $Video_Duration)
     {
         $sql = "INSERT INTO video (video_name,video_time,video_link,create_date,update_date) VALUES ('$Video_Name','$Video_Duration','$Video_link',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
@@ -232,16 +280,13 @@ class Course_model extends Model
         $sql = "SELECT * FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY course_quiz_unit.quiz_question_id ASC";
         return $this->connect_postgresdb->execute($sql);
     }
-    public function Select_Quiz_Anw($Course_id)
+    public function Select_Quiz_Anw($Course_id, $quiz_id)
     {
-        $sql = "SELECT quiz_answer.quiz_question_id,quiz_answer.quiz_answer_name  FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id join quiz_answer on quiz_answer.quiz_question_id =  course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY quiz_answer.quiz_question_id";
+        $sql = "SELECT quiz_answer.quiz_answer_id,quiz_answer.quiz_question_id,quiz_answer.quiz_answer_name,quiz_question_name  FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id join quiz_answer on quiz_answer.quiz_question_id =  course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' AND quiz_answer.quiz_question_id = '$quiz_id' ORDER BY quiz_answer.quiz_question_id";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
-    public function Select_Quiz_Anw2($Course_id)
-    {
-        $sql = "SELECT *  FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id join quiz_answer on quiz_answer.quiz_question_id =  course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' ORDER BY quiz_answer.quiz_question_id";
-        return $this->connect_postgresdb->execute($sql);
-    }
+
     /*public function Insert_Test($test)
     {
         $sql = "INSERT INTO test (test_name) VALUES ('$test')";

@@ -178,22 +178,13 @@ $this->session = \Config\Services::session();
             </div>
             <div class="modal-body">
                 <div class="row">
-
-
                     <div class="col-md-8">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
+                            <div id="showquestionlist"> </div>
+                            <!-- <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
                             <form id="form_quiz">
-                                <?php
-                                $quiz_id = $_COOKIE['quiz_id'];
-                                ?>
-                                <?php foreach ($Quiz as $row) : ?>
-
-                                    <?php if ($quiz_id == $row['quiz_question_id']) { ?>
-                                        <input type="text" class="form-control" id="Quiz" aria-describedby="basic-addon3" value="<?php echo $row['quiz_question_name'] ?>">
-                                    <?php } ?>
-                                <?php endforeach ?>
-                            </form>
+                                <input type="text" class="form-control" id="Quiz" aria-describedby="basic-addon3" value="test">
+                            </form> -->
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -202,38 +193,27 @@ $this->session = \Config\Services::session();
 
                 <div class="row justify-content-between">
                     <div class="col-md-8">
-
-                        <div id="Radio_Answer">
-                            <h2>ใส่คำตอบของคุณที่นี่</h2>
-                            <?php
-                            $i = 1;
-                            foreach ($Quiz_anw as $row2) :
-
-                                ?>
-
-                                <?php if ($row2['quiz_question_id'] == $quiz_id) { ?>
-                                    ข้อที่ <?php echo $i ?>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1">
-                                        </span>
-                                        <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1" value="<?php echo $row2['quiz_answer_name'] ?>">
-                                    </div>
-                                    <br>
-                                <?php } ?>
-                            <?php $i++;
-                                if ($i == 5) $i = 1;
-
-                            endforeach;
-                            ?>
+                        <div id="Radio_Answer2">
+                            <div id="showanswerlist"> </div>
                         </div>
+                        <!-- <div id="Radio_Answer">
+                            <h2>ใส่คำตอบของคุณที่นี่</h2>
+                            ข้อที่
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1">
+                                </span>
+                                <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1" value="">
+                            </div>
+                            <br>
+                        </div> -->
 
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="Quiz_Btn">ยืนยัน</button>
+                <button type="button" class="btn btn-default" id="Edit_Quiz_Btn">ยืนยัน</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -361,8 +341,8 @@ $this->session = \Config\Services::session();
                                                                         <p class="text-size">คำถาม : <?php echo $row2['quiz_question_name'] ?></p>
                                                                     </div>
                                                                     <div class="col-md-2">
-                                                                        <!-- <button class="btn btn-block sent_edit_quiz" data-toggle="modal" data-target="#editModal" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button> -->
-                                                                        <button class="btn btn-block sent_edit_quiz" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button>
+                                                                        <button class="btn btn-block sent_edit_quiz" data-toggle="modal" data-target="#editModal" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button>
+
                                                                     </div>
 
                                                                 </td>
@@ -875,35 +855,54 @@ $this->session = \Config\Services::session();
             document.getElementById('show_unit_name').innerHTML = "ตั้งคำถาม ในส่วนของ " + unit_name;
         });
     });
-    var base_url = '<?= base_url('course/edit/') ?>';
+
     var quiz_id;
+    var course_id;
     $(document).ready(function() {
+
+
         $(".sent_edit_quiz").click(function() {
+            var base_url = '<?= base_url('CourseController/test_query') ?>';
             $("#quiz_id").attr("value", $(this).attr('quiz_id'));
             quiz_id = $(this).attr('quiz_id');
             $("#course_id").attr("value", $(this).attr('course_id'));
-            var course_id = $(this).attr('course_id');
+            course_id = $(this).attr('course_id');
             console.log(window.quiz_id);
             //document.getElementById('show_quiz_id').innerHTML = quiz_id;
             //document.cookie = "quiz_id = " + window.quiz_id;
 
-            var site_url = '<?= site_url('CourseController/Edit_Quiz') ?>';
-            //window.location.href = site_url + "?quiz_id = " + window.quiz_id;
-            var url = "http://localhost:2020/projectwg/CourseController/Edit_Quiz?quiz_id=" + window.quiz_id + "&course_id=" + course_id + "";
+            /*var url = "<?= site_url('CourseController/Edit_Quiz') ?>?quiz_id=" + window.quiz_id + "&course_id=" + course_id + "";
             var encoded_url = encodeURIComponent(url);
+            var decoded_url = decodeURIComponent(encoded_url);*/
+            //window.location.href = decoded_url;
+            $.ajax({
+                url: base_url,
+                method: "POST",
+                data: {
+                    quiz_id: window.quiz_id,
+                    course_id: window.course_id
+                },
+                success: function(data) {
+                    const obj = JSON.parse(data);
+                    console.log(obj);
 
-            var decoded_url = decodeURIComponent(encoded_url);
-            window.location.href = decoded_url;
-            // $.ajax({
-            //     url: base_url + "/" + window.course_id,
-            //     method: "POST",
-            //     data: {
-            //         quiz_id: quiz_id,
-            //     },
-            //     success: function(data) {
-            //         console.log('test');
-            //     }
-            // });
+
+                    $("#showanswerlist").html("");
+                    $("#showquestionlist").html("");
+
+                    if (obj.length > 0) {
+                        $("#showquestionlist").append("<div class='input-group'><span class='input-group-addon' id='basic-addon3'>ตั้งคำถามว่า : </span><form id='form_quiz'><input type='text' class='form-control' data-question-id='" + obj[0].quiz_question_id + "' id='Update_Quiz' aria-describedby='basic-addon3' value='" + obj[0].quiz_question_name + "'></form></div><br>");
+
+
+                        for (i = 0; i < obj.length; i++) {
+
+                            $("#showanswerlist").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
+                        }
+
+                    }
+                }
+
+            });
 
         });
     });
@@ -919,10 +918,11 @@ $this->session = \Config\Services::session();
     });
 
     var Radio_Answer;
+    var Radio_Answer2;
     $(document).ready(function() {
         $('#Radio_Answer').on("click", "input", function() {
             Radio_Answer = $(this).val();
-            //console.log(Radio_Answer);
+            console.log(Radio_Answer);
             //console.log(typeof Radio_Answer);
         });
         $("#Quiz_Btn").click(function() {
@@ -952,8 +952,73 @@ $this->session = \Config\Services::session();
                 },
                 success: function(data) {
                     window.location.href = base_url + "/" + window.course_id;
+                },
+                error: function(data) {
+                    alert("Error: " + data);
                 }
             });
+        });
+
+
+    });
+    $(document).ready(function() {
+        $('#Radio_Answer2').on("click", "input", function() {
+            Radio_Answer2 = $(this).val();
+            console.log(Radio_Answer2);
+            //console.log(typeof Radio_Answer);
+        });
+        $("#Edit_Quiz_Btn").click(function() {
+            //console.log(i++);
+            var Quiz_Question_id = $("#Update_Quiz").attr('data-question-id');
+            var Quiz = $("#Update_Quiz").val();
+            //console.log(Quiz_Question_id);
+
+            var Quiz_Answer_id1 = $("#Choice_Answer2_1").attr('data-answer-id');
+            //console.log(Quiz_Answer_id1);
+            var Quiz_Answer_id2 = $("#Choice_Answer2_2").attr('data-answer-id');
+            //console.log(Quiz_Answer_id2);
+            var Quiz_Answer_id3 = $("#Choice_Answer2_3").attr('data-answer-id');
+            //console.log(Quiz_Answer_id3);
+            var Quiz_Answer_id4 = $("#Choice_Answer2_4").attr('data-answer-id');
+            //console.log(Quiz_Answer_id4);
+
+
+            var Choice_Answer_1 = $("#Choice_Answer2_1").val();
+            var Choice_Answer_2 = $("#Choice_Answer2_2").val();
+            var Choice_Answer_3 = $("#Choice_Answer2_3").val();
+            var Choice_Answer_4 = $("#Choice_Answer2_4").val();
+
+            /*alert("คอร์ส id " + window.course_id + "\n" + "คำถาม " + Quiz + "\n" + Choice_Answer_1 + " " + Choice_Answer_2 + " " + Choice_Answer_3 + " " + Choice_Answer_4 + "\n" +
+                " คำตอบคือข้อที่ " + window.Radio_Answer2 + "\n");*/
+            //alert(typeof(window.Radio_Answer));
+
+
+            var base_url = '<?= base_url('course/edit/') ?>';
+            $.ajax({
+                url: "<?= site_url('/CourseController/Update_Quiz') ?>",
+                method: "POST",
+                data: {
+                    Quiz_Question_id: Quiz_Question_id,
+                    Quiz: Quiz,
+                    Quiz_Answer_id1: Quiz_Answer_id1,
+                    Choice_Answer_1: Choice_Answer_1,
+                    Quiz_Answer_id2: Quiz_Answer_id2,
+                    Choice_Answer_2: Choice_Answer_2,
+                    Quiz_Answer_id3: Quiz_Answer_id3,
+                    Choice_Answer_3: Choice_Answer_3,
+                    Quiz_Answer_id4: Quiz_Answer_id4,
+                    Choice_Answer_4: Choice_Answer_4,
+                    Radio_Answer2: window.Radio_Answer2,
+                },
+                success: function(data) {
+                    window.location.href = base_url + "/" + window.course_id;
+                    //alert("success: " + data);
+                },
+                error: function(data) {
+                    alert("Error: " + data);
+                }
+            });
+
         });
     });
     $(document).ready(function() {
