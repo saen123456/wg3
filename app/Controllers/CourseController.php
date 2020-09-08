@@ -374,7 +374,8 @@ class CourseController extends BaseController
         if ($Course_id) {
             $model->Update_Course_Price($Course_id, $Course_Price);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
-            return redirect()->to(base_url('course'))->with('correct', $msg);
+            //return redirect()->to(base_url('course'))->with('correct', $msg);
+            return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         } else {
             echo view('Home/HomePage');
         }
@@ -474,64 +475,16 @@ class CourseController extends BaseController
             echo view('Course/SearchCourse', $data);
         }
     }
-    public function test_query()
+    public function Select_Quiz_Modal()
     {
         $model = new Course_model();
         $quiz_id = $this->request->getVar('quiz_id');
         $Course_id = $this->request->getVar('course_id');
         $data = $model->Select_Quiz_Anw($Course_id, $quiz_id);
-        $datax = array();
-        while ($User = $data->fetchRow()) {
-            $datax[] = $User;
+        $Select_Quiz = array();
+        while ($row = $data->fetchRow()) {
+            $Select_Quiz[] = $row;
         }
-        return json_encode($datax);
-    }
-
-    public function getDuration($file)
-    {
-        if (file_exists($file)) {
-            ## open and read video file
-            $handle = fopen($file, "r");
-
-            ## read video file size
-            $contents = fread($handle, filesize($file));
-            fclose($handle);
-            $make_hexa = hexdec(bin2hex(substr($contents, strlen($contents) - 3)));
-            if (strlen($contents) > $make_hexa) {
-                $pre_duration = hexdec(bin2hex(substr($contents, strlen($contents) - $make_hexa, 3)));
-                $post_duration = $pre_duration / 1000;
-                $timehours = $post_duration / 3600;
-                $timeminutes = ($post_duration % 3600) / 60;
-                $timeseconds = ($post_duration % 3600) % 60;
-                $timehours = explode(".", $timehours);
-                $timeminutes = explode(".", $timeminutes);
-                $timeseconds = explode(".", $timeseconds);
-                $duration = $timehours[0] . ":" . $timeminutes[0] . ":" . $timeseconds[0];
-            }
-            return $duration;
-        } else {
-            return false;
-        }
-    }
-    public function calculateFileSize($file)
-    {
-
-        $ratio = 16000; //bytespersec
-
-        if (!$file) {
-
-            exit("Verify file name and it's path");
-        }
-
-        $file_size = filesize($file);
-
-        if (!$file_size)
-            exit("Verify file, something wrong with your file");
-
-        $duration = ($file_size / $ratio);
-        $minutes = floor($duration / 60);
-        $seconds = $duration - ($minutes * 60);
-        $seconds = round($seconds);
-        echo "$minutes:$seconds minutes";
+        return json_encode($Select_Quiz);
     }
 }

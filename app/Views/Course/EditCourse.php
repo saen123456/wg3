@@ -862,19 +862,12 @@ $this->session = \Config\Services::session();
 
 
         $(".sent_edit_quiz").click(function() {
-            var base_url = '<?= base_url('CourseController/test_query') ?>';
+            var base_url = '<?= base_url('CourseController/Select_Quiz_Modal') ?>';
             $("#quiz_id").attr("value", $(this).attr('quiz_id'));
             quiz_id = $(this).attr('quiz_id');
             $("#course_id").attr("value", $(this).attr('course_id'));
             course_id = $(this).attr('course_id');
-            console.log(window.quiz_id);
-            //document.getElementById('show_quiz_id').innerHTML = quiz_id;
-            //document.cookie = "quiz_id = " + window.quiz_id;
-
-            /*var url = "<?= site_url('CourseController/Edit_Quiz') ?>?quiz_id=" + window.quiz_id + "&course_id=" + course_id + "";
-            var encoded_url = encodeURIComponent(url);
-            var decoded_url = decodeURIComponent(encoded_url);*/
-            //window.location.href = decoded_url;
+         
             $.ajax({
                 url: base_url,
                 method: "POST",
@@ -884,9 +877,7 @@ $this->session = \Config\Services::session();
                 },
                 success: function(data) {
                     const obj = JSON.parse(data);
-                    console.log(obj);
-
-
+                   
                     $("#showanswerlist").html("");
                     $("#showquestionlist").html("");
 
