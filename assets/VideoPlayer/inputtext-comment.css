@@ -1,12 +1,12 @@
 .comment {
 	position: absolute;
-	bottom: 48%;
+	bottom: 20%;
 	left: 21%;
   }
   .comment_profile{
 		position: absolute;
   left: 15%;
-  top: 52%;
+  top: 20%;
   }
 .form__group {
   position: relative;

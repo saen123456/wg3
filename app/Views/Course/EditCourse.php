@@ -867,7 +867,7 @@ $this->session = \Config\Services::session();
             quiz_id = $(this).attr('quiz_id');
             $("#course_id").attr("value", $(this).attr('course_id'));
             course_id = $(this).attr('course_id');
-         
+
             $.ajax({
                 url: base_url,
                 method: "POST",
@@ -877,16 +877,13 @@ $this->session = \Config\Services::session();
                 },
                 success: function(data) {
                     const obj = JSON.parse(data);
-                   
+
                     $("#showanswerlist").html("");
                     $("#showquestionlist").html("");
 
                     if (obj.length > 0) {
                         $("#showquestionlist").append("<div class='input-group'><span class='input-group-addon' id='basic-addon3'>ตั้งคำถามว่า : </span><form id='form_quiz'><input type='text' class='form-control' data-question-id='" + obj[0].quiz_question_id + "' id='Update_Quiz' aria-describedby='basic-addon3' value='" + obj[0].quiz_question_name + "'></form></div><br>");
-
-
                         for (i = 0; i < obj.length; i++) {
-
                             $("#showanswerlist").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
                         }
 

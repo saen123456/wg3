@@ -37,32 +37,10 @@
 
     <!-- jquery  -->
     <script src="<?php echo base_url('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'); ?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/plyr.css'); ?>">
+    <script src="<?php echo base_url('assets/VideoPlayer/plyr.js'); ?>"></script>
 
-    <!-- Videojs -->
-    <link rel="stylesheet" href="<?php echo base_url('https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video-js.css'); ?>">
-    <!-- Playlist Ui -->
-    <link href="<?php echo base_url('assets/VideoPlayer/videojs-playlist-ui.vertical.css'); ?>" rel="stylesheet">
-    <!-- Quality-selector -->
-    <link href="<?php echo base_url('https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/css/quality-selector.css'); ?>" rel="stylesheet">
-    <!-- ChromeCast CSS -->
-    <link href="<?php echo base_url('https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.css'); ?>" rel="stylesheet">
-
-    <!-- ***SCRiPTS*** -->
-    <!-- videojs -->
-    <script src="https://cdn.jsdelivr.net/npm/video.js@7.6.6/dist/video.js"></script>
-    <!-- Videojs-playlist -->
-    <script src="https://cdn.jsdelivr.net/npm/videojs-playlist@4.3.0/dist/videojs-playlist.js"></script>
-    <!-- Playlist Ui -->
-    <!--Description mod row 199 for better playlist effect-->
-    <script src="<?php echo base_url('assets/VideoPlayer/playlist.js'); ?>"></script>
-    <!-- Quality-selector -->
-    <script src="https://cdn.jsdelivr.net/npm/silvermine-videojs-quality-selector@1.1.2/dist/js/silvermine-videojs-quality-selector.min.js"></script>
-    <!-- YouTube -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.0/Youtube.min.js"></script>
-    <!-- ChromeCast -->
-    <script src="https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@1.2.0/dist/silvermine-videojs-chromecast.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/player.css'); ?>">
+    >
     <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/inputtext-comment.css'); ?>">
 
 
@@ -221,282 +199,294 @@ endif
         <!-- Main content -->
         <div class="overlay"></div>
         <div class="container">
-
-            <div class="player-container">
-                <div class="main-preview-player">
-                    <video id="pd-video" class="video-js vjs-fluid-pd" height="360" width="640" controls oncontextmenu="return false;">
+            <figure id="video_player">
+                <div id="myDIV">
+                    <video controls width="700px" id="player">
+                        <source src="https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4" type="video/mp4">
                     </video>
-                    <div class="playlist-container preview-player-dimensions">
-
-                        <div class="vjs-playlist">
-                        </div>
-                    </div>
-                    <!-- <?php
-                            foreach ($data as $row) :
-                                echo $row['unit_index'] . " " . $row['course_name'] . "<br>";
-
-                            endforeach;
-                            ?> -->
-
-                    <div style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 25px;">0.Basic Leadership
-                        <!-- <?php
-                                foreach ($data as $row) :
-                                    $test = $row['unit_index'];
-                                    if ($row['unit_index'] == '1') {
-                                        echo $row['unit_index'] . " " . $row['course_name'] . "<br>";
-                                    }
-                                endforeach;
-                                ?> -->
-                    </div>
                 </div>
-            </div>
-
-
-            <script>
-                $(document).ready(function() {
-                    $('#pd-video').bind('   ', function() {
-                        return false;
-                    });
-                });
-            </script>
-            <script>
-                var player = videojs('pd-video');
-                player.on('timeupdate', function() {
-                    var test = player.duration();
-                    if (player.currentTime() == player.duration()) {
-                        console.log(player.duration());
-                    }
-                });
-                player.playlist([
+                <div id="myDIV2">
+                </div>
+                <figcaption>
                     <?php
-                    foreach ($data as $row) :
-                        ?> {
-                            name: '<?php echo $row['unit_name'] ?>',
-                            duration: 1211,
-                            poster: '<?php echo $row['image_course'] ?>',
-                            sources: [{
-                                src: '<?php echo $row['video_link'] ?>',
-                                type: 'video/mp4'
-                            }, ],
-                            thumbnail: [{
-                                    srcset: '<?php echo $row['image_course'] ?>',
-                                    type: 'image/jpeg',
-                                    media: '(min-width: 400px;)'
-                                },
-                                {
-                                    src: '<?php echo $row['image_course'];
-                                                ?>'
-                                }
-                            ]
-                        },
+                    foreach ($video_link as $row) :
+                        ?>
+                        <li><a href="<?php echo $row['video_link'] ?>"><?php echo $row['unit_name'] ?></a></li>
+                        <?php
+                            foreach ($question as $row2) :
+                                if ($row2['unit_index'] == $row['unit_index']) { ?>
+                                <li><a href="<?php echo $row2['quiz_question_id'] ?>"><?php echo $row2['quiz_question_name'] ?></a></li>
+                            <?php
+                                    }
+                                    ?>
+                        <?php
+                            endforeach;
+                            ?>
                     <?php
                     endforeach;
                     ?>
-                ]);
-                player.playlistUi();
-                player.playlist.autoadvance(0);
-                player.playlist.repeat(true);
-                player.controlBar.addChild('QualitySelector');
-                player.chromecast();
-            </script>
-            <div class="content2">
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    <script>
+        const player = new Plyr('#player');
+        var video_player = document.getElementById("video_player");
+        links = video_player.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = handler;
+        }
+
+        function handler(e) {
+            var x = document.getElementById("myDIV");
+            var quiz = document.getElementById("myDIV2");
+            e.preventDefault();
+            videotarget = this.getAttribute("href");
+            //console.log(videotarget.lastIndexOf('.'));
+            if (videotarget.lastIndexOf('.') > 1) {
+                quiz.style.display = "none";
+                $("#myDIV2").fadeOut(5000);
+                x.style.display = "block";
+                $("#myDIV").fadeIn("slow");
+
+                console.log(videotarget);
+                filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
+                video = document.querySelector("#video_player video");
+                video.removeAttribute("poster");
+                source = document.querySelectorAll("#video_player video source");
+                source[0].src = filename + ".mp4";
+                video.load();
+                video.play();
+            } else {
+                quiz.style.display = "block";
+                $("#myDIV2").fadeIn(5000);
+                x.style.display = "none";
+                $("#myDIV").fadeOut(5000);
+                var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+                video = document.querySelector("#video_player video");
+                video.pause();
+                console.log(videotarget);
+                $.ajax({
+                    url: base_url,
+                    method: "POST",
+                    data: {
+                        quiz_id: videotarget,
+                    },
+                    success: function(data) {
+
+                        const obj = JSON.parse(data);
+                        console.log(obj);
+                        $("#myDIV2").html("");
+                        //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                        for (i = 0; i < obj.length; i++) {
+                            $("#myDIV2").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
+                        }
+                    }
+
+                });
+            }
+
+        }
+    </script>
+
+    <div class="content2">
+    </div>
+
+
+    <!-- /.content -->
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+
+    <div class="content2">
+        <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-coursename">
+        <div class="centered">
+            <!-- <i class="fa fa-user course-profile" aria-hidden="true"></i> -->
+            <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">&nbsp&nbsp&nbsp
+            <?php
+            foreach ($video_link as $row) :
+                $Course_Name = $row['course_name'];
+            endforeach;
+            ?>
+            <?php echo $Course_Name; ?>
+        </div>
+
+        <div class="comment">
+            ความคิดเห็น
+            <div class="comment_profile">
+                <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">
+            </div>
+            <div class="form__group field">
+
+                <form action="#" method="post">
+                    <input type="input" class="form__field" placeholder="แสดงความคิดเห็นของคุณ" name="user_comment" id='user_comment' required />
+                    <label for="name" class="form__label">แสดงความคิดเห็นของคุณ</label>
+                </form>
             </div>
         </div>
 
+        <table id="table_comment" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+        </table>
+    </div>
 
-        <!-- /.content -->
-        <!-- /.content-wrapper -->
-
-        <!-- Main Footer -->
-        <div class="content2">
-            <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-coursename">
-            <div class="centered">
-                <!-- <i class="fa fa-user course-profile" aria-hidden="true"></i> -->
-                <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">&nbsp&nbsp&nbsp
-                <?php
-                foreach ($data as $row) :
-                    $Course_Name = $row['course_name'];
-                endforeach;
-                ?>
-                <?php echo $Course_Name; ?>
+    <div class="footernew2">
+        <a href="<?php echo base_url('/home'); ?>">
+            <div class="footerimg">
+                <img src="<?php echo base_url('assets/img/logo2.png'); ?>">
             </div>
-
-            <div class="comment">
-                ความคิดเห็น
-                <div class="comment_profile">
-                    <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">
-                </div>
-                <div class="form__group field">
-
-                    <form action="#" method="post">
-                        <input type="input" class="form__field" placeholder="แสดงความคิดเห็นของคุณ" name="user_comment" id='user_comment' required />
-                        <label for="name" class="form__label">แสดงความคิดเห็นของคุณ</label>
-                    </form>
-                </div>
-            </div>
-
-            <table id="table_comment" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
-                    <td>
-                        <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
-                    </td>
-                </tr>
-            </table>
+        </a>
+        <div class="footericonphone">
+            <i class="fa fa-phone">
+            </i>
+        </div>
+        <div class="fa-phonetext">
+            <h6 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;">(000) 123 4567</h6>
         </div>
 
-        <div class="footernew2">
-            <a href="<?php echo base_url('/home'); ?>">
-                <div class="footerimg">
-                    <img src="<?php echo base_url('assets/img/logo2.png'); ?>">
-                </div>
-            </a>
-            <div class="footericonphone">
-                <i class="fa fa-phone">
-                </i>
-            </div>
-            <div class="fa-phonetext">
-                <h6 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;">(000) 123 4567</h6>
-            </div>
+        <div class="footericonemail">
+            <i class="fa fa-envelope">
+            </i>
+        </div>
+        <div class="fa-envelopetext">
+            <h6 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;">hello@workgress.com</h6>
+        </div>
 
-            <div class="footericonemail">
-                <i class="fa fa-envelope">
-                </i>
-            </div>
-            <div class="fa-envelopetext">
-                <h6 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;">hello@workgress.com</h6>
-            </div>
+        <div class="footericonsocial">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-twitter-square"></i>
+            <i class="fab fa-google-plus-square"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
 
-            <div class="footericonsocial">
-                <i class="fab fa-facebook-square"></i>
-                <i class="fab fa-twitter-square"></i>
-                <i class="fab fa-google-plus-square"></i>
-                <i class="fab fa-instagram"></i>
-            </div>
-
-            <!-- company row -->
-            <div class="row">
-                <div class="column">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">Company</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">เกี่ยวกับเรา</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">บล็อค</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">ติดค่อเรา</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Become a Teacger</p>
-                </div>
-            </div>
-
-            <!-- links row -->
-            <div class="row">
-                <div class="column2">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">LINKS</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Courses</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Events</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Gallery</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">FAQs</p>
-                </div>
-            </div>
-
-            <!-- SUPPORT row -->
-            <div class="row">
-                <div class="column3">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">SUPPORT</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Documentation</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Forums</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Lauguage Packs</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Release Status</p>
-                </div>
-            </div>
-
-            <!-- Recomment row -->
-            <div class="row">
-                <div class="column4">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">RECOMMEND</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">WordPress</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">LearnPress</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">WooCommerce</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">bbPress</p>
-                </div>
-            </div>
-
-            <!-- line -->
-            <hr class="line">
-
-            <div class="footerinc">
-                <p style="font-family: Roboto;font-style: normal;font-weight: normal;">ลิขสิทธิ์ © 2020 WorkGress, Inc. ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
+        <!-- company row -->
+        <div class="row">
+            <div class="column">
+                <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">Company</h2><br>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">เกี่ยวกับเรา</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">บล็อค</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">ติดค่อเรา</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Become a Teacger</p>
             </div>
         </div>
+
+        <!-- links row -->
+        <div class="row">
+            <div class="column2">
+                <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">LINKS</h2><br>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Courses</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Events</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Gallery</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">FAQs</p>
+            </div>
+        </div>
+
+        <!-- SUPPORT row -->
+        <div class="row">
+            <div class="column3">
+                <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">SUPPORT</h2><br>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Documentation</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Forums</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Lauguage Packs</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Release Status</p>
+            </div>
+        </div>
+
+        <!-- Recomment row -->
+        <div class="row">
+            <div class="column4">
+                <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">RECOMMEND</h2><br>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">WordPress</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">LearnPress</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">WooCommerce</p>
+                <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">bbPress</p>
+            </div>
+        </div>
+
+        <!-- line -->
+        <hr class="line">
+
+        <div class="footerinc">
+            <p style="font-family: Roboto;font-style: normal;font-weight: normal;">ลิขสิทธิ์ © 2020 WorkGress, Inc. ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
+        </div>
+    </div>
     </div>
 
     <!-- Content Wrapper. Contains page content -->

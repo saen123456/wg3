@@ -129,7 +129,8 @@ class CourseController extends BaseController
         if ($this->session->get("Role_name")) {
             $model = new Course_model();
             // $data['data'] = $model->Select_Video();
-            $data['data'] = $model->Select_Video_Of_Course();
+            $data['video_link'] = $model->Select_Video_Of_Course();
+            $data['question'] = $model->Select_Question_Of_Course();
             echo view('Course/TestPlayer', $data);
         } else {
             echo view('Home/HomePage');
@@ -481,6 +482,18 @@ class CourseController extends BaseController
         $quiz_id = $this->request->getVar('quiz_id');
         $Course_id = $this->request->getVar('course_id');
         $data = $model->Select_Quiz_Anw($Course_id, $quiz_id);
+        $Select_Quiz = array();
+        while ($row = $data->fetchRow()) {
+            $Select_Quiz[] = $row;
+        }
+        return json_encode($Select_Quiz);
+    }
+
+    public function Select_Quiz_Video()
+    {
+        $model = new Course_model();
+        $quiz_id = $this->request->getVar('quiz_id');
+        $data = $model->Select_Quiz_Video($quiz_id);
         $Select_Quiz = array();
         while ($row = $data->fetchRow()) {
             $Select_Quiz[] = $row;

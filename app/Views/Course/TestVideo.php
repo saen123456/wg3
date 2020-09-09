@@ -352,24 +352,6 @@ endif
 						});
 					</script>
 
-
-					<!-- plyr video -->
-					<!-- <?php
-							$count = 0;
-							foreach ($data as $row) :
-								$count++;
-								echo $row['video_id'] . " " . $row['video_name'] . " " . $row['video_link'];
-								echo "<br>";
-								echo "<video id='player$count' playsinline controls data-poster=''>
-						<source src='" . $row['video_link'] . "' type='video/webm'>
-						</video>"
-								?>
-						<script>
-							const player<?php echo $count ?> = new Plyr('#player<?php echo $count ?>');
-						</script>
-					<?php
-					endforeach;
-					?> -->
 				</div>
 
 

@@ -78,4 +78,11 @@ class CourseUser_model extends Model
         $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Question_Of_Course()
+    {
+        //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
+        $sql = "SELECT * from course_quiz_unit join quiz_question on course_quiz_unit.quiz_question_id = quiz_question.quiz_question_id where course_quiz_unit.course_id = '98'";
+        //$sql = "SELECT video_id,video_name,video_link from video";
+        return $this->connect_postgresdb->execute($sql);
+    }
 }

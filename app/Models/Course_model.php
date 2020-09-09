@@ -187,7 +187,14 @@ class Course_model extends Model
     public function Select_Video_Of_Course()
     {
         //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
-        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '77' ORDER BY course_unit.unit_index";
+        $sql = "SELECT * from course_unit join video on course_unit.video_id = video.video_id join unit on unit.unit_id = course_unit.unit_id  join course on course.course_id = course_unit.course_id where course_unit.course_id = '98' ORDER BY course_unit.unit_index";
+        //$sql = "SELECT video_id,video_name,video_link from video";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Question_Of_Course()
+    {
+        //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
+        $sql = "SELECT * from course_quiz_unit join quiz_question on course_quiz_unit.quiz_question_id = quiz_question.quiz_question_id where course_quiz_unit.course_id = '98'";
         //$sql = "SELECT video_id,video_name,video_link from video";
         return $this->connect_postgresdb->execute($sql);
     }
@@ -283,6 +290,13 @@ class Course_model extends Model
     public function Select_Quiz_Anw($Course_id, $quiz_id)
     {
         $sql = "SELECT quiz_answer.quiz_answer_id,quiz_answer.quiz_question_id,quiz_answer.quiz_answer_name,quiz_question_name  FROM course_quiz_unit join course on course_quiz_unit.course_id = course.course_id join quiz_question on quiz_question.quiz_question_id = course_quiz_unit.quiz_question_id join quiz_answer on quiz_answer.quiz_question_id =  course_quiz_unit.quiz_question_id WHERE course_quiz_unit.course_id = '$Course_id' AND quiz_answer.quiz_question_id = '$quiz_id' ORDER BY quiz_answer.quiz_question_id";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
+
+    public function Select_Quiz_Video($quiz_id)
+    {
+        $sql = "SELECT * FROM quiz_answer join quiz_question on quiz_answer.quiz_question_id = quiz_question.quiz_question_id WHERE quiz_answer.quiz_question_id = '$quiz_id' ORDER BY quiz_answer.quiz_question_id";
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
