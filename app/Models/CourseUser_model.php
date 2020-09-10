@@ -85,4 +85,10 @@ class CourseUser_model extends Model
         //$sql = "SELECT video_id,video_name,video_link from video";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Quiz_Video($quiz_id)
+    {
+        $sql = "SELECT * FROM quiz_answer join quiz_question on quiz_answer.quiz_question_id = quiz_question.quiz_question_id WHERE quiz_answer.quiz_question_id = '$quiz_id' ORDER BY quiz_answer.quiz_question_id";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
 }

@@ -67,7 +67,7 @@ class CourseUserController extends BaseController
         if ($this->session->get("Role_name")) {
             $model = new CourseUser_model();
             // $data['data'] = $model->Select_Video();
-           // $data['data'] = $model->Select_Video_Of_Course($id);
+            // $data['data'] = $model->Select_Video_Of_Course($id);
             $data['video_link'] = $model->Select_Video_Of_Course($id);
             $data['question'] = $model->Select_Question_Of_Course();
             echo view('Course/Couse_Learn_Video', $data);
@@ -88,7 +88,7 @@ class CourseUserController extends BaseController
     }
     public function Select_Quiz_Video()
     {
-        $model = new Course_model();
+        $model = new CourseUser_model();
         $quiz_id = $this->request->getVar('quiz_id');
         $data = $model->Select_Quiz_Video($quiz_id);
         $Select_Quiz = array();

@@ -34,12 +34,12 @@
     <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
 
+
     <!-- jquery  -->
     <script src="<?php echo base_url('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'); ?>"></script>
-
-
     <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/plyr.css'); ?>">
     <script src="<?php echo base_url('assets/VideoPlayer/plyr.js'); ?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/inputtext-comment.css'); ?>">
 
 
 </head>
@@ -134,10 +134,10 @@ endif
                 <div class="container">
                     <ul class="nav navbar-nav mx-auto">
 
-                        <form class="form-inline ml-1 ml-md-1">
+                        <form class="form-inline ml-1 ml-md-1" action="<?= base_url('/search/course') ?>" method="get">
                             <div class="input-group">
                                 <div class="inputlong">
-                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
+                                    <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่" name="Search_Course_Query">
                                 </div>
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
@@ -167,17 +167,19 @@ endif
                             </a>
                             <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                                <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
                                 <?php
                                 if ($this->session->get("Role_name") == 'student') {
                                     ?>
                                     <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'admin') { ?>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+
                                 <?php
                                 } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">Course</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
                                 <?php
                                 }
                                 ?>
@@ -192,48 +194,40 @@ endif
         </nav>
         <!-- /.navbar -->
 
-
         <!-- Main content -->
-
-
-
-
-
-        <br>
-
-        <figure id="video_player">
-            <div id="myDIV">
-                <video controls width="700px" id="player">
-                    <source src="https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div id="forQuiz">
-            </div>
-            <figcaption>
-                <?php
-                foreach ($video_link as $row) :
-                    ?>
-                    <li><a href="<?php echo $row['video_link'] ?>"><?php echo $row['unit_name'] ?></a></li>
-                    <?php
-                        foreach ($question as $row2) :
-                            if ($row2['unit_index'] == $row['unit_index']) { ?>
-                            <li><a href="<?php echo $row2['quiz_question_id'] ?>"><?php echo $row2['quiz_question_name'] ?></a></li>
+        <div class="content-wrapper">
+            <div class="overlay"></div>
+            <div class="container">
+                <figure id="video_player">
+                    <div id="myDIV">
+                        <video controls width="700px" id="player">
+                            <source src="https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div id="myDIV2">
+                    </div>
+                    <figcaption>
                         <?php
-                                }
+                        foreach ($video_link as $row) :
+                            ?>
+                            <!-- <li><a href="<?php echo $row['video_link'] ?>"><?php echo $row['unit_name'] ?></a></li> -->
+                            <?php
+                                foreach ($question as $row2) :
+                                    if ($row2['unit_index'] == $row['unit_index']) { ?>
+                                    <!-- <li><a href="<?php echo $row2['quiz_question_id'] ?>"><?php echo $row2['quiz_question_name'] ?></a></li> -->
+                                <?php
+                                        }
+                                        ?>
+                            <?php
+                                endforeach;
                                 ?>
-                    <?php
+                        <?php
                         endforeach;
                         ?>
-                <?php
-                endforeach;
-                ?>
-            </figcaption>
-        </figure>
-
-        <div class="content2">
+                    </figcaption>
+                </figure>
+            </div>
         </div>
-
-
         <script>
             const player = new Plyr('#player');
             var video_player = document.getElementById("video_player");
@@ -244,17 +238,17 @@ endif
 
             function handler(e) {
                 var x = document.getElementById("myDIV");
-                var quiz = document.getElementById("forQuiz");
+                var quiz = document.getElementById("myDIV2");
                 e.preventDefault();
                 videotarget = this.getAttribute("href");
                 //console.log(videotarget.lastIndexOf('.'));
                 if (videotarget.lastIndexOf('.') > 1) {
                     quiz.style.display = "none";
-                    $("#forQuiz").fadeOut(5000);
+                    $("#myDIV2").fadeOut(5000);
                     x.style.display = "block";
                     $("#myDIV").fadeIn("slow");
 
-                    console.log(videotarget);
+                    //console.log(videotarget);
                     filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
                     video = document.querySelector("#video_player video");
                     video.removeAttribute("poster");
@@ -264,13 +258,13 @@ endif
                     video.play();
                 } else {
                     quiz.style.display = "block";
-                    $("#forQuiz").fadeIn(5000);
+                    $("#myDIV2").fadeIn(5000);
                     x.style.display = "none";
                     $("#myDIV").fadeOut(5000);
-                    var base_url = '<?= base_url('CourseController/Select_Quiz_Video') ?>';
+                    var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
                     video = document.querySelector("#video_player video");
                     video.pause();
-                    console.log(videotarget);
+                    //console.log(videotarget);
                     $.ajax({
                         url: base_url,
                         method: "POST",
@@ -281,10 +275,10 @@ endif
 
                             const obj = JSON.parse(data);
                             console.log(obj);
-                            $("#forQuiz").html("");
+                            $("#myDIV2").html("");
                             //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
                             for (i = 0; i < obj.length; i++) {
-                                $("#forQuiz").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
+                                $("#myDIV2").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
                             }
                         }
 
@@ -293,10 +287,119 @@ endif
 
             }
         </script>
+
         <!-- /.content -->
         <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
+
+
+        <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-coursename">
+        <div class="centered">
+            <!-- <i class="fa fa-user course-profile" aria-hidden="true"></i> -->
+            <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">&nbsp&nbsp&nbsp
+            <?php
+            foreach ($video_link as $row) :
+                $Course_Name = $row['course_name'];
+            endforeach;
+            ?>
+            <?php echo $Course_Name; ?>
+        </div>
+
+        <div class="comment">
+            ความคิดเห็น
+            <div class="comment_profile">
+                <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">
+            </div>
+            <div class="form__group field">
+
+                <form action="#" method="post">
+                    <input type="input" class="form__field" placeholder="แสดงความคิดเห็นของคุณ" name="user_comment" id='user_comment' required />
+                    <label for="name" class="form__label">แสดงความคิดเห็นของคุณ</label>
+                </form>
+            </div>
+        </div>
+
+        <table id="table_comment" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+            <tr>
+                <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                <td>
+                    <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                </td>
+            </tr>
+        </table>
 
 
         <div class="footernew2">
@@ -380,10 +483,11 @@ endif
             </div>
         </div>
     </div>
-
+    </div>
     <!-- Content Wrapper. Contains page content -->
     <!-- ./wrapper -->
 
-</body>
+    <!-- Bootstrap 4 -->
+    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
 </html>
