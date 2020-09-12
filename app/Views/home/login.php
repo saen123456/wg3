@@ -435,7 +435,162 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">เข้าสู่บัญชี Workgress ของคุณ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body login-card-body">
+                                <p class="login-box-msg">เข้าสู่ระบบเพื่อเริ่มระบบของคุณ</p>
 
+                                <form action="<?= site_url('/UserController/User_Login') ?>" method="post" role="form" id="quickForm">
+
+                                    <div class="input-group mb-3">
+                                        <input type="email" name="Email_Login" id="Email_Login" class="form-control" id="exampleInputEmail1" placeholder="กรุณาใส่อีเมล">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span id="email_check_login"></span>
+                                    <div class="input-group mb-3">
+
+                                        <input type="password" name="Password_Login" class="form-control" id="exampleInputPassword1" placeholder="กรุณาใส่รหัสผ่าน">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <!-- /.col -->
+                                        <div class="col-4">
+                                            <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </form>
+
+                                <div class="social-auth-links text-center mb-3">
+                                    <p>- หรือ -</p>
+                                    <a href="<?php echo $facebook_login_url ?>" class="btn btn-block btn-primary">
+                                        <i class="fab fa-facebook mr-2"></i> ล็อคอินกับ Facebook
+                                    </a>
+                                    <a href="<?php echo $login_button ?>" class="btn btn-block btn-danger">
+                                        <i class="fab fa-google-plus mr-2"></i> ล็อคอินกับ Google
+                                    </a>
+                                </div>
+                                <!-- /.social-auth-links -->
+
+                                <p class="mb-1">
+                                    <a href="<?php echo base_url('/reset_password'); ?>">ลืมรหัสผ่านใช่หรือไม่ ?</a>
+                                </p>
+                                <p class="mb-0">
+                                    <a href="" data-toggle="modal" data-target="#modal-register">สมัครสมาชิกใหม่</a>
+                                    </button>
+                                </p>
+                            </div>
+                            <!-- /.login-card-body -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade" id="modal-register">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">สมัครสมาชิก Workgress ของคุณ</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body login-card-body">
+                  <p class="login-box-msg">สมัครสมาชิกใหม่เพื่อเริ่มเรียนรู้</p>
+
+                  <form role="form" action="<?= site_url('/UserController/User_Register') ?>" method="post" id="RegisterForm">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="Full_Name_Register">ชื่อ-นามสกุล :</label>
+                        <div class="input-group mb-3">
+                          <input type="text" name="Full_Name_Register" class="form-control" id="Full_Name_Register" placeholder="กรุณาใส่ชื่อ-นามสกุล">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">อีเมล :</label>
+                        <div class="input-group mb-3">
+                          <input type="email" name="Email_Register" class="form-control" id="Email_Register" placeholder="กรุณาใส่อีเมล">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <span id="email_result"></span>
+                      <div class="form-group">
+                        <label for="password">รหัสผ่าน :</label>
+                        <div class="input-group mb-3">
+                          <input type="password" name="Password_Register" class="form-control" id="password" placeholder="กรุณาใส่รหัสผ่าน">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-eye-slash" id="eye"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputPassword2">ยืนยันรหัสผ่าน :</label>
+                        <div class="input-group mb-3">
+                          <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword2" placeholder="กรุณาใส่ยืนยันรหัสผ่าน">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-eye-slash" id="eye1"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group mb-0">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                          <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="#">เงื่อนไขการให้บริการ</a>.</label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                  </form>
+                  <!-- /.social-auth-links -->
+                </div>
+                <!-- /.login-card-body -->
+              </div>
+
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
 
 
         <!-- Content Wrapper. Contains page content -->

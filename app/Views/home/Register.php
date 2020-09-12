@@ -41,19 +41,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="preload" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>" as="style" onload="this.rel='stylesheet'">
   <link rel="preload" href="<?php echo base_url('plugins/toastr/toastr.min.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
-  <script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js');?>" rel="preload"></script>
-  <script src="<?php echo base_url('plugins/toastr/toastr.min.js');?>" rel="preload"></script>
+  <script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>" rel="preload"></script>
+  <script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>" rel="preload"></script>
 
   <!-- Animate.css -->
-  <link rel="preload" href="<?php echo base_url('assets/course/css/animate.css');?>" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="<?php echo base_url('assets/course/css/animate.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
   <!-- Theme style  -->
-  <link rel="preload" href="<?php echo base_url('assets/course/css/style.css');?>" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="<?php echo base_url('assets/course/css/style.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
   <!-- Modernizr JS -->
-  <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js');?>" rel="preload"></script>
+  <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>" rel="preload"></script>
 
-  <link rel="preload" href="<?php echo base_url('assets/css/footer.css');?>" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
   <!-- CSS Card Course -->
   <link rel="preload" href="<?php echo base_url('assets/css/card.css'); ?>" as="style" onload="this.rel='stylesheet'">
@@ -446,6 +446,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </div>
   </div>
+  
   <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -508,6 +509,91 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p class="mb-0">
                 <a href="<?php echo base_url('/register'); ?>" class="text-center">Register a new membership</a>
               </p>
+            </div>
+            <!-- /.login-card-body -->
+          </div>
+
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <div class="modal fade" id="modal-register">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">สมัครสมาชิก Workgress ของคุณ</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body login-card-body">
+              <p class="login-box-msg">สมัครสมาชิกใหม่เพื่อเริ่มเรียนรู้</p>
+
+              <form role="form" action="<?= site_url('/UserController/User_Register') ?>" method="post" id="RegisterForm">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="Full_Name_Register">ชื่อ-นามสกุล :</label>
+                    <div class="input-group mb-3">
+                      <input type="text" name="Full_Name_Register" class="form-control" id="Full_Name_Register" placeholder="กรุณาใส่ชื่อ-นามสกุล">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">อีเมล :</label>
+                    <div class="input-group mb-3">
+                      <input type="email" name="Email_Register" class="form-control" id="Email_Register" placeholder="กรุณาใส่อีเมล">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-envelope"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <span id="email_result"></span>
+                  <div class="form-group">
+                    <label for="password">รหัสผ่าน :</label>
+                    <div class="input-group mb-3">
+                      <input type="password" name="Password_Register" class="form-control" id="password" placeholder="กรุณาใส่รหัสผ่าน">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-eye-slash" id="eye"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword2">ยืนยันรหัสผ่าน :</label>
+                    <div class="input-group mb-3">
+                      <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword2" placeholder="กรุณาใส่ยืนยันรหัสผ่าน">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-eye-slash" id="eye1"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="#">เงื่อนไขการให้บริการ</a>.</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <button type="submit" class="btn btn-primary">ยืนยัน</button>
+              </form>
+              <!-- /.social-auth-links -->
             </div>
             <!-- /.login-card-body -->
           </div>

@@ -1,23 +1,74 @@
+.img-fluid{
+  max-height:120px;
+  height:auto;
+
+}
+.img-profile{
+  position:absolute;
+  max-width:65px;
+  max-height:65px;
+  left:20%;
+  bottom: 3.5%;
+}
+.course-name{
+  position:absolute;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  left:28%;
+  bottom: 6%;
+}
+
+
 .comment {
-	position: absolute;
-	bottom: 20%;
-	left: 21%;
+  position: absolute;
+  left: 13%;
+  bottom: 49%;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  
   }
   .comment_profile{
-		position: absolute;
-  left: 15%;
-  top: 20%;
+    position: absolute;
+    left: 15%;
+    bottom: 45%;
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .img-profile {
+      width:auto;
+      height:45px;
+      left:5%;
+      bottom: 2%;
+    }
+    .course-name{
+      font-size: 20px;
+      line-height: 28px;
+      left:22%;
+      bottom: 6%;
+    }
+    .comment_profile{
+      left: 15%;
+      bottom: 40%;
+    }
   }
 .form__group {
-  position: relative;
+  position: absolute;
   padding: 15px 0 0;
   margin-top: 10px;
   width: 235%;
-  left: 50%;
+  left: 19%;
+  bottom: 46%;
 }
 .form__field {
+
   font-family: inherit;
-  width: 88%;
+  width: 15%;
   border: 0;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
@@ -26,6 +77,8 @@
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s; 
+
+  
 }
 .form__field::placeholder {
   color: transparent;
@@ -68,8 +121,8 @@
 }
 #table_comment {
   position: absolute;
-  top: 55%;
-  left:22.5%;
+  top: 55.5%;
+  left:14.5%;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   width: 37%;
   height:320px; 

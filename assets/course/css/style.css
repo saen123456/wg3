@@ -85,6 +85,34 @@
 .fancy-collapse-panel .panel-default > .panel-heading {
   padding: 0; }
 
+  .quiz-menu-li{
+  
+    padding: 20px;
+    padding-left: 11%;
+    background-color: rgb(243, 243, 243);
+    color: rgb(0, 0, 0);
+    margin: 10px;
+    font-size: 15px;
+    line-height: 1.43;
+    transition: 0.3s;
+  }
+  .quiz-menu-li:hover{
+    color: #000000;
+    background-color: rgb(223, 223, 223);
+    font-size: 15px;
+      line-height: 1.43;
+  }
+  .quiz-checkbox{
+    padding: 10px;
+    margin: 0;
+    margin-left: 6%;
+    margin-top: 5%;
+    width: 20px;
+    height: 20px;
+  }
+  .quiz-menu li{
+    list-style-type: none;
+  }
 .panel-heading a {
   padding: 10px 25px;
   display: block;

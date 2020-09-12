@@ -237,6 +237,7 @@ class Course_model extends Model
         $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC LIMIT 4";
         return $this->connect_postgresdb->execute($sql);
     }
+   
     public function Select_CategoryCourse($start, $perpage)
     {
         $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT '$perpage' OFFSET '$start'  ";

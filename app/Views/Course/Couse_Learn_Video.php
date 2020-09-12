@@ -197,14 +197,9 @@ endif
         <!-- Main content -->
 
 
-        <div class="container">
-
-        </div>
         <figure id="video_player">
             <div class="row">
-
                 <div class="col-sm-8">
-
                     <div id="myDIV">
                         <video controls width="700px" id="player">
                             <source src="https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4" type="video/mp4">
@@ -212,28 +207,153 @@ endif
                     </div>
                     <div id="myDIV2">
                     </div>
+                    <br>
+                    <?php
+                    foreach ($video_link as $row) :
+                        $Course_Name = $row['course_name'];
+                    endforeach;
+                    ?>
+                    <div class="d-flex justify-content-center">
+                        <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" class="img-profile" alt="Responsive image">
+                        <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-fluid" alt="Responsive image">
+                        <div class="course-name"><?php echo $Course_Name; ?></div>
+                    </div>
+
+
 
                 </div>
-                <div class="col-sm-4">
-                    <figcaption>
-                        <?php
-                        foreach ($video_link as $row) :
-                            ?>
-                            <li><a href="<?php echo $row['video_link'] ?>"><?php echo $row['unit_name'] ?></a></li>
+                <div class="comment">
+                    ความคิดเห็น
+                </div>
+                <div class="comment_profile">
+                    <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;">
+                </div>
+                <div class="form__group field">
+                    <form action="#" method="post">
+                        <input type="input" class="form__field" placeholder="แสดงความคิดเห็นของคุณ" name="user_comment" id='user_comment' required />
+                        <label for="name" class="form__label">แสดงความคิดเห็นของคุณ</label>
+                    </form>
+                </div>
+
+                <table id="table_comment" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Kitti</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Game</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdwidth"> <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" style="width: 65px;height: 65px;"></td>
+                        <td>
+                            <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="col-sm-3">
+                    <div class="quiz-menu">
+                        <figcaption>
                             <?php
-                                foreach ($question as $row2) :
-                                    if ($row2['unit_index'] == $row['unit_index']) { ?>
-                                    <li><a href="<?php echo $row2['quiz_question_id'] ?>"><?php echo $row2['quiz_question_name'] ?></a></li>
-                                <?php
-                                        }
-                                        ?>
-                            <?php
-                                endforeach;
+                            foreach ($video_link as $row) :
                                 ?>
-                        <?php
-                        endforeach;
-                        ?>
-                    </figcaption>
+
+                                <input class="form-check-input quiz-checkbox" type="checkbox">
+
+                                <a href="<?php echo $row['video_link'] ?>">
+                                    <div class="quiz-menu-li">
+
+                                        <?php echo $row['unit_name'] ?>
+                                    </div>
+                                </a>
+
+                                <?php
+                                    foreach ($question as $row2) :
+                                        if ($row2['unit_index'] == $row['unit_index']) { ?>
+                                        <div class="td_minimal">
+                                            <input class="form-check-input quiz-checkbox" type="checkbox">
+                                        </div>
+                                        <a href="<?php echo $row2['quiz_question_id'] ?>">
+                                            <div class="quiz-menu-li"><?php echo $row2['quiz_question_name'] ?>
+                                            </div>
+                                        </a>
+
+                                    <?php
+                                            }
+                                            ?>
+                                <?php
+                                    endforeach;
+                                    ?>
+                            <?php
+                            endforeach;
+                            ?>
+                        </figcaption>
+                    </div>
                 </div>
             </div>
         </figure>
@@ -244,6 +364,7 @@ endif
             links = video_player.getElementsByTagName('a');
             for (var i = 0; i < links.length; i++) {
                 links[i].onclick = handler;
+
             }
 
             function handler(e) {
@@ -255,7 +376,6 @@ endif
                 if (videotarget.lastIndexOf('.') > 1) {
                     quiz.style.display = "none";
                     x.style.display = "block";
-
                     //console.log(videotarget);
                     filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
                     video = document.querySelector("#video_player video");
@@ -288,10 +408,8 @@ endif
                                 $("#myDIV2").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
                             }
                         }
-
                     });
                 }
-
             }
         </script>
 
@@ -300,12 +418,11 @@ endif
 
         <!-- Main Footer -->
 
-
-        <div class="footernew2">
-            <a href="<?php echo base_url('/home'); ?>">
-                <div class="footerimg">
-                    <img src="<?php echo base_url('assets/img/logo2.png'); ?>">
-                </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="footernew2" <a href="<?php echo base_url('/home'); ?>">
+            <div class="footerimg">
+                <img src="<?php echo base_url('assets/img/logo2.png'); ?>">
+            </div>
             </a>
             <div class="footericonphone">
                 <i class="fa fa-phone">

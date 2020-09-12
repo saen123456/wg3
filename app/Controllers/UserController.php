@@ -25,6 +25,7 @@ class UserController extends BaseController
             $data['Course_Info'] = $Course_model->Select_Course_HomePage();
             $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
             $data['Course_Register'] = $Course_model->Select_Course_Register($User_id);
+            $data['Course_Owner_Name'] = $Course_model->Select_Course_Owner_Name($User_id);
             echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
@@ -52,7 +53,6 @@ class UserController extends BaseController
             echo view('home/HomePage', $data);
         }
     }
-
     /**
      * reset_password_page
      *

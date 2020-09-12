@@ -69,7 +69,7 @@ class CourseUserController extends BaseController
             // $data['data'] = $model->Select_Video();
             // $data['data'] = $model->Select_Video_Of_Course($id);
             $data['video_link'] = $model->Select_Video_Of_Course($id);
-            $data['question'] = $model->Select_Question_Of_Course();
+            $data['question'] = $model->Select_Question_Of_Course($id);
             echo view('Course/Couse_Learn_Video', $data);
         } else {
             echo view('Home/HomePage');
