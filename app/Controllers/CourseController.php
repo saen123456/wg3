@@ -252,7 +252,7 @@ class CourseController extends BaseController
 
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress');
+        $bucket = $storage->bucket('workgress-storage');
         $content = file_get_contents($file['uploadFile']['tmp_name']);
         $file_name = $file['uploadFile']['name'];
 
@@ -272,7 +272,7 @@ class CourseController extends BaseController
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress');
+        $bucket = $storage->bucket('workgress-storage');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $file_name = $file['uploadFile']['name'];
@@ -304,7 +304,7 @@ class CourseController extends BaseController
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress');
+        $bucket = $storage->bucket('workgress-storage');
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $Video_Name = $file['Unit_Video_File']['name'];
 
@@ -331,7 +331,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress');
+        $bucket = $storage->bucket('workgress-storage');
 
         $Course_id = $this->session->get("Course_id");
 
@@ -352,7 +352,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress');
+        $bucket = $storage->bucket('workgress-storage');
 
         $Course_id = $this->session->get("Course_id");
         $content = file_get_contents($file['photo']['tmp_name']);
@@ -404,7 +404,7 @@ class CourseController extends BaseController
 
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress');
+        $bucket = $storage->bucket('workgress-storage');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
 
