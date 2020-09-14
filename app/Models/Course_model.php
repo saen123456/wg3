@@ -214,9 +214,9 @@ class Course_model extends Model
         //$sql = "SELECT video_id,video_name,video_link from video";
         return $this->connect_postgresdb->execute($sql);
     }
-    public function Upload_Edit_Unit($Course_id, $Video_link, $Unit_Index, $Video_Name, $Video_Duration)
+    public function Upload_Edit_Unit($Course_id, $Video_link, $Unit_ID, $Video_Name, $Video_Duration)
     {
-        $sql3 = "SELECT video_id FROM course_unit WHERE course_id = $Course_id AND unit_index = '$Unit_Index'";
+        $sql3 = "SELECT video_id FROM course_unit WHERE course_id = $Course_id AND unit_id = '$Unit_ID'";
         $Video_id = $this->connect_postgresdb->getOne($sql3);
 
         $sql4 = "UPDATE video SET video_name = '$Video_Name' , video_time = '$Video_Duration' ,video_link = '$Video_link' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE video_id = '$Video_id'  ";

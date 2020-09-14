@@ -410,7 +410,7 @@ class CourseController extends BaseController
 
         $Video_Name = $file['Unit_Video_File']['name'];
         $Course_id = $this->session->get("Course_id");
-        $Unit_Index = $_GET['Unit_Index'];
+        $Unit_ID = $_GET['Unit_ID'];
 
         $Video_TmpName = $file['Unit_Video_File']['tmp_name'];
         $Get_Duration = $getId3->analyze($Video_TmpName);
@@ -418,7 +418,7 @@ class CourseController extends BaseController
         //$model->Upload_Edit_Unit($Course_id, $Unit_Index, $Unit_Name);
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/storage-workgress/" . $Video_Name;
-            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_Index, $Video_Name, $Video_Duration);
+            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_ID, $Video_Name, $Video_Duration);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
@@ -432,10 +432,10 @@ class CourseController extends BaseController
         $Unit_Name = $this->request->getVar('Unit_Name');
         $Unit_ID = $_GET['Unit_ID'];
         $Course_id = $this->session->get("Course_id");
-        echo $Unit_ID . " " . $Unit_Name;
-        /*$model->Update_Unit_Name($Unit_ID, $Unit_Name);
+        //echo $Unit_ID . " " . $Unit_Name;
+        $model->Update_Unit_Name($Unit_ID, $Unit_Name);
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขชื่อ unit ของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
-        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);*/
+        return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
     }
     public function Edit_Course_Name()
     {
