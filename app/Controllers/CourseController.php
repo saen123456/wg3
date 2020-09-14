@@ -410,7 +410,7 @@ class CourseController extends BaseController
 
         $Video_Name = $file['Unit_Video_File']['name'];
         $Course_id = $this->session->get("Course_id");
-        $Unit_ID = $_GET['Unit_ID'];
+        $Unit_Index = $_GET['Unit_Index'];
 
         $Video_TmpName = $file['Unit_Video_File']['tmp_name'];
         $Get_Duration = $getId3->analyze($Video_TmpName);
@@ -418,7 +418,7 @@ class CourseController extends BaseController
         //$model->Upload_Edit_Unit($Course_id, $Unit_Index, $Unit_Name);
         if ($bucket->upload($content, ['name' => $Video_Name])) {
             $Video_link = "https://storage.googleapis.com/storage-workgress/" . $Video_Name;
-            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_ID, $Video_Name, $Video_Duration);
+            $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_Index, $Video_Name, $Video_Duration);
             echo "<div class='preview'>upload success</div>";
         } else {
             echo "<div class='preview'>something wrong</div>";
