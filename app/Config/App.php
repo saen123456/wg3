@@ -23,8 +23,8 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'https://workgress.online/';
-	//public $baseURL = 'http://localhost:2020/projectwg';
+	//public $baseURL = 'https://workgress.online/';
+	public $baseURL = 'http://localhost:2020/projectwg';
 	/*
 	|--------------------------------------------------------------------------
 	| Index File
