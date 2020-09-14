@@ -20,7 +20,7 @@ class Admin_model extends Model
     {
         $this->driver = 'postgres'; //ประเภทของระบบฐานข้อมูล
         $this->connect_postgresdb = NewADOConnection($this->driver);
-        $this->server = '34.87.38.159'; //ชื่อ server
+        $this->server = '34.126.123.98'; //ชื่อ server
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
