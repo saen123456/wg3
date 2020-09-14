@@ -225,34 +225,34 @@ class CourseController extends BaseController
         }
     }
 
-
-
-    public function Create_Bucket()
+    //function create bucket
+    /*public function Create_Bucket()
     {
         putenv("GOOGLE_APPLICATION_CREDENTIALS=workgress2.json");
 
         # Your Google Cloud Platform project ID
-        $projectId = 'workgress';
+        $projectId = 'supple-alpha-289508';
         # Instantiates a client
         $this->storage = new StorageClient([
             'projectId' => $projectId
         ]);
 
         # The name for the new bucket
-        $bucketName = 'workgress-storage';
+        $bucketName = 'storage-workgress';
 
         # Creates the new bucket
         $bucket = $this->storage->createBucket($bucketName);
 
         echo 'Bucket ' . $bucket->name() . ' created.';
-    }
+    }*/
+
     public function Upload_Course()
     {
         $model = new Course_model();
 
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress-storage');
+        $bucket = $storage->bucket('storage-workgress');
         $content = file_get_contents($file['uploadFile']['tmp_name']);
         $file_name = $file['uploadFile']['name'];
 
@@ -272,7 +272,7 @@ class CourseController extends BaseController
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress-storage');
+        $bucket = $storage->bucket('storage-workgress');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $file_name = $file['uploadFile']['name'];
@@ -304,7 +304,7 @@ class CourseController extends BaseController
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress-storage');
+        $bucket = $storage->bucket('storage-workgress');
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $Video_Name = $file['Unit_Video_File']['name'];
 
@@ -331,7 +331,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress-storage');
+        $bucket = $storage->bucket('storage-workgress');
 
         $Course_id = $this->session->get("Course_id");
 
@@ -352,7 +352,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress-storage');
+        $bucket = $storage->bucket('storage-workgress');
 
         $Course_id = $this->session->get("Course_id");
         $content = file_get_contents($file['photo']['tmp_name']);
@@ -404,7 +404,7 @@ class CourseController extends BaseController
 
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('workgress-storage');
+        $bucket = $storage->bucket('storage-workgress');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
 
