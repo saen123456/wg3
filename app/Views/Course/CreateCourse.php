@@ -18,7 +18,7 @@
 		<!-- Google Font: Source Sans Pro -->
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url('dist2/css/photo.css'); ?>" type="text/css" media="screen">
-		<link href="dist2/css/landing-page1.css" rel="stylesheet">
+		<link href="" <?php echo base_url('dist2/css/landing-page1.css'); ?>" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/dropdown.css'); ?>" type="text/css" media="screen">
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
@@ -28,11 +28,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 		<link rel="stylesheet" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
-		<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-		<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-		<script src="plugins/toastr/toastr.min.js"></script>
+		<link rel="stylesheet" href="" <?php echo base_url('plugins/toastr/toastr.min.css'); ?>">
+		<script src="" <?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+		<script src="" <?php echo base_url('plugins/toastr/toastr.min.js'); ?>"></script>
 		<!-- Font Icon -->
-		<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+		<link rel="stylesheet" href="" <?php echo base_url('fonts/material-icon/css/material-design-iconic-font.min.css'); ?>">
 		<!-- Main css -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/step.css'); ?>" type="text/css" media="screen">
 
@@ -42,12 +42,12 @@
 		<link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css'); ?>" type="text/css" media="screen">
 
 		<!-- Theme style  -->
-		<link rel="stylesheet" href="assets/course/css/style.css">
+		<link rel="stylesheet" href="" <?php echo base_url('assets/course/css/style.css'); ?>">
 
 		<!-- Modernizr JS -->
-		<script src="assets/course/js/modernizr-2.6.2.min.js"></script>
+		<script src="" <?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>"></script>
 
-		<link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
+		<link rel="preload" href="" <?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
 	</head>
 	<?php
