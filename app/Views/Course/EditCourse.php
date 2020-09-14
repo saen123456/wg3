@@ -324,7 +324,7 @@ $this->session = \Config\Services::session();
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                                    <button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> แก้ไข video</button>
+                                                                    <button class="btn btn-sm btn-info upload" type="submit" var unit_index="<?php echo $row['unit_index'] ?>"><i class="fa fa-upload"></i> แก้ไข video</button>
                                                                     <!-- <button class="btn btn-success sent_unit_name" type="button" data-toggle="modal" data-target="#quizModal" var unit_name="<?= $row['unit_name'] ?>"><i class="fa fa-plus"></i> เพื่ม คำถาม</button> -->
                                                                     <a class="btn btn-success sent_unit_name" role="button" type="button" data-toggle="modal" data-target="#quizModal" var unit_name="<?php echo $row['unit_name'] ?>" var unit_index="<?php echo $row['unit_index'] ?>" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-plus"></i> เพื่ม คำถาม </a>
                                                                 </div>
@@ -539,14 +539,14 @@ $this->session = \Config\Services::session();
                 $(".btn-info").click(function() {
                     $("#Unit_Index").attr("value", $(this).attr('Unit_Index'));
                     window.Unit_Index = $(this).attr('Unit_Index');
-
+                    console.log(window.Unit_Index);
                 });
 
                 function uploadImage($form) {
 
                     $form.find('.progress-bar').removeClass('progress-bar-success')
                         .removeClass('progress-bar-danger');
-                    console.log(window.Unit_Index);
+
                     var xhr = new window.XMLHttpRequest();
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + window.Unit_Index,
