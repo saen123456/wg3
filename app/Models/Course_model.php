@@ -216,7 +216,7 @@ class Course_model extends Model
     }
     public function Upload_Edit_Unit($Course_id, $Video_link, $Unit_Index, $Video_Name, $Video_Duration)
     {
-        $sql3 = "SELECT video_id FROM course_unit WHERE course_id = '$Course_id' AND unit_id = '$Unit_Index'";
+        $sql3 = "SELECT video_id FROM course_unit WHERE course_id = '$Course_id' AND unit_index = '$Unit_Index'";
         $Video_id = $this->connect_postgresdb->getOne($sql3);
 
         $sql4 = "UPDATE video SET video_name = '$Video_Name' , video_time = '$Video_Duration' ,video_link = '$Video_link' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE video_id = '$Video_id'  ";
@@ -237,7 +237,7 @@ class Course_model extends Model
         $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC LIMIT 4";
         return $this->connect_postgresdb->execute($sql);
     }
-   
+
     public function Select_CategoryCourse($start, $perpage)
     {
         $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT '$perpage' OFFSET '$start'  ";
