@@ -227,25 +227,25 @@ class CourseController extends BaseController
 
 
 
-    // public function Create_Bucket()
-    // {
-    //     putenv("GOOGLE_APPLICATION_CREDENTIALS=workgress.json");
+    public function Create_Bucket()
+    {
+        putenv("GOOGLE_APPLICATION_CREDENTIALS=workgress2.json");
 
-    //     # Your Google Cloud Platform project ID
-    //     $projectId = 'workgress';
-    //     # Instantiates a client
-    //     $this->storage = new StorageClient([
-    //         'projectId' => $projectId
-    //     ]);
+        # Your Google Cloud Platform project ID
+        $projectId = 'workgress';
+        # Instantiates a client
+        $this->storage = new StorageClient([
+            'projectId' => $projectId
+        ]);
 
-    //     # The name for the new bucket
-    //     $bucketName = 'workgress';
+        # The name for the new bucket
+        $bucketName = 'workgress-storage';
 
-    //     # Creates the new bucket
-    //     $bucket = $this->storage->createBucket($bucketName);
+        # Creates the new bucket
+        $bucket = $this->storage->createBucket($bucketName);
 
-    //     echo 'Bucket ' . $bucket->name() . ' created.';
-    // }
+        echo 'Bucket ' . $bucket->name() . ' created.';
+    }
     public function Upload_Course()
     {
         $model = new Course_model();
