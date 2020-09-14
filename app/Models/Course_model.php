@@ -216,7 +216,7 @@ class Course_model extends Model
     }
     public function Upload_Edit_Unit($Course_id, $Video_link, $Unit_ID, $Video_Name, $Video_Duration)
     {
-        $sql3 = "SELECT video_id FROM course_unit WHERE course_id = $Course_id AND unit_id = '$Unit_ID'";
+        $sql3 = "SELECT video_id FROM course_unit WHERE unit_id = '$Unit_ID'";
         $Video_id = $this->connect_postgresdb->getOne($sql3);
 
         $sql4 = "UPDATE video SET video_name = '$Video_Name' , video_time = '$Video_Duration' ,video_link = '$Video_link' , update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE video_id = '$Video_id'  ";
