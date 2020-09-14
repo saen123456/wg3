@@ -213,16 +213,16 @@ endif
                         $Course_Name = $row['course_name'];
                     endforeach;
                     ?>
-                    <div class="d-flex justify-content-center">
+                    <!-- <div class="d-flex justify-content-center">
                         <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" class="img-profile" alt="Responsive image">
                         <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-fluid" alt="Responsive image">
                         <div class="course-name"><?php echo $Course_Name; ?></div>
-                    </div>
+                    </div> -->
 
 
 
                 </div>
-                <div class="comment">
+                <!-- <div class="comment">
                     ความคิดเห็น
                 </div>
                 <div class="comment_profile">
@@ -314,7 +314,7 @@ endif
                             <div style="font-weight: bold;">Boat</div>เนื้อหาชัดเจนมากครับ เป็นประโยชน์มากครับ
                         </td>
                     </tr>
-                </table>
+                </table> -->
 
                 <div class="col-sm-3">
                     <div class="quiz-menu">
@@ -329,6 +329,7 @@ endif
                                     <div class="quiz-menu-li">
 
                                         <?php echo $row['unit_name'] ?>
+                                        <?php echo "<div class='float-right'>" . $row['video_time'] . "</div>" ?>
                                     </div>
                                 </a>
 
@@ -339,7 +340,10 @@ endif
                                             <input class="form-check-input quiz-checkbox" type="checkbox">
                                         </div>
                                         <a href="<?php echo $row2['quiz_question_id'] ?>">
-                                            <div class="quiz-menu-li"><?php echo $row2['quiz_question_name'] ?>
+                                            <div class="quiz-menu-li">
+                                                <?php echo "คำถามของ " . $row['unit_name'] . "<br>";
+                                                            echo  $row2['quiz_question_name']
+                                                            ?>
                                             </div>
                                         </a>
 
@@ -405,12 +409,24 @@ endif
                             $("#myDIV2").html("");
                             //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
                             for (i = 0; i < obj.length; i++) {
-                                $("#myDIV2").append("<div class='input-group'><span class='input-group-addon'><input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span><input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> </div><br>");
+                                $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
+                                    "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
+                                    "<input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> " +
+                                    "</div><br>"
+                                );
                             }
+                            $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+                            $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
                         }
                     });
                 }
             }
+
+            $(document).ready(function() {
+                $(document).on("click", ".user_send_answer", function() {
+                    console.log('clicked');
+                });
+            });
         </script>
 
         <!-- /.content -->
