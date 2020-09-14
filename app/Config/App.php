@@ -23,7 +23,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://34.126.118.226/';
+	public $baseURL = 'http://34.126.115.225';
 	//public $baseURL = 'http://localhost:2020/projectwg';
 	/*
 	|--------------------------------------------------------------------------
