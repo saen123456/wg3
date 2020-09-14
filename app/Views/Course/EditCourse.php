@@ -304,7 +304,7 @@ $this->session = \Config\Services::session();
                                                                 </div>
                                                                 <div class="col-sm-1">
                                                                     <!-- <input type="submit" value="แก้ไขชื่อ unit" class="btn btn-primary" style="width:120px;height:35px" /> -->
-                                                                    <button type="submit" class="btn btn-info" style="width:110px;height:30px" formaction="<?= base_url('/CourseController/Edit_Unit_Name?Unit_ID=' . $row['unit_id'] . '/') ?>">แก้ไขชื่อ unit</button>
+                                                                    <button type="submit" class="btn btn-info" style="width:110px;height:30px" formaction="<?= base_url('/CourseController/Edit_Unit_Name?Unit_ID=' . $row['unit_id']) ?>">แก้ไขชื่อ unit</button>
                                                                 </div>
                                                             </form>
 
