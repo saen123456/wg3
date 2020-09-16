@@ -105,7 +105,7 @@ class CourseController extends BaseController
             $this->session->set($this->Data);
             $data['data'] = $model->Select_Course_Edit($Course_id);
             $data['Quiz'] = $model->Select_Quiz($Course_id);
-
+            $data['document'] = $model->Select_Document_Of_Course($Course_id);
             echo view('Course/EditCourse', $data);
             //echo $Course_Id;
         } else {
@@ -340,10 +340,35 @@ class CourseController extends BaseController
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Document_Name])) {
             $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
-            $model->Upload_Document($Course_id, $Documen_link);
-            echo "อัพโหลดเนื้อหาเรียบร้อยแล้ว";
+            $model->Upload_Document($Course_id, $Documen_link,$Document_Name);
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         } else {
-            echo "อัพโหลดไม่สำเร็จ";
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนไม่สำเร็จ&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+        }
+    }
+    public function Edit_Document()
+    {
+        $model = new Course_model();
+        $file = $_FILES;
+
+        $storage = new StorageClient();
+        $bucket = $storage->bucket('storage-workgress');
+
+        $Course_id = $this->session->get("Course_id");
+
+        $content = file_get_contents($file['Document']['tmp_name']);
+        $Document_Name = $file['Document']['name'];
+        //echo $Photo->getClientName();
+        if ($bucket->upload($content, ['name' => $Document_Name])) {
+            $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
+            $model->Edit_Upload_Document($Course_id, $Documen_link,$Document_Name);
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+        } else {
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนไม่สำเร็จ&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         }
     }
     public function Upload_Picture_Course()

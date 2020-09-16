@@ -385,29 +385,54 @@ $this->session = \Config\Services::session();
                     <h2>สร้างส่วน การบรรยายในหลักสูตร</h2>
                     <p class="desc">เริ่มต้นรวมหลักสูตรของคุณเข้าด้วยกันด้วยการสร้างส่วน การบรรยาย ต่างๆในหลักสูตรที่คุณจะสอน</p>
                     <div class="fieldset-content2">
-                        <form action="<?= site_url('/CourseController/Upload_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div id="targetLayer" style="display:none;"></div>
-                            <div class="input-group">
-                                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                        <?php
+                        foreach ($document as $row) :
+                            $Document_link = $row['document_link'];
+                        endforeach;
+                        if (isset($document)) { ?>
 
-                                <span class="input-group-btn">
+                            <form action="<?= site_url('/CourseController/Edit_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
+                                <div class="input-group">
+                                    <input type="text" class="form-control image-preview-filename" disabled="disabled" value="<?php echo $Document_link; ?>"> <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
+                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="col-xs-4">
+                                    <input type="submit" id="uploadSubmit" value="อัพโหลดเนื้อหา" class="btn btn-info" />
+                                </div>
+                                <br><br><br>
+                            </form>
+                        <?php
+                        } else { ?>
+                            ยังไม่มี
+                            <form action="<?= site_url('/CourseController/Upload_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
+                                <div class="input-group">
+                                    <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+
+                                    <span class="input-group-btn">
 
 
-                                    <div class="btn btn-default image-preview-input">
-                                        <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                        <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
-                                    </div>
-                                </span>
-                            </div>
-                            <br>
-                            <div class="col-xs-4">
-                                <input type="submit" id="uploadSubmit" value="อัพโหลดเนื้อหา" class="btn btn-info" />
-                            </div>
-                            <br><br><br>
-                        </form>
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
+                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="col-xs-4">
+                                    <input type="submit" id="uploadSubmit" value="อัพโหลดเนื้อหา" class="btn btn-info" />
+                                </div>
+                                <br><br><br>
+                            </form>
+                        <?php
+                        }
+                        ?>
+
                     </div>
                 </fieldset>
 

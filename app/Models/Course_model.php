@@ -302,9 +302,9 @@ class Course_model extends Model
         return $this->connect_postgresdb->execute($sql);
     }
 
-    public function Upload_Document($Course_id, $Documen_link)
+    public function Upload_Document($Course_id, $Documen_link, $Document_Name)
     {
-        $sql = "INSERT INTO document (document_link,create_date,update_date) VALUES ('$Documen_link',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
+        $sql = "INSERT INTO document (document_link,create_date,update_date,document_name) VALUES ('$Documen_link',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok','$Document_Name')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
 
         $sql3 = "SELECT max(document_id) FROM document";
@@ -312,5 +312,19 @@ class Course_model extends Model
 
         $sql5 = "INSERT INTO course_document (course_id,document_id,create_date,update_date) VALUES ('$Course_id','$Document_Id',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql5);
+    }
+    public function Edit_Upload_Document($Course_id, $Documen_link, $Document_Name)
+    {
+        $sql = "SELECT document_id FROM course_document WHERE course_id = '$Course_id'";
+        $Document_Id = $this->connect_postgresdb->getOne($sql);
+
+        $sql2 = "UPDATE document SET document_link = '$Documen_link' , update_date = now() AT TIME ZONE 'Asia/Bangkok',document_name = '$Document_Name' WHERE document_id = '$Document_Id'";
+        $this->connect_postgresdb->execute($sql2);
+    }
+    public function Select_Document_Of_Course($Course_id)
+    {
+        $sql = "SELECT * FROM course_document join document on course_document.document_id = document.document_id WHERE course_document.course_id = '$Course_id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
     }
 }
