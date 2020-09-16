@@ -399,7 +399,7 @@ $this->session = \Config\Services::session();
                                     <span class="input-group-btn">
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document2" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document2" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
                                     </span>
                                 </div>
@@ -419,7 +419,7 @@ $this->session = \Config\Services::session();
                                     <span class="input-group-btn">
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document1" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document1" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
                                     </span>
                                 </div>
