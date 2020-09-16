@@ -392,7 +392,7 @@ $this->session = \Config\Services::session();
                                 $Document_link = $row['document_name'];
                             endforeach;
                             ?>
-                            
+
                             <form action="<?= site_url('/CourseController/Edit_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
                                 <div class="input-group">
                                     <input type="text" class="form-control image-preview-filename" disabled="disabled" value="<?php echo $Document_link; ?>"> <!-- don't give a name === doesn't send on POST/GET -->
@@ -411,7 +411,7 @@ $this->session = \Config\Services::session();
                             </form>
                         <?php
                         } else { ?>
-                          
+
                             <form action="<?= site_url('/CourseController/Upload_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
                                 <div class="input-group">
                                     <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
@@ -495,8 +495,6 @@ $this->session = \Config\Services::session();
                                             <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
 
                                             <span class="input-group-btn">
-
-
                                                 <div class="btn btn-default image-preview-input">
                                                     <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
                                                     <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
@@ -916,6 +914,7 @@ $this->session = \Config\Services::session();
         <script>
             $(document).ready(function() {
                 $('#uploadImage').submit(function(event) {
+                    //console.log("test");
                     if ($('#uploadFile').val()) {
                         event.preventDefault();
                         $('#loader-icon').show();
