@@ -123,4 +123,16 @@ class CourseUser_model extends Model
         $sql = "UPDATE user_answer SET answer = '$Answer',update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE user_id = '$User_id' AND quiz_question_id = '$Quiz_Question_id' ";
         $this->connect_postgresdb->getOne($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
     }
+    public function Select_Document_Of_Course($id)
+    {
+        $sql = "SELECT * FROM course_document join document on course_document.document_id = document.document_id WHERE course_document.course_id = '$id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->getOne($sql);
+    }
+    public function Select_Document($Course_id)
+    {
+        $sql = "SELECT * FROM course_document join document on course_document.document_id = document.document_id WHERE course_document.course_id = '$Course_id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
 }

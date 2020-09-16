@@ -215,9 +215,11 @@ endif
                         <video controls width="700px" id="player">
                             <source src="<?php echo $Video_Src; ?>" type="video/mp4">
                         </video>
+
                     </div>
                     <div id="myDIV2">
                     </div>
+
                     <br>
                     <!-- <div class="d-flex justify-content-center">
                         <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" class="img-profile" alt="Responsive image">
@@ -320,6 +322,15 @@ endif
                 </table> -->
 
                 <div class="col-sm-3">
+                    <?php
+                    if (isset($have_document)) {
+                        ?>
+                        <form action="<?= base_url('doucment') ?>" method="get" target="_blank">
+                            <button class="btn btn-light">แหล่งข้อมูล</button>
+                        </form>
+                    <?php
+                    }
+                    ?>
                     <div class="quiz-menu">
                         <figcaption>
                             <?php

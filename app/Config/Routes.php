@@ -60,6 +60,7 @@ $routes->add('/course/createcourse', 'CourseController::CreateCourse');
 $routes->get('/alldevelopment', 'CourseController::Category_Course');
 $routes->get('/search/course', 'CourseController::Search_Course');
 $routes->get('/my-courses/learning', 'CourseUserController::My_Course');
+$routes->get('/doucment', 'CourseUserController::DocumentView');
 
 //Config-Course
 $routes->add('/course/manage/config/(:any)', 'CourseController::CreateCourseStep2/$1');

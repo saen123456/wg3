@@ -42,6 +42,15 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    public function DocumentView($id = null)
+    {
+        $model = new CourseUser_model();
+        $Course_id = $this->session->get('Course_id_document');
+        //echo $Course_id;
+        $data['document'] = $model->Select_Document($Course_id);
+        //echo "test";
+        echo view('Course/Document', $data);
+    }
     public function User_Register_Course($id = null)
     {
         $User_id = $this->session->get("User_id");
@@ -70,6 +79,13 @@ class CourseUserController extends BaseController
             // $data['data'] = $model->Select_Video_Of_Course($id);
             $data['video_link'] = $model->Select_Video_Of_Course($id);
             $data['question'] = $model->Select_Question_Of_Course($id);
+            $data['have_document'] = $model->Select_Document_Of_Course($id);
+            $Course_id = $id;
+            $this->Data = [
+                'Course_id_document' => $Course_id,
+            ];
+            $this->session->set($this->Data);
+            //echo $this->session->get('Course_id_document');
             echo view('Course/Couse_Learn_Video', $data);
         } else {
             echo view('Home/HomePage');
