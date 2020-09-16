@@ -325,6 +325,6 @@ class Course_model extends Model
     {
         $sql = "SELECT * FROM course_document join document on course_document.document_id = document.document_id WHERE course_document.course_id = '$Course_id'";
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
-        return $this->connect_postgresdb->execute($sql);
+        return $this->connect_postgresdb->getOne($sql);
     }
 }

@@ -121,7 +121,6 @@ class CourseUser_model extends Model
     public function Update_User_Answer($User_id, $Quiz_Question_id, $Answer)
     {
         $sql = "UPDATE user_answer SET answer = '$Answer',update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE user_id = '$User_id' AND quiz_question_id = '$Quiz_Question_id' ";
-        $this->connect_postgresdb->execute($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
+        $this->connect_postgresdb->getOne($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
     }
-    
 }

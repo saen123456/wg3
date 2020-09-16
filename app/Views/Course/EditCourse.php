@@ -386,10 +386,13 @@ $this->session = \Config\Services::session();
                     <p class="desc">เริ่มต้นรวมหลักสูตรของคุณเข้าด้วยกันด้วยการสร้างส่วน การบรรยาย ต่างๆในหลักสูตรที่คุณจะสอน</p>
                     <div class="fieldset-content2">
                         <?php
-                        foreach ($document as $row) :
-                            $Document_link = $row['document_link'];
-                        endforeach;
-                        if (isset($document)) { ?>
+                        echo $document;
+                        if (isset($document)) {
+                            foreach ($document as $row) :
+                                $Document_link = $row['document_name'];
+                            endforeach;
+                            ?>
+                            มี
                             <form action="<?= site_url('/CourseController/Edit_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
                                 <div class="input-group">
                                     <input type="text" class="form-control image-preview-filename" disabled="disabled" value="<?php echo $Document_link; ?>"> <!-- don't give a name === doesn't send on POST/GET -->
