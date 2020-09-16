@@ -33,6 +33,26 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/login'));
         }
     }
+    public function User_LearnCourse($id = null)
+    {
+        if ($this->session->get("Role_name")) {
+            $model = new CourseUser_model();
+            // $data['data'] = $model->Select_Video();
+            // $data['data'] = $model->Select_Video_Of_Course($id);
+            $data['video_link'] = $model->Select_Video_Of_Course($id);
+            $data['question'] = $model->Select_Question_Of_Course($id);
+            $data['have_document'] = $model->Select_Document_Of_Course($id);
+            $Course_id = $id;
+            $this->Data = [
+                'Course_id_document' => $Course_id,
+            ];
+            $this->session->set($this->Data);
+            //echo $this->session->get('Course_id_document');
+            echo view('Course/Couse_Learn_Video', $data);
+        } else {
+            return redirect()->to(base_url('/home'));
+        }
+    }
     public function CourseView($id = null)
     {
         $model = new CourseUser_model();
@@ -75,26 +95,6 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
-    public function User_LearnCourse($id = null)
-    {
-        if ($this->session->get("Role_name")) {
-            $model = new CourseUser_model();
-            // $data['data'] = $model->Select_Video();
-            // $data['data'] = $model->Select_Video_Of_Course($id);
-            $data['video_link'] = $model->Select_Video_Of_Course($id);
-            $data['question'] = $model->Select_Question_Of_Course($id);
-            $data['have_document'] = $model->Select_Document_Of_Course($id);
-            $Course_id = $id;
-            $this->Data = [
-                'Course_id_document' => $Course_id,
-            ];
-            $this->session->set($this->Data);
-            //echo $this->session->get('Course_id_document');
-            echo view('Course/Couse_Learn_Video', $data);
-        } else {
-            echo view('Home/HomePage');
-        }
-    }
     public function My_Course()
     {
         if ($this->session->get("Role_name")) {
@@ -103,7 +103,7 @@ class CourseUserController extends BaseController
             $data['My_Course'] = $model->Select_My_Courses($User_id);
             echo view('login/My_Courses', $data);
         } else {
-            echo view('Home/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function Select_Quiz_Video()

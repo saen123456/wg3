@@ -54,7 +54,7 @@ class CourseController extends BaseController
             //print_r($data['data']);
             echo view('Course/Course', $data);
         } else {
-            echo view('home/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function Edit_Quiz()
@@ -70,7 +70,7 @@ class CourseController extends BaseController
                 return redirect()->to(base_url('course/edit/' . $Course_Id))->with('incorrect', $msg);
             }
         } else {
-            echo view('login/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function CreateCourse()
@@ -78,7 +78,7 @@ class CourseController extends BaseController
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
             echo view('Course/CreateCourse');
         } else {
-            echo view('login/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function CreateCourseStep2($id = null)
@@ -91,7 +91,7 @@ class CourseController extends BaseController
             $this->session->set($this->Data);
             echo view('Course/CreateCourseStep2');
         } else {
-            echo view('login/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function EditCourse($id = null)
@@ -110,7 +110,7 @@ class CourseController extends BaseController
             echo view('Course/EditCourse', $data);
             //echo $Course_Id;
         } else {
-            echo view('login/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     /**** ส่วนของ View ****/
@@ -134,7 +134,7 @@ class CourseController extends BaseController
             $data['question'] = $model->Select_Question_Of_Course();
             echo view('Course/TestPlayer', $data);
         } else {
-            echo view('Home/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function Create_Course()
@@ -425,7 +425,7 @@ class CourseController extends BaseController
             //return redirect()->to(base_url('course'))->with('correct', $msg);
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         } else {
-            echo view('Home/HomePage');
+            return redirect()->to(base_url('/home'));
         }
     }
     public function Edit_Price()
@@ -439,7 +439,7 @@ class CourseController extends BaseController
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspสร้างคอร์สของคุณเรียบร้อยแล้ว อาจจะใช้เวลาสัก 15-30 นาที คอร์สของคุณถึงจะใช้งานได้ &nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course'))->with('correct', $msg);
         } else {
-            echo view('Home/HomePage');
+            return redirect()->to(base_url('/home'));
         }
 
         //echo $Course_Price." ".$Course_id;
