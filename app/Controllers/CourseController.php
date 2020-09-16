@@ -335,12 +335,12 @@ class CourseController extends BaseController
 
         $Course_id = $this->session->get("Course_id");
 
-        $content = file_get_contents($file['Document']['tmp_name']);
-        $Document_Name = $file['Document']['name'];
+        $content = file_get_contents($file['Document1']['tmp_name']);
+        $Document_Name = $file['Document1']['name'];
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Document_Name])) {
             $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
-            $model->Upload_Document($Course_id, $Documen_link,$Document_Name);
+            $model->Upload_Document($Course_id, $Documen_link, $Document_Name);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         } else {
@@ -358,12 +358,12 @@ class CourseController extends BaseController
 
         $Course_id = $this->session->get("Course_id");
 
-        $content = file_get_contents($file['Document']['tmp_name']);
-        $Document_Name = $file['Document']['name'];
+        $content = file_get_contents($file['Document2']['tmp_name']);
+        $Document_Name = $file['Document2']['name'];
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Document_Name])) {
             $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
-            $model->Edit_Upload_Document($Course_id, $Documen_link,$Document_Name);
+            $model->Edit_Upload_Document($Course_id, $Documen_link, $Document_Name);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         } else {

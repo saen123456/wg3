@@ -390,14 +390,13 @@ $this->session = \Config\Services::session();
                             $Document_link = $row['document_link'];
                         endforeach;
                         if (isset($document)) { ?>
-
                             <form action="<?= site_url('/CourseController/Edit_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
                                 <div class="input-group">
                                     <input type="text" class="form-control image-preview-filename" disabled="disabled" value="<?php echo $Document_link; ?>"> <!-- don't give a name === doesn't send on POST/GET -->
                                     <span class="input-group-btn">
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document2" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
                                     </span>
                                 </div>
@@ -415,11 +414,9 @@ $this->session = \Config\Services::session();
                                     <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
 
                                     <span class="input-group-btn">
-
-
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document1" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
                                     </span>
                                 </div>
