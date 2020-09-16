@@ -325,6 +325,27 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
+    public function Upload_Document()
+    {
+        $model = new Course_model();
+        $file = $_FILES;
+
+        $storage = new StorageClient();
+        $bucket = $storage->bucket('storage-workgress');
+
+        $Course_id = $this->session->get("Course_id");
+
+        $content = file_get_contents($file['Document']['tmp_name']);
+        $Document_Name = $file['Document']['name'];
+        //echo $Photo->getClientName();
+        if ($bucket->upload($content, ['name' => $Photo_Name])) {
+            $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
+            $model->Upload_Document($Course_id, $Documen_link);
+            echo "อัพโหลดเนื้อหาเรียบร้อยแล้ว";
+        } else {
+            echo "อัพโหลดไม่สำเร็จ";
+        }
+    }
     public function Upload_Picture_Course()
     {
         $model = new Course_model();

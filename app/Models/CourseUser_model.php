@@ -91,4 +91,36 @@ class CourseUser_model extends Model
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Quiz_Anwser($Quiz_Question_id)
+    {
+        $sql = "SELECT *  FROM quiz_answer join quiz_question on quiz_answer.quiz_question_id =  quiz_question.quiz_question_id WHERE quiz_answer.quiz_question_id = '$Quiz_Question_id' ORDER BY quiz_answer.quiz_question_id";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_User_Do_Answer($User_id, $Quiz_Question_id)
+    {
+        $sql = "SELECT * FROM user_answer WHERE user_id = '$User_id' AND quiz_question_id = '$Quiz_Question_id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Check_User_Anwser($User_id, $Quiz_Question_id)
+    {
+        $sql = "SELECT * FROM user_answer WHERE user_id = '$User_id' AND quiz_question_id = '$Quiz_Question_id'";
+        $Check_User_Ans = $this->connect_postgresdb->execute($sql);
+        if ($Check_User_Ans->RecordCount() > 0) { //check ว่ามี email ที่รับค่ามาในระบบกี่ email แล้ว ถ้ามากกว่า 0 คือมีเมลนี้ในระบบแล้ว return true
+            return true;
+        } else { //ถ้ามี 0 คือยังไม่มีอีเมลนี้ในระบบ return false
+            return false;
+        }
+    }
+    public function Insert_User_Answer($User_id, $Quiz_Question_id, $Answer)
+    {
+        $sql = "INSERT INTO user_answer(user_id, quiz_question_id, answer,create_date) VALUES ($User_id,$Quiz_Question_id,$Answer,now() AT TIME ZONE 'Asia/Bangkok') ";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_User_Answer($User_id, $Quiz_Question_id, $Answer)
+    {
+        $sql = "UPDATE user_answer SET answer = '$Answer',update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE user_id = '$User_id' AND quiz_question_id = '$Quiz_Question_id' ";
+        $this->connect_postgresdb->execute($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
+    }
 }

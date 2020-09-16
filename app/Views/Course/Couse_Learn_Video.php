@@ -195,32 +195,35 @@ endif
         <!-- /.navbar -->
 
         <!-- Main content -->
-
+        <?php
+        $count = 0;
+        foreach ($video_link as $row) :
+            $Course_Name = $row['course_name'];
+            if ($count == 0) {
+                $Video_Src = $row['video_link'];
+            } else {
+                break;
+            }
+            $count++;
+        endforeach;
+        ?>
 
         <figure id="video_player">
             <div class="row">
                 <div class="col-sm-8">
                     <div id="myDIV">
                         <video controls width="700px" id="player">
-                            <source src="https://storage.googleapis.com/workgress/200415_Selenium_tool_Pipat55.mp4" type="video/mp4">
+                            <source src="<?php echo $Video_Src; ?>" type="video/mp4">
                         </video>
                     </div>
                     <div id="myDIV2">
                     </div>
                     <br>
-                    <?php
-                    foreach ($video_link as $row) :
-                        $Course_Name = $row['course_name'];
-                    endforeach;
-                    ?>
                     <!-- <div class="d-flex justify-content-center">
                         <img src="<?php echo base_url('assets/img/course-profile.png'); ?>" class="img-profile" alt="Responsive image">
                         <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-fluid" alt="Responsive image">
                         <div class="course-name"><?php echo $Course_Name; ?></div>
                     </div> -->
-
-
-
                 </div>
                 <!-- <div class="comment">
                     ความคิดเห็น
@@ -334,24 +337,26 @@ endif
                                 </a>
 
                                 <?php
-                                    foreach ($question as $row2) :
-                                        if ($row2['unit_index'] == $row['unit_index']) { ?>
-                                        <div class="td_minimal">
-                                            <input class="form-check-input quiz-checkbox" type="checkbox">
-                                        </div>
-                                        <a href="<?php echo $row2['quiz_question_id'] ?>">
-                                            <div class="quiz-menu-li">
-                                                <?php echo "คำถามของ " . $row['unit_name'] . "<br>";
-                                                            echo  $row2['quiz_question_name']
-                                                            ?>
+                                    if (isset($question)) {
+                                        foreach ($question as $row2) :
+                                            if ($row2['unit_index'] == $row['unit_index']) { ?>
+                                            <div class="td_minimal">
+                                                <input class="form-check-input quiz-checkbox" type="checkbox">
                                             </div>
-                                        </a>
+                                            <a href="<?php echo $row2['quiz_question_id'] ?>">
+                                                <div class="quiz-menu-li">
+                                                    <?php echo "คำถามของ " . $row['unit_name'] . "<br>";
+                                                                    echo  $row2['quiz_question_name']
+                                                                    ?>
+                                                </div>
+                                            </a>
 
-                                    <?php
-                                            }
-                                            ?>
+                                        <?php
+                                                    }
+                                                    ?>
                                 <?php
-                                    endforeach;
+                                        endforeach;
+                                    }
                                     ?>
                             <?php
                             endforeach;
@@ -389,42 +394,262 @@ endif
                     video.load();
                     video.play();
                 } else {
+                    var user_id = <?php echo $this->session->get("User_id") ?>;
                     // console.log("test");
                     quiz.style.display = "block";
                     x.style.display = "none";
-                    var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+                    //var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
                     video = document.querySelector("#video_player video");
                     video.pause();
-                    console.log(videotarget);
+                    //console.log(videotarget + user_id);
                     $.ajax({
-                        url: base_url,
+                        url: "<?= site_url('/CourseUserController/Select_User_Do_Answer') ?>",
                         method: "POST",
                         data: {
-                            quiz_id: videotarget,
+                            User_id: user_id,
+                            Quiz_Question_id: videotarget,
                         },
                         success: function(data) {
-
                             const obj = JSON.parse(data);
-                            console.log(obj);
-                            $("#myDIV2").html("");
-                            //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
-                            for (i = 0; i < obj.length; i++) {
-                                $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
-                                    "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
-                                    "<input type='text' class='form-control' data-answer-id='" + obj[i].quiz_answer_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='Choice_Answer2_" + (i + 1) + "' value='" + obj[i].quiz_answer_name + "'> " +
-                                    "</div><br>"
-                                );
+                            console.log(videotarget);
+                            if (obj.length > 0) {
+                                if (obj[0].answer == 1) {
+                                    $("#myDIV2").html("");
+                                    $("#myDIV2").append("คุณเคยทำแบบทดสอบนี้ไปแล้ว<br>");
+                                    $("#myDIV2").append("คุณตอบถูก");
+                                    $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
+                                    $(document).ready(function() {
+                                        $(".btn-submit-quiz").click(function() {
+                                            var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+                                            $.ajax({
+                                                url: base_url,
+                                                method: "POST",
+                                                data: {
+                                                    quiz_id: videotarget,
+                                                },
+                                                success: function(data) {
+                                                    const obj = JSON.parse(data);
+                                                    console.log(obj);
+                                                    $("#myDIV2").html("");
+                                                    //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                                    for (i = 0; i < obj.length; i++) {
+                                                        $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
+                                                            "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
+                                                            "<input type='text' class='form-control'  data-quiz-id='" + obj[i].quiz_question_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='quiz_question_id' value='" + obj[i].quiz_answer_name + "'  readonly> " +
+                                                            "</div><br>"
+                                                        );
+                                                    }
+                                                    // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+                                                    $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
+                                                }
+                                            });
+                                        });
+                                    });
+                                } else {
+                                    $("#myDIV2").html("");
+                                    $("#myDIV2").append("คุณเคยทำแบบทดสอบนี้ไปแล้ว<br>");
+                                    $("#myDIV2").append("คุณตอบผิด");
+                                    $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
+                                    $(document).ready(function() {
+                                        $(".btn-submit-quiz").click(function() {
+                                            var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+                                            $.ajax({
+                                                url: base_url,
+                                                method: "POST",
+                                                data: {
+                                                    quiz_id: videotarget,
+                                                },
+                                                success: function(data) {
+                                                    const obj = JSON.parse(data);
+                                                    console.log(obj);
+                                                    $("#myDIV2").html("");
+                                                    //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                                    for (i = 0; i < obj.length; i++) {
+                                                        $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
+                                                            "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
+                                                            "<input type='text' class='form-control'  data-quiz-id='" + obj[i].quiz_question_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='quiz_question_id' value='" + obj[i].quiz_answer_name + "'  readonly> " +
+                                                            "</div><br>"
+                                                        );
+                                                    }
+                                                    // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+                                                    $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
+                                                }
+                                            });
+                                        });
+                                    });
+
+                                }
+                            } else {
+                                $.ajax({
+                                    url: "<?= site_url('/CourseUserController/Select_Quiz_Video') ?>",
+                                    method: "POST",
+                                    data: {
+                                        quiz_id: videotarget,
+                                    },
+                                    success: function(data) {
+                                        const obj = JSON.parse(data);
+                                        console.log(obj);
+                                        $("#myDIV2").html("");
+                                        //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                        for (i = 0; i < obj.length; i++) {
+                                            $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
+                                                "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
+                                                "<input type='text' class='form-control'  data-quiz-id='" + obj[i].quiz_question_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='quiz_question_id' value='" + obj[i].quiz_answer_name + "'  readonly> " +
+                                                "</div><br>"
+                                            );
+                                        }
+                                        // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+                                        $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
+                                    }
+                                });
                             }
-                            $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
-                            $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
+
                         }
                     });
+
                 }
             }
-
+            var Radio_Answer_Choice;
+            var user_id = <?php echo $this->session->get("User_id") ?>;
             $(document).ready(function() {
+                $('#myDIV2').on("click", "input", function() {
+                    window.Radio_Answer_Choice = $(this).val();
+                    console.log(window.Radio_Answer_Choice);
+                    //console.log(typeof Radio_Answer);
+                });
+
                 $(document).on("click", ".user_send_answer", function() {
-                    console.log('clicked');
+                    //console.log('clicked');
+                    var Quiz_Question_id = $("#quiz_question_id").attr('data-quiz-id');
+
+                    var base_url = '<?= base_url('course/edit/') ?>';
+
+                    $.ajax({
+                        url: "<?= site_url('/CourseUserController/Check_User_Answer') ?>",
+                        method: "POST",
+                        data: {
+                            Quiz_Question_id: Quiz_Question_id,
+                        },
+                        success: function(data) {
+                            const obj = JSON.parse(data);
+                            console.log(obj);
+                            if (obj.length > 0) {
+                                var Answer = 1;
+                                for (i = 0; i < obj.length; i++) {
+                                    if (obj[i].quiz_answer_correct != 1) {
+                                        Answer++;
+                                    } else {
+                                        //console.log(Answer);
+                                        if (Answer == window.Radio_Answer_Choice) {
+                                            //Text_Check_Ans = "ถูก";
+                                            $.ajax({
+                                                url: "<?= site_url('/CourseUserController/Insert_User_Answer') ?>",
+                                                method: "POST",
+                                                data: {
+                                                    User_id: user_id,
+                                                    Quiz_Question_id: Quiz_Question_id,
+                                                    Answer: 1,
+                                                },
+                                                success: function(data) {
+                                                    /*const obj = JSON.parse(data);
+                                                    console.log(obj);*/
+                                                    $("#myDIV2").html("");
+                                                    $("#myDIV2").append("คุณตอบถูก");
+                                                    $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
+                                                    $(document).ready(function() {
+                                                        $(".btn-submit-quiz").click(function() {
+                                                            var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+                                                            console.log(videotarget);
+                                                            $.ajax({
+                                                                url: base_url,
+                                                                method: "POST",
+                                                                data: {
+                                                                    quiz_id: videotarget,
+                                                                },
+                                                                success: function(data) {
+                                                                    const obj = JSON.parse(data);
+                                                                    console.log(obj);
+                                                                    $("#myDIV2").html("");
+                                                                    //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                                                    for (i = 0; i < obj.length; i++) {
+                                                                        $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
+                                                                            "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
+                                                                            "<input type='text' class='form-control'  data-quiz-id='" + obj[i].quiz_question_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='quiz_question_id' value='" + obj[i].quiz_answer_name + "'  readonly> " +
+                                                                            "</div><br>"
+                                                                        );
+                                                                    }
+                                                                    // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+                                                                    $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                }
+                                            });
+
+                                        } else {
+                                            $.ajax({
+                                                url: "<?= site_url('/CourseUserController/Insert_User_Answer') ?>",
+                                                method: "POST",
+                                                data: {
+                                                    User_id: user_id,
+                                                    Quiz_Question_id: Quiz_Question_id,
+                                                    Answer: 0,
+                                                },
+                                                success: function(data) {
+                                                    /*const obj = JSON.parse(data);
+                                                    console.log(obj);*/
+                                                    $("#myDIV2").html("");
+                                                    $("#myDIV2").append("คุณตอบผิด");
+                                                    $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
+                                                    //console.log(videotarget);
+                                                    $(document).ready(function() {
+                                                        $(".btn-submit-quiz").click(function() {
+                                                            var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+                                                            console.log(videotarget);
+                                                            $.ajax({
+                                                                url: base_url,
+                                                                method: "POST",
+                                                                data: {
+                                                                    quiz_id: videotarget,
+                                                                },
+                                                                success: function(data) {
+                                                                    const obj = JSON.parse(data);
+                                                                    console.log(obj);
+                                                                    $("#myDIV2").html("");
+                                                                    //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                                                    for (i = 0; i < obj.length; i++) {
+                                                                        $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
+                                                                            "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
+                                                                            "<input type='text' class='form-control'  data-quiz-id='" + obj[i].quiz_question_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='quiz_question_id' value='" + obj[i].quiz_answer_name + "'  readonly> " +
+                                                                            "</div><br>"
+                                                                        );
+                                                                    }
+                                                                    // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+                                                                    $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                }
+                                            });
+                                            //Text_Check_Ans = "ผิด";
+
+
+                                        }
+                                        // alert("รหัสคำถามที่ : " + Quiz_Question_id + "\nผู้ใช้ที่ : " + user_id + " ตอบข้อที่ : " +
+                                        //     window.Radio_Answer_Choice + "\nคำตอบคือข้อที่ : " + Answer + "\nนักเรียนตอบ : " + Text_Check_Ans);
+                                    }
+
+                                }
+                            }
+                            //window.location.href = base_url + "/" + window.course_id;
+                            //alert("รหัสคำถามที่ : " + Quiz_Question_id + "\nผู้ใช้ที่ : " + user_id + " ตอบข้อที่ : " + window.Radio_Answer_Choice);
+                        },
+                        error: function(data) {
+                            alert("Error: " + data);
+                        }
+                    });
                 });
             });
         </script>

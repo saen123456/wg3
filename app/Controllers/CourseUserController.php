@@ -97,4 +97,40 @@ class CourseUserController extends BaseController
         }
         return json_encode($Select_Quiz);
     }
+    public function Select_User_Do_Answer()
+    {
+        $model = new CourseUser_model();
+        $User_id = $this->request->getVar('User_id');
+        $Quiz_Question_id = $this->request->getVar('Quiz_Question_id');
+        $data = $model->Select_User_Do_Answer($User_id, $Quiz_Question_id);
+        $Select_User_Do_Answer = array();
+        while ($row = $data->fetchRow()) {
+            $Select_User_Do_Answer[] = $row;
+        }
+        return json_encode($Select_User_Do_Answer);
+    }
+    public function Check_User_Answer()
+    {
+        $model = new CourseUser_model();
+        $Quiz_Question_id = $this->request->getVar('Quiz_Question_id');
+        $data = $model->Select_Quiz_Anwser($Quiz_Question_id);
+        $Select_Answer = array();
+        while ($row = $data->fetchRow()) {
+            $Select_Answer[] = $row;
+        }
+        return json_encode($Select_Answer);
+    }
+    public function Insert_User_Answer()
+    {
+        $model = new CourseUser_model();
+        $User_id = $this->request->getVar('User_id');
+        $Quiz_Question_id = $this->request->getVar('Quiz_Question_id');
+        $Answer = $this->request->getVar('Answer');
+
+        if ($model->Check_User_Anwser($User_id, $Quiz_Question_id) == true) {
+            $model->Update_User_Answer($User_id, $Quiz_Question_id, $Answer);
+        } else {
+            $model->Insert_User_Answer($User_id, $Quiz_Question_id, $Answer);
+        }
+    }
 }

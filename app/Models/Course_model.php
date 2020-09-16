@@ -302,11 +302,15 @@ class Course_model extends Model
         return $this->connect_postgresdb->execute($sql);
     }
 
-    /*public function Insert_Test($test)
+    public function Upload_Document($Course_id, $Documen_link)
     {
-        $sql = "INSERT INTO test (test_name) VALUES ('$test')";
+        $sql = "INSERT INTO document (document_link,create_date,update_date) VALUES ('$Documen_link',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
         $this->connect_postgresdb->execute($sql); //จะทำการ Insert ข้อมูลเข้า ฐานข้อมูล
 
+        $sql3 = "SELECT max(document_id) FROM document";
+        $Document_Id = $this->connect_postgresdb->getOne($sql3);
 
-    }*/
+        $sql5 = "INSERT INTO course_document (course_id,document_id,create_date,update_date) VALUES ('$Course_id','$Document_Id',now() AT TIME ZONE 'Asia/Bangkok',now() AT TIME ZONE 'Asia/Bangkok')";
+        $this->connect_postgresdb->execute($sql5);
+    }
 }

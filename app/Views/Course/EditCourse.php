@@ -105,15 +105,17 @@ $this->session = \Config\Services::session();
 
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
-                            <form id="form_quiz">
-                                <input type="text" class="form-control" id="Quiz" aria-describedby="basic-addon3" required>
-                            </form>
-                        </div>
+                        <form id="form_quiz">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
+                                    <input type="text" class="form-control" name="Quiz" id="Quiz" aria-describedby="basic-addon3" required>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-primary" role="button" type="button" id="show-hide" disabled="disabled"> ตกลง </button>
+                        <button class="btn btn-primary sayyes" role="button" type="button" id="show-hide" disabled="disabled"> ตกลง </button>
                     </div>
                 </div>
 
@@ -121,38 +123,49 @@ $this->session = \Config\Services::session();
                     <div class="col-md-8">
                         <div id="content">
                             <div id="Radio_Answer">
-                                <h2>ใส่คำตอบของคุณที่นี่</h2>
-                                ข้อที่ 1
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1">
-                                    </span>
-                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1">
-                                </div>
-                                <br>
-                                ข้อที่ 2
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="2">
-                                    </span>
-                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_2" id="Choice_Answer_2">
-                                </div>
-                                <br>
-                                ข้อที่ 3
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="3">
-                                    </span>
-                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_3" id="Choice_Answer_3">
-                                </div>
-                                <br>
-                                ข้อที่ 4
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="4">
-                                    </span>
-                                    <input type="text" class="form-control" aria-label="..." name="Choice_Answer_4" id="Choice_Answer_4">
-                                </div>
+                                <form id="form_choice">
+
+                                    <h2>ใส่คำตอบของคุณที่นี่</h2>
+                                    ข้อที่ 1
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1" required>
+                                            </span>
+                                            <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    ข้อที่ 2
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="2" required>
+                                            </span>
+                                            <input type="text" class="form-control" aria-label="..." name="Choice_Answer_2" id="Choice_Answer_2" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    ข้อที่ 3
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="3" required>
+                                            </span>
+                                            <input type="text" class="form-control" aria-label="..." name="Choice_Answer_3" id="Choice_Answer_3" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    ข้อที่ 4
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="4" required>
+                                            </span>
+                                            <input type="text" class="form-control" aria-label="..." name="Choice_Answer_4" id="Choice_Answer_4" required>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -160,7 +173,7 @@ $this->session = \Config\Services::session();
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="Quiz_Btn">ยืนยัน</button>
+                <button type="button" class="btn btn-default quiz_sayyes" id="Quiz_Btn">ยืนยัน</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -260,6 +273,7 @@ $this->session = \Config\Services::session();
                 endif
                 ?>
                 <h3>หลักสูตร</h3>
+
                 <fieldset class="fieldset2">
                     <h2>แก้ไขหลักสูตร</h2>
                     <p class="desc">เริ่มต้นรวมหลักสูตรของคุณเข้าด้วยกันด้วยการสร้างส่วน การบรรยาย และแบบฝึกหัด (โจทย์ แบบฝึกหัดการเขียนโค้ด และงานที่ได้รับมอบหมาย)</p>
@@ -364,6 +378,40 @@ $this->session = \Config\Services::session();
                         </div>
                 </fieldset>
 
+
+                <h3>เนื้อหาของหลักสูตร</h3>
+
+                <fieldset class="fieldset2">
+                    <h2>สร้างส่วน การบรรยายในหลักสูตร</h2>
+                    <p class="desc">เริ่มต้นรวมหลักสูตรของคุณเข้าด้วยกันด้วยการสร้างส่วน การบรรยาย ต่างๆในหลักสูตรที่คุณจะสอน</p>
+                    <div class="fieldset-content2">
+                        <form action="<?= site_url('/CourseController/Upload_Document') ?>" enctype="multipart/form-data" method="post" id="uploadmaterial" onsubmit="return Validate(this);">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div id="targetLayer" style="display:none;"></div>
+                            <div class="input-group">
+                                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+
+                                <span class="input-group-btn">
+
+
+                                    <div class="btn btn-default image-preview-input">
+                                        <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
+                                        <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                    </div>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="col-xs-4">
+                                <input type="submit" id="uploadSubmit" value="อัพโหลดเนื้อหา" class="btn btn-info" />
+                            </div>
+                            <br><br><br>
+                        </form>
+                    </div>
+                </fieldset>
+
+
                 <h3>หน้าเริ่มต้นของหลักสูตร</h3>
 
                 <fieldset class="fieldset2">
@@ -412,21 +460,24 @@ $this->session = \Config\Services::session();
                                 <div class=" main-text">
                                     <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
                                         โดยไม่มีข้อความบนรูปภาพ</p>
-                                    <form action="<?= site_url('/CourseController/Edit_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage">
+                                    <form action="<?= site_url('/CourseController/Edit_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage" onsubmit="return Validate_image(this);">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <div id="targetLayer" style="display:none;"></div>
 
-                                        <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                                        <span class="input-group-btn">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
 
-                                            <div class="btn btn-default image-preview-input">
-                                                <span class="glyphicon glyphicon-folder-open"></span>
-                                                <span class="image-preview-input-title">Browse</span>
-                                                <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
-                                            </div>
-                                        </span>
+                                            <span class="input-group-btn">
+
+
+                                                <div class="btn btn-default image-preview-input">
+                                                    <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
+                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                                </div>
+                                            </span>
+                                        </div>
 
                                         <br>
                                         <div class="col-xs-4">
@@ -714,6 +765,61 @@ $this->session = \Config\Services::session();
 
 
         <script>
+            var _validFileExtensions_meteries = [".doc", ".pdf", ".docx", ".pptx", ".ppt"];
+            var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
+
+            function Validate(oForm) {
+                var arrInputs = oForm.getElementsByTagName("input");
+                for (var i = 0; i < arrInputs.length; i++) {
+                    var oInput = arrInputs[i];
+                    if (oInput.type == "file") {
+                        var sFileName = oInput.value;
+                        if (sFileName.length > 0) {
+                            var blnValid = false;
+                            for (var j = 0; j < _validFileExtensions_meteries.length; j++) {
+                                var sCurExtension = _validFileExtensions_meteries[j];
+                                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                                    blnValid = true;
+                                    break;
+                                }
+                            }
+
+                            if (!blnValid) {
+                                alert("ขอโทษ, " + sFileName + " ไม่ถูกค้อง, อนุญาติเฉพาะไฟล์ : " + _validFileExtensions_meteries.join(", "));
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
+
+            function Validate_image(oForm) {
+                var arrInputs = oForm.getElementsByTagName("input");
+                for (var i = 0; i < arrInputs.length; i++) {
+                    var oInput = arrInputs[i];
+                    if (oInput.type == "file") {
+                        var sFileName = oInput.value;
+                        if (sFileName.length > 0) {
+                            var blnValid = false;
+                            for (var j = 0; j < _validFileExtensions.length; j++) {
+                                var sCurExtension = _validFileExtensions[j];
+                                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                                    blnValid = true;
+                                    break;
+                                }
+                            }
+                            if (!blnValid) {
+                                alert("ขอโทษ, " + sFileName + " ไม่ถูกค้อง, อนุญาติเฉพาะไฟล์ : " + _validFileExtensions.join(", "));
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
             $(document).on('click', '#close-preview', function() {
                 $('.image-preview').popover('hide');
                 // Hover befor close the preview
@@ -859,8 +965,6 @@ $this->session = \Config\Services::session();
     var quiz_id;
     var course_id;
     $(document).ready(function() {
-
-
         $(".sent_edit_quiz").click(function() {
             var base_url = '<?= base_url('CourseController/Select_Quiz_Modal') ?>';
             $("#quiz_id").attr("value", $(this).attr('quiz_id'));
@@ -1012,26 +1116,70 @@ $this->session = \Config\Services::session();
     $(document).ready(function() {
 
         $("#form_quiz").validate({
-            rules: {
-                Quiz: "required"
+            errorPlacement: function(error, element) {
+                return true;
             },
-            messages: {
-                Quiz: "Please specify your name"
+            rules: {
+                Quiz: {
+                    required: true,
+                    minlength: 5
+                },
 
-            }
+            },
+            highlight: function(element) {
+                $(element).closest('.form-group, .has-feedback').removeClass('has-success').addClass('has-error');
+            },
+
+            unhighlight: function(element) {
+                $(element).closest('.form-group, .has-feedback').removeClass('has-error').addClass('has-success');
+            },
         });
         $('#form_quiz input').on('keyup blur', function() {
             if ($('#form_quiz').valid()) {
-                $('button.btn').prop('disabled', false);
+                $('button.sayyes').prop('disabled', false);
                 $("#show-hide").click(function() {
                     $('#content').css('display', 'block');
                     $("#content").fadeIn("slow");
                 });
             } else {
-                $('button.btn').prop('disabled', 'disabled');
+                $('button.sayyes').prop('disabled', 'disabled');
                 $('#content').css('display', 'none');
                 $("#content").fadeOut("slow");
 
+            }
+        });
+        $("#form_choice").validate({
+            errorPlacement: function(error, element) {
+                return true;
+            },
+            rules: {
+                Check_Answer: {
+                    required: true,
+                },
+                Choice_Answer_1: {
+                    required: true,
+                    minlength: 1
+                },
+                Choice_Answer_2: {
+                    required: true,
+                    minlength: 1
+                },
+                Choice_Answer_3: {
+                    required: true,
+                    minlength: 1
+                },
+                Choice_Answer_4: {
+                    required: true,
+                    minlength: 1
+                },
+            },
+        });
+        $('button.quiz_sayyes').prop('disabled', 'disabled');
+        $('#form_choice input').on('keyup blur', function() {
+            if ($('#form_choice').valid()) {
+                $('button.quiz_sayyes').prop('disabled', false);
+            } else {
+                $('button.quiz_sayyes').prop('disabled', 'disabled');
             }
         });
     });
