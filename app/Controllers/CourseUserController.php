@@ -13,6 +13,26 @@ class CourseUserController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
+    public function User_Register_Course($id = null)
+    {
+        $User_id = $this->session->get("User_id");
+        if (isset($User_id)) {
+            $model = new CourseUser_model();
+            if ($model->Check_Course($id)) {
+                $model->Insent_User_Register_Course($User_id, $id);
+                $User_JoinCourse =  $model->Select_UserCourse($User_id, $id);
+                $this->User_JoinCourse = [
+                    'User_JoinCourse' => $User_JoinCourse,
+                ];
+                $this->session->set($this->User_JoinCourse);
+                return redirect()->to(base_url('courseuser/learn/' . $id));
+            } else {
+                return redirect()->to(base_url('/home'));
+            }
+        } else {
+            return redirect()->to(base_url('/login'));
+        }
+    }
     public function CourseView($id = null)
     {
         $model = new CourseUser_model();
@@ -45,30 +65,14 @@ class CourseUserController extends BaseController
     public function DocumentView($id = null)
     {
         $model = new CourseUser_model();
-        $Course_id = $this->session->get('Course_id_document');
-        //echo $Course_id;
-        $data['document'] = $model->Select_Document($Course_id);
-        //echo "test";
-        echo view('Course/Document', $data);
-    }
-    public function User_Register_Course($id = null)
-    {
         $User_id = $this->session->get("User_id");
+        $Course_id = $id;
+        //echo "id = " . $Course_id;
         if (isset($User_id)) {
-            $model = new CourseUser_model();
-            if ($model->Check_Course($id)) {
-                $model->Insent_User_Register_Course($User_id, $id);
-                $User_JoinCourse =  $model->Select_UserCourse($User_id, $id);
-                $this->User_JoinCourse = [
-                    'User_JoinCourse' => $User_JoinCourse,
-                ];
-                $this->session->set($this->User_JoinCourse);
-                return redirect()->to(base_url('courseuser/learn/' . $id));
-            } else {
-                return redirect()->to(base_url('/home'));
-            }
+            $data['document'] = $model->Select_Document($Course_id);
+            echo view('Course/Document', $data);
         } else {
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(base_url('/home'));
         }
     }
     public function User_LearnCourse($id = null)

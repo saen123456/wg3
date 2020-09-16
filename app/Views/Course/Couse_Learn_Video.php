@@ -198,6 +198,7 @@ endif
         <?php
         $count = 0;
         foreach ($video_link as $row) :
+            $Course_id = $row['course_id'];
             $Course_Name = $row['course_name'];
             if ($count == 0) {
                 $Video_Src = $row['video_link'];
@@ -323,9 +324,10 @@ endif
 
                 <div class="col-sm-3">
                     <?php
+                    //echo 
                     if (isset($have_document)) {
                         ?>
-                        <form action="<?= base_url('doucment') ?>" method="get" target="_blank">
+                        <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
                             <button class="btn btn-light">แหล่งข้อมูล</button>
                         </form>
                     <?php
