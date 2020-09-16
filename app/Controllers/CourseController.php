@@ -105,7 +105,8 @@ class CourseController extends BaseController
             $this->session->set($this->Data);
             $data['data'] = $model->Select_Course_Edit($Course_id);
             $data['Quiz'] = $model->Select_Quiz($Course_id);
-            $data['document'] = $model->Select_Document_Of_Course($Course_id);
+            $data['have_document'] = $model->Select_Document_Of_Course($Course_id);
+            $data['document'] = $model->Select_Document_Of_Course2($Course_id);
             echo view('Course/EditCourse', $data);
             //echo $Course_Id;
         } else {
