@@ -338,7 +338,7 @@ class CourseController extends BaseController
         $content = file_get_contents($file['Document']['tmp_name']);
         $Document_Name = $file['Document']['name'];
         //echo $Photo->getClientName();
-        if ($bucket->upload($content, ['name' => $Photo_Name])) {
+        if ($bucket->upload($content, ['name' => $Document_Name])) {
             $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
             $model->Upload_Document($Course_id, $Documen_link);
             echo "อัพโหลดเนื้อหาเรียบร้อยแล้ว";
