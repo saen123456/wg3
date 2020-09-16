@@ -15,16 +15,24 @@
     endforeach;
 
     $document_type = pathinfo($document_name, PATHINFO_EXTENSION);
-    //echo $document_link;
-    if ($document_type == "doc" || $document_type == "docx" || $document_type == "pdf") {
+    echo $document_link;
+    if ($document_type == "doc" || $document_type == "docx") {
         echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $document_link . "' width='100%' height='900px' frameborder='0'> </iframe>";
+    } else if ($document_type == "pdf") {
+        /*$Add_Space = str_replace(' ', '%20', $document_link);
+        $Add_Space = str_replace('&', '%26', $document_link);
+        echo $Add_Space;*/
+        echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $document_link . "' width='100%' height='900px' frameborder='0'> </iframe>";
+        //echo "<iframe src='https://docs.google.com/gview?url=" . $document_link . "&embedded=true' width='100%' height='565px' ></iframe>";
     } else {
-        $new = str_replace(' ', '%20', $document_link);
-        $new = str_replace('&', '%26', $document_link);
-        echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $new . "' width='100%' height='900px' frameborder='0'> </iframe>";
+        /*$Add_Space = str_replace(' ', '%20', $document_link);
+        $Add_Space = str_replace('&', '%26', $document_link);
+        echo $Add_Space;*/
+        echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $document_link . "' width='100%' height='900px' frameborder='0'> </iframe>";
     }
     ?>
 
+    
 </body>
 
 </html>
