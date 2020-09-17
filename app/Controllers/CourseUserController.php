@@ -42,6 +42,8 @@ class CourseUserController extends BaseController
             $data['video_link'] = $model->Select_Video_Of_Course($id);
             $data['question'] = $model->Select_Question_Of_Course($id);
             $data['have_document'] = $model->Select_Document_Of_Course($id);
+            $data['count_playlist'] = $model->Select_Count_Playlist($id);
+            //echo $data['count_playlist'];
             $Course_id = $id;
             $this->Data = [
                 'Course_id_document' => $Course_id,

@@ -135,4 +135,18 @@ class CourseUser_model extends Model
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Count_Playlist($id)
+    {
+        $sql = "SELECT count(unit_index) FROM course_quiz_unit WHERE course_id = '$id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        $Count_Quiz = $this->connect_postgresdb->getOne($sql);
+
+        $sql2 = "SELECT count(unit_index) FROM course_unit WHERE course_id = '$id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        $Count_Video = $this->connect_postgresdb->getOne($sql2);
+
+        //echo $Count_Quiz . " " . $Count_Video;
+        $Count_Playlist = (int) $Count_Quiz + (int) $Count_Video;
+        return $Count_Playlist;
+    }
 }

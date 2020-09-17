@@ -207,6 +207,7 @@ endif
             }
             $count++;
         endforeach;
+        //echo $count_playlist;
         ?>
 
         <figure id="video_player">
@@ -340,10 +341,11 @@ endif
                     <div class=" quiz-menu">
                         <figcaption>
                             <?php
+                            $count = 0;
                             foreach ($video_link as $row) :
+                                $count++;
                                 ?>
-
-                                <input class="form-check-input quiz-checkbox" type="checkbox">
+                                <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
                                 <a href="<?php echo $row['video_link'] ?>">
                                     <div class="quiz-menu-li">
 
@@ -351,15 +353,15 @@ endif
                                         <?php echo "<div class='float-right'>" . $row['video_time'] . "</div>" ?>
                                     </div>
                                 </a>
-
                                 <?php
                                     if (isset($question)) {
                                         foreach ($question as $row2) :
-
-                                            if ($row2['unit_index'] == $row['unit_index']) { ?>
+                                            if ($row2['unit_index'] == $row['unit_index']) {
+                                                $count++;
+                                                ?>
 
                                             <div class="td_minimal">
-                                                <input class="form-check-input quiz-checkbox" type="checkbox">
+                                                <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
                                             </div>
                                             <a href="<?php echo $row2['quiz_question_id'] ?>">
                                                 <div class="quiz-menu-li">
@@ -372,10 +374,12 @@ endif
                                                     }
                                                     ?>
                                 <?php
+
                                         endforeach;
                                     }
                                     ?>
                             <?php
+
                             endforeach;
                             ?>
                         </figcaption>
@@ -668,6 +672,54 @@ endif
                         }
                     });
                 });
+            });
+            $(document).ready(function() {
+                var User_Check = <?php echo json_encode($count_playlist); ?>;
+                for (var i = 1; i <= User_Check; i++) {
+                    $('#user-checkbox' + i + '').on('change', function() {
+
+                        // var User_Checkbox = $("#user-checkbox").attr('data-user-checkbox');
+                        // console.log(User_Checkbox);
+                        $("#user-checkbox" + i + "").attr("value", $(this).attr('user_checkbox'));
+                        var User_Checkbox = $(this).attr('user_checkbox');
+
+                        //console.log(User_Checkbox);
+
+                        $("#user-checkbox" + i + "").attr("value", $(this).attr('course_id'));
+                        var Course_id2 = $(this).attr('course_id');
+                        console.log("ข้อที่ : " + User_Checkbox + "\nCourse_id : " + Course_id2);
+
+                        /*$.ajax({
+                            url: '<?= site_url('/CourseUserController/Insert_User_Answer') ?>',
+                            method: "POST",
+                            data: {
+                                User_Checkbox: User_Checkbox,
+                            },
+                            success: function(data) {
+                                const obj = JSON.parse(data);
+                                console.log(obj);
+
+                            }
+                        });*/
+                    });
+                }
+
+            });
+            $(document).ready(function() {
+                var unit_index
+                video = document.querySelector("#video_player video");
+                video.ontimeupdate = function() {
+                    CheckVideoEnd()
+                };
+
+                function CheckVideoEnd() {
+                    // Display the current position of the video in a p element with id="demo"
+                    //document.getElementById("demo").innerHTML = video.currentTime;
+                    console.log(video.currentTime / 60);
+                    if (video.ended) {
+                        console.log("end");
+                    }
+                }
             });
         </script>
 
