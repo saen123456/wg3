@@ -340,7 +340,6 @@ endif
                                 ?>
 
                                 <input class="form-check-input quiz-checkbox" type="checkbox">
-
                                 <a href="<?php echo $row['video_link'] ?>">
                                     <div class="quiz-menu-li">
 
