@@ -158,7 +158,7 @@
 
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <tr id="row_0">
-                                                    <td><input  class="td_minimal" type="checkbox" /></td>
+                                                    <td><input class="td_minimal" type="checkbox" /></td>
                                                     <td>
                                                         <form action="#" id="uploadform">
                                                             <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
@@ -491,6 +491,13 @@
                 document.getElementById('output').innerHTML = "รหัสคอร์ส " + course_id;
                 //document.cookie = "course_id = " + course_id;
             });
+        </script>
+        <script>
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 6000);
         </script>
 
 </body>

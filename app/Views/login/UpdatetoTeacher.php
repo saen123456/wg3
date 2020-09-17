@@ -552,7 +552,7 @@
       $(".alert").fadeTo(500, 0).slideUp(500, function() {
         $(this).remove();
       });
-    }, 60000);
+    }, 6000);
     $(document).ready(function() {
 
       var current_fs, next_fs, previous_fs; //fieldsets

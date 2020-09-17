@@ -483,6 +483,11 @@
     <!-- jQuery -->
 
     <script type="text/javascript">
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 6000);
         $(document).ready(function() {
             $('#Email_Forget').change(function() {
                 var Email_Forget = $('#Email_Forget').val();

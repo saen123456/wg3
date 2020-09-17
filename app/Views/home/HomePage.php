@@ -786,7 +786,7 @@ endif
     $(".alert").fadeTo(500, 0).slideUp(500, function() {
       $(this).remove();
     });
-  }, 60000);
+  }, 6000);
   $(document).ready(function() {
     $('#Email_Login').change(function() {
       var Email_Login = $('#Email_Login').val();

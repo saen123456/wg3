@@ -446,7 +446,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </div>
   </div>
-  
+
   <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -626,6 +626,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Check ของ Login -->
 <script type="text/javascript">
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function() {
+      $(this).remove();
+    });
+  }, 6000);
   $(document).ready(function() {
     $('#Email_Login').change(function() {
       var Email_Login = $('#Email_Login').val();

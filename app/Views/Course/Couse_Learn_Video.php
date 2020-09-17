@@ -327,13 +327,17 @@ endif
                     //echo 
                     if (isset($have_document)) {
                         ?>
-                        <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
-                            <button class="btn btn-light">แหล่งข้อมูล</button>
-                        </form>
+                        <div class="col-sm-12">
+                            <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
+                                <div class="text-right">
+                                    <button class="btn btn-light ">แหล่งข้อมูล</button>
+                                </div>
+                            </form>
+                        </div>
                     <?php
                     }
                     ?>
-                    <div class="quiz-menu">
+                    <div class=" quiz-menu">
                         <figcaption>
                             <?php
                             foreach ($video_link as $row) :
@@ -351,7 +355,9 @@ endif
                                 <?php
                                     if (isset($question)) {
                                         foreach ($question as $row2) :
+
                                             if ($row2['unit_index'] == $row['unit_index']) { ?>
+
                                             <div class="td_minimal">
                                                 <input class="form-check-input quiz-checkbox" type="checkbox">
                                             </div>
@@ -362,7 +368,6 @@ endif
                                                                     ?>
                                                 </div>
                                             </a>
-
                                         <?php
                                                     }
                                                     ?>
