@@ -5,17 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แหล่งข้อมูล</title>
+    <link rel="stylesheet" href="<?php echo base_url('dist2/css/adminlte.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
 </head>
 
 <body>
+
     <?php
     foreach ($document as $row) :
         $document_name =  $row['document_name'];
         $document_link =  $row['document_link'];
     endforeach;
+    ?>
+    <a href="<?php echo $document_link ?>" download>
+        <button type="button" class="btn btn-light float-right" style="border: 1px solid black;"><i class="fa fa-download" aria-hidden="true"></i> ดาวน์โหลดไฟล์ได้ที่นี่</button>
+    </a>
 
+    <?php
     $document_type = pathinfo($document_name, PATHINFO_EXTENSION);
     //echo $document_link;
+
     if ($document_type == "doc" || $document_type == "docx") {
         echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $document_link . "' width='100%' height='900px' frameborder='0'> </iframe>";
     } else if ($document_type == "pdf") {
