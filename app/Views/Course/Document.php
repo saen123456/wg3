@@ -42,7 +42,7 @@
         //echo $document_link_pdf;
         echo "<iframe src='" . $document_link_pdf . "' width='100%' height='900px' frameborder='0'>";
         //echo "<iframe src='https://docs.google.com/gview?url=" . $document_link . "&embedded=true' width='100%' height='900px' ></iframe>";
-    } else {
+    } else if ($document_type == "pptx" || $document_type == "ppt") {
         /*$Add_Space = str_replace(' ', '%20', $document_link);
         $Add_Space = str_replace('&', '%26', $document_link);
         echo $Add_Space;*/
