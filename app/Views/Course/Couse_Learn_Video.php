@@ -214,7 +214,7 @@ endif
             <div class="row">
                 <div class="col-sm-8">
                     <div id="myDIV">
-                        <video controls width="700px" id="player">
+                        <video controls width="700px" id="player" var unit_index="1">
                             <source src="<?php echo $Video_Src; ?>" type="video/mp4">
                         </video>
 
@@ -338,7 +338,7 @@ endif
                     <?php
                     }
                     ?>
-                    <div class=" quiz-menu">
+                    <div class="quiz-menu">
                         <figcaption>
                             <?php
                             $count = 0;
@@ -346,7 +346,7 @@ endif
                                 $count++;
                                 ?>
                                 <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
-                                <a href="<?php echo $row['video_link'] ?>">
+                                <a href="<?php echo $row['video_link'] ?>" var unit_index="<?php echo $count ?>">
                                     <div class="quiz-menu-li">
 
                                         <?php echo $row['unit_name'] ?>
@@ -363,7 +363,7 @@ endif
                                             <div class="td_minimal">
                                                 <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
                                             </div>
-                                            <a href="<?php echo $row2['quiz_question_id'] ?>">
+                                            <a href="<?php echo $row2['quiz_question_id'] ?>" var unit_index="<?php echo $count ?>">
                                                 <div class="quiz-menu-li">
                                                     <?php echo "คำถามของ " . $row['unit_name'] . "<br>";
                                                                     echo  $row2['quiz_question_name']
@@ -398,16 +398,24 @@ endif
             }
 
             function handler(e) {
+                var videotarget;
+                var Unit_Index;
                 var x = document.getElementById("myDIV");
                 var quiz = document.getElementById("myDIV2");
                 e.preventDefault();
-                videotarget = this.getAttribute("href");
-                //console.log(videotarget.lastIndexOf('.'));
-                if (videotarget.lastIndexOf('.') > 1) {
+                window.videotarget = this.getAttribute("href");
+
+                //this.attr("value", $(this).attr('unit_index'));
+                window.Unit_Index = this.getAttribute('unit_index');
+
+                //console.log(window.Unit_Index);
+
+
+                if (window.videotarget.lastIndexOf('.') > 1) {
                     quiz.style.display = "none";
                     x.style.display = "block";
                     //console.log(videotarget);
-                    filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
+                    filename = window.videotarget.substr(0, window.videotarget.lastIndexOf('.')) || window.videotarget;
                     video = document.querySelector("#video_player video");
                     video.removeAttribute("poster");
                     source = document.querySelectorAll("#video_player video source");
@@ -428,11 +436,11 @@ endif
                         method: "POST",
                         data: {
                             User_id: user_id,
-                            Quiz_Question_id: videotarget,
+                            Quiz_Question_id: window.videotarget,
                         },
                         success: function(data) {
                             const obj = JSON.parse(data);
-                            console.log(videotarget);
+                            console.log(window.videotarget);
                             if (obj.length > 0) {
                                 if (obj[0].answer == 1) {
                                     $("#myDIV2").html("");
@@ -446,7 +454,7 @@ endif
                                                 url: base_url,
                                                 method: "POST",
                                                 data: {
-                                                    quiz_id: videotarget,
+                                                    quiz_id: window.videotarget,
                                                 },
                                                 success: function(data) {
                                                     const obj = JSON.parse(data);
@@ -478,7 +486,7 @@ endif
                                                 url: base_url,
                                                 method: "POST",
                                                 data: {
-                                                    quiz_id: videotarget,
+                                                    quiz_id: window.videotarget,
                                                 },
                                                 success: function(data) {
                                                     const obj = JSON.parse(data);
@@ -505,7 +513,7 @@ endif
                                     url: "<?= site_url('/CourseUserController/Select_Quiz_Video') ?>",
                                     method: "POST",
                                     data: {
-                                        quiz_id: videotarget,
+                                        quiz_id: window.videotarget,
                                     },
                                     success: function(data) {
                                         const obj = JSON.parse(data);
@@ -530,8 +538,13 @@ endif
 
                 }
             }
+
             var Radio_Answer_Choice;
+            var Course_id3;
+
             var user_id = <?php echo $this->session->get("User_id") ?>;
+            window.Course_id3 = <?php echo json_encode($Course_id); ?>;
+
             $(document).ready(function() {
                 $('#myDIV2').on("click", "input", function() {
                     window.Radio_Answer_Choice = $(this).val();
@@ -580,12 +593,12 @@ endif
                                                     $(document).ready(function() {
                                                         $(".btn-submit-quiz").click(function() {
                                                             var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
-                                                            console.log(videotarget);
+                                                            console.log(window.videotarget);
                                                             $.ajax({
                                                                 url: base_url,
                                                                 method: "POST",
                                                                 data: {
-                                                                    quiz_id: videotarget,
+                                                                    quiz_id: window.videotarget,
                                                                 },
                                                                 success: function(data) {
                                                                     const obj = JSON.parse(data);
@@ -608,6 +621,16 @@ endif
                                                 }
                                             });
 
+                                            /*
+                                            //สำหรับเวลาตอบคำถามถูกจะเอาเช็คให้เอง
+                                            */
+                                            $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);
+                                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + window.Unit_Index + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is checked.");
+                                            /*
+                                            //สำหรับเวลาตอบคำถามถูกจะเอาเช็คให้เอง
+                                            */
+
+
                                         } else {
                                             $.ajax({
                                                 url: "<?= site_url('/CourseUserController/Insert_User_Answer') ?>",
@@ -627,12 +650,12 @@ endif
                                                     $(document).ready(function() {
                                                         $(".btn-submit-quiz").click(function() {
                                                             var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
-                                                            console.log(videotarget);
+                                                            console.log(window.videotarget);
                                                             $.ajax({
                                                                 url: base_url,
                                                                 method: "POST",
                                                                 data: {
-                                                                    quiz_id: videotarget,
+                                                                    quiz_id: window.videotarget,
                                                                 },
                                                                 success: function(data) {
                                                                     const obj = JSON.parse(data);
@@ -656,6 +679,14 @@ endif
                                             });
                                             //Text_Check_Ans = "ผิด";
 
+                                            /*
+                                            //สำหรับเวลาตอบคำถามผิดจะเอาที่เช็คออกให้เอง
+                                            */
+                                            $('#user-checkbox' + window.Unit_Index + '').prop('checked', false);
+                                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + window.Unit_Index + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is unchecked.");
+                                            /*
+                                            //สำหรับเวลาตอบคำถามผิดจะเอาที่เช็คออกให้เอง
+                                            */
 
                                         }
                                         // alert("รหัสคำถามที่ : " + Quiz_Question_id + "\nผู้ใช้ที่ : " + user_id + " ตอบข้อที่ : " +
@@ -673,21 +704,35 @@ endif
                     });
                 });
             });
+
+
+            /*
+            //function สำหรับให้ user กด check เอง
+            */
+            var Course_id2;
+            var User_id;
             $(document).ready(function() {
                 var User_Check = <?php echo json_encode($count_playlist); ?>;
+                window.User_id = <?php echo $this->session->get("User_id"); ?>;
+
                 for (var i = 1; i <= User_Check; i++) {
                     $('#user-checkbox' + i + '').on('change', function() {
 
-                        // var User_Checkbox = $("#user-checkbox").attr('data-user-checkbox');
-                        // console.log(User_Checkbox);
                         $("#user-checkbox" + i + "").attr("value", $(this).attr('user_checkbox'));
                         var User_Checkbox = $(this).attr('user_checkbox');
 
-                        //console.log(User_Checkbox);
-
                         $("#user-checkbox" + i + "").attr("value", $(this).attr('course_id'));
-                        var Course_id2 = $(this).attr('course_id');
-                        console.log("ข้อที่ : " + User_Checkbox + "\nCourse_id : " + Course_id2);
+                        window.Course_id2 = $(this).attr('course_id');
+
+
+
+                        if ($(this).prop("checked") == true) {
+                            console.log("Checkbox is checked.");
+                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + User_Checkbox + "\nCourse_id : " + window.Course_id2 + "\nCheckbox is checked.");
+                        } else if ($(this).prop("checked") == false) {
+                            console.log("Checkbox is unchecked.");
+                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + User_Checkbox + "\nCourse_id : " + window.Course_id2 + "\nCheckbox is unchecked.");
+                        }
 
                         /*$.ajax({
                             url: '<?= site_url('/CourseUserController/Insert_User_Answer') ?>',
@@ -705,22 +750,40 @@ endif
                 }
 
             });
+            /*
+            //end function สำหรับให้ user กด check เอง
+            */
+
+            /*
+            //function auto check if video end
+            */
             $(document).ready(function() {
-                var unit_index
+
                 video = document.querySelector("#video_player video");
+                Unit_Index2 = video.getAttribute('unit_index');
+                //console.log(Unit_Index2);
                 video.ontimeupdate = function() {
                     CheckVideoEnd()
                 };
 
                 function CheckVideoEnd() {
-                    // Display the current position of the video in a p element with id="demo"
-                    //document.getElementById("demo").innerHTML = video.currentTime;
-                    console.log(video.currentTime / 60);
+                    //console.log(video.currentTime / 60);
                     if (video.ended) {
-                        console.log("end");
+                        if (window.Unit_Index == null) {
+                            console.log("end\n" + Unit_Index2);
+                            $('#user-checkbox' + Unit_Index2 + '').prop('checked', true);
+                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + Unit_Index2 + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is checked.");
+                        } else {
+                            console.log("end\n" + window.Unit_Index);
+                            $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);
+                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + window.Unit_Index + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is checked.");
+                        }
                     }
                 }
             });
+            /*
+            //end function auto check if video end
+            */
         </script>
 
         <!-- /.content -->
