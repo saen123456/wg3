@@ -323,18 +323,29 @@ endif
                     </tr>
                 </table> -->
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <?php
                     //echo 
                     if (isset($have_document)) {
                         ?>
-                        <div class="col-sm-12">
-                            <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
-                                <div class="text-right">
+                        <div class="row">
+                            <div class="col-sm">
+                                <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
                                     <button class="btn btn-light ">แหล่งข้อมูล</button>
+                                </form>
+                            </div>
+                            <div class="col-sm">
+
+                            </div>
+
+                            <div id="certificate">
+                                <div class="col-sm-5">
                                 </div>
-                            </form>
+                            </div>
+
                         </div>
+
+
                     <?php
                     }
                     ?>
@@ -386,6 +397,7 @@ endif
                     </div>
                 </div>
             </div>
+
         </figure>
 
         <script>
@@ -510,14 +522,14 @@ endif
                                 }
                             } else {
                                 $.ajax({
-                                    url: "<?= site_url('/CourseUserController/Select_Quiz_Video') ?>",
+                                    url: '<?= base_url('CourseUserController/Select_Quiz_Video') ?>',
                                     method: "POST",
                                     data: {
                                         quiz_id: window.videotarget,
                                     },
                                     success: function(data) {
                                         const obj = JSON.parse(data);
-                                        console.log(obj);
+                                        //console.log(obj);
                                         $("#myDIV2").html("");
                                         //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
                                         for (i = 0; i < obj.length; i++) {
@@ -539,6 +551,41 @@ endif
                 }
             }
 
+
+            $(document).ready(function() {
+
+                var user_id3 = <?php echo $this->session->get("User_id") ?>;
+                var User_Check = <?php echo json_encode($count_playlist); ?>;
+
+                var count_pass = 0;
+                $.ajax({
+                    url: "<?= site_url('/CourseUserController/Already_User_Pass_Unit') ?>",
+                    method: "POST",
+                    data: {
+                        User_id: user_id3,
+                        Course_id: window.Course_id3,
+                    },
+                    success: function(data) {
+                        const obj = JSON.parse(data);
+
+                        for (var i = 0; i < obj.length; i++) {
+                            $('#user-checkbox' + obj[i].unit_index + '').prop('checked', true);
+                            count_pass++;
+                        }
+
+                        if (User_Check == count_pass) {
+                            $("#certificate").html("");
+                            $("#certificate").append("<form action='<?= base_url('/courseuser/certificate/' . $Course_id) ?>' method='get' target='_blank'><div class='text-right'><button class='btn btn-success '>ใบรับรองจบ</button></div></form>");
+                        }
+
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+
+            });
+
             var Radio_Answer_Choice;
             var Course_id3;
 
@@ -548,12 +595,12 @@ endif
             $(document).ready(function() {
                 $('#myDIV2').on("click", "input", function() {
                     window.Radio_Answer_Choice = $(this).val();
-                    console.log(window.Radio_Answer_Choice);
-                    //console.log(typeof Radio_Answer);
+
                 });
 
                 $(document).on("click", ".user_send_answer", function() {
-                    //console.log('clicked');
+                    var User_Check = <?php echo json_encode($count_playlist); ?>;
+
                     var Quiz_Question_id = $("#quiz_question_id").attr('data-quiz-id');
 
                     var base_url = '<?= base_url('course/edit/') ?>';
@@ -573,9 +620,9 @@ endif
                                     if (obj[i].quiz_answer_correct != 1) {
                                         Answer++;
                                     } else {
-                                        //console.log(Answer);
+
                                         if (Answer == window.Radio_Answer_Choice) {
-                                            //Text_Check_Ans = "ถูก";
+
                                             $.ajax({
                                                 url: "<?= site_url('/CourseUserController/Insert_User_Answer') ?>",
                                                 method: "POST",
@@ -585,15 +632,14 @@ endif
                                                     Answer: 1,
                                                 },
                                                 success: function(data) {
-                                                    /*const obj = JSON.parse(data);
-                                                    console.log(obj);*/
+
                                                     $("#myDIV2").html("");
                                                     $("#myDIV2").append("คุณตอบถูก");
                                                     $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
                                                     $(document).ready(function() {
                                                         $(".btn-submit-quiz").click(function() {
                                                             var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
-                                                            console.log(window.videotarget);
+
                                                             $.ajax({
                                                                 url: base_url,
                                                                 method: "POST",
@@ -604,7 +650,7 @@ endif
                                                                     const obj = JSON.parse(data);
                                                                     console.log(obj);
                                                                     $("#myDIV2").html("");
-                                                                    //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+
                                                                     for (i = 0; i < obj.length; i++) {
                                                                         $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
                                                                             "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
@@ -612,7 +658,7 @@ endif
                                                                             "</div><br>"
                                                                         );
                                                                     }
-                                                                    // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+
                                                                     $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
                                                                 }
                                                             });
@@ -624,8 +670,47 @@ endif
                                             /*
                                             //สำหรับเวลาตอบคำถามถูกจะเอาเช็คให้เอง
                                             */
-                                            $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);
-                                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + window.Unit_Index + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is checked.");
+                                            $.ajax({
+                                                url: "<?= site_url('/CourseUserController/Check_User_Pass_Unit') ?>",
+                                                method: "POST",
+                                                data: {
+                                                    User_id: window.User_id,
+                                                    Course_id: window.Course_id3,
+                                                    Unit_Index: window.Unit_Index,
+                                                    Pass: 1
+                                                },
+                                                success: function(data) {
+                                                    /*const obj = JSON.parse(data);
+                                                    console.log(data);*/
+                                                    $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);
+                                                    $.ajax({
+                                                        url: "<?= site_url('/CourseUserController/Already_User_Pass_Unit') ?>",
+                                                        method: "POST",
+                                                        data: {
+                                                            User_id: window.User_id,
+                                                            Course_id: window.Course_id3,
+                                                        },
+                                                        success: function(data) {
+                                                            const obj = JSON.parse(data);
+                                                            console.log(obj.length);
+                                                            var count_pass = 0;
+                                                            for (var i = 0; i < obj.length; i++) {
+                                                                count_pass++;
+                                                            }
+                                                            //console.log(count_pass + " " + User_Check + " " + count_pass);
+                                                            if (User_Check == count_pass) {
+                                                                $("#certificate").html("");
+                                                                $("#certificate").append("<form action='<?= base_url('/courseuser/certificate/' . $Course_id) ?>' method='get' target='_blank'><div class='text-left'><button class='btn btn-success '>ใบรับรองจบ</button></div></form>");
+                                                            }
+
+                                                        },
+                                                        error: function(data) {
+                                                            console.log(data);
+                                                        }
+                                                    });
+
+                                                }
+                                            });
                                             /*
                                             //สำหรับเวลาตอบคำถามถูกจะเอาเช็คให้เอง
                                             */
@@ -641,16 +726,15 @@ endif
                                                     Answer: 0,
                                                 },
                                                 success: function(data) {
-                                                    /*const obj = JSON.parse(data);
-                                                    console.log(obj);*/
+
                                                     $("#myDIV2").html("");
                                                     $("#myDIV2").append("คุณตอบผิด");
                                                     $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
-                                                    //console.log(videotarget);
+
                                                     $(document).ready(function() {
                                                         $(".btn-submit-quiz").click(function() {
                                                             var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
-                                                            console.log(window.videotarget);
+
                                                             $.ajax({
                                                                 url: base_url,
                                                                 method: "POST",
@@ -661,7 +745,7 @@ endif
                                                                     const obj = JSON.parse(data);
                                                                     console.log(obj);
                                                                     $("#myDIV2").html("");
-                                                                    //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+
                                                                     for (i = 0; i < obj.length; i++) {
                                                                         $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
                                                                             "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
@@ -669,7 +753,7 @@ endif
                                                                             "</div><br>"
                                                                         );
                                                                     }
-                                                                    // $("#myDIV2").append("<button type='button' class='btn btn-danger float-left'>ยกเลิก</button>");
+
                                                                     $("#myDIV2").append("<button type='button' class='btn btn-primary float-right user_send_answer'>ยืนยัน</button>");
                                                                 }
                                                             });
@@ -677,29 +761,37 @@ endif
                                                     });
                                                 }
                                             });
-                                            //Text_Check_Ans = "ผิด";
+
 
                                             /*
                                             //สำหรับเวลาตอบคำถามผิดจะเอาที่เช็คออกให้เอง
                                             */
-                                            $('#user-checkbox' + window.Unit_Index + '').prop('checked', false);
-                                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + window.Unit_Index + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is unchecked.");
-                                            /*
-                                            //สำหรับเวลาตอบคำถามผิดจะเอาที่เช็คออกให้เอง
-                                            */
+                                            $.ajax({
+                                                url: "<?= site_url('/CourseUserController/Check_User_Pass_Unit') ?>",
+                                                method: "POST",
+                                                data: {
+                                                    User_id: window.User_id,
+                                                    Course_id: window.Course_id3,
+                                                    Unit_Index: window.Unit_Index,
+                                                    Pass: 0
+                                                },
+                                                success: function(data) {
+
+                                                    $('#user-checkbox' + window.Unit_Index + '').prop('checked', false);
+                                                    $("#certificate").html("");
+                                                }
+                                            });
 
                                         }
-                                        // alert("รหัสคำถามที่ : " + Quiz_Question_id + "\nผู้ใช้ที่ : " + user_id + " ตอบข้อที่ : " +
-                                        //     window.Radio_Answer_Choice + "\nคำตอบคือข้อที่ : " + Answer + "\nนักเรียนตอบ : " + Text_Check_Ans);
+
                                     }
 
                                 }
                             }
-                            //window.location.href = base_url + "/" + window.course_id;
-                            //alert("รหัสคำถามที่ : " + Quiz_Question_id + "\nผู้ใช้ที่ : " + user_id + " ตอบข้อที่ : " + window.Radio_Answer_Choice);
+
                         },
                         error: function(data) {
-                            alert("Error: " + data);
+                            console.log("Error: " + data);
                         }
                     });
                 });
@@ -718,6 +810,7 @@ endif
                 for (var i = 1; i <= User_Check; i++) {
                     $('#user-checkbox' + i + '').on('change', function() {
 
+
                         $("#user-checkbox" + i + "").attr("value", $(this).attr('user_checkbox'));
                         var User_Checkbox = $(this).attr('user_checkbox');
 
@@ -725,29 +818,71 @@ endif
                         window.Course_id2 = $(this).attr('course_id');
 
 
-
                         if ($(this).prop("checked") == true) {
-                            console.log("Checkbox is checked.");
-                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + User_Checkbox + "\nCourse_id : " + window.Course_id2 + "\nCheckbox is checked.");
+
+                            $.ajax({
+                                url: "<?= site_url('/CourseUserController/Check_User_Pass_Unit') ?>",
+                                method: "POST",
+                                data: {
+                                    User_id: window.User_id,
+                                    Course_id: window.Course_id2,
+                                    Unit_Index: User_Checkbox,
+                                    Pass: 1
+                                },
+                                success: function(data) {
+                                    $.ajax({
+                                        url: "<?= site_url('/CourseUserController/Already_User_Pass_Unit') ?>",
+                                        method: "POST",
+                                        data: {
+                                            User_id: window.User_id,
+                                            Course_id: window.Course_id2,
+                                        },
+                                        success: function(data) {
+                                            const obj = JSON.parse(data);
+                                            console.log(obj.length);
+                                            var count_pass = 0;
+                                            for (var i = 0; i < obj.length; i++) {
+                                                count_pass++;
+                                            }
+
+                                            if (User_Check == count_pass) {
+                                                $("#certificate").html("");
+                                                $("#certificate").append("<form action='<?= base_url('/courseuser/certificate/' . $Course_id) ?>' method='get' target='_blank'><div class='text-left'><button class='btn btn-success '>ใบรับรองจบ</button></div></form>");
+                                            }
+
+                                        },
+                                        error: function(data) {
+                                            console.log(data);
+                                        }
+                                    });
+                                }
+                            });
+
+
                         } else if ($(this).prop("checked") == false) {
-                            console.log("Checkbox is unchecked.");
-                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + User_Checkbox + "\nCourse_id : " + window.Course_id2 + "\nCheckbox is unchecked.");
+
+
+                            $.ajax({
+                                url: "<?= site_url('/CourseUserController/Delete_User_Pass_Unit') ?>",
+                                method: "POST",
+                                data: {
+                                    User_id: window.User_id,
+                                    Course_id: window.Course_id2,
+                                    Unit_Index: User_Checkbox,
+                                },
+                                success: function(data) {
+                                    $("#certificate").html("");
+                                }
+                            });
+
+
                         }
 
-                        /*$.ajax({
-                            url: '<?= site_url('/CourseUserController/Insert_User_Answer') ?>',
-                            method: "POST",
-                            data: {
-                                User_Checkbox: User_Checkbox,
-                            },
-                            success: function(data) {
-                                const obj = JSON.parse(data);
-                                console.log(obj);
 
-                            }
-                        });*/
                     });
+
                 }
+
 
             });
             /*
@@ -758,10 +893,10 @@ endif
             //function auto check if video end
             */
             $(document).ready(function() {
-
+                var User_Check = <?php echo json_encode($count_playlist); ?>;
                 video = document.querySelector("#video_player video");
                 Unit_Index2 = video.getAttribute('unit_index');
-                //console.log(Unit_Index2);
+
                 video.ontimeupdate = function() {
                     CheckVideoEnd()
                 };
@@ -771,12 +906,90 @@ endif
                     if (video.ended) {
                         if (window.Unit_Index == null) {
                             console.log("end\n" + Unit_Index2);
-                            $('#user-checkbox' + Unit_Index2 + '').prop('checked', true);
-                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + Unit_Index2 + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is checked.");
+                            $.ajax({
+                                url: "<?= site_url('/CourseUserController/Check_User_Pass_Unit') ?>",
+                                method: "POST",
+                                data: {
+                                    User_id: window.User_id,
+                                    Course_id: window.Course_id3,
+                                    Unit_Index: Unit_Index2,
+                                    Pass: 1
+                                },
+                                success: function(data) {
+
+                                    $('#user-checkbox' + Unit_Index2 + '').prop('checked', true);
+                                    $.ajax({
+                                        url: "<?= site_url('/CourseUserController/Already_User_Pass_Unit') ?>",
+                                        method: "POST",
+                                        data: {
+                                            User_id: window.User_id,
+                                            Course_id: window.Course_id3,
+                                        },
+                                        success: function(data) {
+                                            const obj = JSON.parse(data);
+                                            console.log(obj.length);
+                                            var count_pass = 0;
+                                            for (var i = 0; i < obj.length; i++) {
+                                                count_pass++;
+                                            }
+                                            //console.log(count_pass + " " + User_Check + " " + count_pass);
+                                            if (User_Check == count_pass) {
+                                                $("#certificate").html("");
+                                                $("#certificate").append("<form action='<?= base_url('/courseuser/certificate/' . $Course_id) ?>' method='get' target='_blank'><div class='text-left'><button class='btn btn-success '>ใบรับรองจบ</button></div></form>");
+                                            }
+
+                                        },
+                                        error: function(data) {
+                                            console.log(data);
+                                        }
+                                    });
+
+                                }
+                            });
+
+
                         } else {
                             console.log("end\n" + window.Unit_Index);
-                            $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);
-                            alert("\nUser_id : " + window.User_id + "\nunit_index : " + window.Unit_Index + "\nCourse_id : " + window.Course_id3 + "\nCheckbox is checked.");
+                            $.ajax({
+                                url: "<?= site_url('/CourseUserController/Check_User_Pass_Unit') ?>",
+                                method: "POST",
+                                data: {
+                                    User_id: window.User_id,
+                                    Course_id: window.Course_id3,
+                                    Unit_Index: Unit_Index,
+                                    Pass: 1
+                                },
+                                success: function(data) {
+                                    $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);
+                                    $.ajax({
+                                        url: "<?= site_url('/CourseUserController/Already_User_Pass_Unit') ?>",
+                                        method: "POST",
+                                        data: {
+                                            User_id: window.User_id,
+                                            Course_id: window.Course_id3,
+                                        },
+                                        success: function(data) {
+                                            const obj = JSON.parse(data);
+                                            console.log(obj.length);
+                                            var count_pass = 0;
+                                            for (var i = 0; i < obj.length; i++) {
+                                                count_pass++;
+                                            }
+
+                                            if (User_Check == count_pass) {
+                                                $("#certificate").html("");
+                                                $("#certificate").append("<form action='<?= base_url('/courseuser/certificate/' . $Course_id) ?>' method='get' target='_blank'><div class='text-left'><button class='btn btn-success '>ใบรับรองจบ</button></div></form>");
+                                            }
+
+                                        },
+                                        error: function(data) {
+                                            console.log(data);
+                                        }
+                                    });
+                                }
+                            });
+
+
                         }
                     }
                 }

@@ -84,6 +84,19 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    public function CertificateView($id = null)
+    {
+        $model = new CourseUser_model();
+        $User_id = $this->session->get("User_id");
+        $Course_id = $id;
+        //echo $User_id . "" . $Course_id;
+
+        if (isset($User_id)) {
+            /*$data['document'] = $model->Select_Document($Course_id);
+            echo view('Course/Document', $data);*/ } else {
+            return redirect()->to(base_url('/home'));
+        }
+    }
     public function DocumentView($id = null)
     {
         $model = new CourseUser_model();
@@ -103,6 +116,7 @@ class CourseUserController extends BaseController
             $model = new CourseUser_model();
             $User_id = $this->session->get("User_id");
             $data['My_Course'] = $model->Select_My_Courses($User_id);
+            //$data['Percent_Pass_Unit'] = $model->Select_Percent_Pass_Unit($User_id);
             echo view('login/My_Courses', $data);
         } else {
             return redirect()->to(base_url('/home'));
@@ -154,5 +168,49 @@ class CourseUserController extends BaseController
         } else {
             $model->Insert_User_Answer($User_id, $Quiz_Question_id, $Answer);
         }
+    }
+    public function Check_User_Pass_Unit()
+    {
+        $model = new CourseUser_model();
+        $User_id = $this->request->getVar('User_id');
+        $Course_id = $this->request->getVar('Course_id');
+        $Unit_Index = $this->request->getVar('Unit_Index');
+        $Pass = $this->request->getVar('Pass');
+
+        if ($model->Check_User_Pass_Unit($User_id, $Course_id, $Unit_Index) == true) {
+            $model->Update_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass);
+            //echo "true";
+        } else {
+            $model->Insert_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass);
+            //echo "false";
+        }
+    }
+    public function Delete_User_Pass_Unit()
+    {
+        $model = new CourseUser_model();
+        $User_id = $this->request->getVar('User_id');
+        $Course_id = $this->request->getVar('Course_id');
+        $Unit_Index = $this->request->getVar('Unit_Index');
+
+        if ($model->Check_User_Pass_Unit($User_id, $Course_id, $Unit_Index) == true) {
+            $model->Delete_User_Pass_Unit($User_id, $Course_id, $Unit_Index);
+            //echo "true";
+        } else {
+            return redirect()->to(base_url('/courseuser/learn/' . $Course_id));
+        }
+    }
+    public function Already_User_Pass_Unit()
+    {
+        $model = new CourseUser_model();
+        $User_id = $this->request->getVar('User_id');
+        $Course_id = $this->request->getVar('Course_id');
+
+        $data = $model->Select_User_Pass_Unit($User_id, $Course_id);
+
+        $Select_User_Pass_Unit = array();
+        while ($row = $data->fetchRow()) {
+            $Select_User_Pass_Unit[] = $row;
+        }
+        return json_encode($Select_User_Pass_Unit);
     }
 }

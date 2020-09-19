@@ -78,6 +78,12 @@ class CourseUser_model extends Model
         $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC";
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Percent_Pass_Unit($User_id)
+    {
+        $sql = "SELECT * FROM user_pass_unit WHERE user_id = '$User_id'";
+        return $this->connect_postgresdb->execute($sql);
+    }
+
     public function Select_Question_Of_Course($id)
     {
         //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
@@ -123,6 +129,40 @@ class CourseUser_model extends Model
         $sql = "UPDATE user_answer SET answer = '$Answer',update_date = now() AT TIME ZONE 'Asia/Bangkok' WHERE user_id = '$User_id' AND quiz_question_id = '$Quiz_Question_id' ";
         $this->connect_postgresdb->getOne($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
     }
+
+
+    public function Check_User_Pass_Unit($User_id, $Course_id, $Unit_Index)
+    {
+        $sql = "SELECT * FROM user_pass_unit WHERE user_id = '$User_id' AND course_id = '$Course_id' AND Unit_Index = '$Unit_Index'";
+        $Check_User_Pass_Unit = $this->connect_postgresdb->execute($sql);
+        if ($Check_User_Pass_Unit->RecordCount() > 0) { //check ว่ามี email ที่รับค่ามาในระบบกี่ email แล้ว ถ้ามากกว่า 0 คือมีเมลนี้ในระบบแล้ว return true
+            return true;
+        } else { //ถ้ามี 0 คือยังไม่มีอีเมลนี้ในระบบ return false
+            return false;
+        }
+    }
+    public function Insert_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass)
+    {
+        $sql = "INSERT INTO user_pass_unit(user_id, course_id, unit_index,pass) VALUES ($User_id,$Course_id,$Unit_Index,$Pass) ";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Update_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass)
+    {
+        $sql = "UPDATE user_pass_unit SET pass = '$Pass' WHERE user_id = '$User_id' AND course_id = '$Course_id' AND unit_index = '$Unit_Index'";
+        $this->connect_postgresdb->execute($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
+    }
+    public function Delete_User_Pass_Unit($User_id, $Course_id, $Unit_Index)
+    {
+        $sql = "DELETE FROM user_pass_unit WHERE user_id = '$User_id' AND course_id = '$Course_id' AND unit_index = '$Unit_Index'";
+        $this->connect_postgresdb->execute($sql); //จะทำการ update ข้อมูล facebook เข้า ฐานข้อมูล
+    }
+    public function Select_User_Pass_Unit($User_id, $Course_id)
+    {
+        $sql = "SELECT * FROM user_pass_unit  WHERE user_id = '$User_id' AND course_id = '$Course_id' AND pass='1' ORDER BY unit_index";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
+
     public function Select_Document_Of_Course($id)
     {
         $sql = "SELECT * FROM course_document join document on course_document.document_id = document.document_id WHERE course_document.course_id = '$id'";

@@ -360,8 +360,11 @@
                 <!--video-->
             </div>
 
+
         </div>
-        <div class="block"></div>
+        <div class="block">
+            
+        </div>
 
         </header>
         <!-- /.content-header -->

@@ -55,6 +55,7 @@ $routes->add('/viewcourse/(:alphanum)', 'CourseUserController::CourseView/$1');
 $routes->add('/subscribe/course/(:alphanum)', 'CourseUserController::User_Register_Course/$1');
 $routes->add('/courseuser/learn/(:alphanum)', 'CourseUserController::User_LearnCourse/$1');
 $routes->get('/courseuser/doucment/(:alphanum)', 'CourseUserController::DocumentView/$1');
+$routes->get('/courseuser/certificate/(:alphanum)', 'CourseUserController::CertificateView/$1');
 //Course
 $routes->get('/course', 'CourseController::Manage_Course');
 $routes->add('/course/createcourse', 'CourseController::CreateCourse');

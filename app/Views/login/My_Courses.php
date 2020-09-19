@@ -259,9 +259,14 @@
                                                     </div>
                                                 </li>
                                             </div>
+
                                         </ul>
+
                                     </div>
+
                                 </a>
+                               
+
                             </div>
                         <?php
                         endforeach;
