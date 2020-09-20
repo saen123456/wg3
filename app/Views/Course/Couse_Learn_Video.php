@@ -677,7 +677,8 @@ endif
                                                     User_id: window.User_id,
                                                     Course_id: window.Course_id3,
                                                     Unit_Index: window.Unit_Index,
-                                                    Pass: 1
+                                                    Pass: 1,
+                                                    Course_Unit: User_Check
                                                 },
                                                 success: function(data) {
                                                     /*const obj = JSON.parse(data);
@@ -773,7 +774,8 @@ endif
                                                     User_id: window.User_id,
                                                     Course_id: window.Course_id3,
                                                     Unit_Index: window.Unit_Index,
-                                                    Pass: 0
+                                                    Pass: 0,
+                                                    Course_Unit: User_Check
                                                 },
                                                 success: function(data) {
 
@@ -827,7 +829,8 @@ endif
                                     User_id: window.User_id,
                                     Course_id: window.Course_id2,
                                     Unit_Index: User_Checkbox,
-                                    Pass: 1
+                                    Pass: 1,
+                                    Course_Unit: User_Check
                                 },
                                 success: function(data) {
                                     $.ajax({
@@ -913,7 +916,8 @@ endif
                                     User_id: window.User_id,
                                     Course_id: window.Course_id3,
                                     Unit_Index: Unit_Index2,
-                                    Pass: 1
+                                    Pass: 1,
+                                    Course_Unit: User_Check
                                 },
                                 success: function(data) {
 
@@ -957,7 +961,8 @@ endif
                                     User_id: window.User_id,
                                     Course_id: window.Course_id3,
                                     Unit_Index: Unit_Index,
-                                    Pass: 1
+                                    Pass: 1,
+                                    Course_Unit: User_Check
                                 },
                                 success: function(data) {
                                     $('#user-checkbox' + window.Unit_Index + '').prop('checked', true);

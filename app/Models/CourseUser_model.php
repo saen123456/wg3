@@ -36,7 +36,7 @@ class CourseUser_model extends Model
     public function Select_unit($id)
     {
         $sql = "SELECT course_unit.video_id ,unit.unit_name from
-        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course.course_id ='$id'";
+        course join course_unit on course.course_id = course_unit.course_id join unit on course_unit.unit_id = unit.unit_id where course.course_id ='$id' ORDER BY course_unit.unit_index";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Check_Course($id)
@@ -141,9 +141,9 @@ class CourseUser_model extends Model
             return false;
         }
     }
-    public function Insert_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass)
+    public function Insert_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass, $Course_Unit)
     {
-        $sql = "INSERT INTO user_pass_unit(user_id, course_id, unit_index,pass) VALUES ($User_id,$Course_id,$Unit_Index,$Pass) ";
+        $sql = "INSERT INTO user_pass_unit(user_id, course_id, unit_index,pass,course_unit) VALUES ($User_id,$Course_id,$Unit_Index,$Pass, $Course_Unit) ";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Update_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass)

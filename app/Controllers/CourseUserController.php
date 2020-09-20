@@ -115,8 +115,11 @@ class CourseUserController extends BaseController
         if ($this->session->get("Role_name")) {
             $model = new CourseUser_model();
             $User_id = $this->session->get("User_id");
+            //$Percent_Pass_Unit = array();
             $data['My_Course'] = $model->Select_My_Courses($User_id);
-            //$data['Percent_Pass_Unit'] = $model->Select_Percent_Pass_Unit($User_id);
+            $data['Percent_Pass_Unit'] = $model->Select_Percent_Pass_Unit($User_id);
+ 
+
             echo view('login/My_Courses', $data);
         } else {
             return redirect()->to(base_url('/home'));
@@ -176,12 +179,13 @@ class CourseUserController extends BaseController
         $Course_id = $this->request->getVar('Course_id');
         $Unit_Index = $this->request->getVar('Unit_Index');
         $Pass = $this->request->getVar('Pass');
+        $Course_Unit = $this->request->getVar('Course_Unit');
 
         if ($model->Check_User_Pass_Unit($User_id, $Course_id, $Unit_Index) == true) {
             $model->Update_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass);
             //echo "true";
         } else {
-            $model->Insert_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass);
+            $model->Insert_User_Pass_Unit($User_id, $Course_id, $Unit_Index, $Pass, $Course_Unit);
             //echo "false";
         }
     }
@@ -204,6 +208,7 @@ class CourseUserController extends BaseController
         $model = new CourseUser_model();
         $User_id = $this->request->getVar('User_id');
         $Course_id = $this->request->getVar('Course_id');
+
 
         $data = $model->Select_User_Pass_Unit($User_id, $Course_id);
 
