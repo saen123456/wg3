@@ -1,0 +1,37 @@
+
+.stepbystep img{
+    width:80px;
+    margin-bottom: 20px;
+}
+.stepbystep ul{
+    text-align:center;
+}
+.stepbystep ul li{
+    display: inline-block;
+    width:200px;
+    position: relative;
+}
+.stepbystep ul li p{
+    font-family : sans-serif;
+    color: #000;
+}
+.stepbystep ul li .fa{
+    background: #ccc;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px;
+}
+.stepbystep ul li .fa::after{
+    content: '';
+    /* background-color: #4650e5; */
+    background-color: #ccc;
+    height: 5px;
+    width: 205px;
+    display: block;
+    position: absolute;
+    left:0;
+    top: 50px;
+    z-index: -1;
+}

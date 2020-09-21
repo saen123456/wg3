@@ -62,6 +62,13 @@ class CourseUserController extends BaseController
         if ($model->Check_Course($id)) {
             $data['Courseinfo'] = $model->Select_Courseinfo($id);
             $data['unit'] = $model->Select_unit($id);
+
+            $data['video_link'] = $model->Select_Video_Of_Course($id);
+            $data['question'] = $model->Select_Question_Of_Course($id);
+
+            $data['User_Pass_Unit'] = $model->Select_User_Pass_Unit($User_id, $id);
+            $data['count_playlist'] = $model->Select_Count_Playlist($id);
+
             if (isset($User_id)) {
                 $User_JoinCourse =  $model->Select_UserCourse($User_id, $id);
                 if ($User_JoinCourse == true) {
@@ -118,7 +125,7 @@ class CourseUserController extends BaseController
             //$Percent_Pass_Unit = array();
             $data['My_Course'] = $model->Select_My_Courses($User_id);
             $data['Percent_Pass_Unit'] = $model->Select_Percent_Pass_Unit($User_id);
- 
+
 
             echo view('login/My_Courses', $data);
         } else {

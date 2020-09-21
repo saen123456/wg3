@@ -41,6 +41,9 @@
         <!-- CSS Card Course -->
         <link rel="preload" href="<?php echo base_url('assets/css/categorycourse.css'); ?>" as="style" onload="this.rel='stylesheet'">
         <link rel="preload" href="<?php echo base_url('assets/css/coursename.css'); ?>" as="style" onload="this.rel='stylesheet'">
+
+        <!-- CSS Step by Step progress -->
+        <link rel="preload" href="<?php echo base_url('assets/course/css/stepbystep.css'); ?>" as="style" onload="this.rel='stylesheet'">
     </head>
 
     <?php
@@ -194,12 +197,128 @@
         </nav>
         <!-- /.navbar -->
         <br><br>
+        <?php
+        foreach ($Courseinfo as $row) :
+            $Course_image = $row['image_course'];
+        endforeach;
+        //echo $count_playlist;
+
+        ?>
+        <?php
+        if ($this->session->get("User_JoinCourse") == true) {
+            ?>
+            <div class="stepbystep">
+                <ul>
+                    <?php
+                        $count = 0;
+                        foreach ($video_link as $row) :
+                            $count++;
+                            ?>
+                        <li>
+                            <!-- <img src="<?php echo $Course_image; ?>"><br> -->
+                            <!-- <i class="fas fa-walking" style="font-size: 2.5em;"></i><br> -->
+
+                            <?php
+                                    //echo $count;
+                                    foreach ($User_Pass_Unit as $row3) :
+                                        if ($row3['unit_index'] == $count) {
+                                            $Array_Unit_index[$row3['unit_index']] = $row3;
+                                            //echo $row['unit_index'];
+                                            ?>
+                            <?php
+                                        }
+                                    endforeach;
+                                    if (isset($Array_Unit_index)) {
+                                        foreach ($Array_Unit_index as $row5) :
+                                        //echo $row5['unit_index'];
+                                        endforeach;
+
+                                        if ($row5['unit_index'] == $count && $count != $count_playlist) {
+                                            echo " <i class='fas fa-award' style='font-size: 2.5em;'></i><br>";
+                                            echo "<i class='fa fa-check' style='background: #148e14;'></i>";
+                                        } else if ($row6['unit_index'] == $count && $count == $count_playlist) {
+                                            echo " <i class='fas fa-graduation-cap' style='font-size: 2.5em;'></i><br>";
+                                            echo "<i class='fa fa-check' style='background: #148e14;'></i>";
+                                        } else {
+                                            echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
+                                            echo "<i class='fa fa-times' style='background: #ccc;'></i>";
+                                        }
+                                    } else {
+                                        echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
+                                        echo "<i class='fa fa-times' style='background: #ccc;'></i>";
+                                    }
+                                    ?>
+
+                            <p><?php echo $row['unit_name'] ?></p>
+                        </li>
+                        <?php
+                                if (isset($question)) {
+                                    foreach ($question as $row2) :
+
+                                        if ($row2['unit_index'] == $row['unit_index']) {
+                                            $count++;
+                                            ?>
+                                    <li>
+                                        <!-- <img src="<?php echo $Course_image; ?>"><br> -->
+                                        <!-- <i class="fas fa-walking" style="font-size: 2.5em;"></i><br> -->
+                                        <?php
+                                                            foreach ($User_Pass_Unit as $row4) :
+                                                                if ($row4['unit_index'] == $count) {
+                                                                    $Array_Unit_index2[$row4['unit_index']] = $row4;
+                                                                }
+                                                            endforeach;
+                                                            //echo $count;
+                                                            if (isset($Array_Unit_index2)) {
+                                                                //echo $count;
+                                                                foreach ($Array_Unit_index2 as $row6) :
+                                                                //echo $row5['unit_index'];
+                                                                endforeach;
+                                                                //echo $row6['unit_index'];
+
+
+                                                                if ($row6['unit_index'] == $count && $count != $count_playlist) {
+                                                                    echo " <i class='fas fa-award' style='font-size: 2.5em;'></i><br>";
+                                                                    echo "<i class='fa fa-check' style='background: #148e14;'></i>";
+                                                                } else if ($row6['unit_index'] == $count && $count == $count_playlist) {
+                                                                    echo " <i class='fas fa-graduation-cap' style='font-size: 2.5em;'></i><br>";
+                                                                    echo "<i class='fa fa-check' style='background: #148e14;'></i>";
+                                                                } else {
+                                                                    echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
+                                                                    echo "<i class='fa fa-times' style='background: #ccc;'></i>";
+                                                                }
+                                                            } else {
+                                                                echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
+                                                                echo "<i class='fa fa-times' style='background: #ccc;'></i>";
+                                                            }
+                                                            ?>
+                                        <p><?php echo $row2['quiz_question_name'] ?></p>
+
+                                    </li>
+                                <?php
+                                                }
+                                                ?>
+                        <?php
+                                    endforeach;
+                                }
+                                ?>
+                    <?php
+                        endforeach;
+
+                        ?>
+
+                </ul>
+            </div>
+        <?php
+        }
+        ?>
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="row">
                 <?php
                 foreach ($Courseinfo as $row) :
+                    $Course_id =  $row['course_id'];
+                    $Course_image = $row['image_course'];
                     ?>
                     <div class="col-6">
                         <img style="width:920px;height: 404px;" src="<?php echo $row['image_course'] ?>">
@@ -363,7 +482,7 @@
 
         </div>
         <div class="block">
-            
+
         </div>
 
         </header>

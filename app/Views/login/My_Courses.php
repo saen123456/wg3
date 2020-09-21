@@ -278,6 +278,7 @@
                                                 }
 
                                             endforeach;
+                                            //echo $count_unit_index;
                                             if (isset($Array_Course_id)) {
                                                 foreach ($Array_Course_id as $row3) :
                                                     if ($row3['course_id'] == $row['course_id']) {
