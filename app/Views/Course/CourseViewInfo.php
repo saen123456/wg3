@@ -231,12 +231,13 @@
                                     if (isset($Array_Unit_index)) {
                                         foreach ($Array_Unit_index as $row5) :
                                         //echo $row5['unit_index'];
+                                        
                                         endforeach;
 
                                         if ($row5['unit_index'] == $count && $count != $count_playlist) {
                                             echo " <i class='fas fa-award' style='font-size: 2.5em;'></i><br>";
                                             echo "<i class='fa fa-check' style='background: #148e14;'></i>";
-                                        } else if ($row6['unit_index'] == $count && $count == $count_playlist) {
+                                        } else if ($row5['unit_index'] == $count && $count == $count_playlist) {
                                             echo " <i class='fas fa-graduation-cap' style='font-size: 2.5em;'></i><br>";
                                             echo "<i class='fa fa-check' style='background: #148e14;'></i>";
                                         } else {
@@ -247,6 +248,7 @@
                                         echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
                                         echo "<i class='fa fa-times' style='background: #ccc;'></i>";
                                     }
+                                   
                                     ?>
 
                             <p><?php echo $row['unit_name'] ?></p>
@@ -290,6 +292,7 @@
                                                                 echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
                                                                 echo "<i class='fa fa-times' style='background: #ccc;'></i>";
                                                             }
+                                                            //echo $count;
                                                             ?>
                                         <p><?php echo $row2['quiz_question_name'] ?></p>
 
