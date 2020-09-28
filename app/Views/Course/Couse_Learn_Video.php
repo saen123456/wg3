@@ -370,8 +370,22 @@ endif
                                             if ($row2['unit_index'] == $row['unit_index']) {
                                                 $count++;
                                                 ?>
-
-                                            <div class="td_minimal">
+                                            <details>
+                                                <summary>
+                                                    <?php echo "คำถามของ " . $row['unit_name'] . "<br>"; ?>
+                                                </summary>
+                                                <div class="td_minimal">
+                                                    <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
+                                                </div>
+                                                <a href="<?php echo $row2['quiz_question_id'] ?>" var unit_index="<?php echo $count ?>">
+                                                    <div class="quiz-menu-li">
+                                                        <?php echo "คำถามของ " . $row['unit_name'] . "<br>";
+                                                                        echo  $row2['quiz_question_name']
+                                                                        ?>
+                                                    </div>
+                                                </a> 
+                                            </details>
+                                            <!-- <div class="td_minimal">
                                                 <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
                                             </div>
                                             <a href="<?php echo $row2['quiz_question_id'] ?>" var unit_index="<?php echo $count ?>">
@@ -380,7 +394,7 @@ endif
                                                                     echo  $row2['quiz_question_name']
                                                                     ?>
                                                 </div>
-                                            </a>
+                                            </a> -->
                                         <?php
                                                     }
                                                     ?>

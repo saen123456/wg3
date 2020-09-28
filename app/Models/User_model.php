@@ -16,13 +16,24 @@ class User_model extends Model
     protected $password;
     protected $database;
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->driver = 'postgres'; //ประเภทของระบบฐานข้อมูล
         $this->connect_postgresdb = NewADOConnection($this->driver);
         $this->server = '34.126.123.98'; //ชื่อ server
         $this->user = 'postgres'; //ชื่อ user
         $this->password = 'saen30042542'; //รหัสผ่านของ server
+        $this->database = 'postgres'; //ชื่อ database
+        $this->connect_postgresdb->debug = false;
+        $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
+    }*/
+    public function __construct()
+    {
+        $this->driver = 'postgres'; //ประเภทของระบบฐานข้อมูล
+        $this->connect_postgresdb = NewADOConnection($this->driver);
+        $this->server = 'localhost'; //ชื่อ server
+        $this->user = 'postgres'; //ชื่อ user
+        $this->password = '12345678'; //รหัสผ่านของ server
         $this->database = 'postgres'; //ชื่อ database
         $this->connect_postgresdb->debug = false;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);

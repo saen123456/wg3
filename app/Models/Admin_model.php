@@ -16,7 +16,7 @@ class Admin_model extends Model
     protected $password;
     protected $database;
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->driver = 'postgres'; //ประเภทของระบบฐานข้อมูล
         $this->connect_postgresdb = NewADOConnection($this->driver);
@@ -26,7 +26,20 @@ class Admin_model extends Model
         $this->database = 'postgres'; //ชื่อ database
         $this->connect_postgresdb->debug = false;
         $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
+    }*/
+
+    public function __construct()
+    {
+        $this->driver = 'postgres'; //ประเภทของระบบฐานข้อมูล
+        $this->connect_postgresdb = NewADOConnection($this->driver);
+        $this->server = 'localhost'; //ชื่อ server
+        $this->user = 'postgres'; //ชื่อ user
+        $this->password = '12345678'; //รหัสผ่านของ server
+        $this->database = 'postgres'; //ชื่อ database
+        $this->connect_postgresdb->debug = false;
+        $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     }
+
     /**
      * select
      * เป็นการ select สมาชิก ทั้งหมดจาก ฐานข้อมูล

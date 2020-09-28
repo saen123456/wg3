@@ -4,222 +4,297 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-landing-page/blob/master/LICENSE)
  */
 
- body {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-  }
-  
+body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("../../assets/img/bg.png") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.upper {
+  margin-top: -15px;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  background-color: #5d66e8;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+header.masthead h1 {
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
   header.masthead {
-    position: relative;
-    background-color: #343a40;
-    background: url("../../assets/img/bg.png") no-repeat center center;
-    background-size: cover;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 12rem;
+    padding-bottom: 12rem;
   }
-  .upper{
-    margin-top: -15px;
-    }
-
-
-  header.masthead .overlay {
-    position: absolute;
-    background-color: #5D66E8;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
-  }
-  
   header.masthead h1 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
-  
-  @media (min-width: 768px) {
-    header.masthead {
-      padding-top: 12rem;
-      padding-bottom: 12rem;
-    }
-    header.masthead h1 {
-      font-size: 3rem;
-    }
-  }
-  .magin-ll{
+}
+.magin-ll {
   margin-left: 5px;
-  }
-  .showcase .showcase-text {
-    padding: 3rem;
-  }
-  
-  .showcase .showcase-img {
-    min-height: 30rem;
-    background-size: cover;
-  }
-  
-  @media (min-width: 768px) {
-    .showcase .showcase-text {
-      padding: 7rem;
-    }
-  }
-  .features-icons {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
- .inputlong .form-control{
-   width: 1000px;
- }
+}
+.showcase .showcase-text {
+  padding: 3rem;
+}
 
+.showcase .showcase-img {
+  min-height: 30rem;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
+}
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+.inputlong .form-control {
+  width: 1000px;
+}
+.image-register {
+  background-image: url("../img/bg3.png");
+  height: 501px;
+  background-size: cover;
+  background-position: center;
+}
 @media (max-width: 768px) {
-  .inputlong .form-control{
+  .inputlong .form-control {
     width: 100%;
   }
 }
-  .changepass .input-group-text{
-    background-color: steelblue;
-    color: aliceblue;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .inputlong .form-control {
+    width: 100%;
   }
-  .features-icons .features-icons-item {
-    max-width: 20rem;
-  }
-  
-  .features-icons .features-icons-item .features-icons-icon {
-    height: 7rem;
-  }
-  
-  .features-icons .features-icons-item .features-icons-icon i {
-    font-size: 4.5rem;
-  }
-  
-  .features-icons .features-icons-item:hover .features-icons-icon i {
-    font-size: 5rem;
-  }
-  
-  .testimonials {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-  
-  .testimonials .testimonial-item {
-    max-width: 18rem;
-  }
-  
-  .testimonials .testimonial-item img {
-    max-width: 12rem;
-    box-shadow: 0px 5px 5px 0px #adb5bd;
-  }
+}
 
-  .light-purple{
-    font-size: 14px;
-    color: white;
-    background: #7c7cdd;
-  }
- .light-purple:hover ,.light-purple:active{
-    text-decoration: none;
-    color: white;
-  }
-  .call-to-action {
-    position: relative;
-    background-color: #343a40;
-    background: url("../img/bg-masthead.jpg") no-repeat center center;
-    background-size: cover;
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-  
-  .call-to-action .overlay {
-    position: absolute;
-    background-color: #212529;
-    height: 100%;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .inputlong .form-control {
     width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
   }
-  
-  footer.footer {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  .cards {
-    box-shadow: 0 4px 8px 0 rgba(71, 71, 71, 0.4);
-    transition: 0.3s;
-    width: 100%;
-    padding: 40px;
-    background-color: rgb(255, 255, 255);
-  }
-  .cards:hover{
-    box-shadow: 0 10px 16px 0 rgba(31, 31, 31, 0.8);
-  }
-  
-  .content_course {
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    position: relative;
-  }
-  .content_course .content_course-overlay {
-    background: rgba(100, 100, 100, 0.7);
-    position: absolute;
-    width: 99%;
-    left: 5px;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-    -webkit-transition: all 0.4s ease-in-out 0s;
-    -moz-transition: all 0.4s ease-in-out 0s;
-    transition: all 0.4s ease-in-out 0s;
-  }
-  .content_course:hover .content_course-overlay{
-    opacity: 0.7;
-  }
+}
 
-  .content_course-details {
-    position: absolute;
-    text-align: center;
-    padding-left: 1em;
-    padding-right: 1em;
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .inputlong .form-control {
     width: 100%;
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    -moz-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
   }
-  
-  .content_course:hover .content_course-details{
-    top: 50%;
-    left: 50%;
-    opacity: 1;
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .inputlong .form-control {
+    width: 100%;
   }
-  
-  .content_course-details h3{
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.5em;
-    text-transform: uppercase;
+}
+@media only screen and (min-width: 1000px) {
+  .inputlong .form-control {
+    width: 400px;
   }
-  
-  .content_course-details p{
-    color: rgb(69, 245, 69);
-    font-size: medium;
+}
+@media only screen and (min-width: 1100px) {
+  .inputlong .form-control {
+    width: 500px;
   }
-  
-  .fadeIn-bottom{
-    top: 80%;
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1300px) {
+  .inputlong .form-control {
+    width: 600px;
   }
-  
+}
+@media only screen and (max-width: 1200px) {
+  #card-responsive {
+    max-width: 100%;
+  }
+}
+@media only screen and (max-width: 1700px) {
+  #btn-navbar {
+    flex-wrap: nowrap;
+  }
+  #col-navbar {
+    flex: unset;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .inputlong .form-control {
+    width: 800px;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .inputlong .form-control {
+    width: 900px;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .inputlong .form-control {
+    width: 1000px;
+  }
+}
+.changepass .input-group-text {
+  background-color: steelblue;
+  color: aliceblue;
+}
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+  font-size: 5rem;
+}
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+  max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+  max-width: 12rem;
+  box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+.light-purple {
+  font-size: 14px;
+  color: white;
+  background: #7c7cdd;
+}
+.light-purple:hover,
+.light-purple:active {
+  text-decoration: none;
+  color: white;
+}
+.call-to-action {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.call-to-action .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.cards {
+  box-shadow: 0 4px 8px 0 rgba(71, 71, 71, 0.4);
+  transition: 0.3s;
+  width: 100%;
+  padding: 40px;
+  background-color: rgb(255, 255, 255);
+}
+.cards:hover {
+  box-shadow: 0 10px 16px 0 rgba(31, 31, 31, 0.8);
+}
+
+.content_course {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+}
+.content_course .content_course-overlay {
+  background: rgba(100, 100, 100, 0.7);
+  position: absolute;
+  width: 99%;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+.content_course:hover .content_course-overlay {
+  opacity: 0.7;
+}
+
+.content_course-details {
+  position: absolute;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.content_course:hover .content_course-details {
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
+.content_course-details h3 {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+.content_course-details p {
+  color: rgb(69, 245, 69);
+  font-size: medium;
+}
+
+.fadeIn-bottom {
+  top: 80%;
+}
