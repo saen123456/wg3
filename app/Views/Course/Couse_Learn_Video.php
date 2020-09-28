@@ -370,7 +370,7 @@ endif
                                             if ($row2['unit_index'] == $row['unit_index']) {
                                                 $count++;
                                                 ?>
-                                            <details>
+                                            <!-- <details>
                                                 <summary>
                                                     <?php echo "คำถามของ " . $row['unit_name'] . "<br>"; ?>
                                                 </summary>
@@ -384,8 +384,8 @@ endif
                                                                         ?>
                                                     </div>
                                                 </a> 
-                                            </details>
-                                            <!-- <div class="td_minimal">
+                                            </details> -->
+                                            <div class="td_minimal">
                                                 <input class="form-check-input quiz-checkbox" type="checkbox" id="user-checkbox<?php echo $count; ?>" var user_checkbox="<?php echo $count ?>" var course_id="<?php echo $Course_id ?>">
                                             </div>
                                             <a href="<?php echo $row2['quiz_question_id'] ?>" var unit_index="<?php echo $count ?>">
@@ -394,7 +394,7 @@ endif
                                                                     echo  $row2['quiz_question_name']
                                                                     ?>
                                                 </div>
-                                            </a> -->
+                                            </a>
                                         <?php
                                                     }
                                                     ?>
@@ -450,13 +450,13 @@ endif
                     video.play();
                 } else {
                     var user_id = <?php echo $this->session->get("User_id") ?>;
-                    // console.log("test");
+                    console.log("test");
                     quiz.style.display = "block";
                     x.style.display = "none";
-                    //var base_url = '<?= base_url('CourseUserController/Select_Quiz_Video') ?>';
+
                     video = document.querySelector("#video_player video");
                     video.pause();
-                    //console.log(videotarget + user_id);
+                    console.log(window.videotarget + " " + user_id);
                     $.ajax({
                         url: "<?= site_url('/CourseUserController/Select_User_Do_Answer') ?>",
                         method: "POST",
@@ -466,7 +466,7 @@ endif
                         },
                         success: function(data) {
                             const obj = JSON.parse(data);
-                            console.log(window.videotarget);
+                            console.log(obj.length);
                             if (obj.length > 0) {
                                 if (obj[0].answer == 1) {
                                     $("#myDIV2").html("");
@@ -535,7 +535,9 @@ endif
 
                                 }
                             } else {
+                                console.log("test" + window.videotarget);
                                 $.ajax({
+
                                     url: '<?= base_url('CourseUserController/Select_Quiz_Video') ?>',
                                     method: "POST",
                                     data: {
