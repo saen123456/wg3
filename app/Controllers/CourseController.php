@@ -229,17 +229,17 @@ class CourseController extends BaseController
     //function create bucket
     /*public function Create_Bucket()
     {
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=workgress2.json");
+        putenv("GOOGLE_APPLICATION_CREDENTIALS=workgress-new.json");
 
         # Your Google Cloud Platform project ID
-        $projectId = 'supple-alpha-289508';
+        $projectId = 'workgress-new';
         # Instantiates a client
         $this->storage = new StorageClient([
             'projectId' => $projectId
         ]);
 
         # The name for the new bucket
-        $bucketName = 'storage-workgress';
+        $bucketName = 'storage-workgress-2-2';
 
         # Creates the new bucket
         $bucket = $this->storage->createBucket($bucketName);
@@ -253,7 +253,7 @@ class CourseController extends BaseController
 
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
         $content = file_get_contents($file['uploadFile']['tmp_name']);
         $file_name = $file['uploadFile']['name'];
 
@@ -261,7 +261,7 @@ class CourseController extends BaseController
             'name' => $file_name
         ]);
 
-        $filelink = "https://storage.googleapis.com/storage-workgress/" . $file['uploadFile']['name'];
+        $filelink = "https://storage.googleapis.com/storage-workgress-2/" . $file['uploadFile']['name'];
         $model->Upload_Video($file_name, $filelink);
         echo "upload success";
         //return redirect()->to(base_url('test55'));
@@ -273,13 +273,13 @@ class CourseController extends BaseController
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $file_name = $file['uploadFile']['name'];
 
         if ($bucket->upload($content, ['name' => $file_name])) {
-            $filelink = "https://storage.googleapis.com/storage-workgress/" . $file['Unit_Video_File']['name'];
+            $filelink = "https://storage.googleapis.com/storage-workgress-2/" . $file['Unit_Video_File']['name'];
             $model->Upload_Video($file_name, $filelink);
             echo "<div class='preview'>upload success</div>";
         } else {
@@ -305,7 +305,7 @@ class CourseController extends BaseController
         $model = new Course_model();
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
         $Video_Name = $file['Unit_Video_File']['name'];
 
@@ -319,7 +319,7 @@ class CourseController extends BaseController
         $Video_Duration = $Get_Duration['playtime_string'];
 
         if ($bucket->upload($content, ['name' => $Video_Name])) {
-            $Video_link = "https://storage.googleapis.com/storage-workgress/" . $Video_Name;
+            $Video_link = "https://storage.googleapis.com/storage-workgress-2/" . $Video_Name;
             $model->Upload_Unit($Course_id, $Video_link, $User_id, $Unit_Name, $Unit_Index, $Video_Name, $Video_Duration);
             echo "<div class='preview'>upload success</div>";
         } else {
@@ -332,7 +332,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
 
         $Course_id = $this->session->get("Course_id");
 
@@ -340,7 +340,7 @@ class CourseController extends BaseController
         $Document_Name = $file['Document1']['name'];
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Document_Name])) {
-            $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
+            $Documen_link = "https://storage.googleapis.com/storage-workgress-2/" . $Document_Name;
             $model->Upload_Document($Course_id, $Documen_link, $Document_Name);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
@@ -355,7 +355,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
 
         $Course_id = $this->session->get("Course_id");
 
@@ -363,7 +363,7 @@ class CourseController extends BaseController
         $Document_Name = $file['Document2']['name'];
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Document_Name])) {
-            $Documen_link = "https://storage.googleapis.com/storage-workgress/" . $Document_Name;
+            $Documen_link = "https://storage.googleapis.com/storage-workgress-2/" . $Document_Name;
             $model->Edit_Upload_Document($Course_id, $Documen_link, $Document_Name);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
@@ -378,7 +378,7 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
 
         $Course_id = $this->session->get("Course_id");
 
@@ -386,7 +386,7 @@ class CourseController extends BaseController
         $Photo_Name = $file['photo']['name'];
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Photo_Name])) {
-            $Photo_link = "https://storage.googleapis.com/storage-workgress/" . $Photo_Name;
+            $Photo_link = "https://storage.googleapis.com/storage-workgress-2/" . $Photo_Name;
             $model->Upload_Photo_Course($Course_id, $Photo_link);
             echo "อัพโหลดรูปภาพเรียบร้อยแล้ว";
         } else {
@@ -399,14 +399,14 @@ class CourseController extends BaseController
         $file = $_FILES;
 
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
 
         $Course_id = $this->session->get("Course_id");
         $content = file_get_contents($file['photo']['tmp_name']);
         $Photo_Name = $file['photo']['name'];
         //echo $Photo->getClientName();
         if ($bucket->upload($content, ['name' => $Photo_Name])) {
-            $Photo_link = "https://storage.googleapis.com/storage-workgress/" . $Photo_Name;
+            $Photo_link = "https://storage.googleapis.com/storage-workgress-2/" . $Photo_Name;
             $model->Edit_Photo_Course($Course_id, $Photo_link);
             echo "อัพโหลดรูปภาพเรียบร้อยแล้ว";
         } else {
@@ -451,7 +451,7 @@ class CourseController extends BaseController
 
         $file = $_FILES;
         $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress');
+        $bucket = $storage->bucket('storage-workgress-2');
 
         $content = file_get_contents($file['Unit_Video_File']['tmp_name']);
 
@@ -464,7 +464,7 @@ class CourseController extends BaseController
         $Video_Duration = $Get_Duration['playtime_string'];
         //$model->Upload_Edit_Unit($Course_id, $Unit_Index, $Unit_Name);
         if ($bucket->upload($content, ['name' => $Video_Name])) {
-            $Video_link = "https://storage.googleapis.com/storage-workgress/" . $Video_Name;
+            $Video_link = "https://storage.googleapis.com/storage-workgress-2/" . $Video_Name;
             $model->Upload_Edit_Unit($Course_id, $Video_link, $Unit_Index, $Video_Name, $Video_Duration);
             echo "<div class='preview'>upload success</div>";
         } else {
