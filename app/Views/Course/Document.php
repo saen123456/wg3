@@ -20,7 +20,7 @@
 
     <?php
     $document_type = pathinfo($document_name, PATHINFO_EXTENSION);
-    //echo $document_link;
+    echo $document_link;
     if ($document_type != "pdf") { ?>
         <a href="<?php echo $document_link ?>" download>
             <button type="button" class="btn btn-light float-right" style="border: 1px solid black;"><i class="fa fa-download" aria-hidden="true"></i> ดาวน์โหลดไฟล์ได้ที่นี่</button>
@@ -43,10 +43,10 @@
         echo "<iframe src='" . $document_link_pdf . "' width='100%' height='900px' frameborder='0'>";
         //echo "<iframe src='https://docs.google.com/gview?url=" . $document_link . "&embedded=true' width='100%' height='900px' ></iframe>";
     } else if ($document_type == "pptx" || $document_type == "ppt") {
-        /*$Add_Space = str_replace(' ', '%20', $document_link);
+        $Add_Space = str_replace(' ', '%20', $document_link);
         $Add_Space = str_replace('&', '%26', $document_link);
-        echo $Add_Space;*/
-        echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $document_link . "' width='100%' height='900px' frameborder='0'> </iframe>";
+        echo $Add_Space;
+        echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $Add_Space . "' width='100%' height='900px' frameborder='0'> </iframe>";
     }
     ?>
 

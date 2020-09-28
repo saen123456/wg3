@@ -21,9 +21,9 @@ class UserGoogleController extends BaseController
 
         $google_client = new Google_Client();
         //Set the OAuth 2.0 Client ID
-        $google_client->setClientId('167253378744-q152i41crtqucvldcfoldl7ho2s7gfs1.apps.googleusercontent.com');
+        $google_client->setClientId('304462956554-8kjkdn5htlipfb7mc636p4qcq2t1hjlb.apps.googleusercontent.com');
         //Set the OAuth 2.0 Client Secret key
-        $google_client->setClientSecret('J3jyV8RB3qdLXQLjaI23w-Mu');
+        $google_client->setClientSecret('iG-CLso11IWgo2mrxfQNlwQg');
         //Set the OAuth 2.0 Redirect URI
 
         //$google_client->setRedirectUri('http://localhost:8080/projectwg/UserGoogleController/Google_Login');
