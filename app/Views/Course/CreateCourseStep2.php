@@ -338,7 +338,8 @@
                     var xhr = new window.XMLHttpRequest();
                     console.log(Unit_Count);
                     $.ajax({
-                        url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
+                        //url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
+                        url: "http://35.187.229.2/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
 
                         //url: "http://localhost:8080/projectwg/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
                         type: "POST",
