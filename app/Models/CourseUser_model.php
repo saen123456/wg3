@@ -91,12 +91,17 @@ class CourseUser_model extends Model
         $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC";
         return $this->connect_postgresdb->execute($sql);
     }
+
     public function Select_Percent_Pass_Unit($User_id)
     {
         $sql = "SELECT * FROM user_pass_unit WHERE user_id = '$User_id'";
         return $this->connect_postgresdb->execute($sql);
     }
-
+    public function Select_User_Course_Learn($User_id)
+    {
+        $sql = "SELECT * FROM user_register_course join course on user_register_course.course_id = course.course_id join user_register on user_register_course.user_id = user_register.user_id WHERE user_register_course.user_id = '$User_id' ORDER BY user_register_course.course_id DESC LIMIT 2";
+        return $this->connect_postgresdb->execute($sql);
+    }
     public function Select_Question_Of_Course($id)
     {
         //$sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";

@@ -440,9 +440,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p class="login-box-msg">เข้าสู่ระบบเพื่อเริ่มระบบของคุณ</p>
 
                 <form action="<?= site_url('/UserController/User_Login') ?>" method="post" role="form" id="quickForm">
-                  <div class="input-group mb-3">
 
-                    <input type="email" name="Email_Login" id="Email_Login" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <div class="input-group mb-3">
+                    <input type="email" name="Email_Login" id="Email_Login" class="form-control" id="exampleInputEmail1" placeholder="กรุณาใส่อีเมล">
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -452,40 +452,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <span id="email_check_login"></span>
                   <div class="input-group mb-3">
 
-                    <input type="password" name="Password_Login" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="Password_Login" class="form-control" id="exampleInputPassword1" placeholder="กรุณาใส่รหัสผ่าน">
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-lock"></span>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-8">
-                    </div>
+                  <div class="row justify-content-center">
                     <!-- /.col -->
                     <div class="col-4">
-                      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                      <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                     </div>
                     <!-- /.col -->
                   </div>
                 </form>
 
                 <div class="social-auth-links text-center mb-3">
-                  <p>- OR -</p>
+                  <p>- หรือ -</p>
                   <a href="<?php echo $facebook_login_url ?>" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    <i class="fab fa-facebook mr-2"></i> ล็อคอินกับ Facebook
                   </a>
                   <a href="<?php echo $login_button ?>" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    <i class="fab fa-google-plus mr-2"></i> ล็อคอินกับ Google
                   </a>
                 </div>
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
-                  <a href="forgot-password.html">I forgot my password</a>
+                  <a href="<?php echo base_url('/reset_password'); ?>">ลืมรหัสผ่านใช่หรือไม่ ?</a>
                 </p>
                 <p class="mb-0">
-                  <a href="<?php echo base_url('/register'); ?>" class="text-center">Register a new membership</a>
+                  <a href="" data-toggle="modal" data-target="#modal-register">สมัครสมาชิกใหม่</a>
+                  </button>
                 </p>
               </div>
               <!-- /.login-card-body -->

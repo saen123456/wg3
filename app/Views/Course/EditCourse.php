@@ -233,6 +233,30 @@ $this->session = \Config\Services::session();
     </div>
 </div>
 
+<div class="modal fade" id="modal-delete-unit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ลบ Unit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ยืนยันที่จะลบใช่หรือไม่ ?&hellip;</p>
+                <p id="output"></p>
+                <!-- <input id="user_id" name="user_id" value="" /> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href = '<?= site_url('/CourseController/change_status') ?>';">ยืนยัน</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <body class="body2">
 
     <div class="main2">
@@ -243,9 +267,7 @@ $this->session = \Config\Services::session();
                     <div class="col-md-3">
                         <a class="light-purple" id='link1' href="<?php echo base_url('/course'); ?>" role="button"> <i class="fas fa-arrow-left light-purple"></i> กลับไปยังหน้าหลักสูตร</a>
                     </div>
-                    <div class="col-md-1 col-md-offset-8">
-                        <a class="light-purple" id='link1' role="button" data-toggle="modal" data-target="#myModal"><i class="fas fa-cogs"></i></a>
-                    </div>
+
                 </div>
             </div>
             <div id="signup-form">
@@ -311,6 +333,10 @@ $this->session = \Config\Services::session();
                                                     <tr id="row_0">
                                                         <td class="td_minimal"><input class="case" type="checkbox" /></td>
                                                         <td>
+
+                                                          <button class="btn btn-danger delete2" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i> ลบ Unit</button>
+
+
                                                             <form action="#" method="post">
                                                                 <div class="col-sm-5">
                                                                     <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>">

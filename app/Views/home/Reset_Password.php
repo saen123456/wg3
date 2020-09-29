@@ -106,7 +106,7 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item dropdown">
-                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large" style="background: #7C5CE9;"></i></a>
+                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                             <!-- <li><a href="#" class="dropdown-item">Some action </a></li>
                 <li><a href="#" class="dropdown-item">Some other action</a></li> -->
@@ -158,7 +158,7 @@
                         </form>
                     </ul>
                 </div>
-                <i class="fa fa-shopping-cart"></i>
+                <!-- <i class="fa fa-shopping-cart"></i> -->
                 <!-- SEARCH FORM -->
 
                 <!-- Right navbar links -->
@@ -166,17 +166,23 @@
                 <div class="navbar-collapse collapse w-200 order-3 dual-collapse">
                     <ul class="order-1 order-md-5 navbar-nav navbar-no-expand ml-auto">
                         <!-- Messages Dropdown Menu -->
-                        <div class="input-group input-group-sm">
-                            <!-- Notifications Dropdown Menu -->
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                                <b>เข้าสู่ระบบ</b>
-                            </button>
-                            <div class="magin-ll">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-register">
+
+                        <!-- Notifications Dropdown Menu -->
+                        <div class="row" id="btn-navbar">
+
+                            <div class="col-md-auto" id="col-navbar">
+                                <button type="button" class="btn btn-default btn-login" data-toggle="modal" data-target="#modal-default">
+                                    <b>เข้าสู่ระบบ</b>
+                                </button>
+                            </div>
+                            <div class="col-md-auto" id="col-navbar">
+                                <button type="button" class="btn btn-success btn-register" data-toggle="modal" data-target="#modal-register">
                                     <b>ลงทะเบียน</b>
                                 </button>
                             </div>
+
                         </div>
+
                     </ul>
                 </div>
             </div>
@@ -242,7 +248,7 @@
                     foreach ($Course_Info as $row) :
                         ?>
 
-                        <div class="col-md-3 animate-box">
+                        <div class="col-md-3 animate-box" id="card-responsive">
                             <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
                                 <div class="card" style="width:268px;">
                                     <ul class="list-group list-group-flush">
@@ -293,239 +299,287 @@
             </div>
         </div>
 
-        <footer class="main-footer">
-            <div class="footernew">
-            </div>
-        </footer>
-        <div style="background-image: url(assets/img/bg3.png); background-size: 100%; height:501px;">
+        <br><br><br>
+        <div class="image-register">
             <div class="overlay"></div>
             <div class="container"><br><br><br>
                 <h1 style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 64px;color: white;text-align: center;">เป้าหมาย Workgress</h1>
                 <h3 style="font-family: Roboto;font-style: normal;font-weight: 300;font-size: 26px;color: white;text-align: center;">เพิ่มประสบการณ์การเรียนรู้ที่ทันสมัย รวดเร็ว สะดวก</h3>
                 <br>
                 <div style="text-align:center;">
-
+                    <button type="button" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn btn-success" data-toggle="modal" data-target="#modal-register">
+                        <b>ลงชื่อเข้าใช้ฟรี</b>
+                    </button>
                 </div>
             </div>
-
             <!-- /.content -->
+
         </div>
         <!-- /.content -->
 
         <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Profile</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <div class="footernew">
-            </div>
-        </footer>
-        <div class="footernew2">
-            <a href="<?php echo base_url('/home'); ?>">
-                <div class="footerimg">
-                    <img src="<?php echo base_url('assets/img/logo2.png'); ?>">
-                </div>
-            </a>
-
-            <div class="footericonphone">
-                <i class="fa fa-phone">
-                </i>
-            </div>
-            <div class="fa-phonetext">
-                <h6 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;">(000) 123 4567</h6>
-            </div>
-
-            <div class="footericonemail">
-                <i class="fa fa-envelope">
-                </i>
-            </div>
-            <div class="fa-envelopetext">
-                <h6 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;">hello@workgress.com</h6>
-            </div>
-
-            <div class="footericonsocial">
-                <i class="fab fa-facebook-square"></i>
-                <i class="fab fa-twitter-square"></i>
-                <i class="fab fa-google-plus-square"></i>
-                <i class="fab fa-instagram"></i>
-            </div>
-
-            <!-- company row -->
-            <div class="row">
-                <div class="column">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">Company</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">เกี่ยวกับเรา</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">บล็อค</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">ติดค่อเรา</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Become a Teacger</p>
-                </div>
-            </div>
-
-            <!-- links row -->
-            <div class="row">
-                <div class="column2">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">LINKS</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Courses</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Events</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Gallery</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">FAQs</p>
-                </div>
-            </div>
-
-            <!-- SUPPORT row -->
-            <div class="row">
-                <div class="column3">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">SUPPORT</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Documentation</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Forums</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Lauguage Packs</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">Release Status</p>
-                </div>
-            </div>
-
-            <!-- Recomment row -->
-            <div class="row">
-                <div class="column4">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 22px;">RECOMMEND</h2><br>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">WordPress</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">LearnPress</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">WooCommerce</p>
-                    <p style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px; color: #A7A7A7;">bbPress</p>
-                </div>
-            </div>
-
-            <!-- line -->
-            <hr class="line">
-
-            <div class="footerinc">
-                <p style="font-family: Roboto;font-style: normal;font-weight: normal;">ลิขสิทธิ์ © 2020 WorkGress, Inc. ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">เข้าสู่บัญชี Workgress ของคุณ</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body login-card-body">
-                            <p class="login-box-msg">เข้าสู่ระบบเพื่อเริ่มระบบของคุณ</p>
-
-                            <form action="../../index3.html" method="post">
-                                <div class="input-group mb-3">
-                                    <input type="email" class="form-control" placeholder="Email">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-envelope"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="Password">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-lock"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="icheck-primary">
-                                            <input type="checkbox" id="remember">
-                                            <label for="remember">
-                                                Remember Me
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                            </form>
-
-
-                            <p class="mb-1">
-                                <a href="forgot-password.html">I forgot my password</a>
-                            </p>
-                            <p class="mb-0">
-                                <a href="register.html" class="text-center">Register a new membership</a>
-                            </p>
+        <footer class="mainfooter" role="contentinfo">
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <!--Column1-->
+                            <div class="footer-pad">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">หน้าแรก</a></li>
+                                    <li><a href="#">เกี่ยวกับเรา</a></li>
+                                    <li><a href="#">หลักสูตรทั้งหมด</a></li>
+                                    <li><a href="#">ติดต่อเรา</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <!-- /.login-card-body -->
+
+                        <div class="col-md-3 col-sm-6">
+                            <!--Column1-->
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <!--Column1-->
+                        </div>
+
+                        <div class="col-md-3 text-right" id="text-social">
+                            <h4>Follow Us : </h4>
+                            <ul class="social-network social-circle">
+                                <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
+                                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-twitter-square"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 copy ">
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="<?= base_url('/dist2/img/logo_footer.png'); ?>" class="img-fluid float-left" alt="...">
+                                </div>
+                                <div class="col-4">
+                                    <p class="text-left">&copy; ลิขสิทธิ์ © 2020 WorkGress, Inc.</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-right">&copy;
+                                        ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
 
+
                 </div>
             </div>
-            <!-- /.modal-content -->
+        </footer>
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">เข้าสู่บัญชี Workgress ของคุณ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body login-card-body">
+                                <p class="login-box-msg">เข้าสู่ระบบเพื่อเริ่มระบบของคุณ</p>
+
+                                <form action="<?= site_url('/UserController/User_Login') ?>" method="post" role="form" id="quickForm">
+
+                                    <div class="input-group mb-3">
+                                        <input type="email" name="Email_Login" id="Email_Login" class="form-control" id="exampleInputEmail1" placeholder="กรุณาใส่อีเมล">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span id="email_check_login"></span>
+                                    <div class="input-group mb-3">
+
+                                        <input type="password" name="Password_Login" class="form-control" id="exampleInputPassword1" placeholder="กรุณาใส่รหัสผ่าน">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <!-- /.col -->
+                                        <div class="col-4">
+                                            <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </form>
+
+                                <div class="social-auth-links text-center mb-3">
+                                    <p>- หรือ -</p>
+                                    <a href="<?php echo $facebook_login_url ?>" class="btn btn-block btn-primary">
+                                        <i class="fab fa-facebook mr-2"></i> ล็อคอินกับ Facebook
+                                    </a>
+                                    <a href="<?php echo $login_button ?>" class="btn btn-block btn-danger">
+                                        <i class="fab fa-google-plus mr-2"></i> ล็อคอินกับ Google
+                                    </a>
+                                </div>
+                                <!-- /.social-auth-links -->
+
+                                <p class="mb-1">
+                                    <a href="<?php echo base_url('/reset_password'); ?>">ลืมรหัสผ่านใช่หรือไม่ ?</a>
+                                </p>
+                                <p class="mb-0">
+                                    <a href="" data-toggle="modal" data-target="#modal-register">สมัครสมาชิกใหม่</a>
+                                    </button>
+                                </p>
+                            </div>
+                            <!-- /.login-card-body -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
 
-    <!-- Content Wrapper. Contains page content -->
-    <!-- ./wrapper -->
-    <!-- jQuery -->
+        <div class="modal fade" id="modal-register">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">สมัครสมาชิก Workgress ของคุณ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body login-card-body">
+                                <p class="login-box-msg">สมัครสมาชิกใหม่เพื่อเริ่มเรียนรู้</p>
 
-    <script type="text/javascript">
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function() {
-                $(this).remove();
+                                <form role="form" action="<?= site_url('/UserController/User_Register') ?>" method="post" id="RegisterForm">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="Full_Name_Register">ชื่อ-นามสกุล :</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="Full_Name_Register" class="form-control" id="Full_Name_Register" placeholder="กรุณาใส่ชื่อ-นามสกุล">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-user"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">อีเมล :</label>
+                                            <div class="input-group mb-3">
+                                                <input type="email" name="Email_Register" class="form-control" id="Email_Register" placeholder="กรุณาใส่อีเมล">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-envelope"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span id="email_result"></span>
+                                        <div class="form-group">
+                                            <label for="password">รหัสผ่าน :</label>
+                                            <div class="input-group mb-3">
+                                                <input type="password" name="Password_Register" class="form-control" id="password" placeholder="กรุณาใส่รหัสผ่าน">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-eye-slash" id="eye"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword2">ยืนยันรหัสผ่าน :</label>
+                                            <div class="input-group mb-3">
+                                                <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword2" placeholder="กรุณาใส่ยืนยันรหัสผ่าน">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-eye-slash" id="eye1"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-0">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                                                <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="#">เงื่อนไขการให้บริการ</a>.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                </form>
+                                <!-- /.social-auth-links -->
+                            </div>
+                            <!-- /.login-card-body -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- Content Wrapper. Contains page content -->
+        <!-- ./wrapper -->
+        <!-- jQuery -->
+
+        <script type="text/javascript">
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 6000);
+            $(document).ready(function() {
+                $('#Email_Forget').change(function() {
+                    var Email_Forget = $('#Email_Forget').val();
+                    //var Email_Login = document.getElementById("Email_Login").value; 
+                    console.log(Email_Forget);
+                    if (Email_Forget != '') {
+                        $.ajax({
+                            url: "<?= site_url('/UserController/Check_Email_Login') ?>",
+                            method: "POST",
+                            data: {
+                                Email_Login: Email_Forget
+                            },
+                            success: function(data) {
+                                $('#email_check_forget').html(data);
+                            }
+                        });
+                    }
+                });
             });
-        }, 6000);
-        $(document).ready(function() {
-            $('#Email_Forget').change(function() {
-                var Email_Forget = $('#Email_Forget').val();
-                //var Email_Login = document.getElementById("Email_Login").value; 
-                console.log(Email_Forget);
-                if (Email_Forget != '') {
-                    $.ajax({
-                        url: "<?= site_url('/UserController/Check_Email_Login') ?>",
-                        method: "POST",
-                        data: {
-                            Email_Login: Email_Forget
-                        },
-                        success: function(data) {
-                            $('#email_check_forget').html(data);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+        </script>
 
-    <!-- REQUIRED SCRIPTS -->
+        <!-- REQUIRED SCRIPTS -->
 
-    <!-- jQuery -->
-    <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
-    <!-- Bootstrap 4 -->
-    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
-    <!-- AdminLTE App -->
-    <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
+        <!-- jQuery -->
+        <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
+        <!-- Bootstrap 4 -->
+        <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+        <!-- AdminLTE App -->
+        <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
 
-    <!-- Waypoints -->
-    <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
+        <!-- Waypoints -->
+        <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
 
-    <!-- Flexslider -->
-    <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
+        <!-- Flexslider -->
+        <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
 
-    <!-- Main -->
-    <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
+        <!-- Main -->
+        <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
 </body>
 
 </html>
