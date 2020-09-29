@@ -302,9 +302,6 @@ endif
             </button>
           </div>
         </div>
-
-
-
         <!-- /.content -->
 
       </div>
