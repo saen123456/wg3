@@ -116,7 +116,7 @@
                 </ul>
               </li>
 
-              <li class="dropdown-submenu dropdown-hover">
+              <!-- <li class="dropdown-submenu dropdown-hover">
                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
                   <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
@@ -124,7 +124,7 @@
                   <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
                   <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
                 </ul>
-              </li>
+              </li> -->
               <!-- End Level two -->
             </ul>
           </li>
