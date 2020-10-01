@@ -116,7 +116,7 @@ $this->session = \Config\Services::session();
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">ลบคำถาม</h4>
+                <h4 class="modal-title">ลบ Unit</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -369,12 +369,13 @@ $this->session = \Config\Services::session();
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <?php
 
-                                                $i = $unit_index_min;
+                                                //$i = $unit_index_min;
                                                 foreach ($data as $row) :
                                                     $Image_Course = $row['image_course'];
                                                     $Course_Name = $row['course_name'];
                                                     $Course_Description = $row['course_description'];
                                                     $Unit_Index = $row['unit_index'];
+                                                    $i = $row['unit_index'];
                                                     ?>
                                                     <tr id="row_0">
                                                         <td class="td_minimal"><input class="case" type="checkbox" /></td>
@@ -444,8 +445,13 @@ $this->session = \Config\Services::session();
                                                         </td>
                                                     </tr>
                                                     <?php
+                                                        //echo $row['unit_index'] . "<br>";
+
                                                         foreach ($Quiz as $row2) :
+
                                                             if ($row2['unit_index'] == $i) {
+                                                                //echo $row2['unit_index'] . " " . $i . "<br>";
+
                                                                 ?>
                                                             <tr>
                                                                 <td class="td_left" colspan="2">
@@ -465,7 +471,7 @@ $this->session = \Config\Services::session();
                                                         endforeach;
                                                         ?>
                                                 <?php
-                                                    $i++;
+
                                                 endforeach;
                                                 ?>
                                             </table>
@@ -1080,7 +1086,7 @@ $this->session = \Config\Services::session();
 
             $("#course_id").attr("value", $(this).attr('course_id'));
             course_id = $(this).attr('course_id');
-
+            console.log(unit_index);
             document.getElementById('show_unit_name').innerHTML = "ตั้งคำถาม ในส่วนของ " + unit_name;
         });
     });
@@ -1385,8 +1391,7 @@ $this->session = \Config\Services::session();
 
             });
         });
-    }); <
-    /script
+    });
+</script>
 
-    <
-    /html>
+</html>
