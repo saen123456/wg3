@@ -20,8 +20,9 @@ class CourseController extends BaseController
     }
     public function Category_Course()
     {
-
         $Course_model = new Course_model();
+        $Category = $_GET['category'];
+        //echo $Category;
         $Perpage = 4;
         if (isset($_GET['page'])) {
             $Page = $_GET['page'];
@@ -29,16 +30,43 @@ class CourseController extends BaseController
             $Page = 1;
         }
         $Start = ($Page - 1) * $Perpage;
-        //echo 'page ' . $Page . ' start ' . $Start . ' perpage ' . $Perpage;
 
-        $Total_Num_Row = $Course_model->Select_Num_CategoryCourse();
-        //echo $Total_Num_Row;
-        $Total_Page = ceil($Total_Num_Row / $Perpage);
-        //echo "Total_Num_Row " . $Total_Num_Row . " Total_Page " . $Total_Page;
-        $data['data'] = $Course_model->Select_CategoryCourse($Start, $Perpage);
-        $data['Total_Page'] = $Total_Page;
-        //print_r($data['data']);
-        echo view('Course/Category_Course', $data);
+
+
+        if ($Category != "all") {
+            if ($Category == "1") {
+                $Urlstr = "webdevelopment";
+            } else if ($Category == "2") {
+                $Urlstr = "programinglanguages";
+            } else if ($Category == "3") {
+                $Urlstr = "mobileapp";
+            } else if ($Category == "4") {
+                $Urlstr = "database";
+            } else if ($Category == "5") {
+                $Urlstr = "others";
+            }
+            //echo $Urlstr;
+            //echo $Category;
+            $Total_Num_Row = $Course_model->Select_Num_CategoryCourse($Category);
+            //echo $Total_Num_Row;
+            $Total_Page = ceil($Total_Num_Row / $Perpage);
+            //echo $Total_Num_Row;
+            $data['data'] = $Course_model->Select_CategoryCourse($Start, $Perpage, $Category);
+            $data['Total_Page'] = $Total_Page;
+            $data['Category'] = $Category;
+            $data['Urlstr'] = $Urlstr;
+            echo view('Course/Category_Course', $data);
+        } else {
+            $Total_Num_Row = $Course_model->Select_Num_AllCategoryCourse();
+            //echo $Total_Num_Row;
+            $Total_Page = ceil($Total_Num_Row / $Perpage);
+            $Urlstr = "alldevelopment";
+            $data['data'] = $Course_model->Select_AllCategoryCourse($Start, $Perpage);
+            $data['Total_Page'] = $Total_Page;
+            $data['Category'] = $Category;
+            $data['Urlstr'] = $Urlstr;
+            echo view('Course/Category_Course', $data);
+        }
     }
     public function Manage_Course()
     {
@@ -56,6 +84,23 @@ class CourseController extends BaseController
         } else {
             return redirect()->to(base_url('/home'));
         }
+    }
+    public function delete_quiz()
+    {
+        $course_id = $this->request->getVar('course_id');
+        $quiz_id = $this->request->getVar('quiz_id');
+        $model = new Course_model();
+        $data = $model->delete_quiz($quiz_id, $course_id);
+        return $data;
+    }
+    public function delete_unit()
+    {
+        $unit_id = $this->request->getVar('unit_id');
+        $course_id = $this->request->getVar('course_id');
+        $unit_index = $this->request->getVar('unit_index');
+        $model = new Course_model();
+        $data = $model->delete_unit($unit_id, $course_id, $unit_index);
+        return $data;
     }
     public function Edit_Quiz()
     {
@@ -107,8 +152,9 @@ class CourseController extends BaseController
             $data['Quiz'] = $model->Select_Quiz($Course_id);
             $data['have_document'] = $model->Select_Document_Of_Course($Course_id);
             $data['document'] = $model->Select_Document_Of_Course2($Course_id);
+            $data['quiz_unit'] = $model->select_quiz_unit($Course_id);
+            $data['unit_index_min'] = $model->select_index_min($Course_id);
             echo view('Course/EditCourse', $data);
-            //echo $Course_Id;
         } else {
             return redirect()->to(base_url('/home'));
         }

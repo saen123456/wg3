@@ -450,13 +450,13 @@ endif
                     video.play();
                 } else {
                     var user_id = <?php echo $this->session->get("User_id") ?>;
-                    console.log("test");
+                    //console.log("test");
                     quiz.style.display = "block";
                     x.style.display = "none";
 
                     video = document.querySelector("#video_player video");
                     video.pause();
-                    console.log(window.videotarget + " " + user_id);
+                    //console.log(window.videotarget + " " + user_id);
                     $.ajax({
                         url: "<?= site_url('/CourseUserController/Select_User_Do_Answer') ?>",
                         method: "POST",
@@ -466,7 +466,7 @@ endif
                         },
                         success: function(data) {
                             const obj = JSON.parse(data);
-                            console.log(obj.length);
+                            console.log("length " + obj.length);
                             if (obj.length > 0) {
                                 if (obj[0].answer == 1) {
                                     $("#myDIV2").html("");

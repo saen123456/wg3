@@ -89,6 +89,52 @@ $this->session = \Config\Services::session();
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div class="modal fade" id="modal-delete-quiz">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ลบคำถาม</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ยืนยันที่จะลบใช่หรือไม่ ?&hellip;</p>
+                <p id="output2"></p>
+                <!-- <input id="user_id" name="user_id" value="" /> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary send_delete_quiz">ยืนยัน</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-delete-unit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ลบคำถาม</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ยืนยันที่จะลบใช่หรือไม่ ?&hellip;</p>
+                <p id="output3"></p>
+                <!-- <input id="user_id" name="user_id" value="" /> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary delete_unit">ยืนยัน</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -313,8 +359,8 @@ $this->session = \Config\Services::session();
                                             <div class="row">
                                                 <div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>
                                                     <ul class="list-inline">
-                                                        <li><button class="btn btn-success addmore2" type="button"><i class="fa fa-plus"></i> เพิ่ม Unit</button></li>
-                                                        <li> <button class="btn btn-danger delete2" type="button"><i class="fa fa-trash"></i> ลบ Unit</button></li>
+                                                        <li><button class="btn btn-success addmore2" type="button"><i class="fa fa-plus"></i> </button></li>
+                                                        <li> <button class="btn btn-danger delete2" type="button"><i class="fa fa-trash"></i> </button></li>
 
                                                     </ul>
                                                 </div>
@@ -323,7 +369,7 @@ $this->session = \Config\Services::session();
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <?php
 
-                                                $i = 1;
+                                                $i = $unit_index_min;
                                                 foreach ($data as $row) :
                                                     $Image_Course = $row['image_course'];
                                                     $Course_Name = $row['course_name'];
@@ -334,10 +380,10 @@ $this->session = \Config\Services::session();
                                                         <td class="td_minimal"><input class="case" type="checkbox" /></td>
                                                         <td>
 
-                                                          <button class="btn btn-danger delete2" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i> ลบ Unit</button>
 
 
                                                             <form action="#" method="post">
+
                                                                 <div class="col-sm-5">
                                                                     <input type="text" name="Unit_Name" id="Unit_Name" value="<?php echo $row['unit_name'] ?>">
 
@@ -347,6 +393,32 @@ $this->session = \Config\Services::session();
                                                                     <button type="submit" class="btn btn-info" style="width:110px;height:30px" formaction="<?= base_url('/CourseController/Edit_Unit_Name?Unit_ID=' . $row['unit_id'] . '/') ?>">แก้ไขชื่อ unit</button>
                                                                 </div>
                                                             </form>
+
+                                                            <?php
+                                                                $count = 0;
+                                                                foreach ($quiz_unit as $row3) :
+
+                                                                    if ($row3['unit_index'] == $row['unit_index']) {
+                                                                        $count++;
+                                                                    }
+                                                                endforeach;
+                                                                //echo $count;
+                                                                if ($count == 0) {
+                                                                    ?>
+                                                                <div class="col-sm-1 col-sm-offset-1">
+                                                                    <button class="btn btn-danger sent_delete_unit" style="width:110px;height:30px" data-toggle="modal" data-target="#modal-delete-unit" type="button" var unit_id="<?php echo $row['unit_id'] ?>" var unit_name="<?php echo $row['unit_name'] ?>" var unit_index="<?php echo $row['unit_index'] ?>" var course_id="<?php echo $this->session->get("Course_id") ?>">ลบ unit</button>
+                                                                </div>
+                                                            <?php
+                                                                } else {
+                                                                    ?>
+                                                                <div class="col-sm-5 col-sm-offset-1">
+                                                                    <p class="text-danger">* หากต้องการที่จะลบ Unit นี้ออก ต้องลบคำถามให้หมดก่อน!</p>
+                                                                </div>
+                                                            <?php
+                                                                }
+                                                                ?>
+
+
 
                                                             <br><br><br>
 
@@ -364,7 +436,7 @@ $this->session = \Config\Services::session();
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                                    <button class="btn btn-sm btn-info upload" type="submit" var unit_index="<?php echo $row['unit_index'] ?>"><i class="fa fa-upload"></i> แก้ไข video</button>
+                                                                    <button class="btn btn-sm btn-info upload" type="submit" var unit_index="<?php echo $row['unit_index'] ?>"><i class="fa fa-upload"></i> อัพโหลดวิดีโอ</button>
                                                                     <!-- <button class="btn btn-success sent_unit_name" type="button" data-toggle="modal" data-target="#quizModal" var unit_name="<?= $row['unit_name'] ?>"><i class="fa fa-plus"></i> เพื่ม คำถาม</button> -->
                                                                     <a class="btn btn-success sent_unit_name" role="button" type="button" data-toggle="modal" data-target="#quizModal" var unit_name="<?php echo $row['unit_name'] ?>" var unit_index="<?php echo $row['unit_index'] ?>" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-plus"></i> เพื่ม คำถาม </a>
                                                                 </div>
@@ -382,9 +454,10 @@ $this->session = \Config\Services::session();
                                                                     </div>
                                                                     <div class="col-md-2">
                                                                         <button class="btn btn-block sent_edit_quiz" data-toggle="modal" data-target="#editModal" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fas fa-cogs"></i> แก้ไข คำถาม</button>
-
                                                                     </div>
-
+                                                                    <div class="col-md-2">
+                                                                        <button class="btn btn-danger sent_delete_quiz" data-toggle="modal" data-target="#modal-delete-quiz" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>" var unit_index="<?php echo $row2['unit_index'] ?>" var quiz_id="<?php echo $row2['quiz_question_id'] ?>"><i class="fa fa-times"></i> ลบ คำถาม</button>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                     <?php
@@ -1241,5 +1314,79 @@ $this->session = \Config\Services::session();
         });
     }, 6000);
 </script>
+<script type="text/javascript">
+    var quiz_id2;
+    var course_id;
+    var unit_index;
+    var base_url = '<?= base_url('course/edit/') ?>';
+    $(document).ready(function() {
+        $(".sent_delete_quiz").click(function() {
+            $("#course_id").attr("value", $(this).attr('course_id'));
+            window.course_id = $(this).attr('course_id');
+            $("#quiz_id").attr("value", $(this).attr('quiz_id'));
+            window.quiz_id2 = $(this).attr('quiz_id');
+            $("#unit_index").attr("value", $(this).attr('unit_index'));
+            window.unit_index = $(this).attr('unit_index');
+            console.log(window.quiz_id2);
+            console.log("unit_index : " + window.unit_index);
+            document.getElementById('output2').innerHTML = "รหัสคำถาม " + window.quiz_id2;
 
-</html>
+        });
+        $(".send_delete_quiz").click(function() {
+
+            $.ajax({
+                url: '<?= site_url('/CourseController/delete_quiz') ?>',
+                method: "POST",
+                data: {
+                    course_id: window.course_id,
+                    quiz_id: window.quiz_id2
+                },
+                success: function(data) {
+                    window.location.href = base_url + "/" + window.course_id;
+                }
+
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    var unit_id;
+    var course_id;
+    var unit_index;
+    var unit_name;
+    var base_url = '<?= base_url('course/edit/') ?>';
+    $(document).ready(function() {
+        $(".sent_delete_unit").click(function() {
+            $("#course_id").attr("value", $(this).attr('course_id'));
+            window.course_id = $(this).attr('course_id');
+            $("#unit_id").attr("value", $(this).attr('unit_id'));
+            window.unit_id = $(this).attr('unit_id');
+            $("#unit_index").attr("value", $(this).attr('unit_index'));
+            window.unit_index = $(this).attr('unit_index');
+            $("#unit_name").attr("value", $(this).attr('unit_name'));
+            window.unit_name = $(this).attr('unit_name');
+
+            document.getElementById('output3').innerHTML = "ชื่อ unit : " + window.unit_name;
+
+        });
+        $(".delete_unit").click(function() {
+
+            $.ajax({
+                url: '<?= site_url('/CourseController/delete_unit') ?>',
+                method: "POST",
+                data: {
+                    unit_id: window.unit_id,
+                    course_id: window.course_id,
+                    unit_index: window.unit_index,
+                },
+                success: function(data) {
+                    window.location.href = base_url + "/" + window.course_id;
+                }
+
+            });
+        });
+    }); <
+    /script
+
+    <
+    /html>

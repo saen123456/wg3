@@ -60,6 +60,7 @@ $routes->get('/courseuser/certificate/(:alphanum)', 'CourseUserController::Certi
 $routes->get('/course', 'CourseController::Manage_Course');
 $routes->add('/course/createcourse', 'CourseController::CreateCourse');
 $routes->get('/alldevelopment', 'CourseController::Category_Course');
+$routes->add('/category/(:any)', 'CourseController::Category_Course/$1');
 $routes->get('/search/course', 'CourseController::Search_Course');
 $routes->get('/my-courses/learning', 'CourseUserController::My_Course');
 

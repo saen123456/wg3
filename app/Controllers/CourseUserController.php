@@ -93,14 +93,28 @@ class CourseUserController extends BaseController
     }
     public function CertificateView($id = null)
     {
+        header('Content-Type: image/jpeg');
         $model = new CourseUser_model();
         $User_id = $this->session->get("User_id");
         $Course_id = $id;
-        //echo $User_id . "" . $Course_id;
+        echo $User_id . " " . $Course_id;
 
         if (isset($User_id)) {
-            /*$data['document'] = $model->Select_Document($Course_id);
-            echo view('Course/Document', $data);*/ } else {
+            //$data['certificate'] = $model->Select_Course_Certificate($Course_id);
+            $output = base_url('dist2/img/certificate.jpg');
+            $x = 720;
+            $y = 480;
+            $image = imagecreate($x, $y);
+            $toFile = 'dist2/img/';
+            $image_name = 'certificate.jpg';
+            $filename = $toFile . $image_name;
+            imagejpeg($image, $filename);
+            //imagejpeg($image, $output);
+            ?>
+            <img src="<?php echo $filename; ?>">
+<?php
+            //echo view('Course/Certificate');
+        } else {
             return redirect()->to(base_url('/home'));
         }
     }

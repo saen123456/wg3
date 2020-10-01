@@ -11,33 +11,33 @@
         <title>Workgress</title>
 
         <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
         <!-- Theme style -->
-        <link rel="stylesheet" href="dist2/css/adminlte.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('dist2/css/adminlte.min.css'); ?>">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-        <link href="dist2/css/landing-page1.css" rel="stylesheet">
+        <link href="<?php echo base_url('dist2/css/landing-page1.css'); ?>" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/dropdown.css'); ?>" type="text/css" media="screen">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-        <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-        <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-        <script src="plugins/toastr/toastr.min.js"></script>
+        <link rel="stylesheet" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css'); ?>">
+        <script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+        <script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>"></script>
 
         <!-- Animate.css -->
-        <link rel="stylesheet" href="assets/course/css/animate.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css'); ?>">
 
         <!-- Theme style  -->
-        <link rel="stylesheet" href="assets/course/css/style.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/course/css/style.css'); ?>">
 
         <!-- Modernizr JS -->
-        <script src="assets/course/js/modernizr-2.6.2.min.js"></script>
+        <script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>"></script>
 
-        <link rel="preload" href="assets/css/footer.css " as="style" onload="this.rel='stylesheet'">
+        <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
         <!-- CSS Card Course -->
         <link rel="preload" href="<?php echo base_url('assets/css/categorycourse.css'); ?>" as="style" onload="this.rel='stylesheet'">
@@ -309,15 +309,15 @@
         <div class="container">
             <ul class="pagination">
                 <li>
-                    <a href="<?php echo base_url('/alldevelopment?page=1'); ?>" aria-label="Previous">
+                    <a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=1'); ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <?php for ($i = 1; $i <= $Total_Page; $i++) { ?>
                     <!-- <li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li> -->
-                    <li><a href="<?php echo base_url('/alldevelopment?page=' . $i . ''); ?>"><?php echo $i; ?></a> </li>
+                    <li><a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=' . $i . ''); ?>"><?php echo $i; ?></a> </li>
                 <?php } ?> <li>
-                    <a href="<?php echo base_url('/alldevelopment?page=' . $Total_Page . ''); ?>" aria-label="Next">
+                    <a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=' . $Total_Page . ''); ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -463,20 +463,20 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <!-- AdminLTE App -->
-    <script src="dist2/js/adminlte.min.js"></script>
+    <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
 
     <!-- Waypoints -->
-    <script src="assets/course/js/jquery.waypoints.min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
 
     <!-- Flexslider -->
-    <script src="assets/course/js/jquery.flexslider-min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
 
     <!-- Main -->
-    <script src="assets/course/js/main.js"></script>
+    <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
 </body>
 
 </html>

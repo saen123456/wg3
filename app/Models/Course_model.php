@@ -39,7 +39,49 @@ class Course_model extends Model
     //     $this->connect_postgresdb->debug = false;
     //     $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     // }
+    public function delete_unit($unit_id, $course_id, $unit_index)
+    {
+        $sql = " DELETE FROM user_pass_unit  WHERE course_id = '$course_id' ";
+        $this->connect_postgresdb->execute($sql);
+        $sql = " SELECT video_id FROM course_unit  WHERE unit_id = '$unit_id' ";
+        $video_id = $this->connect_postgresdb->getOne($sql);
 
+        $sql1 = " DELETE FROM video  WHERE video_id = '$video_id' ";
+        $this->connect_postgresdb->execute($sql1);
+
+        $sql = " DELETE FROM course_unit  WHERE unit_id = '$unit_id' ";
+        $this->connect_postgresdb->execute($sql);
+
+        $sql2 = " DELETE FROM unit  WHERE unit_id = '$unit_id' ";
+        $this->connect_postgresdb->execute($sql2);
+        return true;
+    }
+    public function select_index_min($course_id)
+    {
+
+        $sql = "SELECT MIN(unit_index) FROM course_unit WHERE course_unit.course_id = '$course_id'";
+
+        return $this->connect_postgresdb->getOne($sql);
+    }
+    public function select_quiz_unit($course_id)
+    {
+
+        $sql = "SELECT * FROM course_quiz_unit WHERE course_quiz_unit.course_id = '$course_id' ORDER BY course_quiz_unit.unit_index ";
+
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function delete_quiz($quiz_id, $course_id)
+    {
+        $sql = " DELETE FROM user_pass_unit  WHERE course_id = '$course_id' ";
+        $this->connect_postgresdb->execute($sql);
+        $sql = " DELETE FROM course_quiz_unit  WHERE quiz_question_id = '$quiz_id' ";
+        $this->connect_postgresdb->execute($sql);
+        $sql2 = " DELETE FROM quiz_answer  WHERE quiz_question_id = '$quiz_id' ";
+        $this->connect_postgresdb->execute($sql2);
+        $sql3 = " DELETE FROM quiz_question  WHERE quiz_question_id = '$quiz_id' ";
+        $this->connect_postgresdb->execute($sql3);
+        return true;
+    }
     public function Select_Video_Google_Drive()
     {
         $sql = "SELECT video_id,video_name,video_link from video";
@@ -257,14 +299,26 @@ class Course_model extends Model
         return $Count_User_Register;
     }
 
-    public function Select_CategoryCourse($start, $perpage)
+
+    public function Select_AllCategoryCourse($Start, $Perpage)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT '$perpage' OFFSET '$start'  ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id  ORDER BY user_create_course.course_id DESC LIMIT '$Perpage' OFFSET '$Start'  ";
         return $this->connect_postgresdb->execute($sql);
     }
-    public function Select_Num_CategoryCourse()
+    public function Select_CategoryCourse($Start, $Perpage, $Category)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id  join category_course on course.category_course_id = category_course.category_course_id WHERE category_course.category_course_id = '$Category' ORDER BY user_create_course.course_id DESC LIMIT '$Perpage' OFFSET '$Start'  ";
+        return $this->connect_postgresdb->execute($sql);
+    }
+    public function Select_Num_AllCategoryCourse()
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id ";
+        $Course_Row =  $this->connect_postgresdb->execute($sql);
+        return $Course_Row->RecordCount();
+    }
+    public function Select_Num_CategoryCourse($Category)
+    {
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join category_course on course.category_course_id = category_course.category_course_id WHERE category_course.category_course_id = '$Category'";
         $Course_Row =  $this->connect_postgresdb->execute($sql);
         return $Course_Row->RecordCount();
     }
