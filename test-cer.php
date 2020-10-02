@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$font = realpath("th2.ttf");
+$image = imagecreatefromjpeg('certificate_logo.jpg');
+$color = imagecolorallocate($image, 19, 21, 22);
+$certify = "ใบรับรองการสำเร็จการศึกษา";
+$description = "นี้คือการรับรองว่า คุณ pipat ได้สำเร็จหลักสูตร selenium ของ workgress ";
+$date = "เมื่อวันที่ " . date("d/m/Y");
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+$image_width = imagesx($image);
+$image_height = imagesy($image);
 
-<body>
-    <?php
-    header('Content-Type:image/jpeg');
-    $font = 'arial.ttf';
-    $image = imagecreatefromjpeg('certificate2.jpg');
-    $color = imagecolorallocate($image, 19, 21, 22);
-    $name = "Pipat";
-    imagettftext($image, 50, 0, 360, 420, $color, $font, $name);
+$text_box = imagettfbbox(30, 45, $font, $certify);
+$text_width = $text_box[2] - $text_box[0];
 
-    imagejpeg($image, "certificate3.jpg");
-    imagedestroy($image);
-    ?>
+$text_box2 = imagettfbbox(30, 45, $font, $description);
+$text_width2 = $text_box2[2] - $text_box2[0];
 
-</body>
+$text_box3 = imagettfbbox(30, 45, $font, $date);
+$text_width3 = $text_box3[2] - $text_box3[0];
 
-</html>
+// Calculate coordinates of the text
+$x = ($image_width / 2) - ($text_width / 1.5);
+
+$x2 = ($image_width / 2) - ($text_width2 / 1.5);
+
+$x3 = ($image_width / 2) - ($text_width3 / 1.5);
+
+imagettftext($image, 30, 0, $x, 410, $color, $font, $certify);
+imagettftext($image, 30, 0, $x2, 550, $color, $font, $description);
+imagettftext($image, 30, 0, $x3, 650, $color, $font, $date);
+header("Content-type: image/jpeg;");
+//header('Content-Disposition: attachment; filename=certificate.jpg'); // This will tell the browser to download it
+imagejpeg($image);
+imagedestroy($image);

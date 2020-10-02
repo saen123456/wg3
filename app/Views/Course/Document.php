@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <?php
     foreach ($document as $row) :
         $document_name =  $row['document_name'];
@@ -20,7 +19,6 @@
 
     <?php
     $document_type = pathinfo($document_name, PATHINFO_EXTENSION);
-    echo $document_link;
     if ($document_type != "pdf") { ?>
         <a href="<?php echo $document_link ?>" download>
             <button type="button" class="btn btn-light float-right" style="border: 1px solid black;"><i class="fa fa-download" aria-hidden="true"></i> ดาวน์โหลดไฟล์ได้ที่นี่</button>

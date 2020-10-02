@@ -27,6 +27,7 @@ class UserController extends BaseController
             $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
             $data['Course_Register'] = $Course_model->Select_Course_Register($User_id);
             //$data['Course_Owner_Name'] = $Course_model->Select_Course_Owner_Name($User_id);
+            $data['Isset_Course_Register'] = $Course_model->Select_Isset_Course_Register($User_id);
             echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
@@ -47,6 +48,7 @@ class UserController extends BaseController
             $data['Course_New'] = $Course_model->Select_Course_New_HomePage();
             $data['Course_Register'] = $Course_model->Select_Course_Register($User_id);
             $data['Isset_Course_Register'] = $Course_model->Select_Isset_Course_Register($User_id);
+            //echo $data['Isset_Course_Register'];
             echo view('login/HomePage', $data);
         } else {
             $Course_model = new Course_model();
@@ -125,7 +127,7 @@ class UserController extends BaseController
 
             $data['User_Course_Learn'] = $CourseUser_model->Select_User_Course_Learn($User_id);
             $data['Course_Info'] = $Course_model->Select_Course_HomePage();
-            
+
 
             echo view('login/User_Profile', $data);
         } else {

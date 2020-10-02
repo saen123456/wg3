@@ -93,14 +93,23 @@ class CourseUserController extends BaseController
     }
     public function CertificateView($id = null)
     {
-
         $model = new CourseUser_model();
         $User_id = $this->session->get("User_id");
         $Course_id = $id;
-        //echo $User_id . " " . $Course_id;
-
         if (isset($User_id)) {
-            echo view('Course/Certificate');
+            $model = new CourseUser_model();
+            $data['User_Certificate'] = $model->Select_User_Certificate($User_id, $Course_id);
+            $data['count_playlist'] = $model->Select_Count_Playlist($Course_id);
+            if ($data['count_playlist'] == $data['User_Certificate']) {
+                $data['user_detail'] = $model->Select_User_Detail($User_id);
+                $data['course_detail'] = $model->Select_Course_Detail($Course_id);
+                echo view('Course/Certificate', $data);
+            } else {
+                //echo "not pass";
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspคุณต้องเรียนให้ครบหลักสูตรก่อน&nbsp&nbsp&nbsp&nbsp&nbsp';
+                return redirect()->to(base_url('/courseuser/learn/' . $Course_id))->with('incorrect', $msg);
+            }
+            //echo view('Course/Certificate',$data);
         } else {
             return redirect()->to(base_url('/home'));
         }
