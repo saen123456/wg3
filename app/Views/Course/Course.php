@@ -189,7 +189,7 @@
                                     <div class="col-1">
                                         <?php
                                             if ($row['image_course']) { ?>
-                                            <img src="<?php echo $row['image_course'] ?>" width="120px" height="120px">
+                                            <img src="<?php echo $row['image_course'] ?>" width="120px" height="120px" >
                                         <?php
                                             } else { ?>
                                             <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" width="120px" height="120px"><?php
