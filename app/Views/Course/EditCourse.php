@@ -429,7 +429,7 @@ $this->session = \Config\Services::session();
                                                                 </div>
                                                                 <br><br><br>
                                                                 <div class="col-sm-3">
-                                                                    <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
+                                                                    <input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File">
                                                                 </div>
                                                                 <div class="col-sm-4">
                                                                     <div class="progress progress-striped active">
@@ -627,22 +627,26 @@ $this->session = \Config\Services::session();
 
                 <h3>การกำหนดราคาคอร์สของคุณ</h3>
                 <fieldset class="fieldset2">
-                    <form action="<?= site_url('/CourseController/Edit_Price') ?>">
-                        <h2>การกำหนดราคาคอร์สของคุณ</h2>
-                        <p class="desc">การกำหนดราคาคอร์สของคุณ</p>
-                        <div class="box">
-                            <select name="Course_Price">
-                                <option value="0">ฟรี </option>
-                                <option value="499">499 บาท (ระดับ 1)</option>
-                                <option value="699">699 บาท (ระดับ 2)</option>
-                                <option value="899">899 บาท (ระดับ 3)</option>
-                                <option value="1099">1099 บาท (ระดับ 4)</option>
-                            </select>
+                    <div class="row">
+                        <div class="col">
+                            <form action="<?= site_url('/CourseController/Edit_Price') ?>">
+                                <h2>การกำหนดราคาคอร์สของคุณ</h2>
+                                <p class="desc">การกำหนดราคาคอร์สของคุณ</p>
+                                <div class="box">
+                                    <select name="Course_Price">
+                                        <option value="0">ฟรี </option>
+                                        <option value="499">499 บาท (ระดับ 1)</option>
+                                        <option value="699">699 บาท (ระดับ 2)</option>
+                                        <option value="899">899 บาท (ระดับ 3)</option>
+                                        <option value="1099">1099 บาท (ระดับ 4)</option>
+                                    </select>
+                                </div>
+                                <div style="position: absolute;right: 200px;bottom: 65px;">
+                                    <input type="submit" value="ยืนยันการสร้างคอร์ส" style="width: 160px;height: 50px;color: #fff;background: #4966b1;text-align: center;">
+                                </div>
+                            </form>
                         </div>
-                        <div style="position: absolute;right: 200px;bottom: 65px;">
-                            <input type="submit" value="ยืนยันการสร้างคอร์ส" style="width: 160px;height: 50px;color: #fff;background: #4966b1;text-align: center;">
-                        </div>
-                    </form>
+                    </div>
                 </fieldset>
 
 
@@ -662,7 +666,7 @@ $this->session = \Config\Services::session();
                     html += '<form action="#" id="uploadform">';
                     html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ" />';
                     html += '<br>';
-                    html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
+                    html += '<div class="col-sm-3"><input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
                     html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button></div>';
                     html += '</form>';
@@ -787,7 +791,7 @@ $this->session = \Config\Services::session();
                     html += '<form action="#" id="uploadform2">';
                     html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ" />';
                     html += '<br>';
-                    html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
+                    html += '<div class="col-sm-3"><input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
                     html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button></div>';
                     html += '</form>';

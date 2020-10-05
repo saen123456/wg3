@@ -189,12 +189,12 @@
                                     <div class="col-1">
                                         <?php
                                             if ($row['image_course']) { ?>
-                                            <img src="<?php echo $row['image_course'] ?>" width="120px" height="120px" >
+                                            <img src="<?php echo $row['image_course'] ?>" width="120px" height="120px" class="responsive">
                                         <?php
                                             } else { ?>
-                                            <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" width="120px" height="120px"><?php
-                                                                                                                                                    }
-                                                                                                                                                    ?>
+                                            <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" width="120px" height="120px" class="responsive"><?php
+                                                                                                                                                                        }
+                                                                                                                                                                        ?>
                                     </div>
                                     <div class="col-11">
                                         <br>
@@ -228,10 +228,10 @@
                         <div class="cards">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4"><img src="<?php echo base_url('assets/img/dash_course_illustration.png'); ?>" width="160px" height="160px">
+                                    <div class="col-4 hide-image"><img src="<?php echo base_url('assets/img/dash_course_illustration.png'); ?>" width="160px" height="160px" class="hide-image">
                                     </div>
 
-                                    <div class="col-8">
+                                    <div class="col-8 text-center">
                                         <h5>
                                             สร้างหลักสูตรที่น่าสนใจ
                                         </h5>
@@ -249,12 +249,12 @@
                                 <div class="cards">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-4"><img src="<?php echo base_url('assets/img/dash_video_illustration.png'); ?>" width="160px" height="160px">
+                                            <div class="col-4 hide-image"><img src="<?php echo base_url('assets/img/dash_video_illustration.png'); ?>" width="160px" height="160px" class="responsive">
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-8 text-center">
                                                 <h5>เริ่มด้วยวิดีโอ</h5>
                                                 <br>
-                                                <p>วิดีโอการบรรยายที่มีคุณภาพสามารถทำให้หลักสูตรของคุณโดดเด่น ใช้แหล่งข้อมูลของเราในการเรียนรู้พื้นฐาน</p>
+                                                <p class="hide-text">วิดีโอการบรรยายที่มีคุณภาพสามารถทำให้หลักสูตรของคุณโดดเด่น ใช้แหล่งข้อมูลของเราในการเรียนรู้พื้นฐาน</p>
                                                 <br>
                                                 <a href="#">เริ่ม</a>
                                             </div>
@@ -267,42 +267,20 @@
                                 <div class="cards">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-4"><img src="<?php echo base_url('assets/img/dash_publish_illustration.png'); ?>" width="160px" height="160px">
+                                            <div class="col-4 hide-image"><img src="<?php echo base_url('assets/img/dash_publish_illustration.png'); ?>" width="160px" height="160px" class="responsive">
                                             </div>
 
-                                            <div class="col-8">
+                                            <div class="col-8 text-center">
                                                 <h5>
                                                     สร้างกลุ่มเป้าหมายของคุณ
                                                 </h5>
                                                 <br>
-                                                <p>สร้างหลักสูตรให้ประสบความสำเร็จด้วยการสร้างผู้ฟัง</p>
+                                                <p class="hide-text">สร้างหลักสูตรให้ประสบความสำเร็จด้วยการสร้างผู้ฟัง</p>
                                                 <br>
                                                 <br>
                                                 <a href="#">เริ่ม</a>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="col-12">
-                                <div class="row justify-content-center">
-                                    <div class="col-7 text-white p-lg-5">
-                                        <h4>มีคำถามหรือไม่? นี่เป็นแหล่งข้อมูลวิทยากรยอดนิยม</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="col-12">
-                                <div class="row justify-content-center">
-                                    <div class="col-4 text-white p-lg-5">
-                                        <h4>คุณพร้อมจะเริ่มหรือยัง?</h4>
-                                        <br>
-                                        <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
-                                            <button formaction="<?= base_url('/course/createcourse') ?>" type="summit" class="btn btn-block btn-success btn-lg">สร้างหลักสูตร</button>
-                                        </form>
                                     </div>
                                 </div>
                             </div>

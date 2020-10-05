@@ -164,7 +164,7 @@
                                                             <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
                                                             <br>
                                                             <div class="col-sm-3">
-                                                                <input id="avatar" class="file-loading" type="file" name="Unit_Video_File">
+                                                                <input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File">
                                                             </div>
                                                             <div class="col-sm-5">
                                                                 <div class="progress progress-striped active">
@@ -282,7 +282,7 @@
                     html += '<form action="#" id="uploadform">';
                     html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ" />';
                     html += '<br>';
-                    html += '<div class="col-sm-3"><input id="avatar" class="file-loading" type="file" name="Unit_Video_File" >';
+                    html += '<div class="col-sm-3"><input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
                     html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button></div>';
                     html += '</form>';
