@@ -324,7 +324,7 @@
                     $Course_image = $row['image_course'];
                     ?>
                     <div class="col-6">
-                        <img style="width:920px;height: 404px;" src="<?php echo $row['image_course'] ?>">
+                        <img src="<?php echo $row['image_course'] ?>" class="image-responsive">
                     </div>
                     <div class="col-6">
                         <div class="title-card">
@@ -333,13 +333,13 @@
                                     <div class="title">
                                         <p id="header"><?php echo $row['course_name'] ?></p>
                                         <p id="header-s"><?php echo $row['course_description'] ?></p>
-                                        <p><span class="fa fa-star checked"></span>
+                                        <p id="text-info"><span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span> &nbsp; 5 &nbsp; (100) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จำนวนผู้เรียน 20 คน</p>
-                                        <p>สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; อัพเดทล่าสุด 16/5/2020 </p>
-                                        <p>ระยะเวลาหลักสูตร 5.3 ชั่วโมง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-language bold"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; TH </p>
+                                            <span class="fa fa-star checked"></span> &nbsp; (100) &nbsp;จำนวนผู้เรียน 20 คน</p>
+                                        <p id="text-info">สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp; อัพเดทล่าสุด 16/5/2020 </p>
+                                        <p id="text-info">ระยะเวลาหลักสูตร 5.3 ชั่วโมง &nbsp;&nbsp;<span class="fa fa-language bold"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; TH </p>
                                     </div>
 
                                 </div>
@@ -347,8 +347,8 @@
                         </div>
                     </div>
             </div>
-            <div class="container body">
-                <div class="row">
+            <div class="container body" id="container-padding">
+                <!-- <div class="row">
                     <div class="col-6">
                         <p>สิ่งที่จะได้เรียนรู้</p>
                         <p class="line-body"></p>
@@ -379,16 +379,17 @@
 
                             </div>
                         </div>
-                    </div>
+                </div> -->
+                <div class="row justify-content-center">
                     <div class="col-6">
                         <div class="block"></div>
                         <div class="block-sell">
                             <div class="body-block">
-                                <div class="row">
+                                <div class="row ">
                                     <div class="col-6">
-                                        <p class="decoration">THB &nbsp;&nbsp; <?php
-                                                                                    echo $row['course_price'] . " THB";
-                                                                                    ?> </p>
+                                        <p class="decoration">THB <?php
+                                                                        echo $row['course_price'] . " THB";
+                                                                        ?> </p>
                                         <p class="w-b"> <?php
                                                             if ($row['course_price'] == '0') {
                                                                 echo "Free";
@@ -404,13 +405,17 @@
                                         <?php
                                             if ($this->session->get("User_JoinCourse") == false) {
                                                 ?>
-                                            <a href="<?= base_url('/subscribe/course/' . $row['course_id']); ?>"> <button class="btn btn-default btn-buy">ลงทะเบียนตอนนี้</button> </a>
+                                            <a href="<?= base_url('/subscribe/course/' . $row['course_id']); ?>" class="btn-center"> <button class="btn btn-default btn-buy">
+                                                    <p class="text-register">ลงทะเบียนตอนนี้</p>
+                                                </button> </a>
 
                                         <?php
                                             } else {
 
                                                 ?>
-                                            <a href="<?= base_url('/courseuser/learn/' . $row['course_id']); ?>"> <button class="btn btn-default btn-buy">ไปยังหลักสูตร</button> </a>
+                                            <a href="<?= base_url('/courseuser/learn/' . $row['course_id']); ?>" class="btn-center"> <button class="btn btn-default btn-buy">
+                                                    <p class="text-register">ไปยังหลักสูตร</p>
+                                                </button> </a>
                                         <?php
                                             }
                                             ?>
@@ -420,145 +425,147 @@
                         </div>
                         <div class="block"></div>
                         <div class="block-detail">
-                            <div class="body-block">
-                                <p>ข้อมูลคอสเรียน</p>
+                            <div class="body-block2">
+                                <p id="text-info2">ข้อมูลคอสเรียน</p>
                                 <div class="block-detail-body">
-                                    <p><span class="fa fa-file"></span>&nbsp;&nbsp;&nbsp;4 บทเรียน</p>
-                                    <p><span class="fa fa-certificate"></span>&nbsp;&nbsp;มีใบรับรองจบ</p>
-                                    <p><span class="fa fa-graduation-cap"></span>&nbsp;เข้าใช้งานได้ตลอดชีพ</p>
+                                    <p id="text-info2"><span class="fa fa-file"></span>&nbsp;&nbsp;&nbsp;4 บทเรียน</p>
+                                    <p id="text-info2"><span class="fa fa-certificate"></span>&nbsp;&nbsp;มีใบรับรองจบ</p>
+                                    <p id="text-info2"><span class="fa fa-graduation-cap"></span>&nbsp;เข้าใช้งานได้ตลอดชีพ</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php
-        endforeach;
-        ?>
-        <div class="block"></div>
-        <div class="row justify-content-center">
+        </div>
+    <?php
+    endforeach;
+    ?>
+    <div class="block"></div>
 
-            <div class="col-10">
-                <div class="row">
-                    <div class="col-6">
-                        <p class="p-header">เนื้อหาหลักสูตร</p>
-                    </div>
-                    <div class="col-3 ">
-                        <p class="p-detail">จำนวนคลิป 20 </p>
-                    </div>
-                    <div class="col-3">
-                        <p class="p-detail">เวลาทั้งหมด 5:20:00</p>
+    <div class="row justify-content-center">
 
-                    </div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-6">
+                    <p class="p-header">เนื้อหาหลักสูตร</p>
                 </div>
+                <div class="col-3 ">
+                    <p class="p-detail">จำนวนคลิป 20 </p>
+                </div>
+                <div class="col-3">
+                    <p class="p-detail">เวลาทั้งหมด 5:20:00</p>
 
-                <p class="line-body"></p>
-                <?php
-                foreach ($unit as $row) :
-                    ?>
-                    <div class="block-mini"></div>
-                    <!-- /.for วน -->
-                    <a href="#">
-                        <div class="video-detail">
-                            <div class="row">
+                </div>
+            </div>
 
-                                <div class="col-auto mr-auto">
-                                    <div class="margin-detail">
-                                        <p><span class="fa fa-play"></span>&nbsp;&nbsp; <?php echo $row['unit_name'] ?></p>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="margin-detail">
-                                        <p>05:00</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </a>
-                <?php
-                endforeach;
+            <p class="line-body"></p>
+            <?php
+            foreach ($unit as $row) :
                 ?>
-                <!--video-->
-            </div>
+                <div class="block-mini"></div>
+                <!-- /.for วน -->
+                <a href="#">
+                    <div class="video-detail">
+                        <div class="row">
 
-
-        </div>
-        <div class="block">
-
-        </div>
-
-        </header>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-        <br>
-        <div class="container">
-        </div>
-
-
-        <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Main Footer -->
-
-        <footer class="mainfooter" role="contentinfo">
-            <div class="footer-middle">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <!--Column1-->
-                            <div class="footer-pad">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">หน้าแรก</a></li>
-                                    <li><a href="#">เกี่ยวกับเรา</a></li>
-                                    <li><a href="#">หลักสูตรทั้งหมด</a></li>
-                                    <li><a href="#">ติดต่อเรา</a></li>
-                                </ul>
+                            <div class="col-auto mr-auto">
+                                <div class="margin-detail">
+                                    <p><span class="fa fa-play"></span>&nbsp;&nbsp; <?php echo $row['unit_name'] ?></p>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="margin-detail">
+                                    <p>05:00</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6">
-                            <!--Column1-->
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <!--Column1-->
-                        </div>
+                    </div>
+                </a>
+            <?php
+            endforeach;
+            ?>
+            <!--video-->
+        </div>
 
-                        <div class="col-md-3 text-right" id="text-social">
-                            <h4>Follow Us : </h4>
-                            <ul class="social-network social-circle">
-                                <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
-                                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-twitter-square"></i></a></li>
+
+    </div>
+    <div class="block">
+
+    </div>
+
+    </header>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <br>
+    <div class="container">
+    </div>
+
+
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+
+    <footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <ul class="list-unstyled">
+                                <li><a href="#">หน้าแรก</a></li>
+                                <li><a href="#">เกี่ยวกับเรา</a></li>
+                                <li><a href="#">หลักสูตรทั้งหมด</a></li>
+                                <li><a href="#">ติดต่อเรา</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="row ">
-                        <div class="col-md-12 copy ">
 
-                            <div class="row">
-                                <div class="col-2">
-                                    <img src="<?= base_url('/dist2/img/logo_footer.png'); ?>" class="img-fluid float-left" alt="...">
-                                </div>
-                                <div class="col-4">
-                                    <p class="text-left">&copy; ลิขสิทธิ์ © 2020 WorkGress, Inc.</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="text-right">&copy;
-                                        ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
-                                </div>
-
-
-                            </div>
-                        </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
                     </div>
 
-
+                    <div class="col-md-3 text-right" id="text-social">
+                        <h4>Follow Us : </h4>
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-twitter-square"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="row ">
+                    <div class="col-md-12 copy ">
+
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="<?= base_url('/dist2/img/logo_footer.png'); ?>" class="img-fluid float-left" alt="...">
+                            </div>
+                            <div class="col-4">
+                                <p class="text-left">&copy; ลิขสิทธิ์ © 2020 WorkGress, Inc.</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-right">&copy;
+                                    ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-        </footer>
+        </div>
+    </footer>
     </div>
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
