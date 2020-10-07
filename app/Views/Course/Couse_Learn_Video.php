@@ -33,8 +33,6 @@
 
     <link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
-
-
     <!-- jquery  -->
 
     <link rel="stylesheet" href="<?php echo base_url('assets/VideoPlayer/plyr.css'); ?>">
@@ -106,25 +104,16 @@ endif
                             <li class="dropdown-submenu dropdown-hover">
                                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
                                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/alldevelopment?category=all'); ?>" class="dropdown-item">All Development</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/webdevelopment?category=1'); ?>" class="dropdown-item">Web Development</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/programinglanguages?category=2'); ?>" class="dropdown-item">Programming Languages</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/mobileapp?category=3'); ?>" class="dropdown-item">Mobile Apps</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/database?category=4'); ?>" class="dropdown-item">Database</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
                                 </ul>
                             </li>
 
-                            <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
-                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
-                                </ul>
-                            </li>
-                            <!-- End Level two -->
+
                         </ul>
                     </li>
 
@@ -210,6 +199,11 @@ endif
         //echo $count_playlist;
         ?>
 
+        <br>
+        <div class="course-title">
+            <h4><?php echo $Course_Name; ?></h4>
+        </div>
+
         <figure id="video_player">
             <div class="row">
                 <div class="col-sm-8">
@@ -217,8 +211,11 @@ endif
                         <video controls width="700px" id="player" var unit_index="1">
                             <source src="<?php echo $Video_Src; ?>" type="video/mp4">
                         </video>
+                        <br>
+
 
                     </div>
+
                     <div id="myDIV2">
                     </div>
 
@@ -329,16 +326,15 @@ endif
                     if (isset($have_document)) {
                         ?>
                         <div class="row">
-                            <div class="col-sm">
+                            <div class="col-sm ">
                                 <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
                                     <button class="btn btn-light ">แหล่งข้อมูล</button>
                                 </form>
                             </div>
                             <div class="col-sm">
-
                             </div>
-
-                            <div id="certificate">
+                            <br>
+                            <div id="certificate" class="certificate">
                                 <div class="col-sm-5">
                                 </div>
                             </div>

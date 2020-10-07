@@ -11,13 +11,13 @@
 		<title>Workgress</title>
 		<script src="assets/jquery.min.js" rel="preload"></script>
 		<!-- Font Awesome Icons -->
-		<link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
 		<!-- Theme style -->
-		<link rel="stylesheet" href="<?php echo base_url('dist2/css/adminlte.min.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('dist2/css/adminlte.min.css'); ?>">
 		<!-- Google Font: Source Sans Pro -->
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url('dist2/css/photo.css'); ?>" type="text/css" media="screen">
-		<link href="<?php echo base_url('dist2/css/landing-page1.css');?>" rel="stylesheet">
+		<link href="<?php echo base_url('dist2/css/landing-page1.css'); ?>" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/dropdown.css'); ?>" type="text/css" media="screen">
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
@@ -27,22 +27,22 @@
 
 
 
-		<link rel="stylesheet" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css');?>">
-		<link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css');?>">
-		<script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js');?>"></script>
-		<script src="<?php echo base_url('plugins/toastr/toastr.min.js');?>"></script>
+		<link rel="stylesheet" href="<?php echo base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
+		<link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css'); ?>">
+		<script src="<?php echo base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+		<script src="<?php echo base_url('plugins/toastr/toastr.min.js'); ?>"></script>
 
 		<!-- Animate.css -->
-		<link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/course/css/animate.css'); ?>">
 
 		<!-- Theme style  -->
-		<link rel="stylesheet" href="<?php echo base_url('assets/course/css/style.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/course/css/style.css'); ?>">
 
 		<!-- Modernizr JS -->
-		<script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js');?>"></script>
+		<script src="<?php echo base_url('assets/course/js/modernizr-2.6.2.min.js'); ?>"></script>
 
-		
-		<link rel="stylesheet" href="<?php echo base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
+
+		<link rel="stylesheet" href="<?php echo base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
 
 		<link rel="preload" href="<?php echo base_url('assets/css/footer.css'); ?>" as="style" onload="this.rel='stylesheet'">
 
@@ -114,24 +114,15 @@
 							<li class="dropdown-submenu dropdown-hover">
 								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
 								<ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-									<li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+									<li><a tabindex="-1" href="<?= base_url('/category/alldevelopment?category=all'); ?>" class="dropdown-item">All Development</a></li>
+									<li><a tabindex="-1" href="<?= base_url('/category/webdevelopment?category=1'); ?>" class="dropdown-item">Web Development</a></li>
+									<li><a tabindex="-1" href="<?= base_url('/category/programinglanguages?category=2'); ?>" class="dropdown-item">Programming Languages</a></li>
+									<li><a tabindex="-1" href="<?= base_url('/category/mobileapp?category=3'); ?>" class="dropdown-item">Mobile Apps</a></li>
+									<li><a tabindex="-1" href="<?= base_url('/category/database?category=4'); ?>" class="dropdown-item">Database</a></li>
+									<li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
 								</ul>
 							</li>
 
-							<li class="dropdown-submenu dropdown-hover">
-								<a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
-								<ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-									<li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
-									<li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
-								</ul>
-							</li>
 							<!-- End Level two -->
 						</ul>
 					</li>
@@ -490,87 +481,80 @@
 
 
 			<div class="colorlib-loader"></div>
-    <div class="colorlib-classes">
-      <div class="container">
-        <a href="<?php echo base_url('/alldevelopment'); ?>">
-          <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
-        </a>
-        <div class="float-sm-left">
-          <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรยอดนิยม</h2>
-        </div>
+			<div class="colorlib-classes">
+				<div class="container">
+					<a href="<?= base_url('/category/alldevelopment?category=all'); ?>">
+						<div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
+					</a>
+					<div class="float-sm-left">
+						<h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตรยอดนิยม</h2>
+					</div>
 
 
-        <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
-          <h3>
-            <svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="38" height="2" fill="black" />
-            </svg>
-          </h3>
-        </div>
+					<div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h3>
+							<svg width="38" height="2" viewBox="0 0 38 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="38" height="2" fill="black" />
+							</svg>
+						</h3>
+					</div>
 
-        <div class="row">
-          <?php
-          foreach ($Course_Info as $row) :
-            ?>
-            <div class="col-md-3 animate-box" id="card-responsive">
-              <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                <div class="card" style="width:268px;">
-                  <ul class="list-group list-group-flush">
-                    <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
-                    <div class="profilecourse">
-                      <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
-                    </div>
-                    <br>
-                    <div class="card-body">
-                      <div class="font-titlecourse">
-                        <?php echo $row['course_name'] ?>
-                      </div>
-                      <div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <li class="list-group-item">
+					<div class="row">
+						<?php
+						foreach ($Course_Info as $row) :
+							?>
+							<div class="col-md-3 animate-box" id="card-responsive">
+								<a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+									<div class="card" style="width:268px;">
+										<ul class="list-group list-group-flush">
+											<img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+											<div class="profilecourse">
+												<img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+											</div>
+											<br>
+											<div class="card-body">
+												<div class="font-titlecourse">
+													<?php echo $row['course_name'] ?>
+												</div>
+												<div class="font-ownercourse"><?php echo $row['first_name'] ?></div>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<li class="list-group-item">
 
-                        <div class="font-coursecomment">
-                          <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                          <i class="fa fa-comments" aria-hidden="true"> 3</i>
-                        </div>
+													<div class="font-coursecomment">
+														<i class="fa fa-users" aria-hidden="true"> 1273</i>
+														<i class="fa fa-comments" aria-hidden="true"> 3</i>
+													</div>
 
-                        <div class="font-courseprice">
-                          <?php
-                            if ($row['course_price'] == '0') {
-                              echo "Free";
-                            } else {
-                              echo $row['course_price'] . " THB";
-                            }
+													<div class="font-courseprice">
+														Free
+													</div>
+												</li>
+											</div>
+										</ul>
+									</div>
+								</a>
+							</div>
+						<?php
+						endforeach;
+						?>
 
-                            ?>
-                        </div>
-                      </li>
-                    </div>
-                  </ul>
-                </div>
-              </a>
-            </div>
-          <?php
-          endforeach;
-          ?>
+					</div>
+				</div>
+			</div>
 
-        </div>
-      </div>
-    </div>
+			<div class="image-register">
+				<div class="overlay"></div>
+				<div class="container"><br><br><br>
+					<h1 style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 64px;color: white;text-align: center;">เป้าหมาย Workgress</h1>
+					<h3 style="font-family: Roboto;font-style: normal;font-weight: 300;font-size: 26px;color: white;text-align: center;">เพิ่มประสบการณ์การเรียนรู้ที่ทันสมัย รวดเร็ว สะดวก</h3>
+				</div>
+				<!-- /.content -->
 
-	<div class="image-register">
-      <div class="overlay"></div>
-      <div class="container"><br><br><br>
-        <h1 style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 64px;color: white;text-align: center;">เป้าหมาย Workgress</h1>
-        <h3 style="font-family: Roboto;font-style: normal;font-weight: 300;font-size: 26px;color: white;text-align: center;">เพิ่มประสบการณ์การเรียนรู้ที่ทันสมัย รวดเร็ว สะดวก</h3>
-      </div>
-      <!-- /.content -->
-
-    </div>
+			</div>
 
 			<!-- /.content -->
 		</div>
@@ -580,61 +564,61 @@
 
 		<!-- Main Footer -->
 		<footer class="mainfooter" role="contentinfo">
-      <div class="footer-middle">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <!--Column1-->
-              <div class="footer-pad">
-                <ul class="list-unstyled">
-                  <li><a href="#">หน้าแรก</a></li>
-                  <li><a href="#">เกี่ยวกับเรา</a></li>
-                  <li><a href="#">หลักสูตรทั้งหมด</a></li>
-                  <li><a href="#">ติดต่อเรา</a></li>
-                </ul>
-              </div>
-            </div>
+			<div class="footer-middle">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<!--Column1-->
+							<div class="footer-pad">
+								<ul class="list-unstyled">
+									<li><a href="#">หน้าแรก</a></li>
+									<li><a href="#">เกี่ยวกับเรา</a></li>
+									<li><a href="#">หลักสูตรทั้งหมด</a></li>
+									<li><a href="#">ติดต่อเรา</a></li>
+								</ul>
+							</div>
+						</div>
 
-            <div class="col-md-3 col-sm-6">
-              <!--Column1-->
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <!--Column1-->
-            </div>
+						<div class="col-md-3 col-sm-6">
+							<!--Column1-->
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<!--Column1-->
+						</div>
 
-            <div class="col-md-3 text-right" id="text-social">
-              <h4>Follow Us : </h4>
-              <ul class="social-network social-circle">
-                <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
-                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-twitter-square"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="row ">
-            <div class="col-md-12 copy ">
+						<div class="col-md-3 text-right" id="text-social">
+							<h4>Follow Us : </h4>
+							<ul class="social-network social-circle">
+								<li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
+								<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-instagram"></i></a></li>
+								<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-twitter-square"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-12 copy ">
 
-              <div class="row">
-                <div class="col-2">
-                  <img src="<?= base_url('/dist2/img/logo_footer.png'); ?>" class="img-fluid float-left" alt="...">
-                </div>
-                <div class="col-4">
-                  <p class="text-left">&copy; ลิขสิทธิ์ © 2020 WorkGress, Inc.</p>
-                </div>
-                <div class="col-6">
-                  <p class="text-right">&copy;
-                    ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
-                </div>
-
-
-              </div>
-            </div>
-          </div>
+							<div class="row">
+								<div class="col-2">
+									<img src="<?= base_url('/dist2/img/logo_footer.png'); ?>" class="img-fluid float-left" alt="...">
+								</div>
+								<div class="col-4">
+									<p class="text-left">&copy; ลิขสิทธิ์ © 2020 WorkGress, Inc.</p>
+								</div>
+								<div class="col-6">
+									<p class="text-right">&copy;
+										ข้อกำหนด นโยบายความเป็นส่วนตัวและคุกกี้</p>
+								</div>
 
 
-        </div>
-      </div>
-    </footer>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</footer>
 	</div>
 	<div class="modal fade" id="modal-default">
 		<div class="modal-dialog">
@@ -1004,7 +988,7 @@
 	</script>
 
 	<script type="text/javascript">
-		$(function() {
+		$(document).ready(function() {
 			var provinceObject = $('#province');
 			var amphureObject = $('#amphure');
 			var districtObject = $('#district');
@@ -1033,7 +1017,7 @@
 			amphureObject.on('change', function() {
 				var amphureId = $(this).val();
 				districtObject.html('<option value="">เลือกตำบล</option>');
-				console.log(amphureId);
+				console.log("amphureId = " + amphureId);
 				$.get('get_district.php?amphure_id=' + amphureId, function(data) {
 					var result = JSON.parse(data);
 					$.each(result, function(index, item) {
@@ -1044,6 +1028,7 @@
 				});
 			});
 		});
+		
 	</script>
 </body>
 

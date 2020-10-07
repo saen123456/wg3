@@ -119,16 +119,7 @@ endif
                   <li><a tabindex="-1" href="<?= base_url('/category/database?category=4'); ?>" class="dropdown-item">Database</a></li>
                   <li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
                 </ul>
-              </li>
 
-              <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
-                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                  <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
-                  <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
-                  <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
-                  <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
-                </ul>
               </li>
               <!-- End Level two -->
             </ul>
@@ -191,8 +182,8 @@ endif
         <div class="container">
           <div class="row">
             <div class="col-xl-9 mx-auto">
-              <h1 class="mb-5" style="font-family: Prompt;font-style: normal;font-weight: normal;font-size: 40px;line-height: 60px;">ยินดีต้อนรับเข้าสู่</h1>
-              <h3 style="font-family: Prompt;font-style: normal;font-weight: 300;font-size: 24px;">Workgress คุณพร้อมที่จะเรียนรู้สิ่งใหม่หรือยัง<br>
+              <h1 class="mb-5" style="font-family: Tahoma, Geneva, sans-serif;font-style: normal;font-weight: normal;font-size: 40px;line-height: 60px;">ยินดีต้อนรับเข้าสู่</h1>
+              <h3 style="font-family: Tahoma, Geneva, sans-serif;font-style: normal;font-weight: 300;font-size: 24px;">Workgress คุณพร้อมที่จะเรียนรู้สิ่งใหม่หรือยัง<br>
                 ถ้าพร้อมแล้ว กดปุ่มด้านล่างนี้เลย<br>
                 เพราะการเรียนรู้ไม่มีที่สิ้นสุด</h3>
               <br><br>
@@ -217,7 +208,7 @@ endif
       <div class="colorlib-loader"></div>
       <div class="colorlib-classes">
         <div class="container">
-          <a href="<?= base_url('alldevelopment'); ?>">
+          <a href="<?= base_url('/category/alldevelopment?category=all'); ?>">
             <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">
@@ -236,6 +227,7 @@ endif
           <div class="row">
             <?php
             foreach ($Course_Info as $row) :
+
               ?>
 
               <div class="col-md-3 animate-box" id="card-responsive">
@@ -263,16 +255,8 @@ endif
                             <i class="fa fa-users" aria-hidden="true"> 1273</i>
                             <i class="fa fa-comments" aria-hidden="true"> 3</i>
                           </div>
-
                           <div class="font-courseprice">
-                            <?php
-                              if ($row['course_price'] == '0') {
-                                echo "Free";
-                              } else {
-                                echo $row['course_price'] . " THB";
-                              }
-
-                              ?>
+                            Free
                           </div>
                         </li>
                       </div>
@@ -311,7 +295,7 @@ endif
       <div class="colorlib-classes">
         <br>
         <div class="container">
-          <a href="<?= base_url('alldevelopment'); ?>">
+          <a href="<?= base_url('/category/alldevelopment?category=all'); ?>">
             <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">
@@ -330,7 +314,7 @@ endif
             foreach ($Course_New as $row2) :
               ?>
               <div class="col-md-3 animate-box" id="card-responsive">
-                <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
+                <a href="<?= base_url('/viewcourse/' . $row2['course_id']); ?>">
                   <div class="card" style="width:268px;">
                     <ul class="list-group list-group-flush">
                       <img class="card-img-top" src="<?php echo $row2['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
@@ -355,13 +339,7 @@ endif
                             <i class="fa fa-comments" aria-hidden="true"> 3</i>
                           </div>
                           <div class="font-courseprice">
-                            <?php
-                              if ($row2['course_price'] == '0') {
-                                echo "Free";
-                              } else {
-                                echo $row2['course_price'] . " THB";
-                              }
-                              ?>
+                            Free
                           </div>
                         </li>
                       </div>

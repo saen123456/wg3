@@ -132,8 +132,20 @@
   width: 20px;
   height: 20px;
 }
+
 .quiz-menu li {
   list-style-type: none;
+}
+@media only screen and (max-width: 768px) {
+  .quiz-checkbox {
+    padding: 10px;
+    margin: 0;
+    margin-left: 6%;
+    margin-top: 7%;
+  }
+  .certificate {
+    margin-left: 2%;
+  }
 }
 .panel-heading a {
   padding: 10px 25px;
@@ -597,6 +609,10 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 10px;
+}
+.course-title {
+  position: relative;
+  left: 3%;
 }
 @media screen and (max-width: 768px) {
   #colorlib-testimony .colorlib-heading h2 {
@@ -1310,7 +1326,7 @@
   .hide-text {
     display: none;
   }
-  .text-center {
+  .text-center2 {
     text-align: center;
     margin-left: 15%;
   }

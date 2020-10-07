@@ -207,6 +207,12 @@ class CourseUser_model extends Model
         $Count_Playlist = (int) $Count_Quiz + (int) $Count_Video;
         return $Count_Playlist;
     }
+    public function Select_Count_Student($id)
+    {
+        $sql = "SELECT count(user_id) FROM user_register_course WHERE course_id = '$id'";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->getOne($sql);
+    }
     public function Select_User_Certificate($User_id, $Course_id)
     {
         $sql = "SELECT count(unit_index) FROM user_pass_unit WHERE course_id = '$Course_id' AND user_id = '$User_id'";

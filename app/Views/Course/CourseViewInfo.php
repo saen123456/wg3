@@ -109,25 +109,16 @@
                             <li class="dropdown-submenu dropdown-hover">
                                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
                                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/alldevelopment?category=all'); ?>" class="dropdown-item">All Development</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/webdevelopment?category=1'); ?>" class="dropdown-item">Web Development</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/programinglanguages?category=2'); ?>" class="dropdown-item">Programming Languages</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/mobileapp?category=3'); ?>" class="dropdown-item">Mobile Apps</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/database?category=4'); ?>" class="dropdown-item">Database</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
                                 </ul>
                             </li>
 
-                            <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
-                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
-                                </ul>
-                            </li>
-                            <!-- End Level two -->
+
                         </ul>
                     </li>
 
@@ -200,8 +191,8 @@
         <?php
         foreach ($Courseinfo as $row) :
             $Course_image = $row['image_course'];
+            $Course_id = $row['course_id'];
         endforeach;
-        //echo $count_playlist;
 
         ?>
         <?php
@@ -212,6 +203,7 @@
                     <?php
                         $count = 0;
                         foreach ($video_link as $row) :
+                            //echo $row['video_time'];
                             $count++;
                             ?>
                         <li>
@@ -314,6 +306,28 @@
         <?php
         }
         ?>
+        <?php
+
+        $count_video_time = 0.00;
+        $count_video_time2 = 0.00;
+        foreach ($video_link as $row7) :
+            $count_video_time += str_replace(':', '.', $row7['video_time']);
+        endforeach;
+        if ($count_video_time > 60.00) {
+            $format = '%02d:%02d';
+            $hours = floor($count_video_time / 60);
+            $minutes = ($count_video_time % 60);
+            $count_video_time2 = sprintf($format, $hours, $minutes);
+        } else {
+            $count_video_time2 = $count_video_time;
+        }
+
+
+        $unit_count = 0;
+        foreach ($unit as $row) :
+            $unit_count++;
+        endforeach
+        ?>
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -333,13 +347,22 @@
                                     <div class="title">
                                         <p id="header"><?php echo $row['course_name'] ?></p>
                                         <p id="header-s"><?php echo $row['course_description'] ?></p>
-                                        <p id="text-info"><span class="fa fa-star checked"></span>
+                                        <!-- <p id="text-info"><span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span> &nbsp; (100) &nbsp;จำนวนผู้เรียน 20 คน</p>
-                                        <p id="text-info">สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp; อัพเดทล่าสุด 16/5/2020 </p>
-                                        <p id="text-info">ระยะเวลาหลักสูตร 5.3 ชั่วโมง &nbsp;&nbsp;<span class="fa fa-language bold"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; TH </p>
+                                            <span class="fa fa-star checked"></span> &nbsp; (100) &nbsp; -->
+                                        จำนวนผู้เรียน <?php echo $count_student; ?> คน</p>
+                                        <p id="text-info">สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp; อัพเดทล่าสุด <?php echo substr($row['update_date'], 0, strrpos($row['update_date'], ' ')); ?> </p>
+                                        <p id="text-info">ระยะเวลาหลักสูตร
+                                            <?php
+                                                if ($count_video_time > 60) {
+                                                    echo $count_video_time2 . " ชั่วโมง";
+                                                } else {
+                                                    echo $count_video_time2 . " นาที";
+                                                }
+
+                                                ?> &nbsp; TH </p>
                                     </div>
 
                                 </div>
@@ -387,9 +410,7 @@
                             <div class="body-block">
                                 <div class="row ">
                                     <div class="col-6">
-                                        <p class="decoration">THB <?php
-                                                                        echo $row['course_price'] . " THB";
-                                                                        ?> </p>
+                                        <p class="decoration">THB 0 BATH </p>
                                         <p class="w-b"> <?php
                                                             if ($row['course_price'] == '0') {
                                                                 echo "Free";
@@ -428,7 +449,7 @@
                             <div class="body-block2">
                                 <p id="text-info2">ข้อมูลคอสเรียน</p>
                                 <div class="block-detail-body">
-                                    <p id="text-info2"><span class="fa fa-file"></span>&nbsp;&nbsp;&nbsp;4 บทเรียน</p>
+                                    <p id="text-info2"><span class="fa fa-file"></span>&nbsp;&nbsp;&nbsp;<?php echo $unit_count; ?> บทเรียน</p>
                                     <p id="text-info2"><span class="fa fa-certificate"></span>&nbsp;&nbsp;มีใบรับรองจบ</p>
                                     <p id="text-info2"><span class="fa fa-graduation-cap"></span>&nbsp;เข้าใช้งานได้ตลอดชีพ</p>
                                 </div>
@@ -451,10 +472,17 @@
                     <p class="p-header">เนื้อหาหลักสูตร</p>
                 </div>
                 <div class="col-3 ">
-                    <p class="p-detail">จำนวนคลิป 20 </p>
+                    <p class="p-detail">จำนวนคลิป <?php echo $unit_count; ?> </p>
                 </div>
                 <div class="col-3">
-                    <p class="p-detail">เวลาทั้งหมด 5:20:00</p>
+                    <p class="p-detail">เวลาทั้งหมด <?php
+                                                    if ($count_video_time > 60) {
+                                                        echo $count_video_time2 . " ชั่วโมง";
+                                                    } else {
+                                                        echo $count_video_time2 . " นาที";
+                                                    }
+
+                                                    ?> </p>
 
                 </div>
             </div>
@@ -465,7 +493,7 @@
                 ?>
                 <div class="block-mini"></div>
                 <!-- /.for วน -->
-                <a href="#">
+                <a href="<?= base_url('/courseuser/learn/' . $Course_id); ?>">
                     <div class="video-detail">
                         <div class="row">
 
@@ -476,7 +504,13 @@
                             </div>
                             <div class="col-auto">
                                 <div class="margin-detail">
-                                    <p>05:00</p>
+                                    <?php
+                                        foreach ($video_link as $row7) :
+                                            if ($row['video_id'] == $row7['video_id']) {
+                                                echo "<p>" . $row7['video_time'] . "<p>";
+                                            }
+                                        endforeach;
+                                        ?>
                                 </div>
                             </div>
                         </div>

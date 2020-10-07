@@ -159,16 +159,7 @@
                             if ($this->session->get("Has_Course") != null) {
                                 ?>
                                 <div class="col-auto mr-auto">
-                                    <form class="form-inline ml-1 ml-md-1">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="ค้นหาคอร์สเรียนได้ที่นี่">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-secondary" type="button">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+
                                 </div>
                                 <div class="col-auto">
                                     <form action="javascript:void(0);" enctype="multipart/form-data" method="post">
@@ -231,7 +222,7 @@
                                     <div class="col-4 hide-image"><img src="<?php echo base_url('assets/img/dash_course_illustration.png'); ?>" width="160px" height="160px" class="hide-image">
                                     </div>
 
-                                    <div class="col-8 text-center">
+                                    <div class="col-8 text-center2">
                                         <h5>
                                             สร้างหลักสูตรที่น่าสนใจ
                                         </h5>
@@ -251,7 +242,7 @@
                                         <div class="row">
                                             <div class="col-4 hide-image"><img src="<?php echo base_url('assets/img/dash_video_illustration.png'); ?>" width="160px" height="160px" class="responsive">
                                             </div>
-                                            <div class="col-8 text-center">
+                                            <div class="col-8 text-center2">
                                                 <h5>เริ่มด้วยวิดีโอ</h5>
                                                 <br>
                                                 <p class="hide-text">วิดีโอการบรรยายที่มีคุณภาพสามารถทำให้หลักสูตรของคุณโดดเด่น ใช้แหล่งข้อมูลของเราในการเรียนรู้พื้นฐาน</p>
@@ -270,7 +261,7 @@
                                             <div class="col-4 hide-image"><img src="<?php echo base_url('assets/img/dash_publish_illustration.png'); ?>" width="160px" height="160px" class="responsive">
                                             </div>
 
-                                            <div class="col-8 text-center">
+                                            <div class="col-8 text-center2">
                                                 <h5>
                                                     สร้างกลุ่มเป้าหมายของคุณ
                                                 </h5>

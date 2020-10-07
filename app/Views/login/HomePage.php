@@ -115,18 +115,6 @@
                   <li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
                 </ul>
               </li>
-
-              <!-- <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
-                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                  <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
-                  <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
-                  <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
-                  <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
-                </ul>
-              </li> -->
-
-              <!-- End Level two -->
             </ul>
           </li>
 
@@ -275,7 +263,7 @@
                           <div class="font-titlecourse">
                             <?php echo $row3['course_name'] ?>
                           </div>
-                          <div class="font-ownercourse"><?php echo $row3['first_name'] ?></div>
+
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
@@ -289,13 +277,7 @@
                             </div>
 
                             <div class="font-courseprice">
-                              <?php
-                                  if ($row3['course_price'] == '0') {
-                                    echo "Free";
-                                  } else {
-                                    echo $row3['course_price'] . " THB";
-                                  }
-                                  ?>
+                              Free
                             </div>
                           </li>
                         </div>
@@ -320,7 +302,7 @@
       <div class="colorlib-loader"></div>
       <div class="colorlib-classes">
         <div class="container">
-          <a href="<?php echo base_url('/alldevelopment'); ?>">
+          <a href="<?= base_url('/category/alldevelopment?category=all'); ?>">
             <div class="float-sm-right" style="font-family: Roboto;font-style: normal;font-weight: normal;font-size: 20px;line-height: 23px;color: #959595;">ดูทั้งหมด</div>
           </a>
           <div class="float-sm-left">
@@ -367,14 +349,7 @@
                           </div>
 
                           <div class="font-courseprice">
-                            <?php
-                              if ($row['course_price'] == '0') {
-                                echo "Free";
-                              } else {
-                                echo $row['course_price'] . " THB";
-                              }
-
-                              ?>
+                            Free
                           </div>
                         </li>
                       </div>

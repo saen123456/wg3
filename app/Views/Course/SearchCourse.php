@@ -98,34 +98,20 @@
                     <li class="nav-item dropdown">
                         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                            <!-- <li><a href="#" class="dropdown-item">Some action </a></li>
-                <li><a href="#" class="dropdown-item">Some other action</a></li> -->
-
+                
                             <li class="dropdown-divider"></li>
-
                             <!-- Level two dropdown-->
                             <li class="dropdown-submenu dropdown-hover">
                                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
                                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li><a tabindex="-1" href="<?php echo base_url('/alldevelopment'); ?>" class="dropdown-item">All Development</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Web Development</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Programming Languages</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Mobile Apps</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Database</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/alldevelopment?category=all'); ?>" class="dropdown-item">All Development</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/webdevelopment?category=1'); ?>" class="dropdown-item">Web Development</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/programinglanguages?category=2'); ?>" class="dropdown-item">Programming Languages</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/mobileapp?category=3'); ?>" class="dropdown-item">Mobile Apps</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/database?category=4'); ?>" class="dropdown-item">Database</a></li>
+                                    <li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
                                 </ul>
                             </li>
-
-                            <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">IT & Software</a>
-                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">All IT & Software</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Network & Security</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Hardware</a></li>
-                                    <li><a tabindex="-1" href="#" class="dropdown-item">Others</a></li>
-                                </ul>
-                            </li>
-                            <!-- End Level two -->
                         </ul>
                     </li>
 

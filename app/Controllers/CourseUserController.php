@@ -68,6 +68,8 @@ class CourseUserController extends BaseController
 
             $data['User_Pass_Unit'] = $model->Select_User_Pass_Unit($User_id, $id);
             $data['count_playlist'] = $model->Select_Count_Playlist($id);
+            $data['count_student'] = $model->Select_Count_Student($id);
+
 
             if (isset($User_id)) {
                 $User_JoinCourse =  $model->Select_UserCourse($User_id, $id);
