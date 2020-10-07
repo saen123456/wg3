@@ -332,19 +332,6 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
-    // public function Test_Upload()
-    // {
-
-    //     $file = $_FILES;
-    //     $getId3 = new \getID3();
-
-    //     $Video_TmpName = $file['Unit_Video_File_Test']['tmp_name'];
-    //     $Video_Name = $file['Unit_Video_File_Test']['name'];
-    //     //$this->calculateFileSize($Video_TmpName);
-    //     $Get_Duration = $getId3->analyze($Video_TmpName);
-    //     $Video_Duration = $Get_Duration['playtime_string'];
-    //     echo $Video_Name . " Duration = " . $Video_Duration;
-    // }
     public function Upload_Unit()
     {
         $getId3 = new \getID3();
