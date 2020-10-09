@@ -218,8 +218,9 @@ endif
 
 
                     </div>
-
-                    <div id="myDIV2">
+                    <div class="container">
+                        <div id="myDIV2">
+                        </div>
                     </div>
 
                     <br>
@@ -471,8 +472,8 @@ endif
                             if (obj.length > 0) {
                                 if (obj[0].answer == 1) {
                                     $("#myDIV2").html("");
-                                    $("#myDIV2").append("คุณเคยทำแบบทดสอบนี้ไปแล้ว<br>");
-                                    $("#myDIV2").append("คุณตอบถูก");
+                                    $("#myDIV2").append("<h2>คุณเคยทำแบบทดสอบนี้ไปแล้ว</h2><br>");
+                                    $("#myDIV2").append("<h4>คุณตอบถูก <i class='fa fa-check' aria-hidden='true'></i></h4>");
                                     $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
                                     $(document).ready(function() {
                                         $(".btn-submit-quiz").click(function() {
@@ -503,8 +504,8 @@ endif
                                     });
                                 } else {
                                     $("#myDIV2").html("");
-                                    $("#myDIV2").append("คุณเคยทำแบบทดสอบนี้ไปแล้ว<br>");
-                                    $("#myDIV2").append("คุณตอบผิด");
+                                    $("#myDIV2").append("<h2>คุณเคยทำแบบทดสอบนี้ไปแล้ว</h2><br>");
+                                    $("#myDIV2").append("<h4>คุณตอบผิด <i class='fa fa-times' aria-hidden='true'></i></h4>");
                                     $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
                                     $(document).ready(function() {
                                         $(".btn-submit-quiz").click(function() {
@@ -651,7 +652,7 @@ endif
                                                 success: function(data) {
 
                                                     $("#myDIV2").html("");
-                                                    $("#myDIV2").append("คุณตอบถูก");
+                                                    $("#myDIV2").append("<h4>คุณตอบถูก <i class='fa fa-check' aria-hidden='true'></i></h4>");
                                                     $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
                                                     $(document).ready(function() {
                                                         $(".btn-submit-quiz").click(function() {
@@ -746,7 +747,7 @@ endif
                                                 success: function(data) {
 
                                                     $("#myDIV2").html("");
-                                                    $("#myDIV2").append("คุณตอบผิด");
+                                                    $("#myDIV2").append("<h4>คุณตอบผิด <i class='fa fa-times' aria-hidden='true'></i></h4>");
                                                     $("#myDIV2").append("<br><button class='btn btn-primary btn-submit-quiz'>ทำแบบทดสอบอีกครั้ง</button>");
 
                                                     $(document).ready(function() {
