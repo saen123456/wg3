@@ -234,11 +234,8 @@
                                             <input type="submit" id="uploadSubmit" value="อัพโหลดรูปภาพ" class="btn btn-info" />
                                         </div>
                                         <br><br><br>
-
                                     </form>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

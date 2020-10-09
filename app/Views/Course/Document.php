@@ -43,7 +43,7 @@
     } else if ($document_type == "pptx" || $document_type == "ppt") {
         $Add_Space = str_replace(' ', '%20', $document_link);
         $Add_Space = str_replace('&', '%26', $document_link);
-        echo $Add_Space;
+        //echo $Add_Space;
         echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $Add_Space . "' width='100%' height='900px' frameborder='0'> </iframe>";
     }
     ?>

@@ -210,6 +210,9 @@ endif
                     <div id="myDIV">
                         <video controls width="700px" id="player" var unit_index="1">
                             <source src="<?php echo $Video_Src; ?>" type="video/mp4">
+                            <source src="<?php echo $Video_Src; ?>" type="video/ogg">
+                            <source src="<?php echo $Video_Src; ?>" type="video/webm">
+                            <source src="<?php echo $Video_Src; ?>" type="video/x-flv">
                         </video>
                         <br>
 
@@ -321,11 +324,12 @@ endif
                 </table> -->
 
                 <div class="col-sm-4">
-                    <?php
-                    //echo 
-                    if (isset($have_document)) {
-                        ?>
-                        <div class="row">
+                    <div class="row">
+                        <?php
+                        //echo 
+                        if (isset($have_document)) {
+                            ?>
+
                             <div class="col-sm ">
                                 <form action="<?= base_url('/courseuser/doucment/' . $Course_id) ?>" method="get" target="_blank">
                                     <button class="btn btn-light ">แหล่งข้อมูล</button>
@@ -334,17 +338,16 @@ endif
                             <div class="col-sm">
                             </div>
                             <br>
-                            <div id="certificate" class="certificate">
-                                <div class="col-sm-5">
-                                </div>
+
+
+                        <?php
+                        }
+                        ?>
+                        <div id="certificate" class="certificate">
+                            <div class="col-sm-5">
                             </div>
-
                         </div>
-
-
-                    <?php
-                    }
-                    ?>
+                    </div>
                     <div class="quiz-menu">
                         <figcaption>
                             <?php
@@ -436,12 +439,14 @@ endif
                 if (window.videotarget.lastIndexOf('.') > 1) {
                     quiz.style.display = "none";
                     x.style.display = "block";
-                    //console.log(videotarget);
+
                     filename = window.videotarget.substr(0, window.videotarget.lastIndexOf('.')) || window.videotarget;
                     video = document.querySelector("#video_player video");
                     video.removeAttribute("poster");
                     source = document.querySelectorAll("#video_player video source");
-                    source[0].src = filename + ".mp4";
+                    //window.videotarget = window.videotarget.replace(/\s+/g, '%20');
+                    console.log(window.videotarget);
+                    source[0].src = window.videotarget;
                     video.load();
                     video.play();
                 } else {
@@ -859,8 +864,9 @@ endif
                                             for (var i = 0; i < obj.length; i++) {
                                                 count_pass++;
                                             }
-
+                                            console.log(User_Check + " " + count_pass);
                                             if (User_Check == count_pass) {
+                                                console.log("pass");
                                                 $("#certificate").html("");
                                                 $("#certificate").append("<form action='<?= base_url('/courseuser/certificate/' . $Course_id) ?>' method='get' target='_blank'><div class='text-left'><button class='btn btn-success '>ใบรับรองจบ</button></div></form>");
                                             }
