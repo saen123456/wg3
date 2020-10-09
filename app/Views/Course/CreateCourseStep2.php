@@ -158,7 +158,7 @@
 
                                             <table class="table table-bordered table-hover" id="table_auto">
                                                 <tr id="row_0">
-                                                    <td><input class="td_minimal" type="checkbox" /></td>
+                                                    <td><input type="checkbox" /></td>
                                                     <td>
                                                         <form action="#" id="uploadform">
                                                             <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
