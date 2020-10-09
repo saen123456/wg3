@@ -156,7 +156,7 @@ if ($this->session->get("Role_name") == 'student') {
               </a>
             </li>
 
-            <li class="nav-item has-treeview">
+            <!-- <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -172,7 +172,7 @@ if ($this->session->get("Role_name") == 'student') {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -247,7 +247,7 @@ if ($this->session->get("Role_name") == 'student') {
               <tbody>
                 <?php
                 foreach ($data as $row) :
-                ?>
+                  ?>
                   <tr>
                     <td>
                       <a>
@@ -263,7 +263,7 @@ if ($this->session->get("Role_name") == 'student') {
                       <small>
                         Created <?php echo $row['create_date'] ?>
                       </small>
-                      <br/>
+                      <br />
                       <small>
                         Updated <?php echo $row['update_date'] ?>
                       </small>
@@ -277,11 +277,11 @@ if ($this->session->get("Role_name") == 'student') {
                       <ul class="list-inline">
                         <li class="list-inline-item">
                           <?php
-                          if ($row['picture']) { ?>
+                            if ($row['picture']) { ?>
                             <img alt="Avatar" class="table-avatar" src="<?php echo $row['picture'] ?>"><?php
-                                                                                                      } else { ?>
+                                                                                                          } else { ?>
                             <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="50px" height="50px"><?php
-                                                                                                                  } ?>
+                                                                                                                      } ?>
                         </li>
                       </ul>
                     </td>
@@ -292,20 +292,20 @@ if ($this->session->get("Role_name") == 'student') {
                     </td>
                     <td class="project_progress">
                       <?php
-                      if ($row['activated'] == 1) { ?>
+                        if ($row['activated'] == 1) { ?>
                         <span class="badge badge-success">ยืนยันแล้ว</span><?php
-                                                                          } else { ?>
+                                                                              } else { ?>
                         <span class="badge badge-danger">ยังไม่ยืนยัน</span><?php
-                                                                          } ?>
+                                                                              } ?>
                     </td>
                     <td class="project-state"><?php
-                                              if ($row['user_login_type'] == "normal") { ?>
+                                                if ($row['user_login_type'] == "normal") { ?>
                         <span class="badge badge-info">ธรรมดา</span><?php
-                                                                  } else if ($row['user_login_type'] == "google") { ?>
+                                                                      } else if ($row['user_login_type'] == "google") { ?>
                         <span class="badge badge-danger">google</span><?php
-                                                                    } else if ($row['user_login_type'] == "facebook") { ?>
+                                                                        } else if ($row['user_login_type'] == "facebook") { ?>
                         <span class="badge badge-primary">facebook</span><?php
-                                                                        } ?>
+                                                                            } ?>
                     </td>
                     <td class="project-actions text-right">
 
