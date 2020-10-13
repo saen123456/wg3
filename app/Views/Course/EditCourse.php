@@ -714,8 +714,18 @@ $this->session = \Config\Services::session();
                 $(document).on('submit', 'form#uploadform', function(e) {
 
                     e.preventDefault();
-                    $form = $(this);
-                    uploadImage($form);
+
+                    var file = $('input[type="file"]').val().trim();
+                    //console.log(file);
+                    var fileExtension = ['mp4'];
+                    //console.log(file.split('.').pop().toLowerCase());
+                    if ($.inArray(file.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                        alert("Only formats are allowed : " + fileExtension.join(', '));
+                    } else {
+                        $form = $(this);
+                        uploadImage($form);
+                    }
+
 
                 });
 
@@ -733,6 +743,7 @@ $this->session = \Config\Services::session();
                         .removeClass('progress-bar-danger');
 
                     var xhr = new window.XMLHttpRequest();
+
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Edit_Unit?Unit_Index=" + window.Unit_Index,
                         type: "POST",
@@ -793,7 +804,7 @@ $this->session = \Config\Services::session();
                     html += '<form action="#" id="uploadform2">';
                     html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ" />';
                     html += '<br>';
-                    html += '<div class="col-sm-3"><input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File" >';
+                    html += '<div class="col-sm-3"><input id="Unit_Video_File2" class="form-control file-loading" type="file" name="Unit_Video_File" >';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
                     html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button></div>';
                     html += '</form>';
@@ -835,8 +846,16 @@ $this->session = \Config\Services::session();
                 });
                 $(document).on('submit', 'form#uploadform2', function(e) {
                     e.preventDefault();
-                    $form = $(this);
-                    uploadImage($form);
+                    var file = $('#Unit_Video_File2').val().trim();
+                    console.log(file);
+                    var fileExtension = ['mp4'];
+                    //console.log(file.split('.').pop().toLowerCase());
+                    if ($.inArray(file.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                        alert("Only formats are allowed : " + fileExtension.join(', '));
+                    } else {
+                        $form = $(this);
+                        uploadImage($form);
+                    }
 
                 });
 

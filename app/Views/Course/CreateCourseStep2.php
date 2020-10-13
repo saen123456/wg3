@@ -321,9 +321,17 @@
 
                 $(document).on('submit', 'form#uploadform', function(e) {
                     e.preventDefault();
-                    $form = $(this);
-                    uploadUnit($form);
 
+                    var file = $('input[type="file"]').val().trim();
+                    var fileExtension = ['mp4'];
+                    console.log(file);
+                    //console.log(file.split('.').pop().toLowerCase());
+                    if ($.inArray(file.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                        alert("Only formats are allowed : " + fileExtension.join(', '));
+                    } else {
+                        $form = $(this);
+                        uploadUnit($form);
+                    }
                 });
 
                 function uploadUnit($form) {
