@@ -507,7 +507,18 @@
 								<a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
 									<div class="card" style="width:268px;">
 										<ul class="list-group list-group-flush">
-											<img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+
+											<?php
+												if ($row['image_course']) { ?>
+												<img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+											<?php
+												} else { ?>
+												<img class="card-img-top" src="<?= base_url('assets/img/dash_course_illustration.png') ?>" alt="Card image" style="width:268px;height: 179px;">
+											<?php
+												}
+												?>
+
+
 											<div class="profilecourse">
 												<img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
 											</div>

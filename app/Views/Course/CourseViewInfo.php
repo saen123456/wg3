@@ -338,7 +338,17 @@
                     $Course_image = $row['image_course'];
                     ?>
                     <div class="col-6">
-                        <img src="<?php echo $row['image_course'] ?>" class="image-responsive">
+                        <?php
+                            if ($row['image_course']) { ?>
+                            <img src="<?php echo $row['image_course'] ?>" class="image-responsive">
+                        <?php
+                            } else { ?>
+                            <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" class="image-responsive">
+
+                        <?php
+                            }
+                            ?>
+
                     </div>
                     <div class="col-6">
                         <div class="title-card">

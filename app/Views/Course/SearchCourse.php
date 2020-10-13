@@ -285,8 +285,16 @@
                                     <tr>
                                         <td>
                                             <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
-                                                <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width: 284px;height: 190px;">
-                                                <!-- <img src="<?php echo base_url('assets/img/profilecourse.png'); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail"> -->
+                                                <?php
+                                                        if ($row['image_course']) { ?>
+                                                    <img src="<?php echo $row['image_course'] ?>" class="img-fluid" alt="Sheep" style="width:284px;height: 190px;">
+                                                <?php
+                                                        } else { ?>
+                                                    <img src="<?= base_url('assets/img/dash_course_illustration.png') ?>" class="img-fluid" alt="Sheep" style="width:284px;height: 190px;">
+
+                                                <?php
+                                                        }
+                                                        ?>
                                             </a>
                                         </td>
                                         <td>
