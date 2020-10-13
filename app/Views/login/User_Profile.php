@@ -158,8 +158,8 @@
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<?php
 								if ($this->session->get("Picture")) { ?>
-									<img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
-																																			} else { ?>
+									<img src="<?php echo base_url('' . $this->session->get("Picture") . ''); ?>" width="35" height="35" class="rounded-circle"><?php
+																																								} else { ?>
 									<img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
 																																				}
 																																				?>
