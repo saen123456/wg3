@@ -44,49 +44,6 @@
         <link rel="preload" href="<?php echo base_url('assets/css/card.css'); ?>" as="style" onload="this.rel='stylesheet'">
     </head>
 
-    <?php
-    if (session('correct')) : ?>
-        <script type="text/javascript">
-            $(function() {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
-                Toast.fire({
-                    icon: 'success',
-                    title: '<?php echo session('correct') ?>'
-                })
-            });
-        </script>
-    <?php
-    elseif (session('incorrect')) : ?>
-        <script type="text/javascript">
-            $(function() {
-                $(document).Toasts('create', {
-                    class: 'bg-danger',
-                    title: 'Workgress',
-                    subtitle: '&nbsp&nbsp&nbsp&nbsp&nbspกรุณาลองใหม่&nbsp&nbsp&nbsp&nbsp',
-                    body: '<?php echo session('incorrect') ?>'
-                })
-            });
-        </script>
-    <?php
-    elseif (session('warning')) : ?>
-        <script type="text/javascript">
-            $(function() {
-                $(document).Toasts('create', {
-                    class: 'bg-warning',
-                    title: 'Workgress',
-                    subtitle: '&nbsp&nbsp&nbsp&nbspกรุณาลองใหม่&nbsp&nbsp&nbsp&nbsp',
-                    body: '<?php echo session('warning') ?>'
-                })
-            });
-        </script>
-    <?php
-    endif
-    ?>
 
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
@@ -190,6 +147,28 @@
                         <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
                             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                                 <h2><strong>ลืมรหัสผ่าน</strong></h2>
+                                <?php
+                                $this->session = \Config\Services::session();
+                                if (session('correct')) : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Workgress!</strong> <?php echo session('correct') ?>
+                                    </div>
+                                <?php
+                                elseif (session('incorrect')) : ?>
+                                    <div class="alert alert-warning" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Workgress!</strong> <?php echo session('incorrect') ?>
+                                    </div>
+                                <?php
+                                elseif (session('warning')) : ?>
+                                    <div class="alert alert-warning" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Workgress!</strong> <?php echo session('warning') ?>
+                                    </div>
+                                <?php
+                                endif
+                                ?>
                                 <div class="row">
                                     <div class="col-md-12 mx-0">
                                         <form action="<?= site_url('/UserController/User_Forget_Password') ?>" method="post" id="msform">
