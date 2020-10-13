@@ -589,9 +589,10 @@ $this->session = \Config\Services::session();
                                     ?>
                                     <br>
                                 </div>
-                                <div class=" main-text">
+                                <div class="main-text">
                                     <p>อัพโหลดรูปภาพหลักสูตรของคุณที่นี่ ภาพจะต้องตรงกับ มาตรฐานคุณภาพรูปภาพของเรา จึงจะใช้ได้ แนวทางสำคัญ: <b> 750x422 </b> พิกเซล ในรูปแบบ .jpg, .jpeg,. gif หรือ .png.
                                         โดยไม่มีข้อความบนรูปภาพ</p>
+
                                     <form action="<?= site_url('/CourseController/Edit_Picture_Course') ?>" enctype="multipart/form-data" method="post" id="uploadImage" onsubmit="return Validate_image(this);">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -965,7 +966,7 @@ $this->session = \Config\Services::session();
                 );
             });
 
-            $(function() {
+            $(document).ready(function() {
                 // Create the close button
                 var closebtn = $('<button />', {
                     type: "button",
@@ -992,6 +993,7 @@ $this->session = \Config\Services::session();
                 });
                 // Create the preview image
                 $(".image-preview-input input:file").change(function() {
+                    //console.log("image");
                     var img = $('<img />', {
                         id: 'dynamic',
                         width: 250,
