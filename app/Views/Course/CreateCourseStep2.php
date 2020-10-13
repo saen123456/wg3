@@ -164,7 +164,7 @@
                                                             <input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ " />
                                                             <br>
                                                             <div class="col-sm-3">
-                                                                <input id="Unit_Video_File" class="form-control file-loading" type="file" name="Unit_Video_File">
+                                                                <input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File" accept="video/mp4,video/x-m4v,video/*">
                                                             </div>
                                                             <div class="col-sm-5">
                                                                 <div class="progress progress-striped active">
@@ -278,7 +278,7 @@
                     html += '<form action="#" id="uploadform">';
                     html += '<input type="text" name="Unit_Name" id="Unit_Name" placeholder="กรอกชื่อ unit ของคุณ เช่น บทนำ" />';
                     html += '<br>';
-                    html += '<div class="col-sm-3"><input id="Unit_Video_File" class="form-control file-loading" type="file" name="Unit_Video_File" >';
+                    html += '<div class="col-sm-3"><input id="avatar" class="form-control file-loading" type="file" name="Unit_Video_File" accept="video/mp4,video/x-m4v,video/*">';
                     html += '</div><div class="col-sm-5"><div class="progress progress-striped active"><div class="progress-bar" style="width:0%"></div></div></div><div class="col-sm-4">';
                     html += '<button class="btn btn-sm btn-info upload" type="submit"><i class="fa fa-upload"></i> Upload Unit</button></div>';
                     html += '</form>';
@@ -320,15 +320,8 @@
                 });
                 $(document).on('submit', 'form#uploadform', function(e) {
                     e.preventDefault();
-                    var fileExtension = ['mp4'];
-                    var file = $('#Unit_Video_File').val().trim();
-                    //console.log(file.split('.').pop().toLowerCase());
-                    if ($.inArray(file.split('.').pop().toLowerCase(), fileExtension) == -1) {
-                        alert("Only formats are allowed : " + fileExtension.join(', '));
-                    } else {
-                        $form = $(this);
-                        uploadUnit($form);
-                    }
+                    $form = $(this);
+                    uploadUnit($form);
                 });
 
                 function uploadUnit($form) {
