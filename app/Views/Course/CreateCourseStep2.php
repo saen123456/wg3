@@ -192,8 +192,7 @@
                 <fieldset class="fieldset2">
                     <h2>หน้าเริ่มต้นของหลักสูตร</h2>
                     <div class="form-find">
-                        <p class="desc">Please enter your infomation and proceed to next step so we can build your
-                            account</p>
+
                     </div>
                     <div class="fieldset-content2">
 

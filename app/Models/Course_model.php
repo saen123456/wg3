@@ -406,4 +406,10 @@ class Course_model extends Model
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
+    public function Select_Count_Student2()
+    {
+        $sql = "SELECT count(user_id) as count_register_course FROM user_register_course";
+        //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+        return $this->connect_postgresdb->execute($sql);
+    }
 }

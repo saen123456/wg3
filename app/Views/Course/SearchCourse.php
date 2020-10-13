@@ -98,8 +98,11 @@
                     <li class="nav-item dropdown">
                         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                
+                            <!-- <li><a href="#" class="dropdown-item">Some action </a></li>
+                <li><a href="#" class="dropdown-item">Some other action</a></li> -->
+
                             <li class="dropdown-divider"></li>
+
                             <!-- Level two dropdown-->
                             <li class="dropdown-submenu dropdown-hover">
                                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Development</a>
@@ -112,6 +115,8 @@
                                     <li><a tabindex="-1" href="<?= base_url('/category/others?category=5'); ?>" class="dropdown-item">Others</a></li>
                                 </ul>
                             </li>
+
+                            <!-- End Level two -->
                         </ul>
                     </li>
 
@@ -137,45 +142,74 @@
                 </div>
                 <!-- SEARCH FORM -->
                 <!-- Right navbar links -->
+                <?php
+                if ($this->session->get("User_id")) {
+                    ?>
+                    <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
+                        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                            <!-- Messages Dropdown Menu -->
+                            <div class="input-group input-group-sm">
+                                <!-- Notifications Dropdown Menu -->
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php
+                                        if ($this->session->get("Picture")) { ?>
+                                        <img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
+                                                                                                                                                    } else { ?>
+                                        <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
+                                                                                                                                                        }
+                                                                                                                                                        ?>
+                                </a>
+                                <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                                    <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
+                                    <?php
+                                        if ($this->session->get("Role_name") == 'student') {
+                                            ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
+                                    <?php
+                                        } else if ($this->session->get("Role_name") == 'admin') { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
+                                        <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
 
-                <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
-                    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                        <!-- Messages Dropdown Menu -->
-                        <div class="input-group input-group-sm">
-                            <!-- Notifications Dropdown Menu -->
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php
-                                if ($this->session->get("Picture")) { ?>
-                                    <img src="<?php echo $this->session->get("Picture"); ?>" width="35" height="35" class="rounded-circle"><?php
-                                                                                                                                            } else { ?>
-                                    <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
-                                                                                                                                                }
-                                                                                                                                                ?>
-                            </a>
-                            <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
-                                <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
-                                <?php
-                                if ($this->session->get("Role_name") == 'student') {
-                                    ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
-                                <?php
-                                } else if ($this->session->get("Role_name") == 'admin') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
+                                    <?php
+                                        } else if ($this->session->get("Role_name") == 'teacher') { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
+                                    <?php
+                                        }
+                                        ?>
 
-                                <?php
-                                } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
-                                <?php
-                                }
-                                ?>
-
-                                <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+                                    <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+                                </div>
                             </div>
-                        </div>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                <?php
+                } else { ?>
+                    <div class="navbar-collapse collapse w-200 order-3 dual-collapse">
+                        <ul class="order-1 order-md-5 navbar-nav navbar-no-expand ml-auto">
+                            <!-- Messages Dropdown Menu -->
+
+                            <!-- Notifications Dropdown Menu -->
+                            <div class="row" id="btn-navbar">
+
+                                <div class="col-md-auto" id="col-navbar">
+                                    <button type="button" class="btn btn-default btn-login" data-toggle="modal" data-target="#modal-default">
+                                        <b>เข้าสู่ระบบ</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-auto" id="col-navbar">
+                                    <button type="button" class="btn btn-success btn-register" data-toggle="modal" data-target="#modal-register">
+                                        <b>ลงทะเบียน</b>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </ul>
+                    </div>
+                <?php
+                }
+                ?>
 
             </div>
         </nav>
@@ -436,20 +470,20 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <!-- AdminLTE App -->
-    <script src="dist2/js/adminlte.min.js"></script>
+    <script src="<?php echo base_url('dist2/js/adminlte.min.js'); ?>"></script>
 
     <!-- Waypoints -->
-    <script src="assets/course/js/jquery.waypoints.min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.waypoints.min.js'); ?>"></script>
 
     <!-- Flexslider -->
-    <script src="assets/course/js/jquery.flexslider-min.js"></script>
+    <script src="<?php echo base_url('assets/course/js/jquery.flexslider-min.js'); ?>"></script>
 
     <!-- Main -->
-    <script src="assets/course/js/main.js"></script>
+    <script src="<?php echo base_url('assets/course/js/main.js'); ?>"></script>
 </body>
 
 </html>

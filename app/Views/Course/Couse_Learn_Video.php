@@ -458,7 +458,7 @@ endif
 
                     video = document.querySelector("#video_player video");
                     video.pause();
-                    //console.log(window.videotarget + " " + user_id);
+                    console.log(window.videotarget + " " + user_id);
                     $.ajax({
                         url: "<?= site_url('/CourseUserController/Select_User_Do_Answer') ?>",
                         method: "POST",
@@ -468,7 +468,7 @@ endif
                         },
                         success: function(data) {
                             const obj = JSON.parse(data);
-                            console.log("length " + obj.length);
+                            //console.log("length " + obj.length);
                             if (obj.length > 0) {
                                 if (obj[0].answer == 1) {
                                     $("#myDIV2").html("");
@@ -489,6 +489,7 @@ endif
                                                     console.log(obj);
                                                     $("#myDIV2").html("");
                                                     //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                                    $("#myDIV2").append("" + obj[0].quiz_question_name + "<br>");
                                                     for (i = 0; i < obj.length; i++) {
                                                         $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
                                                             "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
@@ -518,9 +519,10 @@ endif
                                                 },
                                                 success: function(data) {
                                                     const obj = JSON.parse(data);
-                                                    console.log(obj);
+                                                    console.log("question : " + obj[0].quiz_question_name);
                                                     $("#myDIV2").html("");
                                                     //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                                    $("#myDIV2").append("" + obj[0].quiz_question_name + "<br>");
                                                     for (i = 0; i < obj.length; i++) {
                                                         $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
                                                             "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
@@ -537,7 +539,7 @@ endif
 
                                 }
                             } else {
-                                console.log("test" + window.videotarget);
+
                                 $.ajax({
 
                                     url: '<?= base_url('CourseUserController/Select_Quiz_Video') ?>',
@@ -547,10 +549,12 @@ endif
                                     },
                                     success: function(data) {
                                         const obj = JSON.parse(data);
-                                        //console.log(obj);
+                                        console.log("question : " + obj[0].quiz_question_name);
                                         $("#myDIV2").html("");
                                         //alert("คำถาม : " + obj[0].quiz_question_name + "\nchoice = " + obj[0].quiz_answer_name + "\nchoice = " + obj[1].quiz_answer_name + "\nchoice = " + obj[2].quiz_answer_name + "\nchoice = " + obj[3].quiz_answer_name);
+                                        $("#myDIV2").append("" + obj[0].quiz_question_name + "<br>");
                                         for (i = 0; i < obj.length; i++) {
+
                                             $("#myDIV2").append("<br><div class='input-group'><span class='input-group-addon'>" +
                                                 "<input type='radio' aria-label='...' style='width:20px; height:20px' name='Check_Answer2' id='Check_Answer2' data-answer-choice='" + (i + 1) + "' value='" + (i + 1) + "'></span>&nbsp;&nbsp;&nbsp;" +
                                                 "<input type='text' class='form-control'  data-quiz-id='" + obj[i].quiz_question_id + "' aria-label='...' name='Choice_Answer2_" + (i + 1) + "' id='quiz_question_id' value='" + obj[i].quiz_answer_name + "'  readonly> " +

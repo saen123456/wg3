@@ -14,7 +14,7 @@ $(document).ready(function () {
                 course_description: {
                     required: true,
                     minlength: 5,
-                    maxlength: 30,
+                    maxlength: 500,
                 },
             }
         });

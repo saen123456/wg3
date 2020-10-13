@@ -1,17 +1,17 @@
 html,
 body {
   -webkit-box-align: center;
-          align-items: center;
-  background: #E8E8E8;
+  align-items: center;
+  background: #e8e8e8;
   box-sizing: border-box;
   color: #666;
   cursor: default;
   display: -webkit-box;
   display: flex;
-  font-family: sans-serif;
+  font-family: Tahoma, Geneva, sans-serif;
   height: 100%;
   -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
   margin: 0;
   width: 100%;
   -webkit-tap-highlight-color: transparent;
@@ -25,12 +25,12 @@ body {
 * {
   box-sizing: inherit;
   cursor: inherit;
-  -webkit-transition-duration: .2s;
-          transition-duration: .2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
   -webkit-transition-property: none;
   transition-property: none;
   -webkit-transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
-          transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 label.field {
@@ -57,7 +57,7 @@ label.field span {
   position: absolute;
   top: 32px;
   -webkit-transform: scale(1) translateY(0);
-          transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
   -webkit-transition-property: color, font-size, top;
   transition-property: color, font-size, top;
   z-index: 1;
@@ -75,7 +75,7 @@ label.field span.required::after {
   width: 20px;
 }
 .error label.field span {
-  color: #F02318;
+  color: #f02318;
 }
 label.field .psuedo_select {
   background: rgba(255, 255, 255, 0);
@@ -95,7 +95,8 @@ label.field .psuedo_select {
   z-index: 1;
 }
 label.field .psuedo_select::after {
-  background: url("data:image/svg+xml;utf8,<svg fill='#666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'> <path d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/> <path d='M0-.75h24v24H0z' fill='none'/> </svg>"), no-repeat;
+  background: url("data:image/svg+xml;utf8,<svg fill='#666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'> <path d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/> <path d='M0-.75h24v24H0z' fill='none'/> </svg>"),
+    no-repeat;
   content: "";
   height: 24px;
   width: 24px;
@@ -113,7 +114,7 @@ label.field .psuedo_select .selected {
   position: absolute;
   top: 0;
   -webkit-transform: translateY(24px);
-          transform: translateY(24px);
+  transform: translateY(24px);
   -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
@@ -149,13 +150,14 @@ label.field .deselect {
   z-index: -1;
 }
 label.field.focused {
-  color: #007BED;
+  color: #007bed;
 }
 label.field.focused .psuedo_select {
-  border-color: #007BED;
+  border-color: #007bed;
 }
 label.field.focused .psuedo_select::after {
-  background: url("data:image/svg+xml;utf8,<svg fill='#007BED' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'> <path d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/> <path d='M0-.75h24v24H0z' fill='none'/> </svg>"), no-repeat;
+  background: url("data:image/svg+xml;utf8,<svg fill='#007BED' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'> <path d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/> <path d='M0-.75h24v24H0z' fill='none'/> </svg>"),
+    no-repeat;
 }
 label.field.focused .psuedo_select ul {
   opacity: 1;
@@ -165,7 +167,7 @@ label.field.focused .psuedo_select ul {
 #gitHubButton {
   background: rgba(0, 0, 0, 0.25);
   bottom: 10px;
-  color: #FFF;
+  color: #fff;
   font-size: 12px;
   padding: 5px;
   position: fixed;

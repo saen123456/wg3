@@ -26,7 +26,7 @@ list-type-ulli,
 }
 /* roboto-slab-300 - latin */
 @font-face {
-  font-family: "Roboto Slab";
+  font-family: Tahoma, Geneva, sans-serif;
   font-style: normal;
   font-weight: 300;
   src: url("../fonts/roboto-slab/roboto-slab-v7-latin-300.eot");
@@ -43,7 +43,7 @@ list-type-ulli,
 }
 /* roboto-slab-regular - latin */
 @font-face {
-  font-family: "Roboto Slab";
+  font-family: Tahoma, Geneva, sans-serif;
   font-style: normal;
   font-weight: 400;
   src: url("../fonts/roboto-slab/roboto-slab-v7-latin-regular.eot");
@@ -62,7 +62,7 @@ list-type-ulli,
 }
 /* roboto-slab-700 - latin */
 @font-face {
-  font-family: "Roboto Slab";
+  font-family: Tahoma, Geneva, sans-serif;
   font-style: normal;
   font-weight: 700;
   src: url("../fonts/roboto-slab/roboto-slab-v7-latin-700.eot");
@@ -152,7 +152,7 @@ h2 {
   line-height: 1.6;
   color: #222;
   font-weight: 400;
-  font-family: "Prompt", sans-serif;
+  font-family: Tahoma, Geneva, sans-serif;
   margin: 0px;
   background: #7498de;
   position: relative;
@@ -232,7 +232,7 @@ input {
   color: #222;
   font-weight: bold;
   font-size: 14px;
-  font-family: "Roboto Slab";
+  font-family: Tahoma, Geneva, sans-serif;
 }
 
 #steps-uid-0-p-0 .form-row,
@@ -282,7 +282,7 @@ input {
   padding: 0 20px;
   height: 50px;
   font-size: 14px;
-  font-family: "Roboto Slab";
+  font-family: Tahoma, Geneva, sans-serif;
   color: #999;
   box-sizing: border-box;
   background-color: #fff;
@@ -523,7 +523,7 @@ label.error {
   right: 0;
 }
 label.error:after {
-  font-family: "Material-Design-Iconic-Font";
+  font-family: Tahoma, Geneva, sans-serif;
   position: absolute;
   content: "\f135";
   right: 20px;

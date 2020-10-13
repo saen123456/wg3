@@ -272,8 +272,8 @@
                           <li class="list-group-item">
 
                             <div class="font-coursecomment">
-                              <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                              <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                              <i class="fa fa-users" aria-hidden="true"> </i>
+                              <!-- <i class="fa fa-comments" aria-hidden="true"> 3</i> -->
                             </div>
 
                             <div class="font-courseprice">
@@ -317,7 +317,6 @@
               </svg>
             </h3>
           </div>
-
           <div class="row">
             <?php
             foreach ($Course_Info as $row) :
@@ -344,8 +343,8 @@
                         <li class="list-group-item">
 
                           <div class="font-coursecomment">
-                            <i class="fa fa-users" aria-hidden="true"> 1273</i>
-                            <i class="fa fa-comments" aria-hidden="true"> 3</i>
+                            <i class="fa fa-users" aria-hidden="true"> </i>
+                            <!-- <i class="fa fa-comments" aria-hidden="true"> 3</i> -->
                           </div>
 
                           <div class="font-courseprice">
