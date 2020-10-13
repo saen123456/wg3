@@ -187,7 +187,9 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-
+            <?php
+            echo $this->session->get("Picture");
+            ?>
 
 
             <!-- /.content-header -->
