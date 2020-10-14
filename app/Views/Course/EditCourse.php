@@ -279,29 +279,7 @@ $this->session = \Config\Services::session();
     </div>
 </div>
 
-<div class="modal fade" id="modal-delete-unit">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">ลบ Unit</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>ยืนยันที่จะลบใช่หรือไม่ ?&hellip;</p>
-                <p id="output"></p>
-                <!-- <input id="user_id" name="user_id" value="" /> -->
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-primary" onclick="window.location.href = '<?= site_url('/CourseController/change_status') ?>';">ยืนยัน</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+
 
 <body class="body2">
 
@@ -1382,7 +1360,6 @@ $this->session = \Config\Services::session();
 
         });
         $(".delete_unit").click(function() {
-
             $.ajax({
                 url: '<?= site_url('/CourseController/delete_unit') ?>',
                 method: "POST",
@@ -1394,7 +1371,6 @@ $this->session = \Config\Services::session();
                 success: function(data) {
                     window.location.href = base_url + "/" + window.course_id;
                 }
-
             });
         });
     });

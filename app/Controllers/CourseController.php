@@ -154,7 +154,13 @@ class CourseController extends BaseController
             $data['document'] = $model->Select_Document_Of_Course2($Course_id);
             $data['quiz_unit'] = $model->select_quiz_unit($Course_id);
             $data['unit_index_min'] = $model->select_index_min($Course_id);
-            echo view('Course/EditCourse', $data);
+            $data['course_active'] = $model->select_course_active($Course_id);
+            if (isset($data['course_active'])) {
+                echo view('Course/EditCourse', $data);
+            } else {
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspหลักสูตรนี้ไม่มีอยู่&nbsp&nbsp&nbsp&nbsp&nbsp';
+                return redirect()->to(base_url('/course'))->with('incorrect', $msg);
+            }
         } else {
             return redirect()->to(base_url('/home'));
         }

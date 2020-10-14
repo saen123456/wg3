@@ -69,7 +69,7 @@ class CourseUserController extends BaseController
             $data['User_Pass_Unit'] = $model->Select_User_Pass_Unit($User_id, $id);
             $data['count_playlist'] = $model->Select_Count_Playlist($id);
             $data['count_student'] = $model->Select_Count_Student($id);
-
+            $data['check_status'] = $model->check_status($id);
 
             if (isset($User_id)) {
                 $User_JoinCourse =  $model->Select_UserCourse($User_id, $id);
@@ -236,5 +236,13 @@ class CourseUserController extends BaseController
             $Select_User_Pass_Unit[] = $row;
         }
         return json_encode($Select_User_Pass_Unit);
+    }
+    public function Cancel_Course()
+    {
+        $Course_id = $this->request->getVar('course_id');
+        $User_id = $this->request->getVar('user_id');
+        $model = new CourseUser_model();
+        $data = $model->Cancel_Course($User_id, $Course_id);
+        return $data;
     }
 }

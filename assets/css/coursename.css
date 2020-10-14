@@ -122,10 +122,10 @@
   padding-right: 5%;
 }
 .body-block2 {
-    padding-top: 10%;
-    padding-left: 5%;
-    padding-right: 5%;
-  }
+  padding-top: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 .decoration {
   text-decoration-line: line-through;
   color: #60e7e7;
@@ -142,6 +142,7 @@
 }
 
 .btn-buy {
+  position: relative;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 65px;
@@ -149,7 +150,22 @@
   width: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 35px;
+  font-size: 22px;
+  line-height: 29px;
+  color: #155482;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+.btn-cancel {
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 65px;
+  padding: 6px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 20px;
   font-size: 22px;
   line-height: 29px;
   color: #155482;
@@ -170,8 +186,8 @@
     top: 35%;
   }
   .text-register {
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 12px;
+    line-height: 20px;
   }
   .body-block2 {
     position: relative;
@@ -180,6 +196,15 @@
   .btn-buy {
     position: absolute;
     top: 40%;
+  }
+  .btn-cancel {
+    position: absolute;
+    top: 80%;
+    height: 30%;
+  }
+  .text-cancel {
+    font-size: 12px;
+    line-height: 14px;
   }
 }
 .green {

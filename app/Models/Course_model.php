@@ -104,10 +104,13 @@ class Course_model extends Model
     }
     public function Select_Course($id)
     {
-        /* $sql = "SELECT * from course join user_create_course on course.course_id = user_create_course.course_id join user_register on user_register.user_id =  user_create_course.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id";
-        return $this->connect_postgresdb->execute($sql);*/
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id where user_register.user_id = $id ORDER BY user_create_course.course_id ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id where user_register.user_id = $id AND course.status = 'active' ORDER BY user_create_course.course_id ";
         return $this->connect_postgresdb->execute($sql);
+    }
+    public function select_course_active($Course_id)
+    {
+        $sql = "SELECT * FROM course where status = 'active' AND course_id = '$Course_id'";
+        return $this->connect_postgresdb->getOne($sql);
     }
     public function Select_newcourse($id)
     {
@@ -278,12 +281,12 @@ class Course_model extends Model
     }
     public function Select_Course_HomePage()
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id LIMIT 8";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id WHERE course.status = 'active' LIMIT 8";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Select_Course_New_HomePage()
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id ORDER BY user_create_course.course_id DESC LIMIT 4";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join user_register on user_create_course.user_id = user_register.user_id WHERE course.status = 'active' ORDER BY user_create_course.course_id DESC LIMIT 4";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Select_Course_Register($User_id)

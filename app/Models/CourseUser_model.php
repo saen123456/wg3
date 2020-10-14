@@ -39,7 +39,11 @@ class CourseUser_model extends Model
     //     $this->connect_postgresdb->debug = false;
     //     $this->connect_postgresdb->connect($this->server, $this->user, $this->password, $this->database);
     // }
-
+    public function check_status($id)
+    {
+        $sql = " SELECT status FROM course  WHERE course_id = '$id' ";
+        return $this->connect_postgresdb->execute($sql);
+    }
     public function Select_Courseinfo($id)
     {
         $sql = "SELECT course.course_id,course.course_name,course.course_description,course.course_price, CONCAT(user_register.first_name,CONCAT(' ',user_register.last_name)) as full_name , course.update_date , course.image_course from
@@ -230,5 +234,12 @@ class CourseUser_model extends Model
         $sql = "SELECT course_name FROM course WHERE course_id = '$Course_id'";
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
+    }
+    public function Cancel_Course($User_id, $Course_id)
+    {
+        $sql = "DELETE FROM user_register_course WHERE user_id = '$User_id' AND course_id = '$Course_id'";
+        $this->connect_postgresdb->execute($sql);
+        $sql2 = "DELETE FROM user_pass_unit WHERE user_id = '$User_id' AND course_id = '$Course_id'";
+        $this->connect_postgresdb->execute($sql2);
     }
 }

@@ -77,6 +77,59 @@
     <?php
     endif
     ?>
+    <?php
+    foreach ($check_status as $row) :
+        $check_status = $row['status'];
+    endforeach;
+    if ($check_status == 'non_active' && $this->session->get("User_JoinCourse") == false) {
+        ?>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน !!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <h3>คอร์สนี้ได้ทำการปิดลงไปแล้ว</h3>
+                            <h1><i class="fas fa-exclamation-circle fa-3x "></i></h1>
+                        </center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    } else { }
+    ?>
+    <div class="modal fade" id="modal-cancel-course">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ยกเลิกการสมัครหลักสูตร</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>ยืนยันที่จะยกเลิกใช่หรือไม่ ?&hellip;</p>
+                    <p id="output3"></p>
+                    <!-- <input id="user_id" name="user_id" value="" /> -->
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary btn-cancel-course">ยืนยัน</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
@@ -447,6 +500,9 @@
                                             <a href="<?= base_url('/courseuser/learn/' . $row['course_id']); ?>" class="btn-center"> <button class="btn btn-default btn-buy">
                                                     <p class="text-register">ไปยังหลักสูตร</p>
                                                 </button> </a>
+                                            <a data-toggle="modal" data-target="#modal-cancel-course" class="btn-center sent_cancel_course" var course_id="<?php echo $row['course_id'] ?>"> <button class="btn btn-default btn-cancel">
+                                                    <p class="text-cancel">ยกเลิกหลักสูตร</p>
+                                                </button> </a>
                                         <?php
                                             }
                                             ?>
@@ -677,12 +733,43 @@
         <!-- /.modal-dialog -->
     </div>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myModal').modal('show');
+            $("#myModal").on('hidden.bs.modal', function() {
+                history.back();
+            });
+        });
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
         }, 6000);
+        var course_id3;
+        var user_id3;
+        $(document).ready(function() {
+            $(".sent_cancel_course").click(function() {
+                $("#course_id").attr("value", $(this).attr('course_id'));
+                window.course_id3 = $(this).attr('course_id');
+                window.user_id3 = <?php echo json_encode($this->session->get("User_id")) ?>;
+                //console.log(window.course_id3 + " " + window.user_id3);
+            });
+        });
+        var base_url = '<?= base_url('home') ?>';
+        $(".btn-cancel-course").click(function() {
+            $.ajax({
+                url: '<?= site_url('/CourseUserController/Cancel_Course') ?>',
+                method: "POST",
+                data: {
+                    user_id: window.user_id3,
+                    course_id: window.course_id3,
+                },
+                success: function(data) {
+                    window.location.href = '<?= base_url('home') ?>';
+                }
+            });
+        });
     </script>
+
     <!-- Content Wrapper. Contains page content -->
     <!-- ./wrapper -->
 
