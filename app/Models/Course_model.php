@@ -305,23 +305,23 @@ class Course_model extends Model
 
     public function Select_AllCategoryCourse($Start, $Perpage)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id  ORDER BY user_create_course.course_id DESC LIMIT '$Perpage' OFFSET '$Start'  ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id  WHERE course.status = 'active' ORDER BY user_create_course.course_id DESC LIMIT '$Perpage' OFFSET '$Start'  ";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Select_CategoryCourse($Start, $Perpage, $Category)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id  join category_course on course.category_course_id = category_course.category_course_id WHERE category_course.category_course_id = '$Category' ORDER BY user_create_course.course_id DESC LIMIT '$Perpage' OFFSET '$Start'  ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id  join category_course on course.category_course_id = category_course.category_course_id WHERE category_course.category_course_id = '$Category' AND course.status = 'active' ORDER BY user_create_course.course_id DESC LIMIT '$Perpage' OFFSET '$Start'  ";
         return $this->connect_postgresdb->execute($sql);
     }
     public function Select_Num_AllCategoryCourse()
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id ";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id WHERE course.status = 'active'";
         $Course_Row =  $this->connect_postgresdb->execute($sql);
         return $Course_Row->RecordCount();
     }
     public function Select_Num_CategoryCourse($Category)
     {
-        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join category_course on course.category_course_id = category_course.category_course_id WHERE category_course.category_course_id = '$Category'";
+        $sql = "SELECT * FROM user_create_course join course on user_create_course.course_id = course.course_id join category_course on course.category_course_id = category_course.category_course_id WHERE category_course.category_course_id = '$Category' AND course.status = 'active'";
         $Course_Row =  $this->connect_postgresdb->execute($sql);
         return $Course_Row->RecordCount();
     }

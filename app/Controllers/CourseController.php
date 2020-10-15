@@ -551,9 +551,7 @@ class CourseController extends BaseController
     {
         $model = new Course_model();
         $Search_Course_Query = $this->request->getVar('Search_Course_Query');
-        //echo $Search_Course_Query;
         $Row_Num_Course = $model->Check_Row_Search_Course($Search_Course_Query);
-        //echo $Row_Num_Course;
         if ($Row_Num_Course != 0) {
             $data['data'] = $model->Search_Course($Search_Course_Query);
             echo view('Course/SearchCourse', $data);
