@@ -1381,7 +1381,7 @@ $this->session = \Config\Services::session();
             window.unit_index = $(this).attr('unit_index');
             $("#unit_name").attr("value", $(this).attr('unit_name'));
             window.unit_name = $(this).attr('unit_name');
-
+            console.log(window.course_id + " " + window.unit_id);
             document.getElementById('output3').innerHTML = "ชื่อ unit : " + window.unit_name;
 
         });
@@ -1391,6 +1391,8 @@ $this->session = \Config\Services::session();
                 method: "POST",
                 data: {
                     course_id: window.course_id,
+                    unit_id: window.unit_id,
+                    unit_index: window.unit_index,
                 },
                 success: function(data) {
                     window.location.href = base_url + "/" + window.course_id;
