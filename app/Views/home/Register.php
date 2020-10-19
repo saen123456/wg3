@@ -234,7 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="#">เงื่อนไขการให้บริการ</a>.</label>
+                      <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="<?php echo base_url('/termofservice'); ?>">เงื่อนไขการให้บริการ</a>.</label>
                     </div>
                   </div>
                 </div>
@@ -373,9 +373,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!--Column1-->
               <div class="footer-pad">
                 <ul class="list-unstyled">
-                  <li><a href="#">หน้าแรก</a></li>
+                  <li><a href="<?= base_url('/home'); ?>">หน้าแรก</a></li>
                   <li><a href="#">เกี่ยวกับเรา</a></li>
-                  <li><a href="#">หลักสูตรทั้งหมด</a></li>
+                  <li><a href="<?= base_url('/category/alldevelopment?category=all'); ?>">หลักสูตรทั้งหมด</a></li>
                   <li><a href="#">ติดต่อเรา</a></li>
                 </ul>
               </div>
@@ -421,6 +421,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
     </footer>
+
 
     <div class="modal fade" id="modal-default">
       <div class="modal-dialog">
@@ -560,7 +561,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="form-group mb-0">
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                        <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="#">เงื่อนไขการให้บริการ</a>.</label>
+                        <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="<?php echo base_url('/termofservice'); ?>">เงื่อนไขการให้บริการ</a>.</label>
                       </div>
                     </div>
                   </div>

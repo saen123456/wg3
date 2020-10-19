@@ -154,7 +154,7 @@
                                     ?>
 
                                     <img src="<?php echo base_url('' . $this->session->get("Picture") . ''); ?>" width="35" height="35" class="rounded-circle"><?php
-                                                                                                                                                            } else { ?>
+                                                                                                                                                                } else { ?>
                                     <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
                                                                                                                                                 }
                                                                                                                                                 ?>
@@ -313,9 +313,9 @@
                             <!--Column1-->
                             <div class="footer-pad">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">หน้าแรก</a></li>
+                                    <li><a href="<?= base_url('/home'); ?>">หน้าแรก</a></li>
                                     <li><a href="#">เกี่ยวกับเรา</a></li>
-                                    <li><a href="#">หลักสูตรทั้งหมด</a></li>
+                                    <li><a href="<?= base_url('/category/alldevelopment?category=all'); ?>">หลักสูตรทั้งหมด</a></li>
                                     <li><a href="#">ติดต่อเรา</a></li>
                                 </ul>
                             </div>

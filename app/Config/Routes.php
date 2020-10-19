@@ -36,6 +36,7 @@ $routes->get('/reset_password', 'UserController::reset_password_page');
 $routes->get('/get_otp', 'UserController::get_otp_page');
 $routes->get('/confirm_password', 'UserController::confirm_password');
 $routes->get('/login', 'UserController::login');
+$routes->get('/termofservice', 'UserController::TermofServiceView');
 //login
 $routes->get('/homepage', 'UserController::homepage');
 $routes->get('/profile', 'UserController::profile');

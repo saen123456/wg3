@@ -106,7 +106,16 @@ class UserController extends BaseController
             echo view('home/HomePage', $data);
         }
     }
-
+    /**
+     * TermofServiceView
+     *
+     * หน้า Terms_of_Service ดูเงื่อนไขการใช้บริการ
+     *
+     */
+    public function TermofServiceView()
+    {
+        echo view('home/Terms_of_Service');
+    }
     /**
      * profile
      * หน้า profile เช็คสถานะ ของ User ก่อนเข้าใช่งาน
