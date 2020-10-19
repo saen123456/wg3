@@ -189,6 +189,7 @@ endif
         foreach ($video_link as $row) :
             $Course_id = $row['course_id'];
             $Course_Name = $row['course_name'];
+            $Course_Description = $row['course_description'];
             if ($count == 0) {
                 $Video_Src = $row['video_link'];
             } else {
@@ -215,7 +216,7 @@ endif
                             <source src="<?php echo $Video_Src; ?>" type="video/x-flv">
                         </video>
                         <br>
-
+                        <p><?php echo $Course_Description; ?></p>
 
                     </div>
                     <div class="container">
@@ -229,7 +230,9 @@ endif
                         <img src="<?php echo base_url('assets/img/course-name.png'); ?>" class="img-fluid" alt="Responsive image">
                         <div class="course-name"><?php echo $Course_Name; ?></div>
                     </div> -->
+
                 </div>
+
                 <!-- <div class="comment">
                     ความคิดเห็น
                 </div>

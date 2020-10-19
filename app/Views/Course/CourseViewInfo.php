@@ -197,46 +197,74 @@
                 </div>
                 <!-- SEARCH FORM -->
                 <!-- Right navbar links -->
+                <?php
+                if ($this->session->get("User_id")) {
+                    ?>
+                    <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
+                        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                            <!-- Messages Dropdown Menu -->
+                            <div class="input-group input-group-sm">
+                                <!-- Notifications Dropdown Menu -->
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php
+                                        if ($this->session->get("Picture")) { ?>
+                                        <img src="<?php echo base_url('' . $this->session->get("Picture") . ''); ?>" width="35" height="35" class="rounded-circle"><?php
+                                                                                                                                                                        } else { ?>
+                                        <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
+                                                                                                                                                        }
+                                                                                                                                                        ?>
+                                </a>
+                                <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
+                                    <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
+                                    <?php
+                                        if ($this->session->get("Role_name") == 'student') {
+                                            ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
+                                    <?php
+                                        } else if ($this->session->get("Role_name") == 'admin') { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
+                                        <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
 
-                <div class="navbar-collapse collapse w-200 order-3 dual-collapse upper" id="navbarSupportedContent">
-                    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                        <!-- Messages Dropdown Menu -->
-                        <div class="input-group input-group-sm">
-                            <!-- Notifications Dropdown Menu -->
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php
-                                if ($this->session->get("Picture")) { ?>
-                                    <img src="<?php echo base_url('' . $this->session->get("Picture") . ''); ?>" width="35" height="35" class="rounded-circle"><?php
-                                                                                                                                                                } else { ?>
-                                    <img src="<?php echo base_url('assets/img/profile.jpg'); ?>" width="40" height="40" class="rounded-circle"><?php
-                                                                                                                                                }
-                                                                                                                                                ?>
-                            </a>
-                            <div class="dropdown-menu mx-auto" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?php echo base_url('/profile'); ?>">Profile</a>
-                                <a class="dropdown-item" href="<?= base_url('/my-courses/learning'); ?>">หลักสูตรของฉัน</a>
-                                <?php
-                                if ($this->session->get("Role_name") == 'student') {
-                                    ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/teacher'); ?>">สอนบน Workgress</a>
-                                <?php
-                                } else if ($this->session->get("Role_name") == 'admin') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
+                                    <?php
+                                        } else if ($this->session->get("Role_name") == 'teacher') { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
+                                    <?php
+                                        }
+                                        ?>
 
-                                <?php
-                                } else if ($this->session->get("Role_name") == 'teacher') { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url('/course'); ?>">สร้างคอร์ส</a>
-                                <?php
-                                }
-                                ?>
-
-                                <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+                                    <a class="dropdown-item" href="<?= site_url('/UserController/User_Logout') ?>">Log Out</a>
+                                </div>
                             </div>
-                        </div>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                <?php
+                } else { ?>
+                    <div class="navbar-collapse collapse w-200 order-3 dual-collapse">
+                        <ul class="order-1 order-md-5 navbar-nav navbar-no-expand ml-auto">
+                            <!-- Messages Dropdown Menu -->
 
+                            <!-- Notifications Dropdown Menu -->
+                            <div class="row" id="btn-navbar">
+
+                                <div class="col-md-auto" id="col-navbar">
+                                    <button type="button" class="btn btn-default btn-login" data-toggle="modal" data-target="#modal-default">
+                                        <b>เข้าสู่ระบบ</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-auto" id="col-navbar">
+                                    <button type="button" class="btn btn-success btn-register" data-toggle="modal" data-target="#modal-register">
+                                        <b>ลงทะเบียน</b>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </ul>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         </nav>
         <!-- /.navbar -->
@@ -337,9 +365,9 @@
                                                                 echo " <i class='fas fa-chalkboard-teacher' style='font-size: 2.5em;'></i><br>";
                                                                 echo "<i class='fa fa-times' style='background: #ccc;'></i>";
                                                             }
-                                                            //echo $count;
+                                                            //echo $row['unit_index'];
                                                             ?>
-                                        <p><?php echo $row2['quiz_question_name'] ?></p>
+                                        <p><?php echo "คำถามของเนื้อหาที่" . $row['unit_index'] ?></p>
 
                                     </li>
                                 <?php
@@ -390,7 +418,7 @@
                     $Course_id =  $row['course_id'];
                     $Course_image = $row['image_course'];
                     ?>
-                    <div class="col-6">
+                    <div class="col-6 padding-0">
                         <?php
                             if ($row['image_course']) { ?>
                             <img src="<?php echo $row['image_course'] ?>" class="image-responsive">
@@ -403,13 +431,13 @@
                             ?>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 padding-0">
                         <div class="title-card">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="title">
                                         <p id="header"><?php echo $row['course_name'] ?></p>
-                                        <p id="header-s"><?php echo $row['course_description'] ?></p>
+
                                         <!-- <p id="text-info"><span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>

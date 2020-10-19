@@ -30,7 +30,8 @@ class CourseUserController extends BaseController
                 return redirect()->to(base_url('/home'));
             }
         } else {
-            return redirect()->to(base_url('/login'));
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspกรุณาลงชื่อเข้าใช้งานก่อนลงทะเบียนหลักสูตร&nbsp&nbsp&nbsp&nbsp&nbsp';
+            return redirect()->to(base_url('/login'))->with('incorrect', $msg);
         }
     }
     public function User_LearnCourse($id = null)
