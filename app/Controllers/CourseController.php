@@ -367,24 +367,27 @@ class CourseController extends BaseController
     }
     public function Upload_Document()
     {
-        $model = new Course_model();
         $file = $_FILES;
-
-        $storage = new StorageClient();
-        $bucket = $storage->bucket('storage-workgress-2');
-
         $Course_id = $this->session->get("Course_id");
+        if ($file['Document1']['tmp_name']) {
+            $model = new Course_model();
+            $storage = new StorageClient();
+            $bucket = $storage->bucket('storage-workgress-2');
 
-        $content = file_get_contents($file['Document1']['tmp_name']);
-        $Document_Name = $file['Document1']['name'];
-        //echo $Photo->getClientName();
-        if ($bucket->upload($content, ['name' => $Document_Name])) {
-            $Documen_link = "https://storage.googleapis.com/storage-workgress-2/" . $Document_Name;
-            $model->Upload_Document($Course_id, $Documen_link, $Document_Name);
-            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
-            return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+            $content = file_get_contents($file['Document1']['tmp_name']);
+            $Document_Name = $file['Document1']['name'];
+            //echo $Photo->getClientName();
+            if ($bucket->upload($content, ['name' => $Document_Name])) {
+                $Documen_link = "https://storage.googleapis.com/storage-workgress-2/" . $Document_Name;
+                $model->Upload_Document($Course_id, $Documen_link, $Document_Name);
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
+                return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+            } else {
+                $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนไม่สำเร็จ&nbsp&nbsp&nbsp&nbsp&nbsp';
+                return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
+            }
         } else {
-            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพโหลดเนื้อหาการเรียนไม่สำเร็จ&nbsp&nbsp&nbsp&nbsp&nbsp';
+            $msg = '&nbsp&nbsp&nbsp&nbsp&nbspกรุณาเลือกไฟล์เนื้อหาการเรียน&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         }
     }
@@ -413,6 +416,13 @@ class CourseController extends BaseController
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspกรุณาเลือกไฟล์เนื้อหาการเรียน&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         }
+    }
+    public function delete_document()
+    {
+        $course_id = $this->request->getVar('course_id');
+        $model = new Course_model();
+        $data = $model->delete_document($course_id);
+        return $data;
     }
     public function Upload_Picture_Course()
     {

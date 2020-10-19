@@ -135,6 +135,28 @@ $this->session = \Config\Services::session();
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div class="modal fade" id="modal-delete-document">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ลบเนื้อหาหลักสูตร</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ยืนยันที่จะลบเนื้อหาหลักสูตรใช่หรือไม่ ?&hellip;</p>
+                <!-- <input id="user_id" name="user_id" value="" /> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary btn_delete_document">ยืนยัน</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -486,14 +508,18 @@ $this->session = \Config\Services::session();
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
                                             <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document2" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
+                                        <button class="btn btn-default sent_delete_document" data-toggle="modal" data-target="#modal-delete-document" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-trash"></i> </button>
                                     </span>
+
                                 </div>
+
                                 <br>
                                 <div class="col-xs-4">
                                     <input type="submit" id="uploadSubmit" value="อัพโหลดเนื้อหา" class="btn btn-info" />
                                 </div>
                                 <br><br><br>
                             </form>
+
                         <?php
                         } else { ?>
 
@@ -1364,13 +1390,39 @@ $this->session = \Config\Services::session();
                 url: '<?= site_url('/CourseController/delete_unit') ?>',
                 method: "POST",
                 data: {
-                    unit_id: window.unit_id,
                     course_id: window.course_id,
-                    unit_index: window.unit_index,
                 },
                 success: function(data) {
                     window.location.href = base_url + "/" + window.course_id;
                 }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    var course_id;
+    var base_url = '<?= base_url('course/edit/') ?>';
+    $(document).ready(function() {
+        $(".sent_delete_document").click(function() {
+            $("#course_id").attr("value", $(this).attr('course_id'));
+            window.course_id = $(this).attr('course_id');
+            console.log("doc : " + window.course_id);
+            document.getElementById('output3').innerHTML = "รหัสคำถาม " + window.quiz_id2;
+
+        });
+        $(".btn_delete_document").click(function() {
+
+            $.ajax({
+                url: '<?= site_url('/CourseController/delete_document') ?>',
+                method: "POST",
+                data: {
+                    course_id: window.course_id,
+                    quiz_id: window.quiz_id2
+                },
+                success: function(data) {
+                    window.location.href = base_url + "/" + window.course_id;
+                }
+
             });
         });
     });

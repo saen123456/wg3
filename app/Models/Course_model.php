@@ -415,4 +415,16 @@ class Course_model extends Model
         //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
+    public function delete_document($course_id)
+    {
+        $sql = " SELECT document_id FROM course_document  WHERE course_id = '$course_id' ";
+        $document_id = $this->connect_postgresdb->getOne($sql);
+
+        $sql1 = " DELETE FROM course_document  WHERE course_id = '$course_id' ";
+        $this->connect_postgresdb->execute($sql1);
+
+        $sql2 = " DELETE FROM document WHERE document_id = '$document_id' ";
+        $this->connect_postgresdb->execute($sql2);
+        return true;
+    }
 }
