@@ -228,9 +228,7 @@
                                                 }
                                                 ?>
 
-                                            <div class="profilecourse">
-                                                <img src="<?php echo base_url('' . $row['picture'] . ''); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
-                                            </div>
+
                                             <br>
                                             <div class="card-body">
                                                 <div class="font-titlecourse">
