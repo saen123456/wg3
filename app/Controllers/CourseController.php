@@ -391,13 +391,11 @@ class CourseController extends BaseController
     public function Edit_Document()
     {
         $file = $_FILES;
-        if (isset($file['Document2']['tmp_name'])) {
+        $Course_id = $this->session->get("Course_id");
+        if ($file['Document2']['tmp_name']) {
             $model = new Course_model();
             $storage = new StorageClient();
             $bucket = $storage->bucket('storage-workgress-2');
-
-            $Course_id = $this->session->get("Course_id");
-
             $content = file_get_contents($file['Document2']['tmp_name']);
             $Document_Name = $file['Document2']['name'];
             //echo $Photo->getClientName();
