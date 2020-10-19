@@ -494,7 +494,7 @@
                                         <div class="form-group mb-0">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                                                <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="<?php echo base_url('/termofservice'); ?>">เงื่อนไขการให้บริการ</a>.</label>
+                                                <label class="custom-control-label" for="exampleCheck1">ฉัน ยินยอม <a href="<?php echo base_url('/termofservice'); ?>" target="_blank">เงื่อนไขการให้บริการ</a>.</label>
                                             </div>
                                         </div>
                                     </div>
