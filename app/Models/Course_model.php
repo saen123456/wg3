@@ -43,17 +43,17 @@ class Course_model extends Model
     {
         $sql = " DELETE FROM user_pass_unit  WHERE course_id = '$course_id' ";
         $this->connect_postgresdb->execute($sql);
-        $sql = " SELECT video_id FROM course_unit  WHERE unit_id = '$unit_id' ";
-        $video_id = $this->connect_postgresdb->getOne($sql);
+        $sql1 = " SELECT video_id FROM course_unit  WHERE unit_id = '$unit_id' ";
+        $video_id = $this->connect_postgresdb->getOne($sql1);
 
-        $sql1 = " DELETE FROM video  WHERE video_id = '$video_id' ";
-        $this->connect_postgresdb->execute($sql1);
-
-        $sql = " DELETE FROM course_unit  WHERE unit_id = '$unit_id' ";
-        $this->connect_postgresdb->execute($sql);
-
-        $sql2 = " DELETE FROM unit  WHERE unit_id = '$unit_id' ";
+        $sql2 = " DELETE FROM course_unit  WHERE unit_id = '$unit_id' ";
         $this->connect_postgresdb->execute($sql2);
+
+        $sql3 = " DELETE FROM unit  WHERE unit_id = '$unit_id' ";
+        $this->connect_postgresdb->execute($sql3);
+
+        $sql4 = " DELETE FROM video  WHERE video_id = '$video_id' ";
+        $this->connect_postgresdb->execute($sql4);
         return true;
     }
     public function select_index_min($course_id)
