@@ -258,7 +258,7 @@
                     </label> -->
                 </div>
                 <div class="float-sm-left">
-                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตร ไอทีและซอฟแวร์</h2>
+                    <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตร </h2>
                 </div>
                 <div class="col-md-1 col-md-offset-2 text-center colorlib-heading animate-box">
                     <h3>
@@ -303,7 +303,7 @@
                                         <td>
                                             <a href="<?= base_url('/viewcourse/' . $row['course_id']); ?>">
                                                 <?php echo $row['course_name'] ?><br>
-                                                <?php echo $row['course_description'] ?><br>
+                                                <?php echo "<p style='font-size:13px'>" . $row['course_description'] . "</p>"; ?>
                                                 สร้างโดย <?php echo $row['first_name'] ?><br><br>
                                             </a>
                                             <span class="fa fa-star checked"></span>
