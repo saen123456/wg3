@@ -220,6 +220,7 @@
                                             <?php
                                                 if ($row['image_course']) { ?>
                                                 <img class="card-img-top" src="<?php echo $row['image_course'] ?>" alt="Card image" style="width:268px;height: 179px;">
+
                                             <?php
                                                 } else { ?>
                                                 <img class="card-img-top" src="<?= base_url('assets/img/dash_course_illustration.png') ?>" alt="Card image" style="width:268px;height: 179px;">
@@ -228,12 +229,13 @@
                                                 ?>
 
                                             <div class="profilecourse">
-                                                <img src="<?php echo $row['picture'] ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
+                                                <img src="<?php echo base_url('' . $row['picture'] . ''); ?>" width="61px" height="61px" class="rounded-circle img-thumbnail">
                                             </div>
                                             <br>
                                             <div class="card-body">
                                                 <div class="font-titlecourse">
                                                     <?php echo $row['course_name'] ?>
+
                                                 </div>
 
                                                 <span class="fa fa-star checked"></span>
