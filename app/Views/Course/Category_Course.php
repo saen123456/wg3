@@ -329,26 +329,30 @@
 
             <!-- /.content -->
         </div>
-        <div class="row justify-content-center">
-            <ul class="pagination">
-                <li>
-                    <a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=1'); ?>" aria-label="Previous">
-                        <span aria-hidden="true"><i class="fas fa-backward" style="background=black"></i></span>
-                    </a>
-                </li>&nbsp;&nbsp;
-                <?php for ($i = 1; $i <= $Total_Page; $i++) { ?>
-                    <!-- <li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li> -->
-                    <li><a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=' . $i . ''); ?>"><?php echo "&nbsp;" . $i . "&nbsp;"; ?></a> </li>
-                <?php } ?>
-                &nbsp;&nbsp;
-                <li>
-                    <a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=' . $Total_Page . ''); ?>" aria-label="Next">
-                        <span aria-hidden="true"><i class="fas fa-forward"></i></span>
-                    </a>
-                </li>
-            </ul>
+        <?php if ($Total_Page != 0) { ?>
+            <div class="row justify-content-center">
+                <ul class="pagination">
+                    <li>
+                        <a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=1'); ?>" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-backward" style="background=black"></i></span>
+                        </a>
+                    </li>&nbsp;&nbsp;
+                    <?php for ($i = 1; $i <= $Total_Page; $i++) { ?>
+                        <!-- <li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li> -->
+                        <li><a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=' . $i . ''); ?>"><?php echo "&nbsp;" . $i . "&nbsp;"; ?></a> </li>
+                    <?php } ?>
+                    &nbsp;&nbsp;
+                    <li>
+                        <a href="<?php echo base_url('/category/' . $Urlstr . '?category=' . $Category . '&page=' . $Total_Page . ''); ?>" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-forward"></i></span>
+                        </a>
+                    </li>
+                </ul>
 
-        </div>
+            </div>
+        <?php
+        }
+        ?>
         <!-- /.content-wrapper -->
 
 
