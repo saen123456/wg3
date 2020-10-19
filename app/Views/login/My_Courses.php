@@ -253,41 +253,42 @@
                                                 </li>
                                             </div>
 
-                                        </ul>
-                                        <?php
-                                            $count_unit_index = 0;
-                                            //$course_unit;
-                                            foreach ($Percent_Pass_Unit as $row2) :
 
-                                                if ($row2['course_id'] == $row['course_id']) {
-                                                    $count_unit_index++;
-                                                    //echo count($row2['course_unit']);
-                                                    $course_unit = $row2['course_unit'];
-                                                    $Array_Course_id[$row2['course_id']] = $row2;
-                                                }
+                                            <?php
+                                                $count_unit_index = 0;
+                                                //$course_unit;
+                                                foreach ($Percent_Pass_Unit as $row2) :
 
-                                            endforeach;
-                                            //echo $count_unit_index;
-                                            if (isset($Array_Course_id)) {
-                                                foreach ($Array_Course_id as $row3) :
-                                                    if ($row3['course_id'] == $row['course_id']) {
-                                                        //echo $course_unit;
-                                                        $percentage = ($count_unit_index / $course_unit) * 100;
+                                                    if ($row2['course_id'] == $row['course_id']) {
+                                                        $count_unit_index++;
+                                                        //echo count($row2['course_unit']);
+                                                        $course_unit = $row2['course_unit'];
+                                                        $Array_Course_id[$row2['course_id']] = $row2;
+                                                    }
 
+                                                endforeach;
+                                                //echo $count_unit_index;
+                                                if (isset($Array_Course_id)) {
+                                                    foreach ($Array_Course_id as $row3) :
+                                                        if ($row3['course_id'] == $row['course_id']) {
+                                                            //echo $course_unit;
+                                                            $percentage = ($count_unit_index / $course_unit) * 100;
+
+                                                            echo "<div class='progress'>";
+                                                            echo "<div class='progress-bar progress-bar-success' style='width:" . $percentage . "%'>" . number_format($percentage, 2) . "%</div>";
+                                                            echo "</div>";
+                                                        }
+                                                    endforeach;
+                                                    if ($row3['course_id'] != $row['course_id']) {
                                                         echo "<div class='progress'>";
-                                                        echo "<div class='progress-bar progress-bar-success' style='width:" . $percentage . "%'>" . number_format($percentage, 2) . "%</div>";
+                                                        echo "<div class='progress-bar progress-bar-success' style='width:10%'>0%</div>";
                                                         echo "</div>";
                                                     }
-                                                endforeach;
-                                                if ($row3['course_id'] != $row['course_id']) {
-                                                    echo "<div class='progress'>";
-                                                    echo "<div class='progress-bar progress-bar-success' style='width:10%'>0%</div>";
-                                                    echo "</div>";
                                                 }
-                                            }
 
 
-                                            ?>
+                                                ?>
+                                        </ul>
                                     </div>
 
                                 </a>
