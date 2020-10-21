@@ -444,7 +444,7 @@
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span> &nbsp; (100) &nbsp; -->
                                         จำนวนผู้เรียน <?php echo $count_student; ?> คน</p>
-                                        <p id="text-info">สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp; อัพเดทล่าสุด <?php echo substr($row['update_date'], 0, strrpos($row['update_date'], ' ')); ?> </p>
+                                        <p id="text-info">สร้างโดย <?php echo $row['full_name'] ?> &nbsp;&nbsp; อัพเดทล่าสุด <?php echo thai_date_fullmonth(strtotime($row['update_date'])); ?> </p>
                                         <p id="text-info">ระยะเวลาหลักสูตร
                                             <?php
                                                 if ($count_video_time > 60) {
@@ -887,7 +887,16 @@
             });
         });
     </script>
-
+    <?php
+    function thai_date_fullmonth($time)
+    {   // 19 ธันวาคม 2556
+        $monthTH = [null, 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+        $thai_date_return = date("j", $time);
+        $thai_date_return .= " " . $monthTH[date("n", $time)];
+        $thai_date_return .= " " . (date("Y", $time) + 543);
+        return $thai_date_return;
+    }
+    ?>
     <!-- Content Wrapper. Contains page content -->
     <!-- ./wrapper -->
 

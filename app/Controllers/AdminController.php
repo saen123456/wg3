@@ -9,6 +9,7 @@ use App\Models\User_model;
 class AdminController extends BaseController
 {
     protected $session;
+    
     function __construct()
     {
         $this->session = \Config\Services::session(); //ประกาศการใช้ session 
@@ -39,7 +40,6 @@ class AdminController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
-
     /**
      * Chart
      * function Chart สำหรับ แสดงหน้า Chart

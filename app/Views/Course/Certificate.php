@@ -18,7 +18,8 @@ if (isset($last_name)) {
 $certify = "ใบรับรองการสำเร็จการศึกษา";
 $description = "ใบรับรองการสำเร็จการศึกษานี้คือการรับรองว่า คุณ " . $name;
 $description2 = "ได้สำเร็จหลักสูตร " . $course_name . " ของ workgress ";
-$date = "เมื่อวันที่ " . date("d/m/Y");
+$dateData = time();
+$date = thai_date_fullmonth($dateData);
 
 $image_width = imagesx($image);
 $image_height = imagesy($image);
@@ -82,5 +83,15 @@ $url = "data:image/jpeg;base64," . base64_encode($data) . "";
     </div>
 
 </body>
+<?php
+function thai_date_fullmonth($time)
+{   // 19 ธันวาคม 2556
+    $monthTH = [null, 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+    $thai_date_return = "เมื่อวันที่ " . date("j", $time);
+    $thai_date_return .= " เดือน " . $monthTH[date("n", $time)];
+    $thai_date_return .= " ปี " . (date("Y", $time) + 543);
+    return $thai_date_return;
+}
+?>
 
 </html>

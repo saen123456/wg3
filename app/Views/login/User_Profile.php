@@ -351,7 +351,7 @@
 																		<?php
 																		foreach ($user_infomation as $row) :
 																			?>
-																			<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo $row['birthday'] ?>" placeholder="วันเกิด" readonly>
+																			<input type="text" class="form-control" name="Birthday" id="Birthday" value="<?php echo thai_date_fullmonth(strtotime($row['birthday'])); ?>" placeholder="วันเกิด" readonly>
 																		<?php
 																		endforeach;
 																		?>
@@ -1040,6 +1040,16 @@
 			});
 		});
 	</script>
+	    <?php
+    function thai_date_fullmonth($time)
+    {   // 19 ธันวาคม 2556
+      $monthTH = [null, 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+      $thai_date_return = date("j", $time);
+      $thai_date_return .= " " . $monthTH[date("n", $time)];
+      $thai_date_return .= " " . (date("Y", $time) + 543);
+      return $thai_date_return;
+    }
+    ?>
 </body>
 
 </html>

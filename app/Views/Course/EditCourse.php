@@ -580,17 +580,17 @@ $this->session = \Config\Services::session();
                             <label for="image" class="form-label2">แก้ไขภาพหลักสูตร</label>
                             <div class="row">
                                 <div class="main-image">
-                                    <!-- <div class="input-group image-preview">
-                                    </div> -->
+
                                     <?php
                                     if ($Image_Course != null) { ?>
-                                        <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo $Image_Course ?>" id="output">
+                                        <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo $Image_Course ?>" id="outputimage">
                                     <?php
                                     } else { ?>
-                                        <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="output">
+                                        <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="outputimage">
                                     <?php
                                     }
                                     ?>
+
                                     <br>
                                 </div>
                                 <div class="main-text">
@@ -609,7 +609,7 @@ $this->session = \Config\Services::session();
                                             <span class="input-group-btn">
                                                 <div class="btn btn-default image-preview-input">
                                                     <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFileImage(event)" /> <!-- rename it -->
                                                 </div>
                                             </span>
                                         </div>
@@ -997,7 +997,7 @@ $this->session = \Config\Services::session();
                 });
                 // Create the preview image
                 $(".image-preview-input input:file").change(function() {
-                    //console.log("image");
+                    $(".image-preview2").html("");
                     var img = $('<img />', {
                         id: 'dynamic',
                         width: 250,
@@ -1013,13 +1013,13 @@ $this->session = \Config\Services::session();
                         img.attr('src', e.target.result);
                         $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
                     }
-                    reader.readAsDataURL(file);
+
                 });
             });
         </script>
         <script>
-            var loadFile = function(event) {
-                var output = document.getElementById('output');
+            var loadFileImage = function(event) {
+                var output = document.getElementById('outputimage');
                 output.src = URL.createObjectURL(event.target.files[0]);
                 output.onload = function() {
                     URL.revokeObjectURL(output.src) // free memory
@@ -1349,7 +1349,6 @@ $this->session = \Config\Services::session();
 
         });
         $(".send_delete_quiz").click(function() {
-
             $.ajax({
                 url: '<?= site_url('/CourseController/delete_quiz') ?>',
                 method: "POST",

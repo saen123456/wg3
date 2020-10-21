@@ -38,6 +38,7 @@
 
 </head>
 <?php
+
 if (session('correct')) : ?>
   <script type="text/javascript">
     $(function() {
@@ -187,7 +188,7 @@ if ($this->session->get("Role_name") == 'student') {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <a class="btn btn-primary" href="<?php echo base_url('/add'); ?>"> <i class="fa fa-plus"></i> เพิ่มสมาชิก</a>
+              <a class="btn btn-primary" href="<?php echo base_url('/add'); ?>"> <i class="fa fa-plus"></i> เพิ่มผู้ใช้</a>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -235,7 +236,7 @@ if ($this->session->get("Role_name") == 'student') {
                     ตำแหน่ง
                   </th>
                   <th style="width: 8%">
-                    Status
+                    สถานะ
                   </th>
                   <th style="width: 7%" class="text-center">
                     ประเภทของผู้ใช้
@@ -261,11 +262,16 @@ if ($this->session->get("Role_name") == 'student') {
                       </a>
                       <br />
                       <small>
-                        Created <?php echo $row['create_date'] ?>
+                        สร้างเมื่อวันที่ <?php if (isset($row['create_date'])) {
+                                              echo thai_date_fullmonth(strtotime($row['create_date']));
+                                            }
+                                            ?>
                       </small>
                       <br />
                       <small>
-                        Updated <?php echo $row['update_date'] ?>
+                        แก้ไขเมื่อวันที่ <?php
+                                            echo thai_date_fullmonth(strtotime($row['update_date'])); ?>
+
                       </small>
                     </td>
                     <td>
@@ -336,7 +342,16 @@ if ($this->session->get("Role_name") == 'student') {
     </div>
     <!-- /.content-wrapper -->
 
-
+    <?php
+    function thai_date_fullmonth($time)
+    {   // 19 ธันวาคม 2556
+      $monthTH = [null, 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+      $thai_date_return = date("j", $time);
+      $thai_date_return .= " " . $monthTH[date("n", $time)];
+      $thai_date_return .= " " . (date("Y", $time) + 543);
+      return $thai_date_return;
+    }
+    ?>
 
     <footer class="main-footer">
       <strong>Copyright &copy; 2020 <a href="$">Workgress</a>.</strong>

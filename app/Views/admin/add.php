@@ -97,12 +97,12 @@ if ($this->session->get("Role_name") == 'student') {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Admin Add</h1>
+              <h1>เพิ่มผู้ใช้</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="<?php echo base_url('/home'); ?>">Home</a></li>
-                <li class="breadcrumb-item active">Admin Add</li>
+                <li class="breadcrumb-item active">เพิ่มผู้ใช้</li>
               </ol>
             </div>
           </div>
@@ -158,7 +158,7 @@ if ($this->session->get("Role_name") == 'student') {
         <div class="container">
 
           <a href="<?php echo base_url('/dashboard'); ?>" class="btn btn-secondary">ยกเลิก</a>
-          <input type="submit" value="เพิ่มผู้ใช้" class="btn btn-success float-right" form="form-add">
+          <input type="submit" value="เพิ่ม" class="btn btn-success float-right" form="form-add">
         </div>
 
 

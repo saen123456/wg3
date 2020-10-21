@@ -12,7 +12,8 @@
 		"ext-gd": "*",
 		"google/cloud-storage": "^1.22",
 		"james-heinrich/getid3": "^1.9",
-		"phansys/getid3": "^1.9"
+		"phansys/getid3": "^1.9",
+		"dixonsatit/yii2-thai-year-formatter": "*"
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "1.6.*",

@@ -202,7 +202,7 @@
                                 <div class="main-image">
                                     <!-- <div class="input-group image-preview">
                                     </div> -->
-                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="output">
+                                    <img data-purpose="image-preview" alt="ภาพหลักสูตร" width="491" height="276" src="<?php echo base_url('assets/img/pre-image.png'); ?>" id="outputimage">
                                     <br>
                                 </div>
                                 <div class=" main-text">
@@ -224,7 +224,7 @@
                                             <div class="btn btn-default image-preview-input">
                                                 <span class="glyphicon glyphicon-folder-open"></span>
                                                 <span class="image-preview-input-title">Browse</span>
-                                                <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFile(event)" /> <!-- rename it -->
+                                                <input type="file" accept="image/png, image/jpeg, image/gif" name="photo" id="uploadFile" onchange="loadFileImage(event)" /> <!-- rename it -->
                                             </div>
                                         </span>
 
@@ -440,8 +440,9 @@
             });
         </script>
         <script>
-            var loadFile = function(event) {
-                var output = document.getElementById('output');
+            var loadFileImage = function(event) {
+                console.log("load");
+                var output = document.getElementById('outputimage');
                 output.src = URL.createObjectURL(event.target.files[0]);
                 output.onload = function() {
                     URL.revokeObjectURL(output.src) // free memory

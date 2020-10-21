@@ -91,12 +91,12 @@ $this->session = \Config\Services::session();
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Admin Edit</h1>
+              <h1>แก้ไขผู้ใช้</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="<?php echo base_url('/home'); ?>">Home</a></li>
-                <li class="breadcrumb-item active">Admin Edit</li>
+                <li class="breadcrumb-item active">แก้ไขผู้ใช้</li>
               </ol>
             </div>
           </div>
@@ -170,9 +170,9 @@ $this->session = \Config\Services::session();
           </div>
         </div>
         <div class="container">
-          <a href="<?php echo base_url('/dashboard'); ?>" class="btn btn-secondary">Cancel</a>
+          <a href="<?php echo base_url('/dashboard'); ?>" class="btn btn-secondary">ยกเลิก</a>
 
-          <input type="submit" value="Save Changes" class="btn btn-success float-right" form="form-update">
+          <input type="submit" value="บันทึก" class="btn btn-success float-right" form="form-update">
         </div>
       </section>
       <!-- /.content -->
