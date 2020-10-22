@@ -519,7 +519,6 @@
             $(document).ready(function() {
                 $('#Email_Forget').change(function() {
                     var Email_Forget = $('#Email_Forget').val();
-                    //var Email_Login = document.getElementById("Email_Login").value; 
                     console.log(Email_Forget);
                     if (Email_Forget != '') {
                         $.ajax({

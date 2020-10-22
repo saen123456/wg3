@@ -34,9 +34,6 @@ $this->session = \Config\Services::session();
         <li class="nav-item d-none d-sm-inline-block">
           <a href="<?php echo base_url('/home'); ?>" class="nav-link">หน้าแรก</a>
         </li>
-        <!-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li> -->
       </ul>
 
       <!-- SEARCH FORM -->

@@ -49,7 +49,6 @@ imagettftext($image, 30, 0, $x, 410, $color, $font, $certify);
 imagettftext($image, 30, 0, $x2, 500, $color, $font, $description);
 imagettftext($image, 30, 0, $x3, 560, $color, $font, $description2);
 imagettftext($image, 30, 0, $x4, 620, $color, $font, $date);
-//header('Content-Disposition: attachment; filename=certificate.jpg'); // This will tell the browser to download it
 header("content-type: image/jpeg;");
 imagejpeg($image);
 imagedestroy($image);

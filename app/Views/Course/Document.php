@@ -35,15 +35,11 @@
         echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $document_link . "' width='100%' height='900px' frameborder='0'> </iframe>";
     } else if ($document_type == "pdf") {
         $Add_Space = str_replace(' ', '%20', $document_link);
-        //$Add_Space = str_replace('&', '%26', $document_link);
         $document_link_pdf = $Add_Space . "#toolbar=0";
-        //echo $document_link_pdf;
         echo "<iframe src='" . $document_link_pdf . "' width='100%' height='900px' frameborder='0'>";
-        //echo "<iframe src='https://docs.google.com/gview?url=" . $document_link . "&embedded=true' width='100%' height='900px' ></iframe>";
     } else if ($document_type == "pptx" || $document_type == "ppt") {
         $Add_Space = str_replace(' ', '%20', $document_link);
         $Add_Space = str_replace('&', '%26', $document_link);
-        //echo $Add_Space;
         echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . $Add_Space . "' width='100%' height='900px' frameborder='0'> </iframe>";
     }
     ?>

@@ -462,38 +462,6 @@
                     </div>
             </div>
             <div class="container body" id="container-padding">
-                <!-- <div class="row">
-                    <div class="col-6">
-                        <p>สิ่งที่จะได้เรียนรู้</p>
-                        <p class="line-body"></p>
-                        <div class="block"></div>
-                        <div class="card-ready">
-                            <div class="row">
-
-                                <div class="col-6">
-                                    <div class="body-ready">
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="body-ready2">
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                        <p><span class="fa fa-check-circle check"></span>ทักษะความเป็นผู้นำ</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                </div> -->
                 <div class="row justify-content-center">
                     <div class="col-6">
                         <div class="block"></div>

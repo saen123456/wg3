@@ -1,7 +1,6 @@
 <?php
 include('config_google.php');
 include('config_facebook.php');
-//session_destroy();
 
 //google_btn
 $login_button = $google_client->createAuthUrl();
@@ -11,14 +10,9 @@ $facebook_helper = $facebook->getRedirectLoginHelper();
 
 $facebook_permissions = ['email']; // Optional permissions
 $facebook_login_url = $facebook_helper->getLoginUrl('https://workgress.online/UserFacebookController/Facebook_Login', $facebook_permissions);
-//$facebook_login_url = '<a href="'.$facebook_login_url.'"><img src="assets\img\btn_facebook.png" width="300" height="60"/></a>';
 
 ?>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 
 <head>
@@ -614,15 +608,7 @@ endif
                         <input type="email" name="Email_Forget" class="form-control" id="Email_Forget" placeholder="กรอกอีเมลที่ต้องการจะเปลี่ยนรหัสผ่าน">
                       </div>
                       <span id="email_check_forget"></span>
-                      <!-- <div class="form-group">
-                      <label for="password">รหัสผ่านใหม่ :</label>
-                      <input type="password" name="Password_Forget" class="form-control" id="Password_Forget" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword2">ยืนยันรหัสผ่าน :</label>
-                      <input type="password" name="Password_Forget_Confirm" class="form-control" id="Password_Forget_Confirm" placeholder="Password">
-                    </div> -->
-
+                   
                     </div>
                     <!-- /.card-body -->
                     <button type="submit" class="btn btn-primary">ยืนยัน</button>
@@ -670,7 +656,6 @@ endif
   $(document).ready(function() {
     $('#Email_Login').change(function() {
       var Email_Login = $('#Email_Login').val();
-      //var Email_Login = document.getElementById("Email_Login").value; 
       console.log(Email_Login);
       if (Email_Login != '') {
         $.ajax({
@@ -691,7 +676,7 @@ endif
   $(document).ready(function() {
     $('#Email_Register').change(function() {
       var Email = $('#Email_Register').val();
-      //var Email = document.getElementById("Email_Register").value; 
+    
       console.log(Email);
       if (Email != '') {
         $.ajax({
@@ -753,7 +738,6 @@ endif
   $(document).ready(function() {
     $('#Email_Forget').change(function() {
       var Email_Forget = $('#Email_Forget').val();
-      //var Email_Login = document.getElementById("Email_Login").value; 
       console.log(Email_Forget);
       if (Email_Forget != '') {
         $.ajax({

@@ -216,11 +216,7 @@
 
                                         <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
                                         <span class="input-group-btn">
-                                            <!-- image-preview-clear button -->
-                                            <!-- <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                                <span class="glyphicon glyphicon-remove"></span> Clear
-                                            </button> -->
-                                            <!-- image-preview-input -->
+                                           
                                             <div class="btn btn-default image-preview-input">
                                                 <span class="glyphicon glyphicon-folder-open"></span>
                                                 <span class="image-preview-input-title">Browse</span>
@@ -333,9 +329,6 @@
                     console.log(Unit_Count);
                     $.ajax({
                         url: "https://workgress.online/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
-                        //url: "http://35.187.229.2/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
-
-                        //url: "http://localhost:8080/projectwg/CourseController/Upload_Unit?Unit_Index=" + Unit_Count++,
                         type: "POST",
                         data: new FormData($form[0]),
                         contentType: false,

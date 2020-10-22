@@ -105,8 +105,6 @@
 					<li class="nav-item dropdown">
 						<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">หมวดหมู่ <i class="fas fa-th-large"></i></a>
 						<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-							<!-- <li><a href="#" class="dropdown-item">Some action </a></li>
-                <li><a href="#" class="dropdown-item">Some other action</a></li> -->
 
 							<li class="dropdown-divider"></li>
 
@@ -229,37 +227,7 @@
 											<h3 class="card-title">คอร์สที่กำลังเรียนอยู่</h3>
 										</div>
 										<!-- /.card-header -->
-										<!-- <div class="card-body">
-											<strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-											<p class="text-muted">
-												B.S. in Computer Science from the University of Tennessee at Knoxville
-											</p>
-
-											<hr>
-
-											<strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-											<p class="text-muted">Malibu, California</p>
-
-											<hr>
-
-											<strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-											<p class="text-muted">
-												<span class="tag tag-danger">UI Design</span>
-												<span class="tag tag-success">Coding</span>
-												<span class="tag tag-info">Javascript</span>
-												<span class="tag tag-warning">PHP</span>
-												<span class="tag tag-primary">Node.js</span>
-											</p>
-
-											<hr>
-
-											<strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-											<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-										</div> -->
+									
 										<?php
 										foreach ($User_Course_Learn as $row2) :
 											?>

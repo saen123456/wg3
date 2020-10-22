@@ -1,7 +1,6 @@
 <?php
 include('config_google.php');
 include('config_facebook.php');
-//session_destroy();
 
 //google_btn
 $login_button = $google_client->createAuthUrl();
@@ -15,10 +14,6 @@ $facebook_login_url = $facebook_helper->getLoginUrl('https://wg-test.herokuapp.c
 
 ?>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 
 <head>

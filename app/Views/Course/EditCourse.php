@@ -262,10 +262,6 @@ $this->session = \Config\Services::session();
                     <div class="col-md-8">
                         <div class="input-group">
                             <div id="showquestionlist"> </div>
-                            <!-- <span class="input-group-addon" id="basic-addon3">ตั้งคำถามว่า : </span>
-                            <form id="form_quiz">
-                                <input type="text" class="form-control" id="Quiz" aria-describedby="basic-addon3" value="test">
-                            </form> -->
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -277,17 +273,6 @@ $this->session = \Config\Services::session();
                         <div id="Radio_Answer2">
                             <div id="showanswerlist"> </div>
                         </div>
-                        <!-- <div id="Radio_Answer">
-                            <h2>ใส่คำตอบของคุณที่นี่</h2>
-                            ข้อที่
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="radio" aria-label="..." style="width:20px; height:20px" name="Check_Answer" id="Check_Answer" value="1">
-                                </span>
-                                <input type="text" class="form-control" aria-label="..." name="Choice_Answer_1" id="Choice_Answer_1" value="">
-                            </div>
-                            <br>
-                        </div> -->
 
                     </div>
                 </div>
@@ -1164,9 +1149,6 @@ $this->session = \Config\Services::session();
             var Choice_Answer_3 = $("#Choice_Answer_3").val();
             var Choice_Answer_4 = $("#Choice_Answer_4").val();
 
-            // alert("คอร์ส id " + window.course_id + "\n" + "คำถาม " + Quiz + "\n" + Choice_Answer_1 + " " + Choice_Answer_2 + " " + Choice_Answer_3 + " " + Choice_Answer_4 + "\n" +
-            //     " คำตอบคือข้อที่ " + window.Radio_Answer + "\n" + " unit_index " + window.unit_index);
-            //alert(typeof(window.Radio_Answer));
             var base_url = '<?= base_url('course/edit/') ?>';
             $.ajax({
                 url: "<?= site_url('/CourseController/Create_Quiz') ?>",

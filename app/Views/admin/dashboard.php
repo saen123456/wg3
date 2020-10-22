@@ -98,9 +98,6 @@ if ($this->session->get("Role_name") == 'student') {
         <li class="nav-item d-none d-sm-inline-block">
           <a href="<?php echo base_url('/home'); ?>" class="nav-link">หน้าแรก</a>
         </li>
-        <!-- <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
-        </li> -->
       </ul>
 
       <!-- SEARCH FORM -->
@@ -156,24 +153,6 @@ if ($this->session->get("Role_name") == 'student') {
                 </p>
               </a>
             </li>
-
-            <!-- <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Charts
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="<?php echo base_url('/chart'); ?>" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>ChartJS</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

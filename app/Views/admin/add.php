@@ -41,9 +41,7 @@ if ($this->session->get("Role_name") == 'student') {
         <li class="nav-item d-none d-sm-inline-block">
           <a href="<?php echo base_url('/home'); ?>" class="nav-link">หน้าแรก</a>
         </li>
-        <!-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li> -->
+     
       </ul>
 
       <!-- SEARCH FORM -->
@@ -190,7 +188,6 @@ if ($this->session->get("Role_name") == 'student') {
     $(document).ready(function() {
       $('#email').change(function() {
         var Email = $('#email').val();
-        //var Email = document.getElementById("Email_Register").value; 
         console.log(Email);
         if (Email != '') {
           $.ajax({

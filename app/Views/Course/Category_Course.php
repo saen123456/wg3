@@ -243,19 +243,6 @@
             <br>
             <div class="container">
                 <div class="float-sm-right">
-                    <!-- <label class="dropdown">
-                        <div class="dd-button">
-                            ตัวกรอง
-                        </div>
-                        <input type="checkbox" class="dd-input" id="test">
-                        <ul class="dd-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-
-                        </ul>
-
-                    </label> -->
                 </div>
                 <div class="float-sm-left">
                     <h2 style="font-family: Roboto;font-style: normal;font-weight: normal;">หลักสูตร </h2>
