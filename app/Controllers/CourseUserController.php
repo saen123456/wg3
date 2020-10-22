@@ -38,8 +38,6 @@ class CourseUserController extends BaseController
     {
         if ($this->session->get("Role_name")) {
             $model = new CourseUser_model();
-            // $data['data'] = $model->Select_Video();
-            // $data['data'] = $model->Select_Video_Of_Course($id);
             $data['video_link'] = $model->Select_Video_Of_Course($id);
             $data['question'] = $model->Select_Question_Of_Course($id);
             $data['have_document'] = $model->Select_Document_Of_Course($id);
@@ -50,7 +48,6 @@ class CourseUserController extends BaseController
                 'Course_id_document' => $Course_id,
             ];
             $this->session->set($this->Data);
-            //echo $this->session->get('Course_id_document');
             echo view('Course/Couse_Learn_Video', $data);
         } else {
             return redirect()->to(base_url('/home'));

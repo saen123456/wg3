@@ -207,10 +207,6 @@ class CourseController extends BaseController
 
     public function Create_Quiz()
     {
-
-        // $test = "<script>document.write(p1)</script>";
-        // $model_course = new Course_model();
-        // $model_course->Insert_Test($test);
         $Course_id = $this->request->getVar('Course_id');
         $Quiz = $this->request->getVar('Quiz');
         $Choice_Answer_1 = $this->request->getVar('Choice_Answer_1');
@@ -223,14 +219,9 @@ class CourseController extends BaseController
 
         $model_course = new Course_model();
         $model_course->Insert_Quiz($Course_id, $Quiz, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer, $Unit_Index);
-        //return redirect()->to(base_url('course/edit/' . $Course_id));
     }
     public function Update_Quiz()
     {
-
-        // $test = "<script>document.write(p1)</script>";
-        // $model_course = new Course_model();
-        // $model_course->Insert_Test($test);
         $Quiz_Question_id = $this->request->getVar('Quiz_Question_id');
         $Quiz = $this->request->getVar('Quiz');
 
@@ -246,11 +237,8 @@ class CourseController extends BaseController
 
         $Radio_Answer2 = $this->request->getVar('Radio_Answer2');
 
-        //echo $Radio_Answer;
-
         $model_course = new Course_model();
         $model_course->Update_Quiz($Quiz_Question_id, $Quiz, $Quiz_Answer_id1, $Quiz_Answer_id2, $Quiz_Answer_id3, $Quiz_Answer_id4, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer2);
-        //return redirect()->to(base_url('course/edit/' . $Course_id));
     }
     public function console_log($output, $with_script_tags = true)
     {
@@ -267,7 +255,7 @@ class CourseController extends BaseController
         $course_id = $this->session->get("Course_id");
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
 
-            //echo $course_id;
+          
             $model = new Course_model();
             $model->change_status($course_id);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspเปลี่ยนสถานะเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
@@ -316,7 +304,7 @@ class CourseController extends BaseController
         $filelink = "https://storage.googleapis.com/storage-workgress-2/" . $file['uploadFile']['name'];
         $model->Upload_Video($file_name, $filelink);
         echo "upload success";
-        //return redirect()->to(base_url('test55'));
+       
     }
 
     public function Upload_Video()
@@ -494,7 +482,6 @@ class CourseController extends BaseController
             return redirect()->to(base_url('/home'));
         }
 
-        //echo $Course_Price." ".$Course_id;
     }
     public function Upload_Edit_Unit()
     {
@@ -523,7 +510,6 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
 
-        //return redirect()->to(base_url('test55'));
     }
     public function Edit_Unit_Name()
     {
