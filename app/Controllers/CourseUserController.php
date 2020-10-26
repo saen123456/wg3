@@ -13,6 +13,10 @@ class CourseUserController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
+    /* User_Register_Course */
+    /*
+    - มีการ get ค่า user_id และ corse_id มาเพื่อบันทึกเข้า database ว่าผู้ใช้สมัครคอร์ส
+    */
     public function User_Register_Course($id = null)
     {
         $User_id = $this->session->get("User_id");
@@ -34,6 +38,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/login'))->with('incorrect', $msg);
         }
     }
+    /* User_LearnCourse */
+    /*
+    - มีการ ดึงค่า เนื้อหาการสอนมาจาก database แล้วส่งไปยังหน้า Couse_Learn_Video.php
+    */
     public function User_LearnCourse($id = null)
     {
         if ($this->session->get("Role_name")) {
@@ -53,6 +61,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* CourseView */
+    /*
+    - มีการ ดึงค่า รายละเอียดของหลักสูตร จาก database แล้วส่งไปยังหน้า CourseViewInfo.php เป็นหน้าสำหรับบอกรายละเอียดคอร์ส
+    */
     public function CourseView($id = null)
     {
         $model = new CourseUser_model();
@@ -91,6 +103,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* CertificateView */
+    /*
+    - เป็นหน้าสำหรับ ผู้ใช้ เรียนจบหลักสูตร มีการ check ว่าผุ้ใช้เรียนครบจาก database แล้วส่งไปยังหน้า Certificate.php
+    */
     public function CertificateView($id = null)
     {
         $model = new CourseUser_model();
@@ -114,6 +130,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* DocumentView */
+    /*
+    - เป็นหน้าสำหรับให้ผู้ใช้ดูแหล่งข้อมูลของหลักสูตร โดยการดึงค่าไฟล์แหล่งข้อมูลมาจาก database แล้วส่งไปยังหน้า Document.php
+    */
     public function DocumentView($id = null)
     {
         $model = new CourseUser_model();
@@ -127,6 +147,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* My_Course */
+    /*
+    - เป็นหน้าสำหรับให้ผู้ใช้ดูหลักส฿ตรที่ได้ลงทะเบียนเรียนไว้
+    */
     public function My_Course()
     {
         if ($this->session->get("Role_name")) {
@@ -142,6 +166,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* Select_Quiz_Video */
+    /*
+    - เป็นการดึงข้อมูลคำถามของวิดีโอจากหลัดสูตรนั้นๆจาก database 
+    */
     public function Select_Quiz_Video()
     {
         $model = new CourseUser_model();
@@ -153,6 +181,10 @@ class CourseUserController extends BaseController
         }
         return json_encode($Select_Quiz);
     }
+    /* Select_User_Do_Answer */
+    /*
+    - เป็นการดึงข้อมูลว่าผู้ใช้ทำคำถามไปแล้วหรือยัง
+    */
     public function Select_User_Do_Answer()
     {
         $model = new CourseUser_model();
@@ -165,6 +197,10 @@ class CourseUserController extends BaseController
         }
         return json_encode($Select_User_Do_Answer);
     }
+    /* Check_User_Answer */
+    /*
+    - เป็นการเช็คคำตอบว่าที่ผู้ใช้ตอบมาถูกต้องหรือไม่
+    */
     public function Check_User_Answer()
     {
         $model = new CourseUser_model();
@@ -176,6 +212,10 @@ class CourseUserController extends BaseController
         }
         return json_encode($Select_Answer);
     }
+    /* Insert_User_Answer */
+    /*
+    - เป็นการเพิ่มข้อมูลที่ผู้ใช้ตอบคำตอบไปยัง database
+    */
     public function Insert_User_Answer()
     {
         $model = new CourseUser_model();
@@ -189,6 +229,10 @@ class CourseUserController extends BaseController
             $model->Insert_User_Answer($User_id, $Quiz_Question_id, $Answer);
         }
     }
+    /* Check_User_Pass_Unit */
+    /*
+    - เป็นการดึงข้อมูลว่าผู้ใช้ผ่านหัวข้อไหนไปแล้วบ้าง
+    */
     public function Check_User_Pass_Unit()
     {
         $model = new CourseUser_model();
@@ -206,6 +250,10 @@ class CourseUserController extends BaseController
             //echo "false";
         }
     }
+    /* Delete_User_Pass_Unit */
+    /*
+    - เป็นการลบข้อมูลของผู้ใช้เวลาผู้ใช้เลือกว่ายังเรียนไม่ผ่าน
+    */
     public function Delete_User_Pass_Unit()
     {
         $model = new CourseUser_model();
@@ -220,6 +268,10 @@ class CourseUserController extends BaseController
             return redirect()->to(base_url('/courseuser/learn/' . $Course_id));
         }
     }
+    /* Already_User_Pass_Unit */
+    /*
+    - เป็นการดึงข้อมูลว่าผู้ใช้ผ่านหัวข้อไหนไปแล้วบ้าง
+    */
     public function Already_User_Pass_Unit()
     {
         $model = new CourseUser_model();
@@ -235,6 +287,10 @@ class CourseUserController extends BaseController
         }
         return json_encode($Select_User_Pass_Unit);
     }
+    /* Cancel_Course */
+    /*
+    - เป็นการ get ค่า course_id และ user_id มาเพื่อไปลบใน databse ว่าผู้ใช้ยกเลิกการลงทะเบียนหลักสูตรไปแล้ว
+    */
     public function Cancel_Course()
     {
         $Course_id = $this->request->getVar('course_id');

@@ -265,42 +265,74 @@ class User_model extends Model
         $sql = "UPDATE user_register SET password = '$Password_Forget' WHERE email = '$Email_Forget' AND user_login_type = 'normal' ";
         $this->connect_postgresdb->execute($sql);
     }
+    /**
+     * Select_Provinces
+     * เป็น function สำหรับ ดึงค่าจังหวัดทั้งหมด
+     */
     public function Select_Provinces()
     {
         $sql = "SELECT * FROM provinces";
         return $this->connect_postgresdb->execute($sql);
     }
+    /**
+     * Select_Provinces_Name
+     * เป็น function สำหรับ ดึงค่าชื่อจังหวัดจากที่ผู้ใช้เลือก
+     */
     public function Select_Provinces_Name($Province_id)
     {
         $sql = "SELECT name_th FROM provinces where id = '$Province_id'";
         return $this->connect_postgresdb->getOne($sql);
     }
+    /**
+     * Select_Distric_Name
+     * เป็น function สำหรับ ดึงค่าชื่ออำเภอ
+     */
     public function Select_Distric_Name($Amphure_id)
     {
         $sql = "SELECT name_th FROM amphures where id = '$Amphure_id'";
         return $this->connect_postgresdb->getOne($sql);
     }
+    /**
+     * Select_Sub_Distric_Name
+     * เป็น function สำหรับ ดึงค่าชื่อตำบล
+     */
     public function Select_Sub_Distric_Name($Sub_District_id)
     {
         $sql = "SELECT name_th FROM districts where id = '$Sub_District_id'";
         return $this->connect_postgresdb->getOne($sql);
     }
+    /**
+     * Select_ZipCode
+     * เป็น function สำหรับ ดึงค่ารหัสไปรษณีย์
+     */
     public function Select_ZipCode($Sub_District_id)
     {
         $sql = "SELECT zip_code FROM districts where id = '$Sub_District_id'";
         return $this->connect_postgresdb->getOne($sql);
     }
+    /**
+     * Select_Amphure_Name
+     * เป็น function สำหรับ ดึงค่าชื่ออำเภอ
+     */
     public function Select_Amphure_Name($Province_id)
     {
         $sql = "SELECT * FROM amphures WHERE province_id = '$Province_id'";
         $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         return $this->connect_postgresdb->execute($sql);
     }
+    /**
+     * Update_User_Address
+     * เป็น function สำหรับ เพิ่มที่อยู่ของผู้ใช้
+     */
     public function Update_User_Address($Province_Name, $District_Name, $Sub_District_Name, $Zipcode, $Address, $User_id)
     {
         $sql = "UPDATE user_register SET address = '$Address', sub_district = '$Sub_District_Name' , district = '$District_Name' , province = '$Province_Name' , zipcode = '$Zipcode' WHERE user_id = '$User_id' ";
         $this->connect_postgresdb->execute($sql);
     }
+    /**
+     * Update_User_Birthday
+     * เป็น function สำหรับ เพิ่มวันเกิดของผู้ใช้
+     */
     public function Update_User_Birthday($User_id, $User_Birthday)
     {
         $sql = "UPDATE user_register SET birthday = '$User_Birthday' WHERE user_id = '$User_id' ";
@@ -309,17 +341,28 @@ class User_model extends Model
         $sql2 = "SELECT age(birthday) as age FROM user_register WHERE user_id = '$User_id'";
         return $this->connect_postgresdb->getOne($sql2);
     }
+    /**
+     * Update_User_Age
+     * เป็น function สำหรับ เพิ่มอายุของผู้ใช้
+     */
     public function Update_User_Age($User_id, $Age)
     {
         $sql = "UPDATE user_register SET age = '$Age' WHERE user_id = '$User_id' ";
         $this->connect_postgresdb->execute($sql);
     }
+    /**
+     * Select_Birthday
+     * เป็น function สำหรับ ดึงค่าวันเกิดของผุ้ใช้จาก database
+     */
     public function Select_Birthday($User_id)
     {
         $sql = "SELECT * FROM user_register WHERE user_id = '$User_id'";
         return $this->connect_postgresdb->execute($sql);
     }
-
+    /**
+     * Update_User_Gender
+     * เป็น function สำหรับ เพิ่มเพษของผู้ใช้
+     */
     public function Update_User_Gender($User_id, $Gender)
     {
         $sql = "UPDATE user_register SET gender = '$Gender' , age = ''WHERE user_id = '$User_id' ";

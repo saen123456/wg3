@@ -15,6 +15,12 @@ class UserGoogleController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
+    /**
+     * Google_Login
+     * function Google_Login สำหรับ ดึงค่าข้อมูล profile มาจากทาง google
+     * มีการดึงค่าจาก ชื่อ,อีเมล,รูป ที่ดึงจาก google มา
+     * แล้วส่งค่าที่ได้ ไปที่หน้า home 
+     */
     public function Google_Login()
     {
         $model = new User_model();

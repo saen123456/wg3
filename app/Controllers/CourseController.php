@@ -18,11 +18,14 @@ class CourseController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
+    /* Category_Course */
+    /*
+    - เป็นการ ดึงค่า ของ ประเภทของหลักสูตรแล้วส่งไปยังหน้า Category_Course.php
+    */
     public function Category_Course()
     {
         $Course_model = new Course_model();
         $Category = $_GET['category'];
-        //echo $Category;
         $Perpage = 4;
         if (isset($_GET['page'])) {
             $Page = $_GET['page'];
@@ -30,8 +33,6 @@ class CourseController extends BaseController
             $Page = 1;
         }
         $Start = ($Page - 1) * $Perpage;
-
-
 
         if ($Category != "all") {
             if ($Category == "1") {
@@ -45,12 +46,8 @@ class CourseController extends BaseController
             } else if ($Category == "5") {
                 $Urlstr = "others";
             }
-            //echo $Urlstr;
-            //echo $Category;
             $Total_Num_Row = $Course_model->Select_Num_CategoryCourse($Category);
-            //echo $Total_Num_Row;
             $Total_Page = ceil($Total_Num_Row / $Perpage);
-            //echo $Total_Num_Row;
             $data['data'] = $Course_model->Select_CategoryCourse($Start, $Perpage, $Category);
             $data['Total_Page'] = $Total_Page;
             $data['Category'] = $Category;
@@ -58,7 +55,6 @@ class CourseController extends BaseController
             echo view('Course/Category_Course', $data);
         } else {
             $Total_Num_Row = $Course_model->Select_Num_AllCategoryCourse();
-            //echo $Total_Num_Row;
             $Total_Page = ceil($Total_Num_Row / $Perpage);
             $Urlstr = "alldevelopment";
             $data['data'] = $Course_model->Select_AllCategoryCourse($Start, $Perpage);
@@ -68,6 +64,10 @@ class CourseController extends BaseController
             echo view('Course/Category_Course', $data);
         }
     }
+    /* Manage_Course */
+    /*
+    - เป็นหน้าสำหรับการแสดงว่า มีหลักสูตรหนที่คุณครูสร้างขึ้นมาบ้าง สามารถกดเข้าไปแก้ไขหลักสูตรได้
+    */
     public function Manage_Course()
     {
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
@@ -79,12 +79,15 @@ class CourseController extends BaseController
                 'Has_Course' => $Has_Course,
             ];
             $this->session->set($this->Has_Course);
-            //print_r($data['data']);
             echo view('Course/Course', $data);
         } else {
             return redirect()->to(base_url('/home'));
         }
     }
+    /* delete_quiz */
+    /*
+    - มีการดึงค่า course_id และ quiz_id มา แล้วทำการลบ คำถามของหลักสูตรนั้นๆทิ้ง
+    */
     public function delete_quiz()
     {
         $course_id = $this->request->getVar('course_id');
@@ -93,6 +96,10 @@ class CourseController extends BaseController
         $data = $model->delete_quiz($quiz_id, $course_id);
         return $data;
     }
+    /* delete_unit */
+    /*
+    - มีการดึงค่า course_id และ unit_id มา แล้วทำการลบ unitของหลักสูตรนั้นๆทิ้ง
+    */
     public function delete_unit()
     {
         $unit_id = $this->request->getVar('unit_id');
@@ -102,6 +109,10 @@ class CourseController extends BaseController
         $data = $model->delete_unit($unit_id, $course_id, $unit_index);
         return $data;
     }
+    /* Edit_Quiz */
+    /*
+    - เป็นการดึงค่า course_id,quiz_id และ คำถามที่ต้องการเปลี่ยนมาแก้ไขที่ database
+    */
     public function Edit_Quiz()
     {
 
@@ -118,6 +129,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* CreateCourse */
+    /*
+    - เป็นหน้าสำหรับการสร้างหลักสูตร
+    */
     public function CreateCourse()
     {
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
@@ -126,6 +141,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* CreateCourseStep2 */
+    /*
+    - เป็นหน้าสำหรับการเพิ่มเนื้อหาของหลักสูตรต่อจากหน้า CreateCourse
+    */
     public function CreateCourseStep2($id = null)
     {
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
@@ -139,6 +158,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* EditCourse */
+    /*
+    - เป็นหน้าสำหรับแก้ไขหลักสูตรที่สร้างขึ้นมา
+    */
     public function EditCourse($id = null)
     {
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
@@ -165,30 +188,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
-    /**** ส่วนของ View ****/
-    public function Test()
-    {
-        if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
-            $model = new Course_model();
-            // $data['data'] = $model->Select_Video();
-            $data['data'] = $model->Select_Video_Google_Drive();
-            echo view('Course/TestVideo', $data);
-        } else {
-            echo view('login/HomePage');
-        }
-    }
-    public function TestPlayer()
-    {
-        if ($this->session->get("Role_name")) {
-            $model = new Course_model();
-            // $data['data'] = $model->Select_Video();
-            $data['video_link'] = $model->Select_Video_Of_Course();
-            $data['question'] = $model->Select_Question_Of_Course();
-            echo view('Course/TestPlayer', $data);
-        } else {
-            return redirect()->to(base_url('/home'));
-        }
-    }
+    /* CreateCourse */
+    /*
+    - เป็นหน้าสำหรับการสร้างหลักสูตร
+    */
     public function Create_Course()
     {
         $course_name = $this->request->getVar('course_name');
@@ -204,7 +207,10 @@ class CourseController extends BaseController
         $this->session->set($this->Data);
         return redirect()->to(base_url('course/manage/config/' . $course_id));
     }
-
+    /* Create_Quiz */
+    /*
+    - เป็นการดึงค่าคำถามและคำตอบมาจากผู้สร้างหลักสูตรแล้วทำการเพิ่มไปที่ database
+    */
     public function Create_Quiz()
     {
         $Course_id = $this->request->getVar('Course_id');
@@ -220,6 +226,10 @@ class CourseController extends BaseController
         $model_course = new Course_model();
         $model_course->Insert_Quiz($Course_id, $Quiz, $Choice_Answer_1, $Choice_Answer_2, $Choice_Answer_3, $Choice_Answer_4, $Radio_Answer, $Unit_Index);
     }
+    /* Update_Quiz */
+    /*
+    - เป็นการดึงค่าคำถามและคำตอบมาจากผู้สร้างหลักสูตรแล้วทำการนำข้อมูลไปแก้ไขที่ database
+    */
     public function Update_Quiz()
     {
         $Quiz_Question_id = $this->request->getVar('Quiz_Question_id');
@@ -249,13 +259,16 @@ class CourseController extends BaseController
         }
         echo $js_code;
     }
-
+    /* change_status */
+    /*
+    - เป็นการให้ผู้สร้างหลักสูตรต้องการที่จะปิดหลัดสูตรนั้นๆ จะเป็นการเปลี่ยน status ของหลักสูตรจาก active เป็น non-active
+    */
     public function change_status()
     {
         $course_id = $this->session->get("Course_id");
         if ($this->session->get("Role_name") == 'teacher' || $this->session->get("Role_name") == 'admin') {
 
-          
+
             $model = new Course_model();
             $model->change_status($course_id);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspเปลี่ยนสถานะเรียบร้อย&nbsp&nbsp&nbsp&nbsp&nbsp';
@@ -267,7 +280,7 @@ class CourseController extends BaseController
     }
 
     //function create bucket
-    /*public function Create_Bucket()
+    public function Create_Bucket()
     {
         putenv("GOOGLE_APPLICATION_CREDENTIALS=workgress-new.json");
 
@@ -285,8 +298,13 @@ class CourseController extends BaseController
         $bucket = $this->storage->createBucket($bucketName);
 
         echo 'Bucket ' . $bucket->name() . ' created.';
-    }*/
+    }
 
+
+    /* Upload_Course */
+    /*
+    - เป็นการให้ผู้สร้างอัพโหลดไฟล์ video ของหลักสูตรเข้า database
+    */
     public function Upload_Course()
     {
         $model = new Course_model();
@@ -304,9 +322,11 @@ class CourseController extends BaseController
         $filelink = "https://storage.googleapis.com/storage-workgress-2/" . $file['uploadFile']['name'];
         $model->Upload_Video($file_name, $filelink);
         echo "upload success";
-       
     }
-
+    /* Upload_Video */
+    /*
+    - เป็นการให้ผู้สร้างอัพโหลดไฟล์ video ของหลักสูตรเข้า database
+    */
     public function Upload_Video()
     {
 
@@ -326,6 +346,10 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
+    /* Upload_Unit */
+    /*
+    - เป็นการให้ผู้สร้างอัพโหลดไฟล์ video และ ชื่อของ unit ของหลักสูตรเข้า database
+    */
     public function Upload_Unit()
     {
         $getId3 = new \getID3();
@@ -353,6 +377,10 @@ class CourseController extends BaseController
             echo "<div class='preview'>something wrong</div>";
         }
     }
+    /* Upload_Document */
+    /*
+    - เป็นการให้ผู้สร้างอัพโหลดไฟล์ เนื้อหาการเรียน ของหลักสูตรเข้า database
+    */
     public function Upload_Document()
     {
         $file = $_FILES;
@@ -379,6 +407,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         }
     }
+    /* Edit_Document */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขไฟล์ เนื้อหาการเรียน ของหลักสูตรเข้า database
+    */
     public function Edit_Document()
     {
         $file = $_FILES;
@@ -405,6 +437,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
         }
     }
+    /* Edit_Document */
+    /*
+    - เป็นการให้ผู้สร้างลบไฟล์ เนื้อหาการเรียน ของหลักสูตร
+    */
     public function delete_document()
     {
         $course_id = $this->request->getVar('course_id');
@@ -412,6 +448,10 @@ class CourseController extends BaseController
         $data = $model->delete_document($course_id);
         return $data;
     }
+    /* Upload_Picture_Course */
+    /*
+    - เป็นการให้ผู้สร้างอัพโหลดไฟล์รูปภาพของหลักสูตร
+    */
     public function Upload_Picture_Course()
     {
         $model = new Course_model();
@@ -433,6 +473,10 @@ class CourseController extends BaseController
             echo "อัพโหลดไม่สำเร็จ";
         }
     }
+    /* Edit_Picture_Course */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขไฟล์รูปภาพของหลักสูตร
+    */
     public function Edit_Picture_Course()
     {
         $model = new Course_model();
@@ -453,6 +497,10 @@ class CourseController extends BaseController
             echo "อัพโหลดไม่สำเร็จ";
         }
     }
+    /* Update_Price */
+    /*
+    - เป็นการให้ผู้สร้างเพิ่มราคาของหลักสูตร
+    */
     public function Update_Price()
     {
         $model = new Course_model();
@@ -468,6 +516,10 @@ class CourseController extends BaseController
             return redirect()->to(base_url('/home'));
         }
     }
+    /* Edit_Price */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขราคาของหลักสูตร
+    */
     public function Edit_Price()
     {
         $model = new Course_model();
@@ -481,8 +533,11 @@ class CourseController extends BaseController
         } else {
             return redirect()->to(base_url('/home'));
         }
-
     }
+    /* Upload_Edit_Unit */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขไฟล์วิดีโอของ unit ต่างๆ
+    */
     public function Upload_Edit_Unit()
     {
         $getId3 = new \getID3(); //libary for check video time
@@ -509,8 +564,11 @@ class CourseController extends BaseController
         } else {
             echo "<div class='preview'>something wrong</div>";
         }
-
     }
+    /* Edit_Unit_Name */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขชื่อ unit ของหลักสูตร
+    */
     public function Edit_Unit_Name()
     {
         $model = new Course_model();
@@ -522,6 +580,10 @@ class CourseController extends BaseController
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขชื่อ unit ของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
         return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
     }
+    /* Edit_Course_Name */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขชื่อของหลักสูตร
+    */
     public function Edit_Course_Name()
     {
         $model = new Course_model();
@@ -533,6 +595,10 @@ class CourseController extends BaseController
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขชื่อหลักสูตรของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
         return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
     }
+    /* Edit_Course_Description */
+    /*
+    - เป็นการให้ผู้สร้างแก้ไขรายละเอียดของหลักสูตร
+    */
     public function Edit_Course_Description()
     {
         $model = new Course_model();
@@ -546,6 +612,10 @@ class CourseController extends BaseController
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspแก้ไขคำอธิบายหลักสูตรของคุณเรียบร้อยแล้ว &nbsp&nbsp&nbsp&nbsp&nbsp';
         return redirect()->to(base_url('course/edit/' . $Course_id))->with('correct', $msg);
     }
+    /* Search_Course */
+    /*
+    - เป็นหน้าสำหรับการ search หลักสูตร
+    */
     public function Search_Course()
     {
         $model = new Course_model();
@@ -559,6 +629,10 @@ class CourseController extends BaseController
             echo view('Course/SearchCourse', $data);
         }
     }
+    /* Select_Quiz_Modal */
+    /*
+    - เป็นการดึงค่า คำตอบมาแสดง
+    */
     public function Select_Quiz_Modal()
     {
         $model = new Course_model();
@@ -571,7 +645,10 @@ class CourseController extends BaseController
         }
         return json_encode($Select_Quiz);
     }
-
+    /* Select_Quiz_Video */
+    /*
+    - เป็นการดึงค่า คำถามมาแสดง
+    */
     public function Select_Quiz_Video()
     {
         $model = new Course_model();

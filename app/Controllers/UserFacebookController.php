@@ -15,6 +15,12 @@ class UserFacebookController extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
+    /**
+     * Facebook_Login
+     * function Facebook_Login สำหรับ ดึงค่าข้อมูล profile มาจากทาง facebook
+     * มีการดึงค่าจาก ชื่อ,อีเมล,รูป ที่ดึงจาก facebook มา
+     * แล้วส่งค่าที่ได้ ไปที่หน้า home 
+     */
     public function Facebook_Login()
     {
         $model = new User_model();

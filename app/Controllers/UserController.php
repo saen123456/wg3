@@ -181,6 +181,12 @@ class UserController extends BaseController
             echo view('home/HomePage', $data);
         }
     }
+    /**
+     * add_course
+     * 
+     * เช็คค่า หากเป็น คุณครู จะสามารถเข้าไปที่หน้าสร้างคอร์สได้
+     * เอาไว้สำหรับการสร้างคอร์ส
+     */
     public function add_course()
     {
 
@@ -698,17 +704,18 @@ class UserController extends BaseController
             echo "fails";
         }
     }
+    /* Update_Profile_Birthday */
+    /*
+    - มีการ get ค่า User_id และ ข้อมูลวันเกิดมาจากผู้ใช้ แล้วทำการบันทึกเข้า database
+    */
     public function Update_Profile_Birthday()
     {
         $model = new User_model();
         $User_id = $this->session->get("User_id");
         $User_Birthday = $this->request->getVar('User_Birthday');
         $model->Update_User_Birthday($User_id, $User_Birthday);
-        //echo isset($User_Birthday);
-        //echo "User_id = " . $User_id . " User_Birthday = " . $User_Birthday . " Now Time = " . date("Y-m-d");
         if ($User_Birthday != null) {
             $Age = $model->Update_User_Birthday($User_id, $User_Birthday);
-            //echo $Age;
             $model->Update_User_Age($User_id, $Age);
             $msg = '&nbsp&nbsp&nbsp&nbsp&nbspอัพเดทวันเกิดเรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
             return redirect()->to(base_url('profile'))->with('correct', $msg);
@@ -722,7 +729,6 @@ class UserController extends BaseController
         $model = new User_model();
         $Data = $model->Select_Province();
         while ($result = $Data->fetchRow()) {
-            //print_r($r);
             array_push($json, $result);
         }
         echo json_encode($json);
@@ -739,6 +745,10 @@ class UserController extends BaseController
         }
         echo json_encode($json);
     }
+    /* Update_Profile_Address */
+    /*
+    - มีการ get ค่า ข้อมูลที่อยู่ของผู้ใช้มา แล้วทำการบันทึกเข้า database
+    */
     public function Update_Profile_Address()
     {
         $model = new User_model();
@@ -752,12 +762,15 @@ class UserController extends BaseController
         $District_Name = $model->Select_Distric_Name($Amphure_id);
         $Sub_District_Name = $model->Select_Sub_Distric_Name($Sub_District_id);
         $Zipcode = $model->Select_ZipCode($Sub_District_id);
-        //echo $Province_Name . " " . $District_Name . " " . $Sub_District_Name . " " . $Zipcode . " " . $Address . " " . $User_id;
 
         $model->Update_User_Address($Province_Name, $District_Name, $Sub_District_Name, $Zipcode, $Address, $User_id);
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspคุณอัพเดทที่อยู่เรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
         return redirect()->to(base_url('profile'))->with('correct', $msg);
     }
+    /* Update_Profile_Address */
+    /*
+    - มีการ get ค่า เพศของผู้ใช้มา แล้วทำการบันทึกเข้า database
+    */
     public function Update_Profile_Gender()
     {
         $model = new User_model();
@@ -766,6 +779,5 @@ class UserController extends BaseController
         $model->Update_User_Gender($User_id, $Gender);
         $msg = '&nbsp&nbsp&nbsp&nbsp&nbspคุณอัพเดทเพศเรียบร้อยแล้ว&nbsp&nbsp&nbsp&nbsp&nbsp';
         return redirect()->to(base_url('profile'))->with('correct', $msg);
-        //echo $Gender;
     }
 }
