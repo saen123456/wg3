@@ -150,7 +150,7 @@
                                                 <div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>
                                                     <ul class="list-inline">
                                                         <li><button class="btn btn-success addmore" type="button"><i class="fa fa-plus"></i> เพิ่ม Unit</button></li>
-                                                        <li> <button class="btn btn-danger delete" type="button"><i class="fa fa-trash"></i> ลบ Unit</button></li>
+
 
                                                     </ul>
                                                 </div>
@@ -216,7 +216,7 @@
 
                                         <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
                                         <span class="input-group-btn">
-                                           
+
                                             <div class="btn btn-default image-preview-input">
                                                 <span class="glyphicon glyphicon-folder-open"></span>
                                                 <span class="image-preview-input-title">Browse</span>

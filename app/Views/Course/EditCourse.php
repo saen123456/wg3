@@ -491,7 +491,7 @@ $this->session = \Config\Services::session();
                                     <span class="input-group-btn">
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document2" onchange="loadFile(event)" /> <!-- rename it -->
+                                            <input type="file" accept=".ppt,.pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document2" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
                                         <button class="btn btn-default sent_delete_document" data-toggle="modal" data-target="#modal-delete-document" type="button" var course_id="<?php echo $this->session->get("Course_id") ?>"><i class="fa fa-trash"></i> </button>
                                     </span>
@@ -515,7 +515,7 @@ $this->session = \Config\Services::session();
                                     <span class="input-group-btn">
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"> ไฟล์</span>
-                                            <input type="file" accept=".pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document1" onchange="loadFile(event)" /> <!-- rename it -->
+                                            <input type="file" accept=".ppt,.pptx,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="Document1" onchange="loadFile(event)" /> <!-- rename it -->
                                         </div>
                                     </span>
                                 </div>
@@ -1138,7 +1138,7 @@ $this->session = \Config\Services::session();
     $(document).ready(function() {
         $('#Radio_Answer').on("click", "input", function() {
             Radio_Answer = $(this).val();
-            console.log(Radio_Answer);
+            //console.log(Radio_Answer);
             //console.log(typeof Radio_Answer);
         });
         $("#Quiz_Btn").click(function() {
@@ -1177,7 +1177,7 @@ $this->session = \Config\Services::session();
     $(document).ready(function() {
         $('#Radio_Answer2').on("click", "input", function() {
             Radio_Answer2 = $(this).val();
-            console.log(Radio_Answer2);
+            //console.log(Radio_Answer2);
             //console.log(typeof Radio_Answer);
         });
         $("#Edit_Quiz_Btn").click(function() {
